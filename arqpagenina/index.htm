@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nina Aguiar | Paisagismo de interiores">
 <meta property="og:description" content="Você não tem mão ruim para planta.">
-<meta property="og:url" content="[SUBSTITUIR: URL final da página]">
+<meta property="og:url" content="https://www.thelandinglab.com.br/arqpagenina/">
 <meta property="og:image" content="[SUBSTITUIR: imagem 1200x630]">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%233A4632'/%3E%3Cpath d='M16 5c8 7 8 15 0 22-8-7-8-15 0-22z' fill='none' stroke='%23CE96AC' stroke-width='2'/%3E%3C/svg%3E">
@@ -57,14 +56,14 @@ body{margin:0;background:var(--marfim);color:var(--tinta);font-family:var(--seri
   overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%;display:block}
 a{color:inherit}
-button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
 :focus-visible{outline:2px solid var(--roxo);outline-offset:3px;border-radius:2px}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:70;opacity:.2;mix-blend-mode:soft-light;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ==================== BASE DE LAYOUT ==================== */
 .wrap{width:min(1240px,100%);margin-inline:auto;padding-inline:var(--pad);position:relative;z-index:2}
-.bloco{padding-block:var(--gap);position:relative;overflow:hidden}
+.bloco{padding-block:var(--gap);position:relative;overflow:hidden;scroll-margin-top:64px}
 .mata{background:linear-gradient(174deg,var(--musgo-topo),#2A3323 58%,var(--musgo-fundo));color:var(--marfim)}
 .ameixa{background:linear-gradient(166deg,#4E1C31,var(--roxo-fundo) 62%,#320F1D);color:var(--marfim)}
 .areia{background:var(--marfim-2)}
@@ -86,9 +85,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:70;opa
 @keyframes folhagem{0%{translate:0 0;scale:1}50%{translate:2.4% -1.4%;scale:1.06}100%{translate:-2% 2%;scale:1.02}}
 
 /* ==================== TIPOGRAFIA ==================== */
-.tit{font-family:var(--block);font-weight:400;text-transform:uppercase;letter-spacing:-.012em;line-height:.94;
+.tit{font-family:var(--block);font-weight:400;text-transform:uppercase;letter-spacing:-.012em;line-height:.97;
   margin:0;font-size:clamp(2.1rem,5.6vw,3.9rem)}
-h1.tit{font-size:clamp(2.7rem,8.4vw,5.6rem);line-height:.9}
+h1.tit{font-size:clamp(2.7rem,8.4vw,5.6rem);line-height:.93}
 .it{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.005em}
 p{margin:0 0 1.15em;max-width:58ch}
 p:last-child{margin-bottom:0}
@@ -102,7 +101,7 @@ p:last-child{margin-bottom:0}
 .rev .destaque,[data-rev].rev .destaque{background-size:100% 100%}
 
 /* ==================== REVELAÇÕES ==================== */
-.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.22em;margin-bottom:-.22em}
 .p{display:inline-block;transform:translateY(112%);opacity:0;
   transition:transform 1.05s var(--mola),opacity .7s ease;transition-delay:calc(var(--i,0) * 88ms)}
 .rev .p{transform:none;opacity:1}
@@ -147,7 +146,7 @@ p:last-child{margin-bottom:0}
   gap:14px;padding:15px var(--pad);transition:background .5s,backdrop-filter .5s,padding .5s,border-color .5s;
   border-bottom:1px solid transparent}
 .nav.fixa{background:rgba(244,241,232,.93);backdrop-filter:blur(12px);border-bottom-color:var(--linha);padding-block:10px}
-.marca{font-family:var(--block);font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;line-height:1}
+.marca{font-family:var(--block);font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;line-height:1;-webkit-tap-highlight-color:transparent}
 .marca span{display:block;font-family:var(--serif);font-style:italic;font-size:.66rem;letter-spacing:.02em;
   text-transform:none;color:var(--roxo);margin-top:6px;transition:opacity .4s,transform .4s}
 .nav.fixa .marca span{opacity:0;transform:translateY(-5px)}
@@ -167,7 +166,7 @@ p:last-child{margin-bottom:0}
 .hero-grid{display:grid;gap:38px;align-items:center}
 @media (min-width:980px){.hero-grid{grid-template-columns:1.16fr .84fr;column-gap:clamp(36px,4.6vw,74px)}}
 .hero h1{margin-bottom:26px}
-.hero h1 .w{padding-bottom:.06em;margin-bottom:-.06em}
+.hero h1 .w{padding-bottom:.16em;margin-bottom:-.16em}
 .hero .sub{max-width:42ch;font-size:1.06em;color:var(--tinta-2)}
 .hero-acao{margin-top:32px}
 .prova{margin-top:40px;padding-top:20px;position:relative;font-size:.86rem;line-height:1.6;color:var(--tinta-2);
@@ -244,8 +243,9 @@ p:last-child{margin-bottom:0}
   color:var(--roxo-claro);margin-bottom:6px}
 .pergunta>p{font-family:var(--serif);font-style:italic;font-size:1.08em;margin:0 0 18px;max-width:26ch}
 .opcoes{display:flex;flex-wrap:wrap;gap:9px}
-.chip{border:1px solid rgba(244,241,232,.3);color:var(--marfim);padding:11px 16px;border-radius:24px 5px 24px 5px;
-  font-size:.88rem;line-height:1.2;min-height:44px;transition:background .35s,border-color .35s,color .35s,transform .35s var(--mola)}
+.chip{border:1px solid rgba(244,241,232,.3);color:var(--marfim);padding:12px 18px;border-radius:24px 5px 24px 5px;
+  font-size:.88rem;line-height:1.2;min-height:48px;transition:background .35s,border-color .35s,color .35s,transform .35s var(--mola);
+  -webkit-tap-highlight-color:transparent}
 .chip:nth-child(even){border-radius:5px 24px 5px 24px}
 .chip:hover{border-color:var(--marfim);transform:translateY(-2px) rotate(-.6deg)}
 .chip[aria-pressed=true]{background:var(--roxo-vivo);border-color:var(--roxo-vivo);color:#fff}
@@ -261,6 +261,8 @@ p:last-child{margin-bottom:0}
 .res-barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--musgo-claro),var(--roxo-claro));
   transition:width .8s var(--mola)}
 .res-texto p{color:rgba(244,241,232,.9)}
+.res-texto .btn{margin-top:24px}
+.res-texto{min-height:60px}
 .res-texto .btn{margin-top:24px}
 .aguardando{opacity:.5;font-style:italic}
 
@@ -301,10 +303,11 @@ p:last-child{margin-bottom:0}
 @keyframes puxa{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
 .galeria{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;
   padding:clamp(30px,4vw,46px) var(--pad) 14px;margin-inline:calc(var(--pad) * -1);
-  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-padding-inline:var(--pad)}
 .galeria::-webkit-scrollbar{display:none}
-.cartao{flex:0 0 min(78vw,380px);scroll-snap-align:center;position:relative}
-.cartao-tex{height:clamp(180px,26vw,260px);position:relative;overflow:hidden}
+.cartao{flex:0 0 min(78vw,380px);scroll-snap-align:start;position:relative}
+.cartao:last-child{scroll-snap-align:end}
+.cartao-tex{height:clamp(180px,26vw,260px);min-height:160px;position:relative;overflow:hidden;border-radius:6px 6px 0 0}
 .cartao-tex span{position:absolute;left:18px;bottom:14px;font-family:var(--block);font-size:.62rem;
   letter-spacing:.2em;text-transform:uppercase;color:var(--marfim);opacity:.9;z-index:2}
 .cartao h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.6vw,1.6rem);
@@ -337,7 +340,7 @@ p:last-child{margin-bottom:0}
 .faq details:last-of-type{border-bottom:1px solid var(--linha)}
 .faq summary{display:block;list-style:none;cursor:pointer;padding:24px 44px 24px 0;position:relative;
   font-family:var(--serif);font-style:italic;font-size:clamp(1.12rem,2.4vw,1.32rem);line-height:1.35;color:var(--musgo-esc);
-  transition:color .3s}
+  transition:color .3s;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary:hover{color:var(--roxo)}
 .faq summary .marca-folha{position:absolute;right:4px;top:50%;width:20px;height:auto;color:var(--roxo);
@@ -369,6 +372,7 @@ p:last-child{margin-bottom:0}
 
 /* ==================== RODAPÉ + CTA ==================== */
 footer{background:var(--musgo-fundo);color:rgba(244,241,232,.7);padding-block:44px;font-size:.82rem}
+@media (max-width:767px){footer{padding-bottom:calc(74px + env(safe-area-inset-bottom))}}
 .foot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
 footer a{color:var(--roxo-claro);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
 footer a:hover{border-bottom-color:var(--roxo-claro)}
@@ -574,7 +578,7 @@ footer a:hover{border-bottom-color:var(--roxo-claro)}
 </section>
 
 <!-- ============ GALERIA ============ -->
-<section class="bloco" id="jardins" aria-label="Jardins">
+<section class="bloco" id="jardins" aria-label="Jardins" style="scroll-margin-top:64px">
   <div class="wrap">
     <div class="galeria-topo">
       <div>
