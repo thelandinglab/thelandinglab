@@ -1,1 +1,353 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Landing Lab — Custom pages that turn visits into clients</title>
+<meta name="description" content="We build custom landing pages for professionals whose work deserves more than a template. Your work is already excellent. We make sure your online presence says the same thing.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Public+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Schema.org structured data for AI search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "The Landing Lab",
+  "description": "Custom landing page design and development for professionals. We build pages that convert visitors into clients.",
+  "url": "https://thelandinglab.com",
+  "founder": { "@type": "Person", "name": "Letícia Meneghetti" },
+  "serviceType": ["Landing Page Design", "Web Design", "Conversion Optimization"],
+  "areaServed": { "@type": "Place", "name": "Worldwide" },
+  "knowsAbout": ["Landing Pages", "Web Design", "Conversion Rate Optimization", "UX Design"]
+}
+</script>
+
+<style>
+:root{
+  --paper:#FFFDF5;
+  --ink:#181430;
+  --deep:#0E0B1E;
+  --lime:#D8FF60;
+  --ld:#7A9127;
+  --lilac:#8C82DC;
+  --card:#F3F1E6;
+  --line:rgba(24,20,48,.12);
+  --txt:#221F2E;
+  --txs:#5B5768;
+  --d:'Fraunces',Georgia,serif;
+  --b:'Public Sans',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--b);background:var(--paper);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--lime);color:var(--ink)}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,92vw);margin:0 auto}
+.narrow{width:min(720px,92vw);margin:0 auto}
+h1,h2,h3,h4{font-family:var(--b);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+.serif{font-family:var(--d);font-weight:600;letter-spacing:-.03em}
+p{color:var(--txs)}
+.pad{padding:clamp(3rem,7vh,5.5rem) 0}
+.pad-lg{padding:clamp(4rem,9vh,7rem) 0}
+.center{text-align:center}
+.up{text-transform:uppercase}
+
+/* button */
+.btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--ink);color:var(--paper);font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);letter-spacing:-.01em;padding:1.15rem 2.4rem;border-radius:4px;text-transform:uppercase;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;cursor:pointer}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(24,20,48,.25)}
+.btn .ar{transition:transform .3s}
+.btn:hover .ar{transform:translateX(5px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{box-shadow:0 14px 40px rgba(216,255,96,.4)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}
+
+/* tag */
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--ld);background:rgba(122,145,39,.1);padding:.5rem 1rem;border-radius:3px;margin-bottom:1.2rem}
+
+/* nav */
+.prog{position:fixed;top:0;left:0;height:3px;background:var(--lime);z-index:999;width:0;transition:width .15s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 0;transition:.4s;background:rgba(255,253,245,0)}
+.nav.stuck{background:rgba(255,253,245,.95);backdrop-filter:blur(14px);padding:.65rem 0;box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;width:min(1080px,92vw);margin:0 auto}
+.logo{font-weight:900;font-size:1.05rem;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.logo .dot{color:var(--ld)}
+.nav-cta{background:var(--ink);color:var(--paper);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;padding:.65rem 1.1rem;border-radius:3px;opacity:0;pointer-events:none;transform:translateY(-4px);transition:.35s}
+.nav.stuck .nav-cta{opacity:1;pointer-events:auto;transform:none}
+
+/* hero */
+.hero{padding:clamp(6.5rem,14vh,9rem) 0 clamp(2.5rem,5vh,3.5rem);text-align:center}
+.hero-h1{font-size:clamp(1.7rem,4.6vw,3.1rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;max-width:22ch;margin:0 auto 1.3rem;color:var(--ink)}
+.hero-h1 .hl{color:var(--ld);position:relative}
+.hero-sub{font-size:clamp(.98rem,2vw,1.15rem);color:var(--txs);max-width:52ch;margin:0 auto 2rem;line-height:1.6;font-weight:500}
+
+/* dark section */
+.dark{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.dark .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 45% at 50% 0%,rgba(140,130,220,.2),transparent 60%)}
+.dark h2,.dark h3{color:var(--paper)}
+.dark p{color:rgba(206,198,238,.82)}
+.dark b{color:var(--lime);font-weight:600}
+
+/* section text */
+.s-title{font-size:clamp(1.3rem,3.6vw,2.2rem);max-width:24ch;margin:0 auto 1.8rem;text-align:center;line-height:1.15}
+.s-body{font-size:clamp(.98rem,2vw,1.1rem);line-height:1.85;max-width:56ch;margin:0 auto 1.3rem}
+.s-body:last-child{margin-bottom:0}
+.s-body b{color:var(--ink);font-weight:700;background-image:linear-gradient(rgba(216,255,96,.6),rgba(216,255,96,.6));background-repeat:no-repeat;background-position:0 92%;background-size:0% 36%;transition:background-size .95s cubic-bezier(.16,1,.3,1) .35s;padding:0 .05em}
+.rv.in b{background-size:100% 36%}
+.dark .s-body b{color:var(--lime);background-image:none;padding:0}
+
+/* punch (italic serif callout) */
+.punch{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.45rem);color:var(--ld);text-align:center;max-width:30ch;margin:2rem auto;line-height:1.35}
+.dark .punch{color:var(--lime)}
+
+/* three cards */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2.5rem auto 0;max-width:900px}
+@media(max-width:760px){.three{grid-template-columns:1fr}}
+.three-card{background:var(--ink);color:var(--paper);border-radius:8px;padding:1.8rem 1.5rem;position:relative;overflow:hidden}
+.three-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--lime)}
+.three-n{font-family:var(--d);font-size:1.6rem;font-weight:700;color:var(--lime);margin-bottom:.5rem}
+.three-t{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--lime);margin-bottom:.8rem}
+.three-card p{font-size:.9rem;line-height:1.6;color:rgba(206,198,238,.85)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:1.2rem;max-width:760px;margin:0 auto}
+.step{background:var(--card);border-radius:10px;padding:1.8rem 1.8rem 1.8rem 4.5rem;position:relative}
+.step-n{position:absolute;left:1.5rem;top:1.8rem;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-weight:700;font-size:.95rem}
+.step-t{font-weight:800;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.step p{font-size:.94rem;line-height:1.6;color:var(--txs)}
+@media(max-width:560px){.step{padding:1.5rem 1.3rem 1.5rem 3.5rem}.step-n{left:1rem;top:1.5rem;width:30px;height:30px;font-size:.85rem}}
+
+/* portfolio placeholder */
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:840px;margin:2rem auto 0}
+@media(max-width:640px){.port-grid{grid-template-columns:1fr}}
+.port-card{background:var(--card);border-radius:10px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--txs);font-weight:600;text-transform:uppercase;letter-spacing:.1em;border:2px dashed var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.port-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+
+/* AI section */
+.ai-block{max-width:56ch;margin:0 auto}
+
+/* pricing */
+.price-box{text-align:center;margin:2rem auto}
+.price-x{font-family:var(--d);font-weight:700;color:var(--lime);line-height:1;text-shadow:0 0 30px rgba(216,255,96,.4)}
+.price-x .big{font-size:clamp(3.4rem,10vw,5rem)}
+.price-x .top{font-family:var(--b);font-size:.9rem;font-weight:600;color:rgba(206,198,238,.7);text-shadow:none;display:block;margin-bottom:.3rem}
+.included{list-style:none;display:inline-flex;flex-direction:column;gap:.7rem;text-align:left;margin:0 auto 2rem}
+.included li{font-size:.98rem;line-height:1.4;color:rgba(232,228,250,.92);padding-left:1.8rem;position:relative}
+.included li::before{content:'✓';position:absolute;left:0;color:var(--lime);font-weight:800}
+.price-note{font-size:.95rem;color:rgba(206,198,238,.7);margin-top:1rem}
+
+/* FAQ */
+.faq{max-width:720px;margin:0 auto}
+.fq{border-bottom:1px solid var(--line);overflow:hidden}
+.fq-q{display:flex;justify-content:space-between;align-items:center;width:100%;padding:1.3rem 0;font-size:clamp(.95rem,2vw,1.05rem);font-weight:700;color:var(--ink);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--b);gap:1rem}
+.fq-i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s}
+.fq-i::before{content:'+';font-size:1.1rem;font-weight:800;color:var(--ink);line-height:1}
+.fq.open .fq-i{transform:rotate(45deg);background:var(--lime)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+.fq-a p{padding:0 0 1.3rem;font-size:.96rem;line-height:1.7;color:var(--txs);max-width:60ch}
+
+/* final CTA */
+.final-cta{font-size:clamp(1rem,2.1vw,1.18rem);line-height:1.85;max-width:50ch;margin:0 auto;text-align:center}
+.final-cta p{color:rgba(206,198,238,.92);margin-bottom:1rem}
+.final-cta .strong{font-family:var(--d);font-style:italic;font-size:clamp(1.2rem,2.8vw,1.6rem);color:var(--lime);display:block;margin:1.5rem auto;max-width:20ch;line-height:1.3}
+.final-sub{font-size:.85rem;color:var(--txs);margin-top:1rem;font-weight:500}
+
+/* footer */
+footer{background:var(--deep);color:rgba(206,198,238,.6);text-align:center;padding:2.5rem 0;font-size:.82rem}
+footer .logo{color:var(--paper);margin-bottom:.5rem;display:block}
+footer a{opacity:.7;transition:opacity .3s}
+footer a:hover{opacity:1}
+
+/* sticky bottom CTA */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:.8rem min(4vw,1.5rem);z-index:190;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 -4px 24px rgba(14,11,30,.3)}
+body.sc-on .sticky-cta{transform:none}
+.sc-l{display:flex;flex-direction:column;gap:.15rem}
+.sc-t{font-size:.78rem;font-weight:700;color:var(--paper);letter-spacing:-.01em}
+.sc-p{font-size:.72rem;color:rgba(206,198,238,.6)}
+.sc-b{background:var(--lime);color:var(--ink);font-weight:800;font-size:.78rem;text-transform:uppercase;padding:.7rem 1.3rem;border-radius:3px;letter-spacing:.01em;white-space:nowrap;transition:transform .3s}
+.sc-b:hover{transform:scale(1.04)}
+
+/* highlight text on reveal */
+p{text-wrap:pretty}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+
+<nav class="nav" id="nav"><div class="nav-in">
+  <span class="logo">The Landing Lab<span class="dot">.</span></span>
+  <a href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started" class="nav-cta">Get started</a>
+</div></nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="hero-h1 rv">Your work is already excellent. We make sure your <span class="hl">online presence</span> says the same thing.</h1>
+    <p class="hero-sub rv" data-d="1">Custom landing pages for professionals whose work deserves more than a template with their name on it.</p>
+    <div class="rv" data-d="2">
+      <a href="#how" class="btn">See how it works <span class="ar">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SECTION 2 — THE TEN SECONDS ===== -->
+<section class="dark pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <div class="center rv"><span class="tag" style="background:rgba(216,255,96,.12);color:var(--lime)">The ten seconds</span></div>
+    <h2 class="s-title rv" style="color:var(--paper)">What happens right after someone clicks your link.</h2>
+    <p class="s-body rv">Someone just heard about you. A friend mentioned your name, or they found one of your projects on Instagram, or they typed something into Google and there you were. They're interested. They tap your link with a little bit of expectation already forming.</p>
+    <p class="s-body rv">The page starts loading. And in those first few seconds, one of two things happens: what they see matches the quality they were imagining, or it falls slightly short. When it falls short, <b>they don't reach out to tell you. They just move on.</b> You never know they were there.</p>
+    <p class="s-body rv">Here's what's easy to miss. This isn't about having a bad website. Your site might be perfectly fine. The thing is, <b>"fine" and "I need to hire this person" are two very different reactions.</b> And the professionals who seem to attract clients effortlessly almost always have the same thing going for them: there's no gap between the quality of their work and how they come across online. When there's no gap, trust forms before the first conversation even starts.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 3 — WHAT WE BUILD ===== -->
+<section class="pad-lg">
+  <div class="narrow">
+    <div class="center rv"><span class="tag">What we build</span></div>
+    <h2 class="s-title rv">A page that does more than hold your information.</h2>
+    <p class="s-body rv">One page. Built around your real work, written for the specific kind of client you want to attract.</p>
+    <p class="s-body rv">What makes it different from what you already have isn't just the design, although the design will be custom, built from scratch, and made to feel like it could only belong to you.</p>
+    <p class="s-body rv">What makes it different is that <b>every section is doing something specific in the mind of the person scrolling through it.</b> The opening tells them in two seconds they've found someone at a level they respect. The portfolio is arranged so each project builds confidence in the next. The copy addresses the quiet hesitations someone has before reaching out. And the contact step feels like starting a conversation, not submitting an application with twelve required fields.</p>
+    <p class="s-body rv">When someone reaches the end of a page like this, something has already shifted. The message they send you sounds different from what you usually get.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 3.5 — THREE THINGS ===== -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="three rv">
+      <div class="three-card"><div class="three-n">01</div><div class="three-t">First impression</div><p>In the first two seconds, the visitor confirms they've found someone operating at a level they respect. If they have to scroll to figure out where they are, you've already lost half of them.</p></div>
+      <div class="three-card"><div class="three-n">02</div><div class="three-t">Confidence</div><p>They see your work curated, not dumped. They read copy that speaks to what they're looking for. Their silent hesitations get answered before they realize they had them.</p></div>
+      <div class="three-card"><div class="three-n">03</div><div class="three-t">Decision</div><p>They reach the end already wanting to work with you. The contact step feels natural, not like filling out a form. They message you already decided, not still shopping.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4 — HOW IT WORKS ===== -->
+<section class="pad-lg" style="background:var(--card)" id="how">
+  <div class="wrap">
+    <div class="center rv"><span class="tag">How it works</span></div>
+    <h2 class="s-title rv">Stays in your inbox, out of your calendar.</h2>
+    <p class="s-body center rv" style="margin-bottom:2.5rem">Everything happens by email. If at any point you'd rather hop on a quick call, that works too.</p>
+
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-n">1</div>
+        <div class="step-t">You share your work</div>
+        <p>We send a short brief. Your best projects, your visual references, a few words about the clients you want more of. Fifteen minutes, whenever you have them. Midnight counts.</p>
+      </div>
+      <div class="step rv">
+        <div class="step-n">2</div>
+        <div class="step-t">We build</div>
+        <p>You receive a link to a fully working page with your real projects, your aesthetic, and copy written specifically for your audience. Not a wireframe, not a concept deck. A real page.</p>
+      </div>
+      <div class="step rv">
+        <div class="step-n">3</div>
+        <div class="step-t">You review</div>
+        <p>Show it to someone you trust. Sleep on it. Then tell us what to change. Two rounds of revisions, because getting it right matters more than getting it fast.</p>
+      </div>
+      <div class="step rv">
+        <div class="step-n">4</div>
+        <div class="step-t">It goes live</div>
+        <p>Fully yours. Five to seven business days, start to finish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6 — AI SEARCH ===== -->
+<section class="dark pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <div class="center rv"><span class="tag" style="background:rgba(216,255,96,.12);color:var(--lime)">What most designers aren't thinking about</span></div>
+    <h2 class="s-title rv" style="color:var(--paper)">A page that gets understood by everyone who finds it.</h2>
+    <p class="s-body rv">People are increasingly using AI tools to find professionals. The recommendations those systems give depend on what they can read on your website. Most professional sites are almost entirely visual. Beautiful to look at, but invisible to any machine trying to understand them.</p>
+    <p class="s-body rv">Our pages are built with real, specific content and structured data that makes your work legible to any search system, today and whatever comes next. We can't guarantee where you'll appear. <b>But your page won't be the reason you're missing from the conversation.</b></p>
+    <p class="punch rv">Most of your competitors' sites are beautiful and silent. Yours will be beautiful and legible.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 8 — FAQ ===== -->
+<section class="pad-lg">
+  <div class="wrap">
+    <h2 class="center rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Questions</h2>
+    <div class="faq">
+      <div class="fq rv"><button class="fq-q">Do I need to get on a call?<span class="fq-i"></span></button><div class="fq-a"><p>You don't. The entire process happens by email. But if you want to talk at any point, we'll make time for it. It's just not required.</p></div></div>
+      <div class="fq rv"><button class="fq-q">I already have a website.<span class="fq-i"></span></button><div class="fq-a"><p>Some clients replace theirs entirely. Others keep it and use our page as the link they share on social media and with potential clients. We'll figure out what makes sense for you.</p></div></div>
+      <div class="fq rv"><button class="fq-q">How is this different from Squarespace?<span class="fq-i"></span></button><div class="fq-a"><p>Squarespace gives you a canvas and leaves you alone with it. We hand you a finished painting. Custom design, professional copy, built around your specific work. You don't build anything. You tell us what to adjust.</p></div></div>
+      <div class="fq rv"><button class="fq-q">What if I don't like the preview?<span class="fq-i"></span></button><div class="fq-a"><p>That's exactly what the revision rounds are for. We adjust until it feels right.</p></div></div>
+      <div class="fq rv"><button class="fq-q">What do you need from me?<span class="fq-i"></span></button><div class="fq-a"><p>Your best project photos, your logo if you have one, your brand colors, and fifteen minutes with our brief. That's enough.</p></div></div>
+      <div class="fq rv"><button class="fq-q">Can I update the page later?<span class="fq-i"></span></button><div class="fq-a"><p>Simple updates like swapping a photo or changing contact info are easy to handle. For bigger structural changes, we offer a straightforward maintenance option.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="dark pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <div class="final-cta rv">
+      <p>Somewhere right now, someone is looking at your website and forming an opinion about you.</p>
+      <p>You don't get to be in the room when that happens. You don't get to explain the context, show them the projects that aren't on the site yet, or tell them the template doesn't really represent your style.</p>
+      <span class="strong">All you get is the page. Make it count.</span>
+    </div>
+    <div class="center rv" style="margin-top:2rem">
+      <a href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started" class="btn btn-lime">Get started <span class="ar">→</span></a>
+      <p class="final-sub">Full custom page, live in under a week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <span class="logo">The Landing Lab<span style="color:var(--lime)">.</span></span>
+  <p style="margin-top:.3rem">Your work is already excellent. We make sure your online presence says the same thing.</p>
+  <p style="margin-top:.8rem"><a href="mailto:leticia@thelandinglab.com.br">leticia@thelandinglab.com.br</a> · <a href="https://instagram.com/thelanding.lab" target="_blank">@thelanding.lab</a></p>
+</footer>
+
+<div class="sticky-cta">
+  <div class="sc-l">
+    <span class="sc-t">Custom page, live in under a week</span>
+    <span class="sc-p">Full design, copy, and launch included</span>
+  </div>
+  <a class="sc-b" href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started%20-%20The%20Landing%20Lab">Get started</a>
+</div>
+
+<script>
+(function(){
+function show(el){el.classList.add('in')}
+if(typeof IntersectionObserver!=='undefined'){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.rv:not(.in)').forEach(show)},3000);
+}else{document.querySelectorAll('.rv').forEach(show)}
+
+var nav=document.getElementById('nav'),prog=document.getElementById('prog'),tick=false;
+function onScroll(){
+  var y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+  nav.classList.toggle('stuck',y>80);
+  prog.style.width=(h>0?Math.min(y/h,1)*100:0).toFixed(2)+'%';
+  document.body.classList.toggle('sc-on',y>window.innerHeight*1.2);
+  tick=false
+}
+window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
+onScroll();
+
+document.querySelectorAll('.fq-q').forEach(function(b){b.addEventListener('click',function(){
+  var it=b.parentElement,a=it.querySelector('.fq-a'),w=it.classList.contains('open');
+  document.querySelectorAll('.fq.open').forEach(function(o){o.classList.remove('open');o.querySelector('.fq-a').style.maxHeight=null});
+  if(!w){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+})});
+})();
+</script>
+</body>
+</html>
