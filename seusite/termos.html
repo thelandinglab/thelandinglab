@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Termos de Serviço — Seu Site | The Landing Lab</title>
+<meta name="robots" content="noindex">
+
+<!-- ==========================================================================
+     MARCADORES A PREENCHER — procure cada um e substitua:
+
+       The Landing Lab     nome completo (pessoa física) ou razão social
+       CPF 434.487.838-89         CPF ou CNPJ
+       R. Dr. Fábio Fachini, 1003 — Vila Candinha, Araras/SP, CEP 13605-060         endereço completo com CEP
+       thelandinglab11@gmail.com            e-mail oficial de atendimento
+       (11) 97355-4678         número no formato (00) 90000-0000
+       Araras, Estado de São Paulo          comarca da sua cidade (ex: Araras, São Paulo)
+       thelandinglab.com.br          domínio do site (ex: nossapagina.com.br)
+       8 de setembro de 2026    data em que os termos entram em vigor
+
+     Se o nome da marca mudar, troque "Seu Site" em todo o arquivo.
+
+     PONTOS QUE O ADVOGADO PRECISA OLHAR PRIMEIRO estão marcados no código
+     com <!-- REVISAR: ... --> e não aparecem para o cliente.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --preto:#101215;--grafite:#171A1E;--linha:#282D33;--linha2:#3A4048;
+  --lima:#C8F135;--lima-esc:#141A05;
+  --texto:#F4F5F0;--texto2:#9AA091;--texto3:#6E7568;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--preto);color:var(--texto);font-family:Inter,system-ui,sans-serif;
+  font-size:16.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+::selection{background:var(--lima);color:var(--lima-esc)}
+a{color:var(--lima)}
+.w{max-width:820px;margin:0 auto;padding:0 22px}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(16,18,21,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+.nav-in{max-width:820px;margin:0 auto;padding:15px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.marca{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 78;
+  font-size:18px;text-transform:uppercase;letter-spacing:-.02em}
+.voltar{font-size:14.5px;color:var(--texto2);text-decoration:none}
+.voltar:hover{color:var(--lima)}
+
+header.topo{padding:56px 0 34px;border-bottom:1px solid var(--linha)}
+h1{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 80;
+  text-transform:uppercase;letter-spacing:-.03em;line-height:1;
+  font-size:clamp(32px,7vw,50px);margin-bottom:14px}
+.vig{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--texto3)}
+.resumo{margin-top:26px;border-left:2px solid var(--lima);padding:4px 0 4px 20px;
+  color:var(--texto2);font-size:16px}
+.resumo b{color:var(--texto);font-weight:600}
+
+.indice{padding:32px 0;border-bottom:1px solid var(--linha)}
+.indice ol{list-style:none;counter-reset:i;columns:2;column-gap:34px}
+.indice li{counter-increment:i;font-size:15px;margin-bottom:9px;break-inside:avoid}
+.indice li::before{content:counter(i) ". ";color:var(--texto3);
+  font-family:'JetBrains Mono',monospace;font-size:12px}
+.indice a{color:var(--texto2);text-decoration:none}
+.indice a:hover{color:var(--lima)}
+@media(max-width:640px){.indice ol{columns:1}}
+
+section{padding:40px 0;border-bottom:1px solid var(--linha)}
+h2{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;letter-spacing:-.02em;line-height:1.06;
+  font-size:clamp(21px,3.6vw,27px);margin-bottom:18px;scroll-margin-top:80px}
+h2 span{color:var(--texto3);font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.1em;margin-right:10px;font-weight:400}
+h3{font-size:17px;font-weight:600;margin:24px 0 10px;color:var(--texto)}
+p{margin-bottom:14px;color:var(--texto2)}
+p strong,li strong{color:var(--texto);font-weight:600}
+ul{list-style:none;margin:0 0 16px}
+li{color:var(--texto2);padding-left:22px;position:relative;margin-bottom:10px}
+li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;
+  border-radius:50%;background:var(--linha2)}
+ul.ok li::before{background:var(--lima)}
+ul.nao li::before{background:var(--texto3);border-radius:0;height:2px;width:9px;top:14px}
+
+.caixa{background:var(--grafite);border:1px solid var(--linha);border-radius:6px;
+  padding:22px 24px;margin:20px 0}
+.caixa.viva{border-color:var(--lima)}
+.caixa p:last-child{margin-bottom:0}
+.caixa h3{margin-top:0}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15.5px}
+th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--texto3);
+  font-weight:400;padding:0 14px 12px 0;border-bottom:1px solid var(--linha)}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--linha);
+  color:var(--texto2);vertical-align:top}
+td:first-child{color:var(--texto);font-weight:500;white-space:nowrap}
+
+.rodape{padding:38px 0 calc(40px + env(safe-area-inset-bottom));font-size:14.5px;color:var(--texto3)}
+.rodape a{text-decoration:none}
+:focus-visible{outline:3px solid var(--lima);outline-offset:3px;border-radius:3px}
+</style>
+
+<style id="css-consentimento">
+#lgpd{position:fixed;left:14px;right:14px;bottom:14px;z-index:300;
+  display:none;gap:16px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;max-width:760px;margin:0 auto;
+  background:#171A1E;border:1px solid #3A4048;border-radius:8px;
+  padding:16px 18px;box-shadow:0 18px 50px -20px rgba(0,0,0,.8);
+  font-family:Inter,system-ui,sans-serif;color:#F4F5F0;
+  animation:lgpd-sobe .45s cubic-bezier(.16,1,.3,1) .8s both}
+#lgpd.on{display:flex}
+#lgpd p{margin:0;font-size:14.5px;line-height:1.5;color:#9AA091;flex:1;min-width:250px}
+#lgpd p a{color:#C8F135;text-decoration:none}
+#lgpd .lgpd-btns{display:flex;gap:8px;flex-shrink:0}
+#lgpd button{font-family:inherit;font-size:14px;font-weight:600;padding:11px 18px;
+  border-radius:4px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+#lgpd .sim{background:#C8F135;color:#141A05}
+#lgpd .nao{background:transparent;border-color:#3A4048;color:#9AA091}
+#lgpd .nao:hover{border-color:#F4F5F0;color:#F4F5F0}
+@keyframes lgpd-sobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#lgpd{animation:none}}
+@media(max-width:900px){
+  #lgpd{bottom:calc(84px + env(safe-area-inset-bottom));padding:14px 15px}
+  #lgpd p{font-size:13.5px;min-width:100%}
+  #lgpd .lgpd-btns{width:100%}
+  #lgpd button{flex:1;padding:12px 8px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="marca">Seu Site<span style="display:block;font-family:Inter,sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:none;color:var(--texto3);margin-top:1px">by The Landing Lab</span></div>
+    <a class="voltar" href="index.html">Voltar à página</a>
+  </div>
+</nav>
+
+<header class="topo">
+  <div class="w">
+    <h1>Termos de Serviço</h1>
+    <p class="vig">Em vigor desde 8 de setembro de 2026</p>
+    <div class="resumo">
+      <b>Resumo em três linhas.</b> Você contrata um site pronto por um valor fechado, paga metade
+      para começar e metade quando aprovar. O prazo de 3 dias úteis começa a contar quando você
+      envia o material completo. Você tem duas rodadas de ajuste inclusas e recebe o arquivo do site
+      ao final. Este resumo não substitui o texto abaixo, que é o que vale juridicamente.
+    </div>
+  </div>
+</header>
+
+<div class="indice">
+  <div class="w">
+    <ol>
+      <li><a href="#c1">Quem presta o serviço</a></li>
+      <li><a href="#c2">Definições</a></li>
+      <li><a href="#c3">Objeto</a></li>
+      <li><a href="#c4">O que cada plano inclui</a></li>
+      <li><a href="#c5">O que não está incluído</a></li>
+      <li><a href="#c6">Contratação e pagamento</a></li>
+      <li><a href="#c7">Briefing e material do cliente</a></li>
+      <li><a href="#c8">Prazo de entrega</a></li>
+      <li><a href="#c9">Ajustes e revisões</a></li>
+      <li><a href="#c10">Aprovação e publicação</a></li>
+      <li><a href="#c11">Direito de arrependimento</a></li>
+      <li><a href="#c12">Cancelamento e reembolso</a></li>
+      <li><a href="#c13">Inatividade do cliente</a></li>
+      <li><a href="#c14">Propriedade e entrega do arquivo</a></li>
+      <li><a href="#c15">Hospedagem, domínio e e-mail</a></li>
+      <li><a href="#c16">Uso do trabalho em portfólio</a></li>
+      <li><a href="#c17">Manutenção posterior</a></li>
+      <li><a href="#c18">Limitação de responsabilidade</a></li>
+      <li><a href="#c19">Proteção de dados</a></li>
+      <li><a href="#c20">Canal oficial de atendimento</a></li>
+      <li><a href="#c21">Alterações destes termos</a></li>
+      <li><a href="#c22">Legislação e foro</a></li>
+    </ol>
+  </div>
+</div>
+
+<main>
+
+<section><div class="w">
+  <h2 id="c1"><span>01</span>Quem presta o serviço</h2>
+  <p>Os serviços descritos neste documento são prestados por <strong>The Landing Lab</strong>, inscrito(a) sob o
+  <strong>CPF 434.487.838-89</strong>, com endereço em <strong>R. Dr. Fábio Fachini, 1003 — Vila Candinha, Araras/SP, CEP 13605-060</strong>, doravante denominado(a) simplesmente
+  <strong>Prestador</strong>, que opera comercialmente sob o nome <strong>The Landing Lab</strong>, oferecendo o serviço denominado <strong>Seu Site</strong>.</p>
+  <p>Contato oficial: <strong>thelandinglab11@gmail.com</strong> e WhatsApp <strong>(11) 97355-4678</strong>.</p>
+  <p>Ao efetuar o pagamento de qualquer plano, o Cliente declara que leu, compreendeu e aceita
+  integralmente estes Termos de Serviço.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c2"><span>02</span>Definições</h2>
+  <table>
+    <tr><td>Cliente</td><td>Pessoa física ou jurídica que contrata qualquer um dos planos.</td></tr>
+    <tr><td>Site</td><td>Página web institucional produzida pelo Prestador conforme o plano contratado.</td></tr>
+    <tr><td>Briefing</td><td>Formulário eletrônico preenchido pelo Cliente após o pagamento, com os dados e materiais necessários à produção.</td></tr>
+    <tr><td>Sinal</td><td>Primeira parcela, equivalente a 50% do valor do plano, paga no ato da contratação.</td></tr>
+    <tr><td>Saldo</td><td>Segunda parcela, equivalente aos 50% restantes, paga após a aprovação do Site pelo Cliente.</td></tr>
+    <tr><td>Dias úteis</td><td>Dias de segunda a sexta-feira, excluídos feriados nacionais e do município do Prestador.</td></tr>
+  </table>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c3"><span>03</span>Objeto</h2>
+  <p>O objeto deste contrato é a <strong>produção sob encomenda de um site institucional</strong> para o
+  negócio do Cliente, em arquivo único, com base em modelo previamente desenvolvido pelo Prestador e
+  adaptado aos dados, cores e imagens fornecidos pelo Cliente no Briefing.</p>
+  <p>Trata-se de <strong>prestação de serviço com entrega única</strong>, sem mensalidade, sem contrato de
+  fidelidade e sem renovação automática, ressalvado o disposto na cláusula 15 quanto a domínio e e-mail
+  no plano Premium.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c4"><span>04</span>O que cada plano inclui</h2>
+  <p>O escopo é definido pelo plano contratado e não é alterável após o pagamento, salvo mediante
+  contratação de upgrade e pagamento da diferença.</p>
+
+  <h3>Essencial — R$147</h3>
+  <ul class="ok">
+    <li>Página única, responsiva, otimizada para celular</li>
+    <li>Nome do negócio e logo fornecida pelo Cliente</li>
+    <li>Endereço com link para o mapa</li>
+    <li>Horário de funcionamento</li>
+    <li>Botão de WhatsApp com mensagem pré-preenchida</li>
+    <li>Link para o perfil de Instagram</li>
+  </ul>
+
+  <h3>Completo — R$297</h3>
+  <ul class="ok">
+    <li>Tudo o que está no plano Essencial</li>
+    <li>Galeria com até <strong>12 fotos</strong> enviadas pelo Cliente</li>
+    <li>Tabela de serviços ou produtos com os respectivos valores</li>
+    <li>Exibição de até <strong>6 avaliações</strong> do perfil do Cliente no Google</li>
+    <li>Seção institucional sobre o negócio</li>
+    <li>Paleta de cores e tipografia adaptadas à identidade visual do Cliente</li>
+  </ul>
+
+  <h3>Premium — R$397</h3>
+  <ul class="ok">
+    <li>Tudo o que está no plano Completo</li>
+    <li>Registro e configuração de <strong>1 domínio .com.br</strong>, com o primeiro ano de registro incluso</li>
+    <li>Configuração de <strong>1 conta de e-mail profissional</strong> no domínio registrado</li>
+    <li>Organização do perfil do Cliente no Google Meu Negócio: categorias, horário, fotos e link do site</li>
+    <li>Marcação técnica para busca local (título, descrição e dados estruturados de negócio local)</li>
+    <li>Arte de QR Code do site, em arquivo pronto para impressão</li>
+    <li><strong>3 meses de ajustes inclusos</strong>, contados da publicação, limitados a alterações de conteúdo</li>
+  </ul>
+
+  <!-- REVISAR: confirmar com o advogado se os limites numéricos (12 fotos, 6 avaliações,
+       1 domínio, 1 e-mail) estão redigidos de forma suficientemente clara para afastar
+       discussão sobre escopo. Esses números são a sua principal defesa contra pedido infinito. -->
+
+  <div class="caixa">
+    <p>Os valores acima são os vigentes na data de publicação destes Termos e podem ser alterados a
+    qualquer momento. O valor aplicável ao Cliente é o que estiver exibido no momento do pagamento.</p>
+  </div>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c5"><span>05</span>O que não está incluído</h2>
+  <p>Salvo contratação em separado e por escrito, <strong>não integram o escopo de nenhum plano</strong>:</p>
+  <ul class="nao">
+    <li>Loja virtual, carrinho de compras ou processamento de pagamentos dentro do site</li>
+    <li>Sistema de agendamento, login de usuários, área de membros ou banco de dados</li>
+    <li>Blog, área de notícias ou qualquer seção com atualização periódica</li>
+    <li>Produção fotográfica, filmagem, edição ou tratamento avançado de imagens</li>
+    <li>Criação de identidade visual completa ou logo autoral do zero</li>
+    <li>Redação de textos longos, roteiro publicitário ou copywriting sob medida</li>
+    <li>Gestão de redes sociais, criação de conteúdo ou tráfego pago</li>
+    <li>Tradução do site para outros idiomas</li>
+    <li>Manutenção, atualização ou suporte após o período previsto no plano</li>
+    <li>Garantia de posicionamento em buscadores, número de visitas, contatos ou vendas</li>
+  </ul>
+  <p>Caso o Cliente não possua logo, o Prestador poderá compor, sem custo adicional, uma marca simples
+  em texto com o nome do negócio, o que <strong>não constitui</strong> criação de identidade visual e não gera
+  cessão de direitos autorais sobre projeto de marca.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c6"><span>06</span>Contratação e pagamento</h2>
+  <p>A contratação ocorre integralmente pela internet, mediante pagamento por meio da plataforma
+  Mercado Pago. São aceitos <strong>Pix</strong> e <strong>cartão de crédito</strong>, este último com possibilidade de
+  parcelamento conforme as condições oferecidas pela plataforma no momento da compra.</p>
+
+  <h3>Planos Completo e Premium</h3>
+  <p>O pagamento é dividido em duas parcelas iguais:</p>
+  <table>
+    <tr><td>Sinal</td><td>50% do valor, pago no ato da contratação. É o que libera o Briefing e coloca o pedido em produção.</td></tr>
+    <tr><td>Saldo</td><td>50% restantes, cobrados após o Cliente aprovar o Site e antes da publicação no endereço definitivo.</td></tr>
+  </table>
+
+  <h3>Plano Essencial</h3>
+  <p>O pagamento é integral e realizado em parcela única no ato da contratação, em razão do valor
+  reduzido do plano.</p>
+
+  <div class="caixa viva">
+    <p>Eventuais descontos por pagamento via Pix, quando ofertados, são informados na página de vendas
+    e aplicados automaticamente no momento do pagamento. Taxas de parcelamento no cartão são definidas
+    pela plataforma de pagamento e não pelo Prestador.</p>
+  </div>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c7"><span>07</span>Briefing e material do cliente</h2>
+  <p>Após a confirmação do pagamento, o Cliente é direcionado ao formulário de Briefing, onde deve
+  informar os dados do negócio e enviar os materiais necessários à produção.</p>
+  <p>O Cliente é <strong>integralmente responsável</strong> pela veracidade, legalidade e titularidade de tudo o que
+  enviar, incluindo textos, preços, logotipo e fotografias. Ao enviar o material, o Cliente declara que:</p>
+  <ul>
+    <li>Detém os direitos de uso sobre todas as imagens e a logo enviadas, ou possui autorização para utilizá-las</li>
+    <li>Obteve o consentimento das pessoas identificáveis retratadas nas fotografias</li>
+    <li>As informações de preço, horário, endereço e serviços são verdadeiras e estão atualizadas</li>
+    <li>O conteúdo não viola direitos de terceiros nem a legislação brasileira</li>
+  </ul>
+  <p>O Prestador não revisa nem valida juridicamente o conteúdo enviado, e não responde por eventuais
+  reclamações de terceiros decorrentes de material fornecido pelo Cliente.</p>
+  <p>O Prestador poderá <strong>recusar material</strong> que seja ilegal, ofensivo, discriminatório, de conteúdo
+  adulto, ou que apresente qualidade técnica insuficiente para publicação, comunicando o Cliente e
+  solicitando substituição.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c8"><span>08</span>Prazo de entrega</h2>
+  <p>O prazo de entrega é de <strong>até 3 (três) dias úteis</strong>, contados <strong>a partir do momento em que o
+  Briefing for preenchido integralmente</strong>, com todos os campos obrigatórios respondidos e as imagens
+  enviadas — e não a partir da data do pagamento.</p>
+  <p>Caso o material esteja incompleto, ilegível ou tecnicamente inadequado, o prazo fica
+  <strong>suspenso</strong> até que o Cliente forneça o que falta, retomando a contagem a partir do recebimento
+  do material complementar.</p>
+  <p>O prazo também fica suspenso durante os períodos em que o Prestador estiver aguardando resposta,
+  aprovação ou definição do Cliente.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c9"><span>09</span>Ajustes e revisões</h2>
+  <p>Todos os planos incluem <strong>2 (duas) rodadas de ajuste</strong>, sem custo adicional. Cada rodada deve ser
+  enviada de forma <strong>agrupada</strong>, em uma única comunicação, e no prazo de até 7 (sete) dias corridos
+  contados da entrega do link para conferência.</p>
+
+  <h3>São considerados ajustes inclusos</h3>
+  <ul class="ok">
+    <li>Substituição, remoção ou reordenação de fotos já previstas no plano</li>
+    <li>Correção ou alteração de textos, preços, horários e dados de contato</li>
+    <li>Ajuste de tonalidade das cores dentro da paleta definida no Briefing</li>
+    <li>Correção de erros, falhas de exibição ou links que não funcionem</li>
+  </ul>
+
+  <h3>Não são considerados ajustes inclusos</h3>
+  <ul class="nao">
+    <li>Mudança do modelo escolhido por outro modelo</li>
+    <li>Alteração da estrutura da página ou da ordem das seções</li>
+    <li>Inclusão de seções, funcionalidades ou conteúdos não previstos no plano</li>
+    <li>Mudança completa de identidade visual ou de paleta após a entrega</li>
+    <li>Novos pedidos após o encerramento das duas rodadas ou do prazo de 7 dias</li>
+  </ul>
+  <p>Alterações fora do escopo poderão ser executadas mediante orçamento à parte, previamente
+  aprovado pelo Cliente por escrito.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c10"><span>10</span>Aprovação e publicação</h2>
+  <p>Concluída a produção, o Prestador enviará ao Cliente um <strong>link de conferência</strong> com o Site
+  funcionando. O Cliente deve conferir o material e, se for o caso, solicitar os ajustes previstos na
+  cláusula 9.</p>
+  <p>A aprovação pode ser manifestada expressamente, por mensagem escrita, ou tacitamente, pelo
+  decurso do prazo de <strong>7 (sete) dias corridos</strong> sem manifestação do Cliente após o envio do link de
+  conferência.</p>
+  <p>Nos planos Completo e Premium, a <strong>publicação no endereço definitivo ocorre após a quitação do
+  Saldo</strong>. Até lá, o Site permanece disponível apenas no link temporário de conferência.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c11"><span>11</span>Direito de arrependimento</h2>
+  <p>Por se tratar de contratação realizada fora do estabelecimento comercial, o Cliente tem direito
+  de arrependimento no prazo de <strong>7 (sete) dias corridos</strong> contados da data da contratação, nos
+  termos do artigo 49 do Código de Defesa do Consumidor.</p>
+  <p>Considerando que o serviço é <strong>produzido sob encomenda</strong> e personalizado com os dados do próprio
+  Cliente, o exercício desse direito observará o seguinte:</p>
+  <table>
+    <tr><td>Antes do Briefing</td><td>Se o Cliente ainda não preencheu o Briefing e a produção não foi iniciada, o valor pago é devolvido integralmente.</td></tr>
+    <tr><td>Após o Briefing</td><td>Se a produção já foi iniciada, será devolvido o valor pago com abatimento proporcional ao trabalho já executado até a data da solicitação, mediante demonstrativo enviado ao Cliente.</td></tr>
+    <tr><td>Após a entrega</td><td>Entregue o link de conferência, considera-se o serviço prestado, aplicando-se as regras da cláusula 12.</td></tr>
+  </table>
+  <p>A solicitação deve ser feita por escrito, pelos canais indicados na cláusula 20. O reembolso será
+  processado em até 10 (dez) dias úteis, pelo mesmo meio de pagamento utilizado na contratação.</p>
+
+  <!-- REVISAR — PRIORIDADE MÁXIMA:
+       Esta é a cláusula mais sensível do documento. O art. 49 do CDC não admite renúncia,
+       e cláusula que exclua o direito de arrependimento é nula de pleno direito.
+       A construção adotada aqui (devolução com abatimento proporcional ao trabalho executado)
+       é defensável, mas há divergência jurisprudencial sobre serviço sob encomenda já iniciado.
+       O advogado precisa validar a redação e confirmar se o abatimento proporcional se sustenta
+       na comarca de atuação. NÃO subir a página antes desta validação. -->
+</div></section>
+
+<section><div class="w">
+  <h2 id="c12"><span>12</span>Cancelamento e reembolso</h2>
+  <p>Fora da hipótese de arrependimento tratada na cláusula 11, aplicam-se as seguintes regras:</p>
+  <ul>
+    <li><strong>Cancelamento pelo Cliente após a entrega do link de conferência:</strong> o serviço é considerado prestado. O Sinal não é restituído e o Saldo deixa de ser devido, não havendo publicação do Site.</li>
+    <li><strong>Descumprimento do prazo pelo Prestador:</strong> se o Prestador não entregar o link de conferência no prazo da cláusula 8, por causa exclusivamente a ele imputável, o Cliente poderá optar entre a devolução integral do valor pago ou a manutenção do pedido com abatimento de 20% sobre o valor total.</li>
+    <li><strong>Impossibilidade técnica:</strong> se, por motivo técnico, o Prestador não puder executar o serviço, o valor pago é devolvido integralmente.</li>
+  </ul>
+  <p>Não haverá reembolso quando a não conclusão decorrer de falta, atraso ou inadequação do material
+  fornecido pelo Cliente, ou de ausência de resposta às comunicações do Prestador.</p>
+
+  <!-- REVISAR: o percentual de 20% de abatimento por atraso é uma escolha comercial,
+       não uma exigência legal. Ajuste se o advogado recomendar outro patamar. -->
+</div></section>
+
+<section><div class="w">
+  <h2 id="c13"><span>13</span>Inatividade do cliente</h2>
+  <p>O Cliente que efetuar o pagamento e não preencher o Briefing terá o valor pago mantido como
+  <strong>crédito válido por 12 (doze) meses</strong>, podendo utilizá-lo a qualquer momento dentro desse prazo
+  para a produção do Site, no mesmo plano contratado.</p>
+  <p>O Prestador enviará lembretes pelos canais informados. Decorridos os 12 meses sem manifestação do
+  Cliente, o pedido será encerrado.</p>
+
+  <!-- REVISAR: crédito por 12 meses foi escolhido em vez de perda do valor,
+       justamente por ser menos vulnerável a questionamento no CDC.
+       Confirmar se o advogado concorda com o prazo. -->
+</div></section>
+
+<section><div class="w">
+  <h2 id="c14"><span>14</span>Propriedade e entrega do arquivo</h2>
+  <p>Quitado integralmente o valor do plano, o Cliente recebe o <strong>arquivo final do Site</strong> e passa a
+  deter licença de uso plena, perpétua e irrevogável sobre ele, podendo hospedá-lo onde desejar,
+  transferi-lo para outro fornecedor ou alterá-lo por conta própria.</p>
+  <p>Permanecem de titularidade do Prestador os <strong>modelos, componentes, código-base e sistema visual</strong>
+  utilizados na produção, que poderão ser reutilizados em outros projetos. O que se transfere ao Cliente
+  é o site final personalizado, não a exclusividade sobre o modelo.</p>
+  <p>Fontes tipográficas, ícones e demais recursos de terceiros seguem as licenças de seus respectivos
+  titulares.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c15"><span>15</span>Hospedagem, domínio e e-mail</h2>
+  <p><strong>Hospedagem.</strong> O Site é publicado em serviço de hospedagem gratuita. Não há cobrança mensal do
+  Prestador ao Cliente por esse serviço. O Prestador não é o operador da hospedagem e não responde por
+  indisponibilidades, mudanças de política ou descontinuidade do provedor.</p>
+  <p><strong>Domínio (plano Premium).</strong> O primeiro ano de registro está incluso. <strong>A partir do segundo ano, a
+  renovação é de responsabilidade e custeio exclusivos do Cliente</strong>, diretamente junto ao registro.br. O
+  Prestador comunicará a aproximação do vencimento, mas não se responsabiliza pela perda do domínio por
+  falta de renovação.</p>
+  <p><strong>E-mail profissional (plano Premium).</strong> A configuração de 1 conta está inclusa e utiliza serviço de
+  terceiro. Eventuais custos futuros, limites de armazenamento ou alterações de política do provedor são
+  de responsabilidade do Cliente.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c16"><span>16</span>Uso do trabalho em portfólio</h2>
+  <p>O Cliente autoriza o Prestador a exibir o Site produzido, incluindo capturas de tela e o nome do
+  negócio, em portfólio, site institucional, redes sociais e materiais publicitários.</p>
+  <p>Essa autorização pode ser revogada a qualquer momento, por solicitação escrita do Cliente, sem
+  qualquer ônus, com remoção em até 15 (quinze) dias corridos.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c17"><span>17</span>Manutenção posterior</h2>
+  <p>Encerrado o período de ajustes previsto no plano contratado, novas alterações poderão ser
+  contratadas de forma avulsa ou por meio de plano de manutenção, sempre mediante orçamento
+  previamente aprovado.</p>
+  <p>A contratação de manutenção é <strong>opcional</strong>. A ausência de contratação não afeta o funcionamento do
+  Site já entregue.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c18"><span>18</span>Limitação de responsabilidade</h2>
+  <p>O Prestador se obriga a entregar o Site conforme o escopo do plano contratado. <strong>Não há garantia,
+  expressa ou implícita, de resultado comercial</strong>: o Prestador não garante posicionamento em
+  buscadores, número de visitas, volume de contatos, aumento de vendas ou faturamento.</p>
+  <p>O Prestador não responde por:</p>
+  <ul class="nao">
+    <li>Indisponibilidade, lentidão ou descontinuidade de serviços de terceiros (hospedagem, provedores de e-mail, Google, WhatsApp, Instagram, plataformas de pagamento)</li>
+    <li>Alterações realizadas no arquivo pelo Cliente ou por terceiros após a entrega</li>
+    <li>Consequências decorrentes de informações incorretas fornecidas pelo Cliente no Briefing</li>
+    <li>Perda do domínio por ausência de renovação pelo Cliente</li>
+  </ul>
+  <p>Em qualquer hipótese, eventual responsabilidade do Prestador fica limitada ao valor efetivamente
+  pago pelo Cliente pelo plano contratado.</p>
+
+  <!-- REVISAR: cláusulas de limitação de responsabilidade têm eficácia restrita
+       em relação de consumo. Confirmar a redação com o advogado. -->
+</div></section>
+
+<section><div class="w">
+  <h2 id="c19"><span>19</span>Proteção de dados</h2>
+  <p>O Prestador trata os dados pessoais fornecidos pelo Cliente em conformidade com a Lei nº
+  13.709/2018 (LGPD).</p>
+  <table>
+    <tr><td>Dados tratados</td><td>Nome, e-mail, telefone, dados do estabelecimento, imagens e demais informações enviadas no Briefing.</td></tr>
+    <tr><td>Finalidade</td><td>Execução do contrato, produção do Site, comunicação sobre o pedido e cumprimento de obrigações legais.</td></tr>
+    <tr><td>Base legal</td><td>Execução de contrato e legítimo interesse.</td></tr>
+    <tr><td>Compartilhamento</td><td>Apenas com operadores necessários à execução: plataforma de pagamento, serviço de armazenamento e serviço de hospedagem.</td></tr>
+    <tr><td>Retenção</td><td>Pelo prazo necessário à execução e às obrigações legais aplicáveis.</td></tr>
+  </table>
+  <p>O Cliente pode solicitar a qualquer momento acesso, correção, portabilidade ou exclusão de seus
+  dados pelo e-mail <strong>thelandinglab11@gmail.com</strong>. A exclusão de dados essenciais à execução poderá inviabilizar a
+  continuidade do serviço.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c20"><span>20</span>Canal oficial de atendimento</h2>
+  <p>Toda comunicação relativa ao contrato deve ser feita por <strong>thelandinglab11@gmail.com</strong> ou pelo WhatsApp
+  <strong>(11) 97355-4678</strong>. Comunicações enviadas por outros canais, incluindo comentários e mensagens diretas
+  em redes sociais, não são consideradas notificação válida.</p>
+  <p>O Prestador responde em até 2 (dois) dias úteis.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c21"><span>21</span>Alterações destes termos</h2>
+  <p>Estes Termos podem ser alterados a qualquer momento. A versão aplicável a cada contratação é a
+  que estiver publicada em <strong>thelandinglab.com.br</strong> na data do pagamento, sendo recomendável que o Cliente
+  guarde uma cópia no momento da contratação.</p>
+  <p>Alterações não retroagem para atingir contratos já em execução.</p>
+</div></section>
+
+<section><div class="w">
+  <h2 id="c22"><span>22</span>Legislação e foro</h2>
+  <p>Estes Termos são regidos pela legislação brasileira, em especial pelo Código de Defesa do
+  Consumidor e pelo Código Civil.</p>
+  <p>Fica eleito o foro da comarca de <strong>Araras, Estado de São Paulo</strong> para dirimir eventuais controvérsias, ressalvado
+  o direito do Cliente consumidor de propor ação no foro de seu próprio domicílio, nos termos da
+  legislação consumerista.</p>
+
+  <!-- REVISAR: a ressalva ao domicílio do consumidor foi incluída de propósito.
+       Cláusula de foro que prejudique o consumidor é considerada abusiva.
+       Confirmar redação com o advogado. -->
+</div></section>
+
+</main>
+
+<footer class="rodape">
+  <div class="w">
+    Seu Site · The Landing Lab · CPF 434.487.838-89<br>
+    <a href="index.html">Voltar à página</a>
+  </div>
+</footer>
+
+
+<div id="lgpd" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies para entender como as pessoas usam esta página e melhorar os anúncios.
+     Você escolhe. <a href="#c19">Saiba mais</a>.</p>
+  <div class="lgpd-btns">
+    <button type="button" class="nao" id="lgpd-nao">Só o essencial</button>
+    <button type="button" class="sim" id="lgpd-sim">Aceitar</button>
+  </div>
+</div>
+
+<script id="js-rastreio">
+/* ==========================================================================
+   Consentimento (LGPD) + GA4 + Pixel da Meta
+   Nada é carregado antes de a pessoa aceitar.
+   ========================================================================== */
+(function(){
+  var GA='G-KTT90C4KTS', PIXEL='1077634248299356', PAGINA='termos';
+  var CHAVE='tll_consent';
+  var noIframe = (window.self !== window.top);
+
+  /* memória de reserva caso o navegador bloqueie o armazenamento */
+  var memoria=null;
+  function ler(){ try{ return localStorage.getItem(CHAVE); }catch(e){ return memoria; } }
+  function gravar(v){ try{ localStorage.setItem(CHAVE,v); }catch(e){ memoria=v; } }
+
+  /* fila de eventos disparados antes do aceite */
+  var fila=[], ativo=false;
+
+  function carregarGA(){
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());
+    gtag('config',GA,{page_title:PAGINA});
+    var s=document.createElement('script');
+    s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+    document.head.appendChild(s);
+  }
+
+  function carregarPixel(){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',PIXEL);
+    fbq('track','PageView');
+  }
+
+  function ligar(){
+    if(ativo || noIframe) return;
+    ativo=true;
+    carregarGA();
+    carregarPixel();
+    fila.forEach(function(f){ disparar(f[0],f[1],f[2]); });
+    fila=[];
+  }
+
+  /* nome, parâmetros, evento padrão da Meta (opcional) */
+  function disparar(nome, params, metaPadrao){
+    if(!ativo){ fila.push([nome,params,metaPadrao]); return; }
+    params = params || {};
+    if(window.gtag) gtag('event', nome, params);
+    if(window.fbq){
+      if(metaPadrao) fbq('track', metaPadrao, params);
+      else fbq('trackCustom', nome, params);
+    }
+  }
+  window.tl = { evento: disparar };
+
+  /* ---------------- banner ---------------- */
+  var banner=document.getElementById('lgpd');
+  var escolha=ler();
+  if(!noIframe && banner){
+    if(escolha==='sim'){ ligar(); }
+    else if(escolha!=='nao'){ banner.classList.add('on'); }
+    var sim=document.getElementById('lgpd-sim'), nao=document.getElementById('lgpd-nao');
+    if(sim) sim.addEventListener('click',function(){ gravar('sim'); banner.classList.remove('on'); ligar(); });
+    if(nao) nao.addEventListener('click',function(){ gravar('nao'); banner.classList.remove('on'); fila=[]; });
+  }
+
+  if(noIframe) return;   /* modelo aberto dentro da janela: o pai já mede */
+
+  /* ---------------- profundidade de leitura ---------------- */
+  var marcos=[25,50,75,90], vistos={};
+  function rolagem(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/((h.scrollHeight||document.body.scrollHeight)-h.clientHeight)*100;
+    marcos.forEach(function(m){
+      if(pct>=m && !vistos[m]){ vistos[m]=1; disparar('rolagem',{profundidade:m, pagina:PAGINA}); }
+    });
+  }
+  window.addEventListener('scroll', rolagem, {passive:true});
+
+  /* ---------------- seções alcançadas ---------------- */
+  if('IntersectionObserver' in window){
+    var secoes=document.querySelectorAll('section[id]');
+    if(secoes.length){
+      var obs=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            disparar('secao_vista',{secao:e.target.id});
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:.4});
+      secoes.forEach(function(s){ obs.observe(s); });
+    }
+  }
+
+  /* ---------------- cliques ---------------- */
+  function textoDe(el){ return (el&&el.textContent||'').trim().slice(0,60); }
+  function secaoDe(el){
+    var s=el.closest ? el.closest('section[id], footer, nav, .barra') : null;
+    if(!s) return 'outro';
+    return s.id || (s.classList&&s.classList.contains('barra') ? 'barra_celular'
+                 : s.tagName.toLowerCase());
+  }
+
+  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a,button') : null;
+    if(!a) return;
+
+    /* abriu um modelo */
+    var mod=a.getAttribute && a.getAttribute('data-modelo');
+    if(mod){ disparar('modelo_aberto',{plano:mod}, 'ViewContent'); return; }
+
+    /* clicou em contratar */
+    if(a.classList && a.classList.contains('compra')){
+      var card=a.closest('.plano');
+      var nome=card ? textoDe(card.querySelector('.plano-nome')) : '';
+      var href=a.getAttribute('href')||'';
+      var porZap = href.indexOf('wa.me')>-1;
+      disparar(porZap ? 'contratar_por_whatsapp' : 'contratar_direto',
+        {plano:nome, value:VALOR[nome]||0, currency:'BRL'},
+        porZap ? 'Contact' : 'InitiateCheckout');
+      return;
+    }
+
+    /* WhatsApp em qualquer outro lugar */
+    var h=a.getAttribute && a.getAttribute('href');
+    if(h && h.indexOf('wa.me')>-1){
+      disparar('clique_whatsapp',{posicao:secaoDe(a)}, 'Contact');
+      return;
+    }
+
+    /* portfólio */
+    if(a.classList && a.classList.contains('pcard')){
+      disparar('portfolio_clique',{negocio:textoDe(a.querySelector('strong'))});
+      return;
+    }
+
+    /* abas de forma de contratar */
+    if(a.id==='aba-direto' || a.id==='aba-zap'){
+      disparar('aba_pagamento',{modo: a.id==='aba-zap' ? 'duvida' : 'direto'});
+      return;
+    }
+  }, true);
+
+  /* ---------------- FAQ ---------------- */
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open) disparar('faq_aberto',{pergunta:textoDe(d.querySelector('summary'))});
+    });
+  });
+
+  /* ---------------- formulário ---------------- */
+  if(PAGINA==='formulario'){
+    var jaComprou=false, ultima=1;
+
+    function planoAtual(){
+      var r=document.querySelector('[name=plano]:checked');
+      if(r) return r.value;
+      var selo=document.getElementById('selo-plano-nome');
+      return selo ? selo.textContent.replace('Plano ','').trim() : 'desconhecido';
+    }
+
+    var alvo=document.getElementById('form');
+    if(alvo && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        var at=document.querySelector('.etapa.ativa');
+        if(at){
+          var n=+at.dataset.etapa;
+          if(n!==ultima){
+            ultima=n;
+            disparar('formulario_etapa',{etapa:n});
+            if(n===2 && !jaComprou){
+              jaComprou=true;
+              var p=planoAtual();
+              disparar('pagamento_confirmado',
+                {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Purchase');
+            }
+          }
+        }
+      }).observe(alvo,{attributes:true,subtree:true,attributeFilter:['class']});
+    }
+
+    var fim=document.getElementById('fim');
+    if(fim && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        if(fim.classList.contains('on')){
+          var p=planoAtual();
+          disparar('formulario_enviado',
+            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'CompleteRegistration');
+        }
+      }).observe(fim,{attributes:true,attributeFilter:['class']});
+    }
+  }
+})();
+</script>
+</body>
+</html>

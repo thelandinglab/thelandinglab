@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formulário — Seu Site | The Landing Lab</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+  --preto:#101215;--grafite:#171A1E;--grafite2:#1E2227;
+  --linha:#282D33;--linha2:#3A4048;
+  --lima:#C8F135;--lima-esc:#141A05;
+  --texto:#F4F5F0;--texto2:#9AA091;--texto3:#6E7568;--erro:#FF6B5A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--preto);color:var(--texto);font-family:Inter,system-ui,sans-serif;
+     font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--lima);color:var(--lima-esc)}
+.w{max-width:660px;margin:0 auto;padding:0 22px}
+
+.topo{padding:26px 0 20px;border-bottom:1px solid var(--linha);margin-bottom:6px}
+.marca{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 76;
+  font-size:19px;text-transform:uppercase;letter-spacing:-.02em}
+.prog{height:3px;background:var(--linha);margin-top:18px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--lima);width:16.6%;
+  transition:width .35s cubic-bezier(.4,0,.2,1)}
+.conta{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;
+  color:var(--texto3);margin-top:10px;text-transform:uppercase}
+
+.etapa{display:none;padding:26px 0 44px}
+.etapa.ativa{display:block;animation:entra .3s ease}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.etapa.ativa{animation:none}}
+
+h1{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 76;
+  text-transform:uppercase;letter-spacing:-.04em;line-height:.96;
+  font-size:clamp(30px,7.5vw,44px);margin-bottom:12px}
+h1 u{text-decoration:none;color:var(--lima)}
+.ajuda{color:var(--texto2);font-size:16px;margin-bottom:32px;max-width:52ch}
+
+.campo{margin-bottom:24px}
+label{display:block;font-weight:600;font-size:15.5px;margin-bottom:8px}
+.dica{display:block;font-weight:400;font-size:14.5px;color:var(--texto3);
+  margin-top:-5px;margin-bottom:9px}
+input[type=text],input[type=tel],input[type=email],input[type=url],textarea{
+  width:100%;font-family:inherit;font-size:16.5px;color:var(--texto);
+  background:var(--grafite);border:1px solid var(--linha);border-radius:4px;
+  padding:14px;transition:border-color .15s ease}
+textarea{min-height:120px;resize:vertical;line-height:1.5}
+input::placeholder,textarea::placeholder{color:var(--texto3)}
+input:focus,textarea:focus{outline:none;border-color:var(--lima)}
+input.ruim,textarea.ruim{border-color:var(--erro)}
+.msg-erro{display:none;color:var(--erro);font-size:14.5px;margin-top:7px}
+.msg-erro.on{display:block}
+
+.ops{display:grid;gap:9px;grid-template-columns:repeat(2,1fr)}
+@media(max-width:520px){.ops{grid-template-columns:1fr}}
+.op{position:relative}
+.op input{position:absolute;opacity:0;width:0;height:0}
+.op span{display:block;border:1px solid var(--linha);border-radius:4px;
+  padding:14px 16px;font-size:16px;cursor:pointer;background:var(--grafite);
+  transition:border-color .15s ease,background .15s ease}
+.op input:checked + span{border-color:var(--lima);background:rgba(200,241,53,.07);font-weight:600}
+.op input:focus-visible + span{outline:3px solid var(--lima);outline-offset:2px}
+
+.cores{display:flex;gap:12px;flex-wrap:wrap}
+.cor{flex:1;min-width:132px}
+.cor input[type=color]{width:100%;height:54px;border:1px solid var(--linha);
+  border-radius:4px;padding:4px;background:var(--grafite);cursor:pointer}
+.cor div{font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--texto3);margin-top:7px}
+
+.solta{border:1px dashed var(--linha2);border-radius:6px;background:var(--grafite);
+  padding:28px 18px;text-align:center;cursor:pointer;display:block;
+  transition:border-color .15s ease,background .15s ease}
+.solta:hover,.solta.sobre{border-color:var(--lima);background:var(--grafite2)}
+.solta strong{display:block;font-size:16.5px;margin-bottom:5px}
+.solta span{font-size:14.5px;color:var(--texto3)}
+.solta input{display:none}
+.lista{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.lista li{display:flex;align-items:center;gap:12px;background:var(--grafite);
+  border:1px solid var(--linha);border-radius:4px;padding:9px 11px;font-size:15px}
+.lista img{width:42px;height:42px;object-fit:cover;border-radius:3px;flex-shrink:0}
+.lista .nome{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--texto2)}
+.lista button{background:none;border:none;color:var(--texto3);cursor:pointer;
+  font-size:21px;line-height:1;padding:2px 7px}
+.lista button:hover{color:var(--erro)}
+
+.nav-btn{display:flex;gap:11px;margin-top:36px}
+.btn{font-family:inherit;font-size:16px;font-weight:600;padding:15px 26px;
+  border-radius:4px;border:1px solid transparent;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;transition:background .15s ease}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-lima{background:var(--lima);color:var(--lima-esc);flex:1}
+.btn-lima:hover:not(:disabled){background:#D6FB55}
+.btn-vazio{border-color:var(--linha2);color:var(--texto);background:transparent}
+.btn-vazio:hover{border-color:var(--texto)}
+
+.selo-plano{display:flex;align-items:center;gap:12px;background:var(--grafite);
+  border:1px solid var(--lima);border-radius:4px;padding:14px 16px;margin-bottom:26px}
+.selo-plano .ic{width:26px;height:26px;border-radius:3px;background:var(--lima);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.selo-plano .ic::after{content:"";width:10px;height:5px;border-left:2px solid var(--lima-esc);
+  border-bottom:2px solid var(--lima-esc);transform:rotate(-45deg);margin-top:-3px}
+.selo-plano b{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;font-size:17px;letter-spacing:-.02em}
+.selo-plano span{font-size:14.5px;color:var(--texto2)}
+.nota{border-left:2px solid var(--lima);padding:14px 0 14px 18px;
+  margin-bottom:32px;font-size:15.5px;color:var(--texto2)}
+.nota b{color:var(--lima);font-weight:600}
+
+.fim{display:none;padding:64px 0 84px}
+.fim.on{display:block}
+.fim .ok{width:56px;height:56px;background:var(--lima);margin-bottom:26px;
+  display:flex;align-items:center;justify-content:center;border-radius:4px}
+.fim .ok::after{content:"";width:19px;height:10px;border-left:3px solid var(--lima-esc);
+  border-bottom:3px solid var(--lima-esc);transform:rotate(-45deg);margin-top:-5px}
+.fim p{color:var(--texto2);max-width:48ch;margin-bottom:14px}
+
+.rodape{padding:26px 0 calc(30px + env(safe-area-inset-bottom));
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--texto3);border-top:1px solid var(--linha)}
+:focus-visible{outline:3px solid var(--lima);outline-offset:3px;border-radius:3px}
+</style>
+
+<style id="css-consentimento">
+#lgpd{position:fixed;left:14px;right:14px;bottom:14px;z-index:300;
+  display:none;gap:16px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;max-width:760px;margin:0 auto;
+  background:#171A1E;border:1px solid #3A4048;border-radius:8px;
+  padding:16px 18px;box-shadow:0 18px 50px -20px rgba(0,0,0,.8);
+  font-family:Inter,system-ui,sans-serif;color:#F4F5F0;
+  animation:lgpd-sobe .45s cubic-bezier(.16,1,.3,1) .8s both}
+#lgpd.on{display:flex}
+#lgpd p{margin:0;font-size:14.5px;line-height:1.5;color:#9AA091;flex:1;min-width:250px}
+#lgpd p a{color:#C8F135;text-decoration:none}
+#lgpd .lgpd-btns{display:flex;gap:8px;flex-shrink:0}
+#lgpd button{font-family:inherit;font-size:14px;font-weight:600;padding:11px 18px;
+  border-radius:4px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+#lgpd .sim{background:#C8F135;color:#141A05}
+#lgpd .nao{background:transparent;border-color:#3A4048;color:#9AA091}
+#lgpd .nao:hover{border-color:#F4F5F0;color:#F4F5F0}
+@keyframes lgpd-sobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#lgpd{animation:none}}
+@media(max-width:900px){
+  #lgpd{bottom:calc(84px + env(safe-area-inset-bottom));padding:14px 15px}
+  #lgpd p{font-size:13.5px;min-width:100%}
+  #lgpd .lgpd-btns{width:100%}
+  #lgpd button{flex:1;padding:12px 8px}
+}
+</style>
+</head>
+<body>
+
+<div class="w topo">
+  <div class="marca">Seu Site<span style="display:block;font-family:Inter,sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:none;color:var(--texto3);margin-top:1px">by The Landing Lab</span></div>
+  <div class="prog"><i id="prog"></i></div>
+  <div class="conta" id="conta">Etapa 1 de 6</div>
+</div>
+
+<form id="form" class="w" novalidate>
+
+<section class="etapa ativa" data-etapa="1">
+  <h1>Sinal recebido.<br><u>Agora o material.</u></h1>
+  <p class="ajuda">Leva uns 5 minutos e é a única vez que você vai precisar preencher isso. O prazo de 3 dias úteis começa a contar quando você terminar.</p>
+
+  <div class="selo-plano" id="selo-plano" style="display:none">
+    <span class="ic"></span>
+    <div><b id="selo-plano-nome">Completo</b><br><span id="selo-plano-obs">plano confirmado</span></div>
+  </div>
+
+  <div class="campo" id="campo-plano" style="display:none">
+    <label>Qual plano você acabou de pagar?</label>
+    <span class="dica">Confira no comprovante se ficar em dúvida. É por aqui que eu sei o que montar para você.</span>
+    <div class="ops" style="grid-template-columns:1fr">
+      <label class="op"><input type="radio" name="plano" value="Essencial"><span>Essencial — paguei R$147</span></label>
+      <label class="op"><input type="radio" name="plano" value="Completo"><span>Completo — paguei R$148,50 de sinal</span></label>
+      <label class="op"><input type="radio" name="plano" value="Premium"><span>Premium — paguei R$198,50 de sinal</span></label>
+    </div>
+    <div class="msg-erro" id="erro-plano">Escolha o plano que você pagou para continuar.</div>
+  </div>
+
+  <div class="nota">
+    A segunda metade só é cobrada <b>depois que você ver o site pronto e aprovar.</b> Nada é publicado antes disso.
+  </div>
+
+  <div class="campo">
+    <label for="negocio">Nome do estabelecimento</label>
+    <input type="text" id="negocio" data-obr placeholder="Ex: Barbearia Norte">
+    <div class="msg-erro">Preencha o nome do estabelecimento.</div>
+  </div>
+  <div class="campo">
+    <label for="ramo">O que vocês fazem</label>
+    <input type="text" id="ramo" data-obr placeholder="Ex: barbearia, loja de tecidos, doceria">
+    <div class="msg-erro">Diga em poucas palavras o ramo do negócio.</div>
+  </div>
+  <div class="campo">
+    <label for="responsavel">Seu nome</label>
+    <input type="text" id="responsavel" data-obr placeholder="Quem está preenchendo">
+    <div class="msg-erro">Preencha seu nome.</div>
+  </div>
+  <div class="campo">
+    <label for="email">Seu e-mail</label>
+    <span class="dica">É por aqui que eu mando o link do site pronto.</span>
+    <input type="email" id="email" data-obr data-email placeholder="voce@email.com">
+    <div class="msg-erro">Digite um e-mail válido.</div>
+  </div>
+
+  <div class="nav-btn"><button type="button" class="btn btn-lima" data-vai="2">Continuar</button></div>
+</section>
+
+<section class="etapa" data-etapa="2">
+  <h1>Como o cliente <u>fala com você.</u></h1>
+  <p class="ajuda">Esses dados vão direto para os botões e para o rodapé do site.</p>
+
+  <div class="campo">
+    <label for="whats">WhatsApp com DDD</label>
+    <input type="tel" id="whats" data-obr placeholder="(00) 90000-0000">
+    <div class="msg-erro">Preencha o WhatsApp com DDD.</div>
+  </div>
+  <div class="campo">
+    <label for="insta">Instagram</label>
+    <input type="text" id="insta" placeholder="@seuperfil">
+  </div>
+  <div class="campo">
+    <label for="endereco">Endereço completo</label>
+    <span class="dica">Rua, número, bairro, cidade e estado. Mais de uma unidade? Escreva todas.</span>
+    <textarea id="endereco" data-obr placeholder="Av. Bandeirantes, 840 — Centro, sua cidade/UF"></textarea>
+    <div class="msg-erro">Preencha o endereço.</div>
+  </div>
+  <div class="campo">
+    <label for="horarios">Horário de funcionamento</label>
+    <textarea id="horarios" data-obr placeholder="Terça a sexta: 9h às 20h&#10;Sábado: 8h às 18h&#10;Domingo e segunda: fechado"></textarea>
+    <div class="msg-erro">Preencha o horário.</div>
+  </div>
+
+  <div class="nav-btn">
+    <button type="button" class="btn btn-vazio" data-vai="1">Voltar</button>
+    <button type="button" class="btn btn-lima" data-vai="3">Continuar</button>
+  </div>
+</section>
+
+<section class="etapa" data-etapa="3">
+  <h1>O que você <u>vende.</u></h1>
+  <p class="ajuda">Um por linha. Se não quiser mostrar o preço de algum, deixa sem o valor.</p>
+
+  <div class="campo">
+    <label for="servicos">Serviços ou produtos, com os valores</label>
+    <textarea id="servicos" data-obr style="min-height:180px" placeholder="Corte masculino — R$45&#10;Barba completa — R$40&#10;Corte + barba — R$75&#10;Pezinho — R$20"></textarea>
+    <div class="msg-erro">Liste pelo menos um serviço ou produto.</div>
+  </div>
+  <div class="campo">
+    <label for="frase">Uma frase que resume o negócio</label>
+    <span class="dica">Opcional. Se não tiver, eu escrevo uma.</span>
+    <input type="text" id="frase" placeholder="Ex: Corte, barba e navalha desde 2016">
+  </div>
+  <div class="campo">
+    <label for="sobre">Um pouco da história</label>
+    <span class="dica">Opcional. Há quanto tempo existe, quem fundou, o que faz vocês diferentes.</span>
+    <textarea id="sobre" placeholder="Escreva do seu jeito, sem se preocupar com a escrita."></textarea>
+  </div>
+
+  <div class="nav-btn">
+    <button type="button" class="btn btn-vazio" data-vai="2">Voltar</button>
+    <button type="button" class="btn btn-lima" data-vai="4">Continuar</button>
+  </div>
+</section>
+
+<section class="etapa" data-etapa="4">
+  <h1>O <u>visual.</u></h1>
+  <p class="ajuda">Em dúvida em qualquer coisa aqui, deixa como está. Eu decido em cima da sua marca.</p>
+
+  <div class="campo">
+    <label>Claro ou escuro?</label>
+    <div class="ops">
+      <label class="op"><input type="radio" name="tema" value="claro"><span>Claro e leve</span></label>
+      <label class="op"><input type="radio" name="tema" value="escuro" checked><span>Escuro e elegante</span></label>
+    </div>
+  </div>
+  <div class="campo">
+    <label>Cores da marca</label>
+    <span class="dica">Se não souber os códigos, só arraste até chegar perto.</span>
+    <div class="cores">
+      <div class="cor"><input type="color" id="cor1" value="#0D0E10"><div>Cor principal</div></div>
+      <div class="cor"><input type="color" id="cor2" value="#C9A227"><div>Cor de destaque</div></div>
+    </div>
+  </div>
+  <div class="campo">
+    <label for="referencia">Um site que você gosta</label>
+    <span class="dica">Opcional, de qualquer ramo. Ajuda muito a acertar de primeira.</span>
+    <input type="url" id="referencia" placeholder="https://">
+  </div>
+  <div class="campo">
+    <label for="observacao">Como você imagina o site</label>
+    <span class="dica">Escreva do seu jeito. Qualquer coisa que você queira que apareça, ou que não queira.</span>
+    <textarea id="observacao" placeholder="Ex: queria a foto da fachada bem grande e o botão do WhatsApp fácil de achar."></textarea>
+  </div>
+
+  <div class="nav-btn">
+    <button type="button" class="btn btn-vazio" data-vai="3">Voltar</button>
+    <button type="button" class="btn btn-lima" data-vai="5">Continuar</button>
+  </div>
+</section>
+
+<section class="etapa" data-etapa="5">
+  <h1>Sua <u>logo.</u></h1>
+  <p class="ajuda">Manda o arquivo de melhor qualidade que você tiver. Sem logo? Pode pular — eu monto uma com o nome do negócio, sem custo.</p>
+  <div class="campo">
+    <label class="solta" id="solta-logo">
+      <input type="file" id="logo" accept="image/*">
+      <strong>Escolher a logo</strong>
+      <span>PNG, JPG ou WEBP</span>
+    </label>
+    <ul class="lista" id="lista-logo"></ul>
+  </div>
+  <div class="nav-btn">
+    <button type="button" class="btn btn-vazio" data-vai="4">Voltar</button>
+    <button type="button" class="btn btn-lima" data-vai="6">Continuar</button>
+  </div>
+</section>
+
+<section class="etapa" data-etapa="6">
+  <h1>As <u>fotos.</u></h1>
+  <p class="ajuda">De 4 a 12 fotos do espaço e do seu trabalho. Foto de celular está ótimo — só evite as tremidas e as muito escuras.</p>
+  <div class="campo">
+    <label class="solta" id="solta-fotos">
+      <input type="file" id="fotos" accept="image/*" multiple>
+      <strong>Escolher as fotos</strong>
+      <span>Pode selecionar várias de uma vez</span>
+    </label>
+    <ul class="lista" id="lista-fotos"></ul>
+    <div class="msg-erro" id="erro-fotos">Envie pelo menos uma foto, ou marque a opção abaixo.</div>
+  </div>
+  <div class="campo">
+    <label class="op" style="display:block">
+      <input type="checkbox" id="semfoto">
+      <span>Prefiro mandar as fotos pelo WhatsApp depois</span>
+    </label>
+  </div>
+  <div class="nav-btn">
+    <button type="button" class="btn btn-vazio" data-vai="5">Voltar</button>
+    <button type="submit" class="btn btn-lima" id="enviar">Enviar formulário</button>
+  </div>
+</section>
+
+</form>
+
+<div class="w fim" id="fim">
+  <div class="ok"></div>
+  <h1>Recebido.<br><u>Já começou.</u></h1>
+  <p>Está tudo aqui comigo. Você recebe o link do site pronto em até 3 dias úteis, no e-mail e no WhatsApp.</p>
+  <p>A segunda metade só entra depois que você olhar tudo e aprovar. Se algo não estiver do jeito combinado, é só pedir o ajuste.</p>
+  <a id="zap-final" href="https://wa.me/5511973554678" class="btn btn-lima" style="flex:none;margin-top:14px">Avisar que enviei, no WhatsApp</a>
+</div>
+
+<div class="w rodape">Seu Site — The Landing Lab · atendimento em todo o Brasil</div>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — cole suas chaves do Supabase
+   Painel do Supabase → Settings → API
+   ============================================================ */
+const CONFIG = {
+  /* cole aqui a chave que o Web3Forms mandar no seu e-mail */
+  EMAIL_KEY:    'COLE_A_CHAVE_DO_WEB3FORMS',
+  EMAIL_DESTINO:'thelandinglab11@gmail.com',
+  SUPABASE_URL: 'https://wrjundkymewfsyefwhwe.supabase.co',
+  SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyanVuZGt5bWV3ZnN5ZWZ3aHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzOTU5NjYsImV4cCI6MjEwMzk3MTk2Nn0.EG_QxZAq5JRfRJYS4vG_KelvDlef8J1Bt2XPVfuaRNw',
+  TABELA:       'briefings',
+  BUCKET:       'briefings'
+};
+
+const sb = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
+/* qual plano veio do link de pagamento */
+const PLANOS = {essencial:'Essencial', completo:'Completo', premium:'Premium'};
+let PLANO = PLANOS[(new URLSearchParams(location.search).get('plano')||'').toLowerCase()] || null;
+
+const TOTAL = 6;
+let atual = 1;
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+(function(){
+  var selo = document.getElementById('selo-plano');
+  var campo = document.getElementById('campo-plano');
+  if(PLANO){
+    document.getElementById('selo-plano-nome').textContent = 'Plano ' + PLANO;
+    selo.style.display = 'flex';
+  } else {
+    campo.style.display = 'block';
+  }
+})();
+
+function irPara(n){
+  $$('.etapa').forEach(e => e.classList.toggle('ativa', +e.dataset.etapa === n));
+  atual = n;
+  $('#prog').style.width = (n / TOTAL * 100) + '%';
+  $('#conta').textContent = 'Etapa ' + n + ' de ' + TOTAL;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function valida(n){
+  const sec = document.querySelector('.etapa[data-etapa="'+n+'"]');
+  let ok = true;
+  if(n === 1 && !PLANO){
+    const escolhido = document.querySelector('[name=plano]:checked');
+    document.getElementById('erro-plano').classList.toggle('on', !escolhido);
+    if(!escolhido) ok = false;
+  }
+  sec.querySelectorAll('[data-obr]').forEach(c => {
+    const vazio = !c.value.trim();
+    const mailRuim = c.hasAttribute('data-email') && c.value.trim() &&
+                     !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c.value.trim());
+    const ruim = vazio || mailRuim;
+    c.classList.toggle('ruim', ruim);
+    const m = c.parentElement.querySelector('.msg-erro');
+    if (m) m.classList.toggle('on', ruim);
+    if (ruim && ok) { c.focus(); ok = false; }
+  });
+  return ok;
+}
+
+$$('[data-vai]').forEach(b => b.addEventListener('click', () => {
+  const d = +b.dataset.vai;
+  if (d > atual && !valida(atual)) return;
+  irPara(d);
+}));
+
+$$('[data-obr]').forEach(c => c.addEventListener('input', () => {
+  c.classList.remove('ruim');
+  const m = c.parentElement.querySelector('.msg-erro');
+  if (m) m.classList.remove('on');
+}));
+
+const arquivos = { logo: [], fotos: [] };
+
+function lista(chave, ulId){
+  const ul = $(ulId);
+  ul.innerHTML = '';
+  arquivos[chave].forEach((f, i) => {
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(f); img.alt = '';
+    const nome = document.createElement('span');
+    nome.className = 'nome'; nome.textContent = f.name;
+    const del = document.createElement('button');
+    del.type = 'button'; del.textContent = '×';
+    del.setAttribute('aria-label', 'Remover ' + f.name);
+    del.onclick = () => { arquivos[chave].splice(i,1); lista(chave, ulId); };
+    li.append(img, nome, del);
+    ul.appendChild(li);
+  });
+}
+
+$('#logo').addEventListener('change', e => {
+  arquivos.logo = e.target.files.length ? [e.target.files[0]] : [];
+  lista('logo', '#lista-logo');
+});
+$('#fotos').addEventListener('change', e => {
+  arquivos.fotos = arquivos.fotos.concat(Array.from(e.target.files)).slice(0, 15);
+  lista('fotos', '#lista-fotos');
+  $('#erro-fotos').classList.remove('on');
+});
+
+['solta-logo','solta-fotos'].forEach(id => {
+  const el = $('#'+id);
+  ['dragenter','dragover'].forEach(ev =>
+    el.addEventListener(ev, e => { e.preventDefault(); el.classList.add('sobre'); }));
+  ['dragleave','drop'].forEach(ev =>
+    el.addEventListener(ev, e => { e.preventDefault(); el.classList.remove('sobre'); }));
+  el.addEventListener('drop', e => {
+    const fs = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    if (id === 'solta-logo') { arquivos.logo = fs.slice(0,1); lista('logo','#lista-logo'); }
+    else { arquivos.fotos = arquivos.fotos.concat(fs).slice(0,15); lista('fotos','#lista-fotos'); }
+  });
+});
+
+function slug(t){
+  return t.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+          .toLowerCase().replace(/[^a-z0-9]+/g,'-')
+          .replace(/^-|-$/g,'').slice(0,40) || 'cliente';
+}
+
+$('#form').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  if (!arquivos.fotos.length && !$('#semfoto').checked) {
+    $('#erro-fotos').classList.add('on');
+    return;
+  }
+
+  const btn = $('#enviar');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    const pasta = slug($('#negocio').value) + '-' + Date.now();
+    const urls = { logo: null, fotos: [] };
+
+    async function sobe(file, nome){
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const caminho = pasta + '/' + nome + '.' + ext;
+      const { error } = await sb.storage.from(CONFIG.BUCKET).upload(caminho, file, { upsert:true });
+      if (error) throw error;
+      return sb.storage.from(CONFIG.BUCKET).getPublicUrl(caminho).data.publicUrl;
+    }
+
+    if (arquivos.logo[0]) urls.logo = await sobe(arquivos.logo[0], 'logo');
+    for (let i = 0; i < arquivos.fotos.length; i++) {
+      btn.textContent = 'Enviando foto ' + (i+1) + ' de ' + arquivos.fotos.length + '...';
+      urls.fotos.push(await sobe(arquivos.fotos[i], 'foto-' + String(i+1).padStart(2,'0')));
+    }
+
+    btn.textContent = 'Finalizando...';
+
+    const planoFinal = PLANO ||
+      ((document.querySelector('[name=plano]:checked')||{}).value) || 'não informado';
+
+    const dados = {
+      pasta,
+      plano:        planoFinal,
+      negocio:      $('#negocio').value.trim(),
+      ramo:         $('#ramo').value.trim(),
+      responsavel:  $('#responsavel').value.trim(),
+      email:        $('#email').value.trim(),
+      whats:        $('#whats').value.trim(),
+      insta:        $('#insta').value.trim(),
+      endereco:     $('#endereco').value.trim(),
+      horarios:     $('#horarios').value.trim(),
+      servicos:     $('#servicos').value.trim(),
+      frase:        $('#frase').value.trim(),
+      sobre:        $('#sobre').value.trim(),
+      tema:         (document.querySelector('[name=tema]:checked')||{}).value || 'escuro',
+      cor1:         $('#cor1').value,
+      cor2:         $('#cor2').value,
+      referencia:   $('#referencia').value.trim(),
+      observacao:   $('#observacao').value.trim(),
+      fotos_depois: $('#semfoto').checked,
+      logo_url:     urls.logo,
+      fotos_urls:   urls.fotos,
+      status:       'novo'
+    };
+
+    const { error } = await sb.from(CONFIG.TABELA).insert(dados);
+    if (error) throw error;
+
+    /* avisa por e-mail que entrou formulário — não bloqueia a tela de sucesso */
+    (function(){
+      if(!CONFIG.EMAIL_KEY || CONFIG.EMAIL_KEY.indexOf('COLE_') === 0) return;
+      const L = [
+        'PLANO: ' + planoFinal,
+        '',
+        'NEGÓCIO: '     + dados.negocio,
+        'RAMO: '        + dados.ramo,
+        'RESPONSÁVEL: ' + dados.responsavel,
+        'E-MAIL: '      + dados.email,
+        'WHATSAPP: '    + dados.whats,
+        'INSTAGRAM: '   + (dados.insta || '—'),
+        '',
+        'ENDEREÇO:',  dados.endereco,
+        '',
+        'HORÁRIOS:',  dados.horarios,
+        '',
+        'SERVIÇOS E PREÇOS:', dados.servicos,
+        '',
+        'FRASE: '  + (dados.frase || '—'),
+        'SOBRE: '  + (dados.sobre || '—'),
+        '',
+        'VISUAL: tema ' + dados.tema + ' · cores ' + dados.cor1 + ' e ' + dados.cor2,
+        'REFERÊNCIA: ' + (dados.referencia || '—'),
+        '',
+        'COMO IMAGINA O SITE:', (dados.observacao || '—'),
+        '',
+        '--- ARQUIVOS ---',
+        'LOGO: ' + (dados.logo_url || (dados.fotos_depois ? 'vai mandar depois' : 'não enviou')),
+        'FOTOS (' + dados.fotos_urls.length + '):',
+        dados.fotos_urls.join('\n'),
+        '',
+        'Pasta no Supabase: ' + pasta
+      ];
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+        body: JSON.stringify({
+          access_key: CONFIG.EMAIL_KEY,
+          subject: 'FORMULÁRIO ' + planoFinal.toUpperCase() + ' — ' + dados.negocio,
+          from_name: 'Seu Site — formulário',
+          email: CONFIG.EMAIL_DESTINO,
+          message: L.join('\n')
+        })
+      }).catch(function(e){ console.warn('aviso por e-mail falhou:', e); });
+    })();
+
+    /* monta a mensagem de WhatsApp com o resumo do que foi enviado */
+    (function(){
+      const qtd = arquivos.fotos.length;
+      const linhas = [
+        'Oi! Acabei de enviar o formulário do meu site.',
+        '',
+        'Negócio: ' + $('#negocio').value.trim(),
+        'Ramo: ' + $('#ramo').value.trim(),
+        'Plano: ' + planoFinal,
+        'Fotos enviadas: ' + (qtd ? qtd : 'vou mandar por aqui'),
+        (arquivos.logo[0] ? 'Logo: enviada' : 'Logo: não tenho, pode criar uma simples'),
+        '',
+        'Meu nome é ' + $('#responsavel').value.trim() + '.'
+      ];
+      $('#zap-final').href =
+        'https://wa.me/5511973554678?text=' + encodeURIComponent(linhas.join('\n'));
+    })();
+
+    $('#form').style.display = 'none';
+    document.querySelector('.prog').style.display = 'none';
+    $('#conta').style.display = 'none';
+    $('#fim').classList.add('on');
+    window.scrollTo({top:0, behavior:'smooth'});
+
+  } catch (err) {
+    console.error(err);
+    btn.disabled = false;
+    btn.textContent = 'Tentar enviar de novo';
+    alert('O envio não completou. Verifique sua conexão e toque em enviar de novo. Se continuar, me chame no WhatsApp que eu pego o material por lá.');
+  }
+});
+</script>
+
+<div id="lgpd" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies para entender como as pessoas usam esta página e melhorar os anúncios.
+     Você escolhe. <a href="termos.html">Saiba mais</a>.</p>
+  <div class="lgpd-btns">
+    <button type="button" class="nao" id="lgpd-nao">Só o essencial</button>
+    <button type="button" class="sim" id="lgpd-sim">Aceitar</button>
+  </div>
+</div>
+
+<script id="js-rastreio">
+/* ==========================================================================
+   Consentimento (LGPD) + GA4 + Pixel da Meta
+   Nada é carregado antes de a pessoa aceitar.
+   ========================================================================== */
+(function(){
+  var GA='G-KTT90C4KTS', PIXEL='1077634248299356', PAGINA='formulario';
+  var CHAVE='tll_consent';
+  var noIframe = (window.self !== window.top);
+
+  /* memória de reserva caso o navegador bloqueie o armazenamento */
+  var memoria=null;
+  function ler(){ try{ return localStorage.getItem(CHAVE); }catch(e){ return memoria; } }
+  function gravar(v){ try{ localStorage.setItem(CHAVE,v); }catch(e){ memoria=v; } }
+
+  /* fila de eventos disparados antes do aceite */
+  var fila=[], ativo=false;
+
+  function carregarGA(){
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());
+    gtag('config',GA,{page_title:PAGINA});
+    var s=document.createElement('script');
+    s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+    document.head.appendChild(s);
+  }
+
+  function carregarPixel(){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',PIXEL);
+    fbq('track','PageView');
+  }
+
+  function ligar(){
+    if(ativo || noIframe) return;
+    ativo=true;
+    carregarGA();
+    carregarPixel();
+    fila.forEach(function(f){ disparar(f[0],f[1],f[2]); });
+    fila=[];
+  }
+
+  /* nome, parâmetros, evento padrão da Meta (opcional) */
+  function disparar(nome, params, metaPadrao){
+    if(!ativo){ fila.push([nome,params,metaPadrao]); return; }
+    params = params || {};
+    if(window.gtag) gtag('event', nome, params);
+    if(window.fbq){
+      if(metaPadrao) fbq('track', metaPadrao, params);
+      else fbq('trackCustom', nome, params);
+    }
+  }
+  window.tl = { evento: disparar };
+
+  /* ---------------- banner ---------------- */
+  var banner=document.getElementById('lgpd');
+  var escolha=ler();
+  if(!noIframe && banner){
+    if(escolha==='sim'){ ligar(); }
+    else if(escolha!=='nao'){ banner.classList.add('on'); }
+    var sim=document.getElementById('lgpd-sim'), nao=document.getElementById('lgpd-nao');
+    if(sim) sim.addEventListener('click',function(){ gravar('sim'); banner.classList.remove('on'); ligar(); });
+    if(nao) nao.addEventListener('click',function(){ gravar('nao'); banner.classList.remove('on'); fila=[]; });
+  }
+
+  if(noIframe) return;   /* modelo aberto dentro da janela: o pai já mede */
+
+  /* ---------------- profundidade de leitura ---------------- */
+  var marcos=[25,50,75,90], vistos={};
+  function rolagem(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/((h.scrollHeight||document.body.scrollHeight)-h.clientHeight)*100;
+    marcos.forEach(function(m){
+      if(pct>=m && !vistos[m]){ vistos[m]=1; disparar('rolagem',{profundidade:m, pagina:PAGINA}); }
+    });
+  }
+  window.addEventListener('scroll', rolagem, {passive:true});
+
+  /* ---------------- seções alcançadas ---------------- */
+  if('IntersectionObserver' in window){
+    var secoes=document.querySelectorAll('section[id]');
+    if(secoes.length){
+      var obs=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            disparar('secao_vista',{secao:e.target.id});
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:.4});
+      secoes.forEach(function(s){ obs.observe(s); });
+    }
+  }
+
+  /* ---------------- cliques ---------------- */
+  function textoDe(el){ return (el&&el.textContent||'').trim().slice(0,60); }
+  function secaoDe(el){
+    var s=el.closest ? el.closest('section[id], footer, nav, .barra') : null;
+    if(!s) return 'outro';
+    return s.id || (s.classList&&s.classList.contains('barra') ? 'barra_celular'
+                 : s.tagName.toLowerCase());
+  }
+
+  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a,button') : null;
+    if(!a) return;
+
+    /* abriu um modelo */
+    var mod=a.getAttribute && a.getAttribute('data-modelo');
+    if(mod){ disparar('modelo_aberto',{plano:mod}, 'ViewContent'); return; }
+
+    /* clicou em contratar */
+    if(a.classList && a.classList.contains('compra')){
+      var card=a.closest('.plano');
+      var nome=card ? textoDe(card.querySelector('.plano-nome')) : '';
+      var href=a.getAttribute('href')||'';
+      var porZap = href.indexOf('wa.me')>-1;
+      disparar(porZap ? 'contratar_por_whatsapp' : 'contratar_direto',
+        {plano:nome, value:VALOR[nome]||0, currency:'BRL'},
+        porZap ? 'Contact' : 'InitiateCheckout');
+      return;
+    }
+
+    /* WhatsApp em qualquer outro lugar */
+    var h=a.getAttribute && a.getAttribute('href');
+    if(h && h.indexOf('wa.me')>-1){
+      disparar('clique_whatsapp',{posicao:secaoDe(a)}, 'Contact');
+      return;
+    }
+
+    /* portfólio */
+    if(a.classList && a.classList.contains('pcard')){
+      disparar('portfolio_clique',{negocio:textoDe(a.querySelector('strong'))});
+      return;
+    }
+
+    /* abas de forma de contratar */
+    if(a.id==='aba-direto' || a.id==='aba-zap'){
+      disparar('aba_pagamento',{modo: a.id==='aba-zap' ? 'duvida' : 'direto'});
+      return;
+    }
+  }, true);
+
+  /* ---------------- FAQ ---------------- */
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open) disparar('faq_aberto',{pergunta:textoDe(d.querySelector('summary'))});
+    });
+  });
+
+  /* ---------------- formulário ---------------- */
+  if(PAGINA==='formulario'){
+    var jaComprou=false, ultima=1;
+
+    function planoAtual(){
+      var r=document.querySelector('[name=plano]:checked');
+      if(r) return r.value;
+      var selo=document.getElementById('selo-plano-nome');
+      return selo ? selo.textContent.replace('Plano ','').trim() : 'desconhecido';
+    }
+
+    var alvo=document.getElementById('form');
+    if(alvo && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        var at=document.querySelector('.etapa.ativa');
+        if(at){
+          var n=+at.dataset.etapa;
+          if(n!==ultima){
+            ultima=n;
+            disparar('formulario_etapa',{etapa:n});
+            if(n===2 && !jaComprou){
+              jaComprou=true;
+              var p=planoAtual();
+              disparar('pagamento_confirmado',
+                {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Purchase');
+            }
+          }
+        }
+      }).observe(alvo,{attributes:true,subtree:true,attributeFilter:['class']});
+    }
+
+    var fim=document.getElementById('fim');
+    if(fim && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        if(fim.classList.contains('on')){
+          var p=planoAtual();
+          disparar('formulario_enviado',
+            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'CompleteRegistration');
+        }
+      }).observe(fim,{attributes:true,attributeFilter:['class']});
+    }
+  }
+})();
+</script>
+</body>
+</html>

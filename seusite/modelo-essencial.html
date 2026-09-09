@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barbearia Norte — modelo Essencial | Seu Site</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#0D0E10;--painel:#16181C;--painel2:#1D2025;
+  --linha:#282B31;--ouro:#C9A227;--ouro-cl:#E3C25A;
+  --creme:#F0EDE4;--creme2:#9A968C;--creme3:#6B685F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--preto);color:var(--creme);font-family:Inter,system-ui,sans-serif;
+     font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}a{color:inherit}
+::selection{background:var(--ouro);color:var(--preto)}
+.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.03em;font-weight:400}
+.w{max-width:1060px;margin:0 auto;padding:0 22px}
+.sec{padding:72px 0}
+.borda{border-top:1px solid var(--linha)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,7vw,50px);
+   letter-spacing:.02em;line-height:1;margin-bottom:12px;font-weight:400}
+h2 u{text-decoration:none;color:var(--ouro)}
+.sub{color:var(--creme2);font-size:16.5px;max-width:56ch}
+.rot{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+     color:var(--ouro);margin-bottom:14px;display:block}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-size:16px;font-weight:600;padding:15px 26px;border-radius:6px;
+  text-decoration:none;border:1px solid transparent;transition:background .15s,border-color .15s}
+.btn svg{width:19px;height:19px;flex-shrink:0}
+.btn-zap{background:#25D366;color:#06301A}
+.btn-zap:hover{background:#33E175}
+.btn-ouro{background:var(--ouro);color:var(--preto)}
+.btn-linha{border-color:var(--linha);color:var(--creme)}
+.btn-linha:hover{border-color:var(--ouro);color:var(--ouro)}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(13,14,16,.9);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linha)}
+.nav-in{max-width:1060px;margin:0 auto;padding:14px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px}
+.nav-marca{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
+.nav-links{display:flex;gap:24px;font-size:14.5px;color:var(--creme2)}
+.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--ouro)}
+@media(max-width:860px){.nav-links{display:none}}
+
+.hero{position:relative;padding:96px 0 88px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,rgba(201,162,39,.05) 0 2px,transparent 2px 26px)}
+.hero::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 80% at 50% 20%,rgba(201,162,39,.1),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.logo{width:118px;height:118px;border-radius:50%;border:2px solid var(--ouro);
+  margin:0 auto 26px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:var(--preto)}
+.logo b{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--ouro);line-height:.9}
+.logo i{font-style:normal;font-size:8.5px;letter-spacing:.28em;color:var(--creme2);margin-top:5px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,10vw,80px);
+  letter-spacing:.04em;line-height:.94;margin-bottom:12px;font-weight:400}
+.hero .tag{color:var(--creme2);font-size:17.5px;margin-bottom:10px}
+.hero .selo{display:inline-block;border:1px solid var(--linha);border-radius:99px;
+  padding:6px 16px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ouro);margin-bottom:30px}
+.hero-ctas{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+
+.foto{width:100%;background:var(--painel2);border-radius:6px;position:relative;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:130px}
+.foto::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(135deg,rgba(201,162,39,.055) 0 8px,transparent 8px 22px)}
+.foto span{position:relative;font-size:12.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--creme3)}
+
+.galeria{display:grid;grid-template-columns:repeat(3,1fr);
+  grid-auto-rows:180px;gap:12px;margin-top:36px}
+.galeria .g1{grid-column:span 2}
+@media(max-width:760px){.galeria{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}
+  .galeria .g1{grid-column:span 2}}
+
+.servicos{margin-top:36px;border-top:1px solid var(--linha)}
+.serv{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:baseline;
+  padding:19px 0;border-bottom:1px solid var(--linha)}
+.serv h3{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.04em;font-weight:400}
+.serv p{font-size:14.5px;color:var(--creme2);margin-top:2px}
+.serv .p{font-family:'Bebas Neue',sans-serif;font-size:25px;color:var(--ouro);
+  letter-spacing:.03em;white-space:nowrap}
+
+.avals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.aval{background:var(--painel);border:1px solid var(--linha);border-radius:8px;padding:22px 20px}
+.aval .est{color:var(--ouro);font-size:15px;letter-spacing:3px;margin-bottom:11px}
+.aval p{font-size:15px;color:var(--creme2);line-height:1.55;margin-bottom:14px}
+.aval .quem{display:flex;align-items:center;gap:10px;font-size:14px}
+.aval .ini{width:32px;height:32px;border-radius:50%;background:var(--painel2);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  color:var(--ouro);font-weight:600;flex-shrink:0}
+.aval .quem b{font-weight:500}
+.aval .quem span{color:var(--creme3);font-size:12.5px;display:block}
+@media(max-width:820px){.avals{grid-template-columns:1fr}}
+
+.contato{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:36px}
+.info{display:flex;flex-direction:column;gap:20px}
+.linha-info{display:flex;gap:14px;align-items:flex-start}
+.linha-info .ic{width:38px;height:38px;border-radius:7px;background:var(--painel);
+  border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;
+  color:var(--ouro);flex-shrink:0}
+.linha-info .ic svg{width:18px;height:18px}
+.linha-info b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--creme3);font-weight:500;margin-bottom:3px}
+.linha-info span{font-size:16px;color:var(--creme);line-height:1.45}
+.acoes{display:flex;flex-direction:column;gap:11px;justify-content:center}
+@media(max-width:820px){.contato{grid-template-columns:1fr;gap:28px}}
+
+.google{background:var(--painel);border:1px solid var(--linha);border-radius:10px;
+  padding:24px;margin-top:36px}
+.google .barra{display:flex;align-items:center;gap:10px;background:var(--preto);
+  border:1px solid var(--linha);border-radius:99px;padding:10px 16px;margin-bottom:20px}
+.google .barra span{font-size:14.5px;color:var(--creme2)}
+.google .res{padding-left:2px}
+.google .res .url{font-size:13px;color:var(--creme3);margin-bottom:4px}
+.google .res .tit{font-size:19px;color:#8AB4F8;margin-bottom:5px}
+.google .res .desc{font-size:14.5px;color:var(--creme2);line-height:1.5;max-width:60ch}
+.google .res .estrelas{font-size:13.5px;color:var(--creme2);margin-top:7px}
+.google .res .estrelas b{color:var(--ouro);font-weight:400;letter-spacing:2px}
+
+.qrbloco{display:flex;gap:24px;align-items:center;background:var(--painel);
+  border:1px solid var(--linha);border-radius:10px;padding:24px;margin-top:20px}
+.qrbloco svg{border-radius:6px;flex-shrink:0}
+.qrbloco h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;
+  margin-bottom:7px;font-weight:400}
+.qrbloco p{font-size:15px;color:var(--creme2)}
+@media(max-width:600px){.qrbloco{flex-direction:column;text-align:center}}
+
+.dominio{background:var(--ouro);color:var(--preto);padding:13px 0;text-align:center;
+  font-size:14.5px;font-weight:600;letter-spacing:.02em}
+
+.rodape{padding:30px 0 calc(30px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--linha);font-size:14px;color:var(--creme3);text-align:center}
+
+.aviso{background:var(--painel2);border-bottom:1px solid var(--linha);
+  padding:11px 22px;text-align:center;font-size:13.5px;color:var(--creme2)}
+.aviso b{color:var(--ouro);font-weight:600}
+.aviso a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:4px}
+</style>
+
+<style id="css-consentimento">
+#lgpd{position:fixed;left:14px;right:14px;bottom:14px;z-index:300;
+  display:none;gap:16px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;max-width:760px;margin:0 auto;
+  background:#171A1E;border:1px solid #3A4048;border-radius:8px;
+  padding:16px 18px;box-shadow:0 18px 50px -20px rgba(0,0,0,.8);
+  font-family:Inter,system-ui,sans-serif;color:#F4F5F0;
+  animation:lgpd-sobe .45s cubic-bezier(.16,1,.3,1) .8s both}
+#lgpd.on{display:flex}
+#lgpd p{margin:0;font-size:14.5px;line-height:1.5;color:#9AA091;flex:1;min-width:250px}
+#lgpd p a{color:#C8F135;text-decoration:none}
+#lgpd .lgpd-btns{display:flex;gap:8px;flex-shrink:0}
+#lgpd button{font-family:inherit;font-size:14px;font-weight:600;padding:11px 18px;
+  border-radius:4px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+#lgpd .sim{background:#C8F135;color:#141A05}
+#lgpd .nao{background:transparent;border-color:#3A4048;color:#9AA091}
+#lgpd .nao:hover{border-color:#F4F5F0;color:#F4F5F0}
+@keyframes lgpd-sobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#lgpd{animation:none}}
+@media(max-width:900px){
+  #lgpd{bottom:calc(84px + env(safe-area-inset-bottom));padding:14px 15px}
+  #lgpd p{font-size:13.5px;min-width:100%}
+  #lgpd .lgpd-btns{width:100%}
+  #lgpd button{flex:1;padding:12px 8px}
+}
+</style>
+</head>
+<body>
+
+<div class="aviso">
+  Modelo demonstrativo do plano <b>Essencial</b> — nome, logo, endereço, horário, WhatsApp e Instagram ·
+  <a href="index.html" target="_top">voltar e comparar os três</a>
+</div>
+
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-marca">Barbearia Norte</div>
+    <div class="nav-links"><a href="#contato">Contato</a></div>
+    <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site" style="padding:9px 16px;font-size:14.5px"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> WhatsApp</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="w">
+    <div class="logo"><b>BN</b><i>BARBER</i></div>
+    <h1>Barbearia Norte</h1>
+    <p class="tag">Corte, barba e navalha desde 2016</p>
+    <span class="selo">Aberto de terça a sábado</span>
+    <div class="hero-ctas">
+      <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Agendar no WhatsApp</a>
+      <a class="btn btn-linha" href="https://instagram.com/barbearianorte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> Instagram</a>
+    </div>
+  </div>
+</header>
+
+
+<section class="sec borda" id="contato">
+  <div class="w">
+    <span class="rot">Onde e quando</span>
+    <h2>Passa <u>aqui.</u></h2>
+    <div class="contato">
+      <div class="info">
+        <div class="linha-info">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+          <div><b>Endereço</b><span>Av. Bandeirantes, 840 — Centro<br>sua cidade</span></div>
+        </div>
+        <div class="linha-info">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+          <div><b>Horário</b><span>Terça a sexta: 9h às 20h<br>Sábado: 8h às 18h<br>Domingo e segunda: fechado</span></div>
+        </div>
+        <div class="linha-info">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+          <div><b>Telefone</b><span>(00) 90000-0000</span></div>
+        </div>
+      </div>
+      <div class="acoes">
+        <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Chamar no WhatsApp</a>
+        <a class="btn btn-linha" href="https://instagram.com/barbearianorte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> @barbearianorte</a>
+        <a class="btn btn-linha" href="https://www.google.com/maps/search/?api=1&query=Av.+Bandeirantes+840" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Ver no mapa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="rodape">
+  <div class="w">
+    Barbearia Norte · Av. Bandeirantes, 840 — Centro<br>
+    <span style="opacity:.6">Modelo demonstrativo · plano Essencial · R$ 147 (pagamento único)</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){
+    el.style.transitionDelay=(Math.min(i,4)*55)+'ms';io.observe(el);
+  });
+})();
+</script>
+
+<div id="lgpd" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies para entender como as pessoas usam esta página e melhorar os anúncios.
+     Você escolhe. <a href="termos.html">Saiba mais</a>.</p>
+  <div class="lgpd-btns">
+    <button type="button" class="nao" id="lgpd-nao">Só o essencial</button>
+    <button type="button" class="sim" id="lgpd-sim">Aceitar</button>
+  </div>
+</div>
+
+<script id="js-rastreio">
+/* ==========================================================================
+   Consentimento (LGPD) + GA4 + Pixel da Meta
+   Nada é carregado antes de a pessoa aceitar.
+   ========================================================================== */
+(function(){
+  var GA='G-KTT90C4KTS', PIXEL='1077634248299356', PAGINA='modelo_essencial';
+  var CHAVE='tll_consent';
+  var noIframe = (window.self !== window.top);
+
+  /* memória de reserva caso o navegador bloqueie o armazenamento */
+  var memoria=null;
+  function ler(){ try{ return localStorage.getItem(CHAVE); }catch(e){ return memoria; } }
+  function gravar(v){ try{ localStorage.setItem(CHAVE,v); }catch(e){ memoria=v; } }
+
+  /* fila de eventos disparados antes do aceite */
+  var fila=[], ativo=false;
+
+  function carregarGA(){
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());
+    gtag('config',GA,{page_title:PAGINA});
+    var s=document.createElement('script');
+    s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+    document.head.appendChild(s);
+  }
+
+  function carregarPixel(){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',PIXEL);
+    fbq('track','PageView');
+  }
+
+  function ligar(){
+    if(ativo || noIframe) return;
+    ativo=true;
+    carregarGA();
+    carregarPixel();
+    fila.forEach(function(f){ disparar(f[0],f[1],f[2]); });
+    fila=[];
+  }
+
+  /* nome, parâmetros, evento padrão da Meta (opcional) */
+  function disparar(nome, params, metaPadrao){
+    if(!ativo){ fila.push([nome,params,metaPadrao]); return; }
+    params = params || {};
+    if(window.gtag) gtag('event', nome, params);
+    if(window.fbq){
+      if(metaPadrao) fbq('track', metaPadrao, params);
+      else fbq('trackCustom', nome, params);
+    }
+  }
+  window.tl = { evento: disparar };
+
+  /* ---------------- banner ---------------- */
+  var banner=document.getElementById('lgpd');
+  var escolha=ler();
+  if(!noIframe && banner){
+    if(escolha==='sim'){ ligar(); }
+    else if(escolha!=='nao'){ banner.classList.add('on'); }
+    var sim=document.getElementById('lgpd-sim'), nao=document.getElementById('lgpd-nao');
+    if(sim) sim.addEventListener('click',function(){ gravar('sim'); banner.classList.remove('on'); ligar(); });
+    if(nao) nao.addEventListener('click',function(){ gravar('nao'); banner.classList.remove('on'); fila=[]; });
+  }
+
+  if(noIframe) return;   /* modelo aberto dentro da janela: o pai já mede */
+
+  /* ---------------- profundidade de leitura ---------------- */
+  var marcos=[25,50,75,90], vistos={};
+  function rolagem(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/((h.scrollHeight||document.body.scrollHeight)-h.clientHeight)*100;
+    marcos.forEach(function(m){
+      if(pct>=m && !vistos[m]){ vistos[m]=1; disparar('rolagem',{profundidade:m, pagina:PAGINA}); }
+    });
+  }
+  window.addEventListener('scroll', rolagem, {passive:true});
+
+  /* ---------------- seções alcançadas ---------------- */
+  if('IntersectionObserver' in window){
+    var secoes=document.querySelectorAll('section[id]');
+    if(secoes.length){
+      var obs=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            disparar('secao_vista',{secao:e.target.id});
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:.4});
+      secoes.forEach(function(s){ obs.observe(s); });
+    }
+  }
+
+  /* ---------------- cliques ---------------- */
+  function textoDe(el){ return (el&&el.textContent||'').trim().slice(0,60); }
+  function secaoDe(el){
+    var s=el.closest ? el.closest('section[id], footer, nav, .barra') : null;
+    if(!s) return 'outro';
+    return s.id || (s.classList&&s.classList.contains('barra') ? 'barra_celular'
+                 : s.tagName.toLowerCase());
+  }
+
+  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a,button') : null;
+    if(!a) return;
+
+    /* abriu um modelo */
+    var mod=a.getAttribute && a.getAttribute('data-modelo');
+    if(mod){ disparar('modelo_aberto',{plano:mod}, 'ViewContent'); return; }
+
+    /* clicou em contratar */
+    if(a.classList && a.classList.contains('compra')){
+      var card=a.closest('.plano');
+      var nome=card ? textoDe(card.querySelector('.plano-nome')) : '';
+      var href=a.getAttribute('href')||'';
+      var porZap = href.indexOf('wa.me')>-1;
+      disparar(porZap ? 'contratar_por_whatsapp' : 'contratar_direto',
+        {plano:nome, value:VALOR[nome]||0, currency:'BRL'},
+        porZap ? 'Contact' : 'InitiateCheckout');
+      return;
+    }
+
+    /* WhatsApp em qualquer outro lugar */
+    var h=a.getAttribute && a.getAttribute('href');
+    if(h && h.indexOf('wa.me')>-1){
+      disparar('clique_whatsapp',{posicao:secaoDe(a)}, 'Contact');
+      return;
+    }
+
+    /* portfólio */
+    if(a.classList && a.classList.contains('pcard')){
+      disparar('portfolio_clique',{negocio:textoDe(a.querySelector('strong'))});
+      return;
+    }
+
+    /* abas de forma de contratar */
+    if(a.id==='aba-direto' || a.id==='aba-zap'){
+      disparar('aba_pagamento',{modo: a.id==='aba-zap' ? 'duvida' : 'direto'});
+      return;
+    }
+  }, true);
+
+  /* ---------------- FAQ ---------------- */
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open) disparar('faq_aberto',{pergunta:textoDe(d.querySelector('summary'))});
+    });
+  });
+
+  /* ---------------- formulário ---------------- */
+  if(PAGINA==='formulario'){
+    var jaComprou=false, ultima=1;
+
+    function planoAtual(){
+      var r=document.querySelector('[name=plano]:checked');
+      if(r) return r.value;
+      var selo=document.getElementById('selo-plano-nome');
+      return selo ? selo.textContent.replace('Plano ','').trim() : 'desconhecido';
+    }
+
+    var alvo=document.getElementById('form');
+    if(alvo && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        var at=document.querySelector('.etapa.ativa');
+        if(at){
+          var n=+at.dataset.etapa;
+          if(n!==ultima){
+            ultima=n;
+            disparar('formulario_etapa',{etapa:n});
+            if(n===2 && !jaComprou){
+              jaComprou=true;
+              var p=planoAtual();
+              disparar('pagamento_confirmado',
+                {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Purchase');
+            }
+          }
+        }
+      }).observe(alvo,{attributes:true,subtree:true,attributeFilter:['class']});
+    }
+
+    var fim=document.getElementById('fim');
+    if(fim && 'MutationObserver' in window){
+      new MutationObserver(function(){
+        if(fim.classList.contains('on')){
+          var p=planoAtual();
+          disparar('formulario_enviado',
+            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'CompleteRegistration');
+        }
+      }).observe(fim,{attributes:true,attributeFilter:['class']});
+    }
+  }
+})();
+</script>
+</body>
+</html>
