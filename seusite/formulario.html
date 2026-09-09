@@ -3,6 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
+
+<!-- Google tag (gtag.js) — GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KTT90C4KTS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KTT90C4KTS');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1077634248299356');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1077634248299356&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Formulário — Seu Site | The Landing Lab</title>
 <meta name="robots" content="noindex">
@@ -615,37 +643,9 @@ $('#form').addEventListener('submit', async e => {
   var GA='G-KTT90C4KTS', PIXEL='1077634248299356', PAGINA='formulario';
   var noIframe = (window.self !== window.top);
 
-  var fila=[], ativo=false;
+  var fila=[], ativo=true;
 
-  function carregarGA(){
-    window.dataLayer=window.dataLayer||[];
-    window.gtag=function(){dataLayer.push(arguments);};
-    gtag('js',new Date());
-    gtag('config',GA,{page_title:PAGINA});
-    var s=document.createElement('script');
-    s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
-    document.head.appendChild(s);
-  }
-
-  function carregarPixel(){
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
-      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-      t=b.createElement(e);t.async=!0;t.src=v;
-      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init',PIXEL);
-    fbq('track','PageView');
-  }
-
-  function ligar(){
-    if(ativo || noIframe) return;
-    ativo=true;
-    carregarGA();
-    carregarPixel();
-    fila.forEach(function(f){ disparar(f[0],f[1],f[2]); });
-    fila=[];
-  }
+  /* GA4 e Pixel já foram carregados no <head> */
 
   /* nome, parâmetros, evento padrão da Meta (opcional) */
   function disparar(nome, params, metaPadrao){
@@ -659,8 +659,7 @@ $('#form').addEventListener('submit', async e => {
   }
   window.tl = { evento: disparar };
 
-  /* carrega o rastreamento assim que a página abre */
-  ligar();
+  if(noIframe){ ativo=false; }
 
   if(noIframe) return;   /* modelo aberto dentro da janela: o pai já mede */
 
