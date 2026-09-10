@@ -98,6 +98,51 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 .op input:checked + span{border-color:var(--lima);background:rgba(200,241,53,.07);font-weight:600}
 .op input:focus-visible + span{outline:3px solid var(--lima);outline-offset:2px}
 
+/* dias da semana */
+.dias{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.dia input{position:absolute;opacity:0;width:0;height:0}
+.dia span{display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--linha);border-radius:4px;background:var(--grafite);
+  padding:14px 2px;font-size:14px;cursor:pointer;user-select:none;
+  transition:border-color .15s,background .15s,color .15s}
+.dia input:checked + span{border-color:var(--lima);background:rgba(200,241,53,.1);
+  color:var(--lima);font-weight:600}
+.dia input:focus-visible + span{outline:3px solid var(--lima);outline-offset:2px}
+@media(max-width:420px){.dia span{padding:12px 0;font-size:13px}}
+
+/* faixas de horário */
+.horas{display:flex;gap:10px;align-items:flex-end}
+.horas > div{flex:1}
+.mini{display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--texto3);margin-bottom:6px}
+input[type=time]{width:100%;font-family:inherit;font-size:16.5px;color:var(--texto);
+  background:var(--grafite);border:1px solid var(--linha);border-radius:4px;
+  padding:13px 12px;transition:border-color .15s}
+input[type=time]:focus{outline:none;border-color:var(--lima)}
+.horas .ate{flex:0 0 auto;padding-bottom:14px;color:var(--texto3);font-size:14px}
+
+/* tabela de serviços */
+.serv-cab{display:grid;grid-template-columns:1fr 132px;gap:9px;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--texto3);margin-bottom:9px}
+.serv-linha{display:grid;grid-template-columns:1fr 132px auto;gap:9px;
+  align-items:center;margin-bottom:9px}
+.serv-linha .val{position:relative}
+.serv-linha .val .rs{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--texto3);font-size:16px;pointer-events:none}
+.serv-linha .val input{padding-left:34px;text-align:right}
+.serv-linha .tira{background:none;border:none;color:var(--texto3);cursor:pointer;
+  font-size:22px;line-height:1;padding:0 4px;width:26px}
+.serv-linha .tira:hover{color:var(--erro)}
+.btn-add{margin-top:4px;background:transparent;border:1px dashed var(--linha2);
+  border-radius:4px;color:var(--texto2);font-family:inherit;font-size:14.5px;
+  padding:12px 16px;cursor:pointer;width:100%}
+.btn-add:hover{border-color:var(--lima);color:var(--lima)}
+@media(max-width:480px){
+  .serv-cab{grid-template-columns:1fr 108px}
+  .serv-linha{grid-template-columns:1fr 108px auto;gap:7px}
+}
+
 .cores{display:flex;gap:12px;flex-wrap:wrap}
 .cor{flex:1;min-width:132px}
 .cor input[type=color]{width:100%;height:54px;border:1px solid var(--linha);
@@ -170,7 +215,7 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 <form id="form" class="w" novalidate>
 
 <section class="etapa ativa" data-etapa="1">
-  <h1>Sinal recebido.<br><u>Agora o material.</u></h1>
+  <h1>Pagamento recebido.<br><u>Agora o material.</u></h1>
   <p class="ajuda">Leva uns 5 minutos e é a única vez que você vai precisar preencher isso. O prazo de 3 dias úteis começa a contar quando você terminar.</p>
 
   <div class="selo-plano" id="selo-plano" style="display:none">
@@ -195,12 +240,12 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 
   <div class="campo">
     <label for="negocio">Nome do estabelecimento</label>
-    <input type="text" id="negocio" data-obr placeholder="Ex: Barbearia Norte">
+    <input type="text" id="negocio" data-obr placeholder="O nome que aparece na fachada">
     <div class="msg-erro">Preencha o nome do estabelecimento.</div>
   </div>
   <div class="campo">
     <label for="ramo">O que vocês fazem</label>
-    <input type="text" id="ramo" data-obr placeholder="Ex: barbearia, loja de tecidos, doceria">
+    <input type="text" id="ramo" data-obr placeholder="Ex: pizzaria, ótica, pet shop, academia, floricultura">
     <div class="msg-erro">Diga em poucas palavras o ramo do negócio.</div>
   </div>
   <div class="campo">
@@ -220,7 +265,7 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 
 <section class="etapa" data-etapa="2">
   <h1>Como o cliente <u>fala com você.</u></h1>
-  <p class="ajuda">Esses dados vão direto para os botões e para o rodapé do site.</p>
+  <p class="ajuda">Esses dados vão direto para os botões do site e para o rodapé.</p>
 
   <div class="campo">
     <label for="whats">WhatsApp com DDD</label>
@@ -234,13 +279,46 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
   <div class="campo">
     <label for="endereco">Endereço completo</label>
     <span class="dica">Rua, número, bairro, cidade e estado. Mais de uma unidade? Escreva todas.</span>
-    <textarea id="endereco" data-obr placeholder="Av. Bandeirantes, 840 — Centro, sua cidade/UF"></textarea>
+    <textarea id="endereco" data-obr placeholder="Rua, número, bairro, cidade e estado"></textarea>
     <div class="msg-erro">Preencha o endereço.</div>
   </div>
   <div class="campo">
-    <label for="horarios">Horário de funcionamento</label>
-    <textarea id="horarios" data-obr placeholder="Terça a sexta: 9h às 20h&#10;Sábado: 8h às 18h&#10;Domingo e segunda: fechado"></textarea>
-    <div class="msg-erro">Preencha o horário.</div>
+    <label>Em quais dias vocês abrem?</label>
+    <span class="dica">Toque nos dias em que o estabelecimento funciona.</span>
+    <div class="dias">
+      <label class="dia"><input type="checkbox" name="dia" value="Segunda" data-semana><span>Seg</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Terça" data-semana><span>Ter</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Quarta" data-semana><span>Qua</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Quinta" data-semana><span>Qui</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Sexta" data-semana><span>Sex</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Sábado" data-fds><span>Sáb</span></label>
+      <label class="dia"><input type="checkbox" name="dia" value="Domingo" data-fds><span>Dom</span></label>
+    </div>
+    <div class="msg-erro" id="erro-dias">Marque pelo menos um dia da semana.</div>
+  </div>
+
+  <div class="campo" id="campo-semana" style="display:none">
+    <label>Horário de segunda a sexta</label>
+    <div class="horas">
+      <div><span class="mini">abre</span><input type="time" id="sem-abre" value="09:00"></div>
+      <span class="ate">até</span>
+      <div><span class="mini">fecha</span><input type="time" id="sem-fecha" value="18:00"></div>
+    </div>
+  </div>
+
+  <div class="campo" id="campo-fds" style="display:none">
+    <label>Horário no fim de semana</label>
+    <div class="horas">
+      <div><span class="mini">abre</span><input type="time" id="fds-abre" value="09:00"></div>
+      <span class="ate">até</span>
+      <div><span class="mini">fecha</span><input type="time" id="fds-fecha" value="13:00"></div>
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="horario-obs">Algum horário diferente?</label>
+    <span class="dica">Opcional. Se fecha para o almoço, se um dia tem horário próprio, se atende por agendamento, escreva aqui.</span>
+    <textarea id="horario-obs" style="min-height:90px" placeholder="Ex: fechamos das 12h às 13h30. No sábado só até o meio-dia."></textarea>
   </div>
 
   <div class="nav-btn">
@@ -251,17 +329,20 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 
 <section class="etapa" data-etapa="3">
   <h1>O que você <u>vende.</u></h1>
-  <p class="ajuda">Um por linha. Se não quiser mostrar o preço de algum, deixa sem o valor.</p>
+  <p class="ajuda">Serve para serviço e para produto. Coloque os principais, não precisa listar o catálogo inteiro.</p>
 
   <div class="campo">
-    <label for="servicos">Serviços ou produtos, com os valores</label>
-    <textarea id="servicos" data-obr style="min-height:180px" placeholder="Corte masculino — R$45&#10;Barba completa — R$40&#10;Corte + barba — R$75&#10;Pezinho — R$20"></textarea>
-    <div class="msg-erro">Liste pelo menos um serviço ou produto.</div>
+    <label>Serviços ou produtos e quanto custam</label>
+    <span class="dica">Digite só os números no valor. Se você não quiser mostrar o preço de algum item, deixe o valor em branco.</span>
+    <div class="serv-cab"><span>O que é</span><span>Quanto custa</span></div>
+    <div id="tabela-serv"></div>
+    <button type="button" class="btn-add" id="add-serv">adicionar outra linha</button>
+    <div class="msg-erro" id="erro-serv">Preencha pelo menos um serviço ou produto.</div>
   </div>
   <div class="campo">
     <label for="frase">Uma frase que resume o negócio</label>
     <span class="dica">Opcional. Se não tiver, eu escrevo uma.</span>
-    <input type="text" id="frase" placeholder="Ex: Corte, barba e navalha desde 2016">
+    <input type="text" id="frase" placeholder="Ex: Feito à mão desde 1998">
   </div>
   <div class="campo">
     <label for="sobre">Um pouco da história</label>
@@ -313,7 +394,7 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 
 <section class="etapa" data-etapa="5">
   <h1>Sua <u>logo.</u></h1>
-  <p class="ajuda">Manda o arquivo de melhor qualidade que você tiver. Sem logo? Pode pular — eu monto uma com o nome do negócio, sem custo.</p>
+  <p class="ajuda">Manda o arquivo de melhor qualidade que você tiver. Se você não tem logo, pode pular esse passo, que eu monto uma marca simples com o nome do negócio sem custo nenhum.</p>
   <div class="campo">
     <label class="solta" id="solta-logo">
       <input type="file" id="logo" accept="image/*">
@@ -330,7 +411,7 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
 
 <section class="etapa" data-etapa="6">
   <h1>As <u>fotos.</u></h1>
-  <p class="ajuda">De 4 a 12 fotos do espaço e do seu trabalho. Foto de celular está ótimo — só evite as tremidas e as muito escuras.</p>
+  <p class="ajuda">De 4 a 12 fotos do espaço, dos produtos ou do seu trabalho. Foto de celular resolve bem, só evite as tremidas e as muito escuras.</p>
   <div class="campo">
     <label class="solta" id="solta-fotos">
       <input type="file" id="fotos" accept="image/*" multiple>
@@ -371,7 +452,7 @@ input.ruim,textarea.ruim{border-color:var(--erro)}
    ============================================================ */
 const CONFIG = {
   /* cole aqui a chave que o Web3Forms mandar no seu e-mail */
-  EMAIL_KEY:    'COLE_A_CHAVE_DO_WEB3FORMS',
+  EMAIL_KEY:    'ba29bac2-cdfa-4bc3-b7c6-f396c0c7a03c',
   EMAIL_DESTINO:'thelandinglab11@gmail.com',
   SUPABASE_URL: 'https://wrjundkymewfsyefwhwe.supabase.co',
   SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyanVuZGt5bWV3ZnN5ZWZ3aHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzOTU5NjYsImV4cCI6MjEwMzk3MTk2Nn0.EG_QxZAq5JRfRJYS4vG_KelvDlef8J1Bt2XPVfuaRNw',
@@ -388,6 +469,101 @@ const TOTAL = 6;
 let atual = 1;
 const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* ---------------- dias e horários ---------------- */
+(function(){
+  function atualizar(){
+    var sem = document.querySelectorAll('[data-semana]:checked').length > 0;
+    var fds = document.querySelectorAll('[data-fds]:checked').length > 0;
+    document.getElementById('campo-semana').style.display = sem ? 'block' : 'none';
+    document.getElementById('campo-fds').style.display    = fds ? 'block' : 'none';
+    document.getElementById('erro-dias').classList.remove('on');
+  }
+  document.querySelectorAll('[name=dia]').forEach(function(c){
+    c.addEventListener('change', atualizar);
+  });
+  atualizar();
+})();
+
+/* monta o texto final do horário */
+function montarHorarios(){
+  var dias = Array.from(document.querySelectorAll('[name=dia]:checked')).map(function(c){return c.value;});
+  if(!dias.length) return '';
+  var sem = dias.filter(function(d){ return ['Segunda','Terça','Quarta','Quinta','Sexta'].indexOf(d)>-1; });
+  var fds = dias.filter(function(d){ return d==='Sábado' || d==='Domingo'; });
+  var hora = function(id){
+    var v = (document.getElementById(id).value||'');
+    if(!v) return '';
+    var p = v.split(':');
+    var h = parseInt(p[0],10);
+    return p[1] === '00' ? h + 'h' : h + 'h' + p[1];
+  };
+  var linhas = [];
+
+  if(sem.length){
+    var faixa = (sem.length>=3 && sem[0]==='Segunda' && sem[sem.length-1]==='Sexta' && sem.length===5)
+      ? 'Segunda a sexta' : sem.join(', ');
+    linhas.push(faixa + ': ' + hora('sem-abre') + ' às ' + hora('sem-fecha'));
+  }
+  if(fds.length){
+    linhas.push(fds.join(' e ') + ': ' + hora('fds-abre') + ' às ' + hora('fds-fecha'));
+  }
+  var fechados = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo']
+    .filter(function(d){ return dias.indexOf(d)===-1; });
+  if(fechados.length) linhas.push(fechados.join(', ') + ': fechado');
+
+  var obs = document.getElementById('horario-obs').value.trim();
+  if(obs) linhas.push('Observação: ' + obs);
+  return linhas.join('\n');
+}
+
+/* ---------------- tabela de serviços ---------------- */
+(function(){
+  var tabela = document.getElementById('tabela-serv');
+  var add    = document.getElementById('add-serv');
+
+  function linha(){
+    var d = document.createElement('div');
+    d.className = 'serv-linha';
+    d.innerHTML =
+      '<input type="text" class="serv-nome" placeholder="nome do serviço ou produto">' +
+      '<div class="val"><span class="rs">R$</span>' +
+      '<input type="text" class="serv-valor" inputmode="decimal" placeholder="0,00"></div>' +
+      '<button type="button" class="tira" aria-label="Remover esta linha">&times;</button>';
+    d.querySelector('.tira').addEventListener('click', function(){
+      if(tabela.children.length > 1) d.remove(); else limpar(d);
+    });
+    d.querySelector('.serv-valor').addEventListener('input', function(e){
+      e.target.value = e.target.value.replace(/[^\d,]/g,'').replace(/,(?=.*,)/g,'');
+    });
+    d.querySelector('.serv-nome').addEventListener('input', function(){
+      document.getElementById('erro-serv').classList.remove('on');
+    });
+    return d;
+  }
+  function limpar(d){
+    d.querySelector('.serv-nome').value='';
+    d.querySelector('.serv-valor').value='';
+  }
+  for(var i=0;i<4;i++) tabela.appendChild(linha());
+  add.addEventListener('click', function(){
+    var nova = linha();
+    tabela.appendChild(nova);
+    nova.querySelector('.serv-nome').focus();
+  });
+})();
+
+function montarServicos(){
+  return Array.from(document.querySelectorAll('.serv-linha')).map(function(l){
+    var nome = l.querySelector('.serv-nome').value.trim();
+    if(!nome) return null;
+    var v = l.querySelector('.serv-valor').value.trim();
+    if(!v) return nome;
+    if(v.indexOf(',') === -1) v = v + ',00';
+    var p = v.split(',');
+    return nome + ' — R$ ' + p[0] + ',' + (p[1] + '00').slice(0,2);
+  }).filter(Boolean).join('\n');
+}
 
 (function(){
   var selo = document.getElementById('selo-plano');
@@ -411,6 +587,16 @@ function irPara(n){
 function valida(n){
   const sec = document.querySelector('.etapa[data-etapa="'+n+'"]');
   let ok = true;
+  if(n === 2){
+    var temDia = document.querySelectorAll('[name=dia]:checked').length > 0;
+    document.getElementById('erro-dias').classList.toggle('on', !temDia);
+    if(!temDia) ok = false;
+  }
+  if(n === 3){
+    var temServ = montarServicos().length > 0;
+    document.getElementById('erro-serv').classList.toggle('on', !temServ);
+    if(!temServ) ok = false;
+  }
   if(n === 1 && !PLANO){
     const escolhido = document.querySelector('[name=plano]:checked');
     document.getElementById('erro-plano').classList.toggle('on', !escolhido);
@@ -535,8 +721,8 @@ $('#form').addEventListener('submit', async e => {
       whats:        $('#whats').value.trim(),
       insta:        $('#insta').value.trim(),
       endereco:     $('#endereco').value.trim(),
-      horarios:     $('#horarios').value.trim(),
-      servicos:     $('#servicos').value.trim(),
+      horarios:     montarHorarios(),
+      servicos:     montarServicos(),
       frase:        $('#frase').value.trim(),
       sobre:        $('#sobre').value.trim(),
       tema:         (document.querySelector('[name=tema]:checked')||{}).value || 'escuro',
