@@ -41,7 +41,7 @@ function tllTrack(name,params,metaEvent,metaParams,metaCustom){
 }
 
 /* ---- atalhos usados nos botões ---- */
-function trackCK(l){ tllTrack('begin_checkout',{event_category:'conversao',event_label:l,value:497,currency:'BRL',items:[{item_id:'pagina-do-lab',item_name:'A Pagina do Lab',price:497,quantity:1}]},'InitiateCheckout',{value:497,currency:'BRL',content_name:'A Pagina do Lab',content_ids:['pagina-do-lab'],content_type:'product'}); }
+function trackCK(l){ tllTrack('generate_lead',{event_category:'conversao',event_label:l,value:497,currency:'BRL',content_name:'A Pagina do Lab'},'Contact',{value:497,currency:'BRL',content_name:'A Pagina do Lab',content_category:'whatsapp'}); }
 function trackCTA(l){ tllTrack('cta_para_oferta',{event_category:'navegacao',event_label:l},'CTAparaOferta',{origem:l},true); }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1339,7 +1339,7 @@ document.querySelectorAll('.fq-q').forEach(function(b){b.addEventListener('click
      scroll_25/50/75/90
      tempo_30s/60s/120s/180s
      leitura_profunda -> chegou na oferta e passou de 60s
-     viu_oferta / begin_checkout / cta_para_oferta / faq_abriu
+     viu_oferta / generate_lead / cta_para_oferta / faq_abriu
      exemplo_aberto / exemplo_fechado (com o tempo olhando a página)
      saida            -> rolagem máxima, tempo total, seções lidas
    ===================================================================== */
