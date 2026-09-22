@@ -4,220 +4,218 @@
 <meta charset="UTF-8">
 <meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Barbearia Norte — modelo Essencial | Seu Site</title>
+<title>Modelo Essencial | Seu Site</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --preto:#0D0E10;--painel:#16181C;--painel2:#1D2025;
-  --linha:#282B31;--ouro:#C9A227;--ouro-cl:#E3C25A;
-  --creme:#F0EDE4;--creme2:#9A968C;--creme3:#6B685F;
-}
+:root{--bg:#101215;--card:#171A1E;--card2:#1E2227;--linha:#282D33;--linha2:#3A4048;
+  --texto:#F4F5F0;--texto2:#9AA091;--texto3:#6E7568;--link:#8AB4F8;
+  --acento:#C8F135;--acento-txt:#141A05}
+:root[data-tema="claro"]{--bg:#F6F6F3;--card:#FFFFFF;--card2:#EFEFEA;--linha:#E3E3DE;--linha2:#CFCFC8;
+  --texto:#16181B;--texto2:#5B5E66;--texto3:#8E9199;--link:#1A0DAB}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--preto);color:var(--creme);font-family:Inter,system-ui,sans-serif;
-     font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{display:block;max-width:100%}a{color:inherit}
-::selection{background:var(--ouro);color:var(--preto)}
-.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.03em;font-weight:400}
+body{background:var(--bg);color:var(--texto);font-family:Inter,system-ui,sans-serif;font-size:16.5px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s}
+a{color:inherit}
 .w{max-width:1060px;margin:0 auto;padding:0 22px}
-.sec{padding:72px 0}
+.sec{padding:70px 0}
 .borda{border-top:1px solid var(--linha)}
-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,7vw,50px);
-   letter-spacing:.02em;line-height:1;margin-bottom:12px;font-weight:400}
-h2 u{text-decoration:none;color:var(--ouro)}
-.sub{color:var(--creme2);font-size:16.5px;max-width:56ch}
-.rot{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-     color:var(--ouro);margin-bottom:14px;display:block}
+h2{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 80;text-transform:uppercase;
+  letter-spacing:-.025em;line-height:1;font-size:clamp(28px,5.8vw,46px);margin-bottom:12px}
+.sub{color:var(--texto2);max-width:56ch}
+.rot{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--acento);margin-bottom:14px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-size:16px;font-weight:600;padding:15px 26px;border-radius:6px;
-  text-decoration:none;border:1px solid transparent;transition:background .15s,border-color .15s}
+/* o que é do cliente */
+.ph{background:linear-gradient(transparent 60%, rgba(200,241,53,.22) 60%);
+  background:linear-gradient(transparent 60%, color-mix(in srgb, var(--acento) 26%, transparent) 60%);
+  border-bottom:1.5px dashed var(--acento);padding:0 3px}
+.slot{border:1.5px dashed var(--linha2);background:var(--card);border-radius:6px;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--texto3);
+  font-size:13px;font-weight:500;text-align:center;padding:12px;min-height:120px}
+.slot svg{width:26px;height:26px;color:var(--acento);opacity:.85}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15.5px;font-weight:600;
+  padding:14px 24px;border-radius:4px;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s}
 .btn svg{width:19px;height:19px;flex-shrink:0}
-.btn-zap{background:#25D366;color:#06301A}
-.btn-zap:hover{background:#33E175}
-.btn-ouro{background:var(--ouro);color:var(--preto)}
-.btn-linha{border-color:var(--linha);color:var(--creme)}
-.btn-linha:hover{border-color:var(--ouro);color:var(--ouro)}
+.btn-zap{background:#25D366;color:#06301A}.btn-zap:hover{background:#33E175}
+.btn-linha{border-color:var(--linha2);color:var(--texto);background:transparent}
+.btn-linha:hover{border-color:var(--acento);color:var(--acento)}
 
-.nav{position:sticky;top:0;z-index:60;background:rgba(13,14,16,.9);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linha)}
-.nav-in{max-width:1060px;margin:0 auto;padding:14px 22px;display:flex;
-  align-items:center;justify-content:space-between;gap:14px}
-.nav-marca{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
-.nav-links{display:flex;gap:24px;font-size:14.5px;color:var(--creme2)}
-.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--ouro)}
+.aviso{background:var(--card2);border-bottom:1px solid var(--linha);padding:11px 22px;text-align:center;
+  font-size:13.5px;color:var(--texto2)}
+.aviso b{color:var(--acento);font-weight:600}
+.aviso a{color:var(--texto);text-decoration:underline;text-underline-offset:3px}
+.dominio{background:var(--acento);color:var(--acento-txt);padding:12px 22px;text-align:center;
+  font-size:14px;font-weight:600}
+
+.nav{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--linha)}
+.nav-in{max-width:1060px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;
+  justify-content:space-between;gap:14px}
+.nav-marca{display:flex;align-items:center;gap:10px;font-family:Archivo,sans-serif;font-weight:900;
+  font-variation-settings:'wdth' 80;text-transform:uppercase;font-size:17px}
+.nav-logo{width:34px;height:34px;border-radius:50%;border:1.5px dashed var(--acento);display:flex;
+  align-items:center;justify-content:center;font-family:Inter,sans-serif;font-size:8px;
+  color:var(--texto3);font-weight:600;letter-spacing:.04em}
+.nav-links{display:flex;gap:22px;font-size:14.5px;color:var(--texto2)}
+.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--acento)}
 @media(max-width:860px){.nav-links{display:none}}
 
-.hero{position:relative;padding:96px 0 88px;text-align:center;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(115deg,rgba(201,162,39,.05) 0 2px,transparent 2px 26px)}
-.hero::after{content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 80% at 50% 20%,rgba(201,162,39,.1),transparent 70%)}
-.hero>*{position:relative;z-index:1}
-.logo{width:118px;height:118px;border-radius:50%;border:2px solid var(--ouro);
-  margin:0 auto 26px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;background:var(--preto)}
-.logo b{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--ouro);line-height:.9}
-.logo i{font-style:normal;font-size:8.5px;letter-spacing:.28em;color:var(--creme2);margin-top:5px}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,10vw,80px);
-  letter-spacing:.04em;line-height:.94;margin-bottom:12px;font-weight:400}
-.hero .tag{color:var(--creme2);font-size:17.5px;margin-bottom:10px}
-.hero .selo{display:inline-block;border:1px solid var(--linha);border-radius:99px;
-  padding:6px 16px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ouro);margin-bottom:30px}
-.hero-ctas{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+.hero{padding:80px 0 72px;text-align:center}
+.logo{width:124px;height:124px;border-radius:50%;margin:0 auto 26px;min-height:0;border-color:var(--acento)}
+.hero h1{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 78;
+  text-transform:uppercase;font-size:clamp(40px,9.5vw,76px);letter-spacing:-.03em;line-height:.96;
+  margin-bottom:16px}
+.hero .tag{color:var(--texto2);font-size:18px;margin-bottom:14px}
+.hero .selo{display:inline-block;border:1px solid var(--linha2);border-radius:99px;padding:6px 15px;
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--acento);margin-bottom:30px}
+.hero-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hero .nota-cor{margin-top:22px;font-size:14px;color:var(--texto3)}
+.hero .nota-cor b{color:var(--texto2);font-weight:600}
 
-.foto{width:100%;background:var(--painel2);border-radius:6px;position:relative;
-  overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:130px}
-.foto::before{content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(135deg,rgba(201,162,39,.055) 0 8px,transparent 8px 22px)}
-.foto span{position:relative;font-size:12.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--creme3)}
+.sobre{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.sobre .slot{min-height:300px}
+@media(max-width:820px){.sobre{grid-template-columns:1fr;gap:24px}.sobre .slot{min-height:220px}}
 
-.galeria{display:grid;grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:180px;gap:12px;margin-top:36px}
-.galeria .g1{grid-column:span 2}
-@media(max-width:760px){.galeria{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}
-  .galeria .g1{grid-column:span 2}}
+.galeria{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:170px;gap:12px;margin-top:32px}
+.galeria .slot{min-height:0}.galeria .g1{grid-column:span 2}
+@media(max-width:720px){.galeria{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}}
 
-.servicos{margin-top:36px;border-top:1px solid var(--linha)}
-.serv{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:baseline;
-  padding:19px 0;border-bottom:1px solid var(--linha)}
-.serv h3{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.04em;font-weight:400}
-.serv p{font-size:14.5px;color:var(--creme2);margin-top:2px}
-.serv .p{font-family:'Bebas Neue',sans-serif;font-size:25px;color:var(--ouro);
-  letter-spacing:.03em;white-space:nowrap}
+.servicos{margin-top:30px;border-top:1px solid var(--linha)}
+.serv{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:baseline;padding:18px 0;
+  border-bottom:1px solid var(--linha)}
+.serv h3{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:'wdth' 84;
+  text-transform:uppercase;font-size:17px;letter-spacing:-.01em}
+.serv p{font-size:14px;color:var(--texto3);margin-top:2px}
+.serv .p{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 82;font-size:21px;
+  color:var(--acento);white-space:nowrap}
 
-.avals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
-.aval{background:var(--painel);border:1px solid var(--linha);border-radius:8px;padding:22px 20px}
-.aval .est{color:var(--ouro);font-size:15px;letter-spacing:3px;margin-bottom:11px}
-.aval p{font-size:15px;color:var(--creme2);line-height:1.55;margin-bottom:14px}
+.avals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.aval{background:var(--card);border:1px solid var(--linha);border-radius:6px;padding:22px 20px}
+.aval .est{color:#F5B301;letter-spacing:3px;margin-bottom:10px}
+.aval p{font-size:14.5px;color:var(--texto2);margin-bottom:14px}
 .aval .quem{display:flex;align-items:center;gap:10px;font-size:14px}
-.aval .ini{width:32px;height:32px;border-radius:50%;background:var(--painel2);
-  display:flex;align-items:center;justify-content:center;font-size:13px;
-  color:var(--ouro);font-weight:600;flex-shrink:0}
-.aval .quem b{font-weight:500}
-.aval .quem span{color:var(--creme3);font-size:12.5px;display:block}
+.aval .ini{width:32px;height:32px;border-radius:50%;border:1.5px dashed var(--linha2);flex-shrink:0}
+.aval .quem span{display:block;color:var(--texto3);font-size:12.5px}
 @media(max-width:820px){.avals{grid-template-columns:1fr}}
 
-.contato{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:36px}
-.info{display:flex;flex-direction:column;gap:20px}
-.linha-info{display:flex;gap:14px;align-items:flex-start}
-.linha-info .ic{width:38px;height:38px;border-radius:7px;background:var(--painel);
-  border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;
-  color:var(--ouro);flex-shrink:0}
-.linha-info .ic svg{width:18px;height:18px}
-.linha-info b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--creme3);font-weight:500;margin-bottom:3px}
-.linha-info span{font-size:16px;color:var(--creme);line-height:1.45}
-.acoes{display:flex;flex-direction:column;gap:11px;justify-content:center}
-@media(max-width:820px){.contato{grid-template-columns:1fr;gap:28px}}
+.contato{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:30px}
+.info{display:flex;flex-direction:column;gap:18px}
+.li{display:flex;gap:14px;align-items:flex-start}
+.li .ic{width:38px;height:38px;border-radius:6px;background:var(--card);border:1px solid var(--linha);
+  display:flex;align-items:center;justify-content:center;color:var(--acento);flex-shrink:0}
+.li .ic svg{width:18px;height:18px}
+.li b{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--texto3);font-weight:400;margin-bottom:3px}
+.acoes{display:flex;flex-direction:column;gap:10px;justify-content:center}
+@media(max-width:820px){.contato{grid-template-columns:1fr;gap:26px}}
 
-.google{background:var(--painel);border:1px solid var(--linha);border-radius:10px;
-  padding:24px;margin-top:36px}
-.google .barra{display:flex;align-items:center;gap:10px;background:var(--preto);
-  border:1px solid var(--linha);border-radius:99px;padding:10px 16px;margin-bottom:20px}
-.google .barra span{font-size:14.5px;color:var(--creme2)}
-.google .res{padding-left:2px}
-.google .res .url{font-size:13px;color:var(--creme3);margin-bottom:4px}
-.google .res .tit{font-size:19px;color:#8AB4F8;margin-bottom:5px}
-.google .res .desc{font-size:14.5px;color:var(--creme2);line-height:1.5;max-width:60ch}
-.google .res .estrelas{font-size:13.5px;color:var(--creme2);margin-top:7px}
-.google .res .estrelas b{color:var(--ouro);font-weight:400;letter-spacing:2px}
+.google{background:var(--card);border:1px solid var(--linha);border-radius:6px;padding:22px;margin-top:30px}
+.google .barra{display:flex;align-items:center;gap:10px;border:1px solid var(--linha2);border-radius:99px;
+  padding:10px 16px;margin-bottom:18px;color:var(--texto3);font-size:14.5px}
+.google .url{font-size:13px;color:var(--texto3);margin-bottom:3px}
+.google .tit{font-size:19px;color:var(--link);margin-bottom:5px}
+.google .desc{font-size:14.5px;color:var(--texto2);max-width:62ch}
+.google .est{font-size:13.5px;color:var(--texto2);margin-top:7px}
+.google .est b{color:#F5B301;font-weight:400;letter-spacing:2px}
+.qrb{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--linha);
+  border-radius:6px;padding:22px;margin-top:16px}
+.qrb svg{border-radius:4px;flex-shrink:0}
+.qrb h3{font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;font-size:18px;margin-bottom:6px}
+.qrb p{font-size:14.5px;color:var(--texto2)}
+@media(max-width:600px){.qrb{flex-direction:column;text-align:center}}
 
-.qrbloco{display:flex;gap:24px;align-items:center;background:var(--painel);
-  border:1px solid var(--linha);border-radius:10px;padding:24px;margin-top:20px}
-.qrbloco svg{border-radius:6px;flex-shrink:0}
-.qrbloco h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;
-  margin-bottom:7px;font-weight:400}
-.qrbloco p{font-size:15px;color:var(--creme2)}
-@media(max-width:600px){.qrbloco{flex-direction:column;text-align:center}}
+.rodape{padding:28px 0 calc(90px + env(safe-area-inset-bottom));border-top:1px solid var(--linha);
+  text-align:center;font-size:13.5px;color:var(--texto3)}
 
-.dominio{background:var(--ouro);color:var(--preto);padding:13px 0;text-align:center;
-  font-size:14.5px;font-weight:600;letter-spacing:.02em}
+/* painel de cores */
+.cores{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:120;
+  font-family:Inter,sans-serif}
+.cores-abre{display:flex;align-items:center;gap:9px;background:var(--acento);color:var(--acento-txt);
+  border:none;border-radius:99px;padding:12px 18px;font-family:inherit;font-size:14.5px;font-weight:600;
+  cursor:pointer;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.cores-abre svg{width:18px;height:18px}
+.cores-caixa{display:none;position:absolute;left:0;bottom:calc(100% + 10px);width:290px;
+  background:var(--card);border:1px solid var(--linha2);border-radius:8px;padding:18px;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.7)}
+.cores.on .cores-caixa{display:block}
+.cores-caixa b{display:block;font-family:Archivo,sans-serif;font-weight:900;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;font-size:16px;margin-bottom:4px}
+.cores-caixa p{font-size:13.5px;color:var(--texto2);line-height:1.5;margin-bottom:14px}
+.cores-rot{display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--texto3);margin:12px 0 8px}
+.sws{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid var(--card);outline:1px solid var(--linha2);
+  cursor:pointer;padding:0}
+.sw[aria-pressed="true"]{outline:2px solid var(--texto);outline-offset:2px}
+.livre{position:relative;width:30px;height:30px;border-radius:50%;overflow:hidden;
+  outline:1px dashed var(--texto3);background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red)}
+.livre input{position:absolute;inset:-8px;width:46px;height:46px;opacity:0;cursor:pointer}
+.temas{display:flex;gap:6px}
+.temas button{flex:1;font-family:inherit;font-size:13.5px;padding:9px;border-radius:4px;cursor:pointer;
+  background:transparent;border:1px solid var(--linha2);color:var(--texto2)}
+.temas button[aria-pressed="true"]{border-color:var(--acento);color:var(--texto);font-weight:600}
+.cores-nota{margin-top:14px;padding-top:12px;border-top:1px solid var(--linha);font-size:12.5px;
+  color:var(--texto3);line-height:1.5}
+.cores-nota b{color:var(--texto2);font-weight:600}
+@media(max-width:480px){.cores-caixa{width:calc(100vw - 32px)}}
 
-.rodape{padding:30px 0 calc(30px + env(safe-area-inset-bottom));
-  border-top:1px solid var(--linha);font-size:14px;color:var(--creme3);text-align:center}
-
-.aviso{background:var(--painel2);border-bottom:1px solid var(--linha);
-  padding:11px 22px;text-align:center;font-size:13.5px;color:var(--creme2)}
-.aviso b{color:var(--ouro);font-weight:600}
-.aviso a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}
-
-.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
 .rv.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:4px}
 </style>
-
 </head>
 <body>
 
-<div class="aviso">
-  Modelo demonstrativo do plano <b>Essencial</b> — nome, logo, endereço, horário, WhatsApp e Instagram ·
-  <a href="index.html" target="_top">voltar e comparar os três</a>
-</div>
+<div class="aviso">Modelo do plano <b>Essencial</b> · nome, logo, endereço, horário, WhatsApp e Instagram. As cores e os textos daqui são só exemplo,
+  o seu site sai com a identidade do seu negócio · <a href="index.html" target="_top">voltar e comparar os três</a></div>
 
 
-<nav class="nav">
-  <div class="nav-in">
-    <div class="nav-marca">Barbearia Norte</div>
-    <div class="nav-links"><a href="#contato">Contato</a></div>
-    <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site" style="padding:9px 16px;font-size:14.5px"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> WhatsApp</a>
+<nav class="nav"><div class="nav-in">
+  <div class="nav-marca"><span class="nav-logo">LOGO</span><span class="ph">Seu nome aqui</span></div>
+  <div class="nav-links"><a href="#contato">Contato</a></div>
+  <a class="btn btn-zap" href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20vi%20o%20modelo%20Essencial%20e%20quero%20um%20site%20assim%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" style="padding:9px 15px;font-size:14px"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> WhatsApp</a>
+</div></nav>
+
+<header class="hero"><div class="w">
+  <div class="slot logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><span>Sua logo aqui</span></div>
+  <h1><span class="ph">Seu nome aqui</span></h1>
+  <p class="tag">Uma frase curta que resume o seu negócio</p>
+  <span class="selo">Seus dias e horários de funcionamento</span>
+  <div class="hero-ctas">
+    <a class="btn btn-zap" href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20vi%20o%20modelo%20Essencial%20e%20quero%20um%20site%20assim%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Chamar no WhatsApp</a>
+    <a class="btn btn-linha" href="#" onclick="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> Instagram</a>
   </div>
-</nav>
+  <p class="nota-cor"><b>Cores, fotos, textos e logo são todos seus.</b> O botão aqui embaixo é só uma simulação pra você ter uma ideia. No seu site as cores ficam exatamente do jeito que você pedir.</p>
+</div></header>
 
-<header class="hero">
-  <div class="w">
-    <div class="logo"><b>BN</b><i>BARBER</i></div>
-    <h1>Barbearia Norte</h1>
-    <p class="tag">Corte, barba e navalha desde 2016</p>
-    <span class="selo">Aberto de terça a sábado</span>
-    <div class="hero-ctas">
-      <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Agendar no WhatsApp</a>
-      <a class="btn btn-linha" href="https://instagram.com/barbearianorte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> Instagram</a>
+<section class="sec borda" id="contato"><div class="w">
+  <span class="rot">Onde e quando</span>
+  <h2>Contato</h2>
+  <div class="contato">
+    <div class="info">
+      <div class="li"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div><div><b>Endereço</b><span class="ph">Seu endereço completo aqui</span></div></div>
+      <div class="li"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div><b>Horário</b><span class="ph">Seus dias e horários aqui</span></div></div>
+      <div class="li"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div><b>Telefone</b><span class="ph">(00) 00000-0000</span></div></div>
+    </div>
+    <div class="acoes">
+      <a class="btn btn-zap" href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20vi%20o%20modelo%20Essencial%20e%20quero%20um%20site%20assim%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Chamar no WhatsApp</a>
+      <a class="btn btn-linha" href="#" onclick="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> @seuinstagram</a>
+      <a class="btn btn-linha" href="#" onclick="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Ver no mapa</a>
     </div>
   </div>
-</header>
+</div></section>
 
-
-<section class="sec borda" id="contato">
-  <div class="w">
-    <span class="rot">Onde e quando</span>
-    <h2>Passa <u>aqui.</u></h2>
-    <div class="contato">
-      <div class="info">
-        <div class="linha-info">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
-          <div><b>Endereço</b><span>Av. Bandeirantes, 840 — Centro<br>sua cidade</span></div>
-        </div>
-        <div class="linha-info">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
-          <div><b>Horário</b><span>Terça a sexta: 9h às 20h<br>Sábado: 8h às 18h<br>Domingo e segunda: fechado</span></div>
-        </div>
-        <div class="linha-info">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
-          <div><b>Telefone</b><span>(00) 90000-0000</span></div>
-        </div>
-      </div>
-      <div class="acoes">
-        <a class="btn btn-zap" href="https://wa.me/5500900000000?text=Oi%2C%20vim%20pelo%20site"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Chamar no WhatsApp</a>
-        <a class="btn btn-linha" href="https://instagram.com/barbearianorte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> @barbearianorte</a>
-        <a class="btn btn-linha" href="https://www.google.com/maps/search/?api=1&query=Av.+Bandeirantes+840" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Ver no mapa</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="rodape">
-  <div class="w">
-    Barbearia Norte · Av. Bandeirantes, 840 — Centro<br>
-    <span style="opacity:.6">Modelo demonstrativo · plano Essencial · R$ 147 (pagamento único)</span>
-  </div>
-</footer>
+<footer class="rodape"><div class="w">
+  <span class="ph">Seu nome aqui</span> · <span class="ph">Seu endereço aqui</span><br>
+  <span style="opacity:.75">Modelo demonstrativo · plano Essencial · R$ 147 · pago só depois da aprovação</span>
+</div></footer>
 
 <script>
 (function(){
@@ -230,6 +228,62 @@ h2 u{text-decoration:none;color:var(--ouro)}
 })();
 </script>
 
+<div class="cores" id="cores">
+  <div class="cores-caixa" role="dialog" aria-label="Testar cores">
+    <b>É só uma simulação</b>
+    <p>Serve pra você ter uma ideia de como o site muda com outra cor. No seu site vale a cor que você quiser, do jeito que você pedir.</p>
+    <span class="cores-rot">Cor de destaque</span>
+    <div class="sws">
+      <button type="button" class="sw" data-cor="#C8F135" style="background:#C8F135" aria-label="Verde-limão" aria-pressed="true"></button>
+      <button type="button" class="sw" data-cor="#C9A227" style="background:#C9A227" aria-label="Dourado" aria-pressed="false"></button>
+      <button type="button" class="sw" data-cor="#3B82F6" style="background:#3B82F6" aria-label="Azul" aria-pressed="false"></button>
+      <button type="button" class="sw" data-cor="#E5484D" style="background:#E5484D" aria-label="Vermelho" aria-pressed="false"></button>
+      <button type="button" class="sw" data-cor="#22A06B" style="background:#22A06B" aria-label="Verde" aria-pressed="false"></button>
+      <button type="button" class="sw" data-cor="#E0569B" style="background:#E0569B" aria-label="Rosa" aria-pressed="false"></button>
+      <button type="button" class="sw" data-cor="#F08A24" style="background:#F08A24" aria-label="Laranja" aria-pressed="false"></button>
+      <label class="livre" title="Escolher qualquer cor"><input type="color" id="cor-livre" value="#C8F135" aria-label="Escolher qualquer cor"></label>
+    </div>
+    <span class="cores-rot">Fundo</span>
+    <div class="temas">
+      <button type="button" data-tema="escuro" aria-pressed="true">Escuro</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+    </div>
+    <p class="cores-nota"><b>Não achou a sua cor aqui?</b> Sem problema, essas são só algumas pra testar.
+    O tom exato da sua marca, quantas cores precisar ou as cores tiradas da sua logo, você me passa no
+    formulário e fica do jeito que você pedir.</p>
+  </div>
+  <button type="button" class="cores-abre" id="cores-abre" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/><circle cx="10.5" cy="7.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="8" r="1.2" fill="currentColor"/></svg>
+    Simular outras cores
+  </button>
+</div>
+
+<script>
+(function(){
+  var raiz=document.documentElement, painel=document.getElementById('cores'), abre=document.getElementById('cores-abre');
+  function luz(h){h=h.replace('#','');
+    var c=[0,2,4].map(function(i){var v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);});
+    return .2126*c[0]+.7152*c[1]+.0722*c[2];}
+  function cor(h){
+    raiz.style.setProperty('--acento',h);
+    raiz.style.setProperty('--acento-txt', luz(h)>.3 ? '#141A05' : '#FFFFFF');
+    document.querySelectorAll('.sw').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.cor.toLowerCase()===h.toLowerCase()?'true':'false');});
+    document.getElementById('cor-livre').value=h;
+  }
+  document.querySelectorAll('.sw').forEach(function(b){b.addEventListener('click',function(){cor(b.dataset.cor);});});
+  document.getElementById('cor-livre').addEventListener('input',function(e){cor(e.target.value);});
+  document.querySelectorAll('[data-tema]').forEach(function(b){
+    b.addEventListener('click',function(){
+      raiz.setAttribute('data-tema', b.dataset.tema);
+      document.querySelectorAll('[data-tema]').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false');});
+    });
+  });
+  function alterna(abrir){painel.classList.toggle('on',abrir);abre.setAttribute('aria-expanded',abrir?'true':'false');}
+  abre.addEventListener('click',function(){alterna(!painel.classList.contains('on'));});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')alterna(false);});
+  if(window.innerWidth>900) alterna(true);
+})();
+</script>
 
 <script id="js-rastreio">
 /* ==========================================================================
@@ -325,7 +379,7 @@ h2 u{text-decoration:none;color:var(--ouro)}
                  : s.tagName.toLowerCase());
   }
 
-  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+  var VALOR={Essencial:147, Completo:297, Premium:397};
 
   document.addEventListener('click', function(e){
     var a = e.target.closest ? e.target.closest('a,button') : null;
