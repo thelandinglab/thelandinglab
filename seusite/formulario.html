@@ -215,27 +215,27 @@ input[type=time]:focus{outline:none;border-color:var(--lima)}
 <form id="form" class="w" novalidate>
 
 <section class="etapa ativa" data-etapa="1">
-  <h1>Pagamento recebido.<br><u>Agora o material.</u></h1>
+  <h1>Vamos montar<br><u>o seu site.</u></h1>
   <p class="ajuda">Leva uns 5 minutos e é a única vez que você vai precisar preencher isso. O prazo de 3 dias úteis começa a contar quando você terminar.</p>
 
   <div class="selo-plano" id="selo-plano" style="display:none">
     <span class="ic"></span>
-    <div><b id="selo-plano-nome">Completo</b><br><span id="selo-plano-obs">plano confirmado</span></div>
+    <div><b id="selo-plano-nome">Completo</b><br><span id="selo-plano-obs">modelo escolhido</span></div>
   </div>
 
   <div class="campo" id="campo-plano" style="display:none">
-    <label>Qual plano você acabou de pagar?</label>
-    <span class="dica">Confira no comprovante se ficar em dúvida. É por aqui que eu sei o que montar para você.</span>
+    <label>Qual modelo você escolheu?</label>
+    <span class="dica">Se ainda estiver em dúvida, escolha o que mais te agradou. Dá pra trocar depois de ver o site pronto.</span>
     <div class="ops" style="grid-template-columns:1fr">
-      <label class="op"><input type="radio" name="plano" value="Essencial"><span>Essencial — paguei R$147</span></label>
-      <label class="op"><input type="radio" name="plano" value="Completo"><span>Completo — paguei R$148,50 de sinal</span></label>
-      <label class="op"><input type="radio" name="plano" value="Premium"><span>Premium — paguei R$198,50 de sinal</span></label>
+      <label class="op"><input type="radio" name="plano" value="Essencial"><span>Essencial — R$147</span></label>
+      <label class="op"><input type="radio" name="plano" value="Completo"><span>Completo — R$297</span></label>
+      <label class="op"><input type="radio" name="plano" value="Premium"><span>Premium — R$397</span></label>
     </div>
-    <div class="msg-erro" id="erro-plano">Escolha o plano que você pagou para continuar.</div>
+    <div class="msg-erro" id="erro-plano">Escolha um modelo para continuar.</div>
   </div>
 
   <div class="nota">
-    A segunda metade só é cobrada <b>depois que você ver o site pronto e aprovar.</b> Nada é publicado antes disso.
+    Você não paga nada agora. <b>O pagamento só acontece depois que você vir o site pronto e aprovar.</b>
   </div>
 
   <div class="campo">
@@ -437,9 +437,9 @@ input[type=time]:focus{outline:none;border-color:var(--lima)}
 
 <div class="w fim" id="fim">
   <div class="ok"></div>
-  <h1>Recebido.<br><u>Já começou.</u></h1>
+  <h1>Recebido.<br><u>Agora é comigo.</u></h1>
   <p>Está tudo aqui comigo. Você recebe o link do site pronto em até 3 dias úteis, no e-mail e no WhatsApp.</p>
-  <p>A segunda metade só entra depois que você olhar tudo e aprovar. Se algo não estiver do jeito combinado, é só pedir o ajuste.</p>
+  <p>Você só paga depois de abrir o link, conferir tudo e aprovar. Se alguma coisa não estiver do jeito que você imaginou, é só pedir o ajuste.</p>
   <a id="zap-final" href="https://wa.me/5519999001382" class="btn btn-lima" style="flex:none;margin-top:14px">Avisar que enviei, no WhatsApp</a>
 </div>
 
@@ -885,7 +885,7 @@ $('#form').addEventListener('submit', async e => {
                  : s.tagName.toLowerCase());
   }
 
-  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+  var VALOR={Essencial:147, Completo:297, Premium:397};
 
   document.addEventListener('click', function(e){
     var a = e.target.closest ? e.target.closest('a,button') : null;
@@ -956,9 +956,7 @@ $('#form').addEventListener('submit', async e => {
             disparar('formulario_etapa',{etapa:n});
             if(n===2 && !jaComprou){
               jaComprou=true;
-              var p=planoAtual();
-              disparar('pagamento_confirmado',
-                {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Purchase');
+              disparar('formulario_iniciado',{plano:planoAtual()});
             }
           }
         }
@@ -971,7 +969,7 @@ $('#form').addEventListener('submit', async e => {
         if(fim.classList.contains('on')){
           var p=planoAtual();
           disparar('formulario_enviado',
-            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'CompleteRegistration');
+            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Lead');
         }
       }).observe(fim,{attributes:true,attributeFilter:['class']});
     }
