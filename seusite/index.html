@@ -33,9 +33,9 @@ src="https://www.facebook.com/tr?id=1077634248299356&ev=PageView&noscript=1"
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Seu Site — site profissional pronto em 3 dias | The Landing Lab</title>
-<meta name="description" content="Site profissional para o seu negócio, pronto em até 3 dias úteis. Você paga metade agora e a outra metade só quando aprovar. Sem mensalidade.">
+<meta name="description" content="Site profissional para o seu negócio, pronto em até 3 dias úteis. Você só paga depois de ver o site pronto e aprovar. Sem mensalidade.">
 <meta property="og:title" content="Seu Site — site profissional pronto em 3 dias">
-<meta property="og:description" content="Você paga metade agora e a outra metade só quando aprovar o site pronto.">
+<meta property="og:description" content="Você vê o site pronto antes de pagar qualquer coisa.">
 
 <!-- ============================================================
      ANTES DE PUBLICAR — procure e substitua:
@@ -358,6 +358,27 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
   .modal-nova{display:none}
 }
 
+/* caminhos alternativos */
+.alt-zap{margin-top:16px;font-size:15px;color:var(--texto3)}
+.alt-zap a{color:var(--texto2);text-decoration:underline;text-underline-offset:3px}
+.alt-zap a:hover{color:var(--lima)}
+.plano-acoes .conversa{display:block;text-align:center;font-size:13.5px;color:var(--texto3);
+  text-decoration:underline;text-underline-offset:3px;margin-top:2px}
+.plano-acoes .conversa:hover{color:var(--lima)}
+@media(max-width:960px){.plano-acoes{flex-wrap:wrap}.plano-acoes .conversa{width:100%}}
+
+/* quem faz */
+.quem{display:flex;gap:18px;align-items:center;margin-top:26px;padding:20px 22px;
+  border:1px solid var(--linha2);border-radius:6px;background:var(--preto)}
+.quem img{width:76px;height:76px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:2px solid var(--lima)}
+.quem b{display:block;font-family:Archivo,sans-serif;font-weight:900;
+  font-variation-settings:'wdth' 82;text-transform:uppercase;font-size:18px;
+  letter-spacing:-.015em;margin-bottom:5px}
+.quem p{font-size:15px;color:var(--texto2);line-height:1.55;margin:0}
+.quem a{color:var(--lima);text-decoration:none}
+@media(max-width:560px){.quem{align-items:flex-start;padding:18px}.quem img{width:62px;height:62px}}
+
 .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
 .rv.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
@@ -377,27 +398,27 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
       <a href="#precos">Preços</a>
       <a href="#duvidas">Dúvidas</a>
     </div>
-    <a href="#modelos" class="btn btn-lima btn-sm">Ver modelos</a>
+    <a href="formulario.html" class="btn btn-lima btn-sm">Montar meu site</a>
   </div>
 </nav>
 
 <!-- 1. HERO -->
 <header class="hero">
   <div class="w">
-    <h1>Três dias<br>e o site<br><u>está no ar.</u></h1>
+    <h1>Veja seu site<br>pronto antes<br><u>de pagar.</u></h1>
     <div class="hero-linha">
       <div>
-        <p class="hero-sub">Você escolhe um dos três modelos aqui embaixo e preenche um formulário rápido com as suas informações e as suas fotos, que é tudo que eu preciso pra montar o site e te mandar pronto em três dias. Metade do valor você paga agora pra eu começar, e a outra metade fica pra quando você abrir o link e disser que ficou bom.</p>
+        <p class="hero-sub">Você escolhe um dos três modelos aqui embaixo e preenche um formulário rápido com as suas informações e as suas fotos. Em até três dias úteis o site chega pronto pra você conferir, e você só paga depois de abrir o link e dizer que ficou bom.</p>
         <div class="hero-ctas">
-          <a href="#modelos" class="btn btn-lima">Ver os modelos funcionando</a>
-          <!-- WHATSAPP -->
-          <a href="https://wa.me/5519999001382?text=Oi%21%20Vi%20a%20p%C3%A1gina%20do%20Seu%20Site%20e%20queria%20entender%20melhor%20como%20funciona%20antes%20de%20contratar." class="btn btn-vazio">Falar no WhatsApp</a>
+          <a href="formulario.html" class="btn btn-lima">Montar meu site</a>
+          <a href="#modelos" class="btn btn-vazio">Ver os modelos</a>
         </div>
+        <p class="alt-zap">Prefere conversar antes? <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%20e%20queria%20entender%20melhor%20como%20funciona." target="_blank" rel="noopener">Me chama no WhatsApp</a>.</p>
       </div>
       <div class="stats">
-        <div class="stat"><b>50%</b><span>agora, a outra metade só quando você aprovar</span></div>
         <div class="stat"><b>3</b><span>dias úteis do formulário até o site pronto</span></div>
-        <div class="stat"><b>R$0</b><span>de mensalidade, para sempre</span></div>
+        <div class="stat"><b>R$0</b><span>pra começar, você só paga depois de ver pronto</span></div>
+        <div class="stat"><b>1x</b><span>pagamento único, sem mensalidade</span></div>
       </div>
     </div>
   </div>
@@ -480,7 +501,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
   <div class="w">
     <span class="rot">Veja antes de decidir</span>
     <h2>Três modelos, todos <u>funcionando.</u></h2>
-    <p class="sub">Os três são sites de verdade que estão no ar, feitos pra mesma barbearia inventada. Usei o mesmo nome e as mesmas fotos nos três de propósito, porque assim a única coisa que muda de um pro outro é o que o plano entrega. Vale abrir no celular e comparar.</p>
+    <p class="sub">Os três são sites de verdade funcionando, com um espaço marcado onde vão entrar o seu nome, a sua logo, as suas fotos e os seus preços. A estrutura é a mesma nos três de propósito, porque assim a única coisa que muda de um pro outro é o que o plano entrega. Vale abrir no celular e comparar.</p>
 
     <div class="mods">
       <a class="mod rv" href="modelo-essencial.html" data-modelo="Essencial">
@@ -509,24 +530,24 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
 <!-- 5. COMO FUNCIONA -->
 <section class="sec borda" id="como">
   <div class="w">
-    <span class="rot">Do pagamento até o site no ar</span>
+    <span class="rot">Do formulário até o site no ar</span>
     <h2>Três passos <u>e acabou.</u></h2>
     <p class="sub">Você não precisa entender nada de site. Só me dar o material uma vez.</p>
     <div class="passos">
       <div class="passo rv">
         <span class="n">PASSO 1</span>
-        <h3>Escolhe e paga metade</h3>
-        <p>Pix cai na hora, e o formulário abre sozinho na sua tela assim que o pagamento entra.</p>
+        <h3>Escolhe e preenche</h3>
+        <p>Escolhe o modelo que mais combina com o seu negócio e preenche o formulário com seus dados, seus preços e suas fotos. Leva uns cinco minutos, provavelmente menos do que você já gastou explicando isso tudo no WhatsApp essa semana, e não custa nada.</p>
       </div>
       <div class="passo rv">
         <span class="n">PASSO 2</span>
-        <h3>Preenche o formulário</h3>
-        <p>Você preenche seus dados e seus serviços com os preços, e sobe as fotos que quiser mostrar. Leva uns cinco minutos e é uma vez só, provavelmente menos tempo do que você já gastou explicando isso tudo no WhatsApp essa semana.</p>
+        <h3>Eu monto em três dias</h3>
+        <p>Em até três dias úteis o link do seu site chega no seu WhatsApp, funcionando, com as suas fotos e a cara do seu negócio.</p>
       </div>
       <div class="passo rv">
         <span class="n">PASSO 3</span>
-        <h3>Aprova e paga o resto</h3>
-        <p>Em até três dias úteis o link chega pra você, aí é só abrir com calma e pedir o que quiser mudar. Quando estiver do jeito que você quer é que o site vai ao ar.</p>
+        <h3>Vê pronto e só então paga</h3>
+        <p>Você abre com calma e pede o que quiser mudar. Quando estiver do jeito que você quer, você paga e o site vai ao ar.</p>
       </div>
     </div>
   </div>
@@ -573,16 +594,10 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
 <section class="sec preco-sec" id="precos">
   <div class="w">
     <span class="rot">Preços</span>
-    <h2>Pagamento único, metade <u>só na aprovação.</u></h2>
+    <h2>Você só paga <u>depois de ver pronto.</u></h2>
     <p class="sub">Você paga uma vez e o site passa a ser seu. Não existe mensalidade nem aquela taxa que aparece três meses depois, quando você já nem lembra que contratou.</p>
 
-    <div class="abas" role="tablist" aria-label="Forma de contratar">
-      <button type="button" id="aba-direto" role="tab" aria-selected="true">Contratar direto</button>
-      <button type="button" id="aba-zap" role="tab" aria-selected="false">Tenho uma dúvida antes</button>
-    </div>
-    <p class="abas-nota" id="abas-nota">Pagamento na hora, pelo Mercado Pago. O formulário abre logo depois.</p>
-
-    <div style="margin-top:30px">
+    <div style="margin-top:40px">
       <div class="plano rv">
         <span class="plano-idx">01</span>
         <div>
@@ -592,14 +607,12 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
         <div class="plano-val">
           <span class="parc">12x de R$12,25</span>
           <span class="avista">ou R$147 à vista</span>
-          <span class="sin">pagamento único, sem divisão</span>
+          <span class="sin">pago só depois da sua aprovação</span>
         </div>
         <div class="plano-acoes">
+          <a href="formulario.html?plano=essencial" class="btn btn-lima btn-sm btn-full">Quero esse</a>
           <a href="modelo-essencial.html" data-modelo="Essencial" class="btn btn-vazio btn-sm btn-full">Ver o modelo</a>
-          <!-- COLE-O-LINK 1 -->
-          <a href="https://mpago.la/2ViWgkD" class="btn btn-vazio btn-sm btn-full compra"
-             data-direto="https://mpago.la/2ViWgkD" data-zap="https://wa.me/5519999001382?text=Oi%2C%20vi%20a%20p%C3%A1gina%20do%20Seu%20Site%20e%20quero%20o%20modelo%20Essencial%20%28R%24147%29%2C%20mas%20tenho%20uma%20d%C3%BAvida%20antes%20de%20fechar."
-             data-rot-direto="Contratar" data-rot-zap="Tirar dúvida no WhatsApp">Contratar</a>
+          <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20me%20interessei%20pelo%20modelo%20Essencial%20e%20queria%20conversar%20antes." class="conversa" target="_blank" rel="noopener">prefiro conversar antes</a>
         </div>
       </div>
 
@@ -613,14 +626,12 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
         <div class="plano-val">
           <span class="parc">12x de R$24,75</span>
           <span class="avista">ou R$297 à vista</span>
-          <span class="sin">R$148,50 agora + R$148,50 na aprovação</span>
+          <span class="sin">pago só depois da sua aprovação</span>
         </div>
         <div class="plano-acoes">
+          <a href="formulario.html?plano=completo" class="btn btn-lima btn-sm btn-full">Quero esse</a>
           <a href="modelo-completo.html" data-modelo="Completo" class="btn btn-vazio btn-sm btn-full">Ver o modelo</a>
-          <!-- COLE-O-LINK 2 -->
-          <a href="https://mpago.la/1N5srLm" class="btn btn-lima btn-sm btn-full compra"
-             data-direto="https://mpago.la/1N5srLm" data-zap="https://wa.me/5519999001382?text=Oi%2C%20vi%20a%20p%C3%A1gina%20do%20Seu%20Site%20e%20quero%20o%20modelo%20Completo%20%28R%24297%29%2C%20mas%20tenho%20uma%20d%C3%BAvida%20antes%20de%20fechar."
-             data-rot-direto="Começar com R$148,50" data-rot-zap="Tirar dúvida no WhatsApp">Começar com R$148,50</a>
+          <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20me%20interessei%20pelo%20modelo%20Completo%20e%20queria%20conversar%20antes." class="conversa" target="_blank" rel="noopener">prefiro conversar antes</a>
         </div>
       </div>
 
@@ -633,39 +644,40 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
         <div class="plano-val">
           <span class="parc">12x de R$33,08</span>
           <span class="avista">ou R$397 à vista</span>
-          <span class="sin">R$198,50 agora + R$198,50 na aprovação</span>
+          <span class="sin">pago só depois da sua aprovação</span>
         </div>
         <div class="plano-acoes">
+          <a href="formulario.html?plano=premium" class="btn btn-lima btn-sm btn-full">Quero esse</a>
           <a href="modelo-premium.html" data-modelo="Premium" class="btn btn-vazio btn-sm btn-full">Ver o modelo</a>
-          <!-- COLE-O-LINK 3 -->
-          <a href="https://mpago.la/22nzjkG" class="btn btn-vazio btn-sm btn-full compra"
-             data-direto="https://mpago.la/22nzjkG" data-zap="https://wa.me/5519999001382?text=Oi%2C%20vi%20a%20p%C3%A1gina%20do%20Seu%20Site%20e%20quero%20o%20modelo%20Premium%20%28R%24397%29%2C%20mas%20tenho%20uma%20d%C3%BAvida%20antes%20de%20fechar."
-             data-rot-direto="Começar com R$198,50" data-rot-zap="Tirar dúvida no WhatsApp">Começar com R$198,50</a>
+          <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%2C%20me%20interessei%20pelo%20modelo%20Premium%20e%20queria%20conversar%20antes." class="conversa" target="_blank" rel="noopener">prefiro conversar antes</a>
         </div>
       </div>
     </div>
 
     <div class="risco">
       <div class="metade viva">
-        <span class="metade-q">Agora</span>
-        <h3>Metade para começar</h3>
-        <div class="valor">R$148,50</div>
-        <p class="obs">exemplo com o Completo, de R$297</p>
-        <p style="margin-top:16px">É o que abre o formulário e coloca seu site na fila, e no momento em que você terminar de preencher eu já começo.</p>
+        <span class="metade-q">Pra começar</span>
+        <h3>Você não paga nada</h3>
+        <div class="valor">R$0</div>
+        <p class="obs">nem sinal, nem cartão cadastrado</p>
+        <p style="margin-top:16px">Você preenche o formulário e eu monto o site. Nenhum pagamento acontece nessa etapa.</p>
       </div>
       <div class="metade">
         <span class="metade-q">Depois de pronto</span>
-        <h3>Metade na aprovação</h3>
-        <div class="valor">R$148,50</div>
-        <p class="obs">só depois de você ver o site funcionando</p>
-        <p style="margin-top:16px">Você abre o link no seu celular e confere com calma, e se tiver algo pra mudar é só pedir. A segunda metade só é cobrada quando estiver do jeito que a gente combinou, que é quando o site vai ao ar.</p>
+        <h3>Você paga na aprovação</h3>
+        <div class="valor">R$297</div>
+        <p class="obs">exemplo com o Completo, ou 12x de R$24,75</p>
+        <p style="margin-top:16px">Você abre o link no seu celular e confere com calma, e se tiver algo pra mudar é só pedir. O pagamento só acontece quando estiver do jeito que a gente combinou, que é quando o site vai ao ar.</p>
       </div>
     </div>
 
-    <p style="margin-top:20px;font-size:15px;color:var(--texto2)">
-      Dúvida sobre pagamento, parcelamento ou Pix?
-      <a href="https://wa.me/5519999001382?text=Oi%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20pagamento%20do%20site%3A%20parcelamento%2C%20Pix%20e%20como%20funciona%20a%20divis%C3%A3o%20em%20duas%20partes." target="_blank" rel="noopener" style="color:var(--lima)">Me chama no WhatsApp</a>.
-    </p>
+    <div class="quem">
+      <img src="data:image/jpeg;base64,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" alt="Luís, do The Landing Lab" width="76" height="76">
+      <div>
+        <b>Você fala direto comigo</b>
+        <p>Sou o Luís, do <a href="https://www.instagram.com/thelanding.lab/" target="_blank" rel="noopener">The Landing Lab</a>. Quem responde o seu WhatsApp, monta o seu site e ajusta até ficar bom sou eu mesmo. Se tiver dúvida sobre pagamento ou parcelamento, <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%20e%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20pagamento." target="_blank" rel="noopener">me chama</a>.</p>
+      </div>
+    </div>
 
     <div class="selos">
       <span>Pagamento via Mercado Pago</span>
@@ -699,12 +711,12 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
     <h2>Dúvidas.</h2>
     <div class="faq">
       <details>
-        <summary>Por que eu tenho que pagar antes de ver o meu site?</summary>
-        <p>Porque o trabalho todo vem antes do site existir. Só que você paga metade, e os três modelos aqui em cima são sites de verdade funcionando. Você pode abrir e mexer neles à vontade antes de gastar um real. E se mesmo assim você preferir conversar primeiro, me chama no WhatsApp que eu respondo sem compromisso.</p>
+        <summary>Preciso pagar alguma coisa antes?</summary>
+        <p>Não. Você preenche o formulário e eu monto o site. O pagamento só acontece depois que você abrir o link, conferir tudo e aprovar. Até lá você não gastou um real.</p>
       </details>
       <details>
         <summary>E se eu não gostar do que ficou pronto?</summary>
-        <p>Você pede os ajustes e eu refaço. São duas rodadas inclusas em todos os modelos, e na prática quase sempre resolve na primeira. O site só vai ao ar quando você olha e diz que está bom. É exatamente para isso que a segunda metade fica para o final.</p>
+        <p>Você pede os ajustes e eu refaço. São duas rodadas inclusas em todos os modelos, e na prática quase sempre resolve na primeira. Você só paga quando olhar e disser que está bom.</p>
       </details>
       <details>
         <summary>Quanto tempo leva de verdade?</summary>
@@ -724,7 +736,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
       </details>
       <details>
         <summary>O que exatamente você precisa de mim?</summary>
-        <p>Nome do negócio, endereço, WhatsApp, Instagram, seus serviços com os valores, horário de funcionamento e as fotos que você quer mostrar. Tudo num formulário único que abre logo depois do pagamento.</p>
+        <p>Nome do negócio, endereço, WhatsApp, Instagram, seus serviços com os valores, horário de funcionamento e as fotos que você quer mostrar. Tudo isso vai num formulário único, que você abre aqui mesmo na página.</p>
       </details>
     </div>
   </div>
@@ -733,14 +745,12 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
 <!-- 10. FINAL -->
 <section class="sec final">
   <div class="w">
-    <h2>Começa com metade.</h2>
-    <p>Você escolhe o modelo e paga o sinal, o formulário abre em seguida e o link do seu site chega em até três dias úteis.</p>
+    <h2>Monta o seu agora.</h2>
+    <p>Escolhe o modelo, preenche o formulário e em até três dias úteis o seu site chega pronto. Você só paga depois de aprovar.</p>
     <div class="final-ctas">
-      <a href="#precos" class="btn btn-lima">Escolher meu modelo</a>
-      <!-- WHATSAPP -->
-      <a href="https://wa.me/5519999001382?text=Oi%21%20Quero%20fazer%20o%20site%20do%20meu%20neg%C3%B3cio%2C%20mas%20queria%20falar%20com%20voc%C3%AA%20antes%20de%20escolher%20o%20plano." class="btn btn-vazio">Falar no WhatsApp</a>
+      <a href="formulario.html" class="btn btn-lima">Montar meu site</a>
+      <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%20e%20quero%20fazer%20o%20site%20do%20meu%20neg%C3%B3cio." class="btn btn-vazio" target="_blank" rel="noopener">Falar no WhatsApp</a>
     </div>
-    <p class="selo-final">A segunda metade só é cobrada depois que você aprovar o site pronto.</p>
   </div>
 </section>
 
@@ -772,9 +782,9 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
 </div>
 
 <div class="barra">
-  <a href="#modelos" class="btn btn-lima">Ver modelos</a>
+  <a href="formulario.html" class="btn btn-lima">Montar meu site</a>
   <!-- WHATSAPP -->
-  <a href="https://wa.me/5519999001382?text=Oi%21%20Vi%20a%20p%C3%A1gina%20do%20Seu%20Site%20e%20queria%20tirar%20uma%20d%C3%BAvida." class="btn btn-vazio">WhatsApp</a>
+  <a href="https://wa.me/5519999001382?text=Oi%21%20Vim%20pela%20p%C3%A1gina%20do%20Seu%20Site%20e%20queria%20tirar%20uma%20d%C3%BAvida." class="btn btn-vazio">WhatsApp</a>
 </div>
 
 <script>
@@ -834,35 +844,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
   });
 })();
 
-/* abas: contratar direto  x  falar antes no WhatsApp */
-(function(){
-  var direto = document.getElementById('aba-direto');
-  var zap    = document.getElementById('aba-zap');
-  var nota   = document.getElementById('abas-nota');
-  var btns   = document.querySelectorAll('.compra');
-  if(!direto || !zap) return;
 
-  var textos = {
-    direto: 'Pagamento na hora, pelo Mercado Pago. O formulário abre logo depois.',
-    zap:    'Me chama antes de pagar. Eu tiro a dúvida, e se fizer sentido eu mando o link de pagamento na conversa.'
-  };
-
-  function trocar(modo){
-    var ehZap = modo === 'zap';
-    direto.setAttribute('aria-selected', String(!ehZap));
-    zap.setAttribute('aria-selected', String(ehZap));
-    nota.textContent = ehZap ? textos.zap : textos.direto;
-    btns.forEach(function(b){
-      b.setAttribute('href', ehZap ? b.dataset.zap : b.dataset.direto);
-      b.textContent = ehZap ? b.dataset.rotZap : b.dataset.rotDireto;
-      if(ehZap){ b.setAttribute('target','_blank'); b.setAttribute('rel','noopener'); }
-      else { b.removeAttribute('target'); b.removeAttribute('rel'); }
-    });
-  }
-
-  direto.addEventListener('click', function(){ trocar('direto'); });
-  zap.addEventListener('click',    function(){ trocar('zap'); });
-})();
 </script>
 
 
@@ -931,7 +913,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
                  : s.tagName.toLowerCase());
   }
 
-  var VALOR={Essencial:147, Completo:148.50, Premium:198.50};
+  var VALOR={Essencial:147, Completo:297, Premium:397};
 
   document.addEventListener('click', function(e){
     var a = e.target.closest ? e.target.closest('a,button') : null;
@@ -950,6 +932,16 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
       disparar(porZap ? 'contratar_por_whatsapp' : 'contratar_direto',
         {plano:nome, value:VALOR[nome]||0, currency:'BRL'},
         porZap ? 'Contact' : 'InitiateCheckout');
+      return;
+    }
+
+    /* abriu o formulário */
+    var hf=a.getAttribute && a.getAttribute('href');
+    if(hf && hf.indexOf('formulario.html')>-1){
+      var mp=hf.match(/plano=(\w+)/);
+      var pl=mp ? mp[1].charAt(0).toUpperCase()+mp[1].slice(1) : 'a escolher';
+      disparar('abrir_formulario',
+        {plano:pl, posicao:secaoDe(a), value:VALOR[pl]||0, currency:'BRL'}, 'InitiateCheckout');
       return;
     }
 
