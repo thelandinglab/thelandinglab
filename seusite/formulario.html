@@ -440,7 +440,9 @@ input[type=time]:focus{outline:none;border-color:var(--lima)}
   <h1>Recebido.<br><u>Agora é comigo.</u></h1>
   <p>Está tudo aqui comigo. Você recebe o link do site pronto em até 3 dias úteis, no e-mail e no WhatsApp.</p>
   <p>Você só paga depois de abrir o link, conferir tudo e aprovar. Se alguma coisa não estiver do jeito que você imaginou, é só pedir o ajuste.</p>
-  <a id="zap-final" href="https://wa.me/5519999001382" class="btn btn-lima" style="flex:none;margin-top:14px">Avisar que enviei, no WhatsApp</a>
+  <p id="indo" style="color:var(--lima);font-weight:600">Abrindo o WhatsApp pra você confirmar...</p>
+  <a id="zap-final" href="https://wa.me/5519999001382" class="btn btn-lima" style="flex:none;margin-top:6px">Abrir o WhatsApp agora</a>
+  <p style="font-size:14px;color:var(--texto3);margin-top:14px">É só tocar em enviar na conversa que abrir. Assim eu confirmo na hora que recebi tudo.</p>
 </div>
 
 <div class="w rodape">Seu Site — The Landing Lab · atendimento em todo o Brasil</div>
@@ -809,6 +811,26 @@ $('#form').addEventListener('submit', async e => {
     $('#conta').style.display = 'none';
     $('#fim').classList.add('on');
     window.scrollTo({top:0, behavior:'smooth'});
+
+    /* leva a pessoa pro WhatsApp sozinho, com o resumo já escrito */
+    (function(){
+      var destino = $('#zap-final').href;
+      var aviso   = $('#indo');
+      var seg     = 3;
+      var relogio = setInterval(function(){
+        seg--;
+        if(seg > 0){
+          aviso.textContent = 'Abrindo o WhatsApp em ' + seg + '...';
+        } else {
+          clearInterval(relogio);
+          aviso.textContent = 'Se o WhatsApp não abrir sozinho, toque no botão abaixo.';
+          aviso.style.color = 'var(--texto2)';
+          aviso.style.fontWeight = '400';
+          window.location.href = destino;
+        }
+      }, 1000);
+      $('#zap-final').addEventListener('click', function(){ clearInterval(relogio); });
+    })();
 
   } catch (err) {
     console.error(err);
