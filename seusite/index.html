@@ -940,8 +940,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
     if(hf && hf.indexOf('formulario.html')>-1){
       var mp=hf.match(/plano=(\w+)/);
       var pl=mp ? mp[1].charAt(0).toUpperCase()+mp[1].slice(1) : 'a escolher';
-      disparar('abrir_formulario',
-        {plano:pl, posicao:secaoDe(a), value:VALOR[pl]||0, currency:'BRL'}, 'InitiateCheckout');
+      disparar('clique_formulario', {plano:pl, posicao:secaoDe(a)});
       return;
     }
 
@@ -995,8 +994,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
             if(n===2 && !jaComprou){
               jaComprou=true;
               var p=planoAtual();
-              disparar('pagamento_confirmado',
-                {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Purchase');
+              disparar('formulario_iniciado',{plano:p});
             }
           }
         }
@@ -1009,7 +1007,7 @@ details p{padding:0 0 20px;color:var(--texto2);font-size:16px;max-width:64ch}
         if(fim.classList.contains('on')){
           var p=planoAtual();
           disparar('formulario_enviado',
-            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'CompleteRegistration');
+            {plano:p, value:VALOR[p]||0, currency:'BRL'}, 'Lead');
         }
       }).observe(fim,{attributes:true,attributeFilter:['class']});
     }
