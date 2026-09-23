@@ -958,6 +958,14 @@ $('#form').addEventListener('submit', async e => {
 
   /* ---------------- formulário ---------------- */
   if(PAGINA==='formulario'){
+    /* abrir o formulário já é o início da contratação */
+    (function(){
+      var m=location.search.match(/plano=(\w+)/);
+      var pl=m ? m[1].charAt(0).toUpperCase()+m[1].slice(1) : 'a escolher';
+      disparar('abrir_formulario',
+        {plano:pl, value:VALOR[pl]||0, currency:'BRL'}, 'InitiateCheckout');
+    })();
+
     var jaComprou=false, ultima=1;
 
     function planoAtual(){
