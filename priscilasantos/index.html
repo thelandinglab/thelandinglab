@@ -6,12 +6,12 @@
 <title>Priscila Santos — Orientação Acadêmica</title>
 
 <!-- Google tag (gtag.js) - GA4 + Google Ads -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPFVCW98T"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16871519677"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());
 gtag('config','G-2NPFVCW98T');
-gtag('config','AW-18468265026');
+gtag('config','AW-16871519677');
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -147,15 +147,22 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(link=>{
   link.addEventListener('click',function(e){
     e.preventDefault();
     const url=this.href;
+
+    // Fire GA4 event
     if(typeof gtag==='function'){
-      gtag('event','conversion',{
-        'send_to':'AW-18468265026/iHH6CI3GsYEdEMK4reZE',
-        'event_callback':function(){window.open(url,'_blank');}
+      gtag('event','whatsapp_click',{
+        'event_category':'contato',
+        'event_label':'whatsapp'
       });
-      setTimeout(function(){window.open(url,'_blank');},1000);
-    }else{
-      window.open(url,'_blank');
+
+      // Fire Google Ads conversion directly — no callback
+      gtag('event','conversion',{
+        'send_to':'AW-16871519677/FWY2CMafsYYdEL3r--w-'
+      });
     }
+
+    // Open WhatsApp after short delay to allow gtag to fire
+    setTimeout(function(){window.open(url,'_blank');}, 300);
   });
 });
 </script>
