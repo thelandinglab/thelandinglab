@@ -3,26 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Landing Lab — Custom pages that turn visits into clients</title>
-<meta name="description" content="We build custom landing pages for professionals whose work deserves more than a template. Your work is already excellent. We make sure your online presence says the same thing.">
+<title>The Landing Lab — I capture ready-to-buy demand on Google and send it straight to you</title>
+<meta name="description" content="Every day people search Google for the service you sell. I capture that demand and send it straight to you, without you touching anything.">
+<meta name="facebook-domain-verification" content="oznshtddxzvkvjfw4ra6q2w5c6rbaa" />
+<link rel="canonical" href="https://thelandinglab.com.br/demand-capture">
+<meta property="og:url" content="https://thelandinglab.com.br/demand-capture">
+<!-- =====================================================================
+     TRACKING — GA4 + META PIXEL
+     ---------------------------------------------------------------------
+     PARA CONFIGURAR DEPOIS: preencha os dois IDs abaixo.
+       TLL_GA_ID     -> ID de métrica do GA4 (formato G-XXXXXXX)
+       TLL_PIXEL_ID  -> ID do Pixel da Meta (só números)
+     ===================================================================== -->
+<script>
+var TLL_GA_ID    = 'G-CKQVYNPFV2';   /* <-- GA4 */
+var TLL_PIXEL_ID = '1615221763590524';   /* <-- Meta Pixel */
+
+/* ---- GA4 ---- */
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+if(TLL_GA_ID){var _g=document.createElement('script');_g.async=true;_g.src='https://www.googletagmanager.com/gtag/js?id='+TLL_GA_ID;document.head.appendChild(_g);gtag('js',new Date());gtag('config',TLL_GA_ID);}
+
+/* ---- Meta Pixel ---- */
+if(TLL_PIXEL_ID){
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init',TLL_PIXEL_ID);fbq('track','PageView');
+}
+
+/* ---- disparo unificado: GA4 + Meta + dataLayer ---- */
+function tllTrack(name,params,metaEvent,metaParams,metaCustom){
+  params=params||{};
+  try{ if(typeof gtag==='function') gtag('event',name,params); }catch(e){}
+  try{ if(typeof fbq==='function'&&TLL_PIXEL_ID&&metaEvent){ metaCustom?fbq('trackCustom',metaEvent,metaParams||{}):fbq('track',metaEvent,metaParams||{}); } }catch(e){}
+  try{ var d={event:'tll_'+name}; for(var k in params){ if(params.hasOwnProperty(k)) d[k]=params[k]; } window.dataLayer.push(d); }catch(e){}
+}
+
+/* ---- atalhos usados nos botões ---- */
+function trackCK(l){ tllTrack('generate_lead',{event_category:'conversao',event_label:l,content_name:'Demand Capture'},'Contact',{content_name:'Demand Capture',content_category:'email'}); }
+function trackCTA(l){ tllTrack('cta_para_oferta',{event_category:'navegacao',event_label:l},'CTAparaOferta',{origem:l},true); }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Public+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<!-- Schema.org structured data for AI search -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "The Landing Lab",
-  "description": "Custom landing page design and development for professionals. We build pages that convert visitors into clients.",
-  "url": "https://thelandinglab.com",
-  "founder": { "@type": "Person", "name": "Letícia Meneghetti" },
-  "serviceType": ["Landing Page Design", "Web Design", "Conversion Optimization"],
-  "areaServed": { "@type": "Place", "name": "Worldwide" },
-  "knowsAbout": ["Landing Pages", "Web Design", "Conversion Rate Optimization", "UX Design"]
-}
-</script>
-
 <style>
 :root{
   --paper:#FFFDF5;
@@ -39,7 +59,8 @@
   --b:'Public Sans',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:var(--b);background:var(--paper);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#oferta,#funciona-pro-seu-caso{scroll-margin-top:76px}
+body{font-family:var(--b);background:var(--paper);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;text-align:center}
 ::selection{background:var(--lime);color:var(--ink)}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 .wrap{width:min(1080px,92vw);margin:0 auto}
@@ -50,60 +71,79 @@ p{color:var(--txs)}
 .pad{padding:clamp(3rem,7vh,5.5rem) 0}
 .pad-lg{padding:clamp(4rem,9vh,7rem) 0}
 .center{text-align:center}
+.lime{color:var(--ld)}
 .up{text-transform:uppercase}
 
-/* button */
-.btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--ink);color:var(--paper);font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);letter-spacing:-.01em;padding:1.15rem 2.4rem;border-radius:4px;text-transform:uppercase;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;cursor:pointer}
-.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(24,20,48,.25)}
+.btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--ink);color:var(--paper);font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);letter-spacing:-.01em;padding:1.15rem 2.4rem;border-radius:4px;text-transform:uppercase;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,background .3s;cursor:pointer}
 .btn .ar{transition:transform .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(24,20,48,.25)}
 .btn:hover .ar{transform:translateX(5px)}
 .btn-lime{background:var(--lime);color:var(--ink)}
 .btn-lime:hover{box-shadow:0 14px 40px rgba(216,255,96,.4)}
+.btn-sub{font-size:.82rem;color:var(--txs);margin-top:.9rem;font-weight:500}
 
-/* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .rv.in{opacity:1;transform:none}
 .rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}
 
-/* tag */
 .tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--ld);background:rgba(122,145,39,.1);padding:.5rem 1rem;border-radius:3px;margin-bottom:1.2rem}
 
-/* nav */
-.prog{position:fixed;top:0;left:0;height:3px;background:var(--lime);z-index:999;width:0;transition:width .15s}
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 0;transition:.4s;background:rgba(255,253,245,0)}
 .nav.stuck{background:rgba(255,253,245,.95);backdrop-filter:blur(14px);padding:.65rem 0;box-shadow:0 1px 0 var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;width:min(1080px,92vw);margin:0 auto}
-.logo{font-weight:900;font-size:1.05rem;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.logo{font-weight:900;font-size:1.05rem;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:baseline}
 .logo .dot{color:var(--ld)}
-.nav-cta{background:var(--ink);color:var(--paper);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;padding:.65rem 1.1rem;border-radius:3px;opacity:0;pointer-events:none;transform:translateY(-4px);transition:.35s}
-.nav.stuck .nav-cta{opacity:1;pointer-events:auto;transform:none}
 
-/* hero */
-.hero{padding:clamp(6.5rem,14vh,9rem) 0 clamp(2.5rem,5vh,3.5rem);text-align:center}
-.hero-h1{font-size:clamp(1.7rem,4.6vw,3.1rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;max-width:22ch;margin:0 auto 1.3rem;color:var(--ink)}
-.hero-h1 .hl{color:var(--ld);position:relative}
+.hero{padding:clamp(6.5rem,14vh,9rem) 0 clamp(2.5rem,5vh,3.5rem);text-align:center;position:relative}
+.hero-h1{font-size:clamp(1.7rem,4.6vw,3.1rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;max-width:20ch;margin:0 auto 1.3rem;color:var(--ink)}
+.hero-h1 .hl{color:var(--ld);position:relative;white-space:nowrap}
 .hero-sub{font-size:clamp(.98rem,2vw,1.15rem);color:var(--txs);max-width:52ch;margin:0 auto 2rem;line-height:1.6;font-weight:500}
+.hero-sub b{color:var(--ink);font-weight:700}
+.hero-line{font-size:.85rem;color:var(--txs);margin-top:.9rem;font-weight:600}
 
-/* dark section */
-.dark{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
-.dark .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 45% at 50% 0%,rgba(140,130,220,.2),transparent 60%)}
-.dark h2,.dark h3{color:var(--paper)}
-.dark p{color:rgba(206,198,238,.82)}
-.dark b{color:var(--lime);font-weight:600}
+.abertura{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.abertura .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 45% at 50% 0%,rgba(140,130,220,.2),transparent 60%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(216,255,96,.06),transparent 60%)}
+.abertura h2,.abertura h3{color:var(--paper)}
+.abertura p{color:rgba(206,198,238,.82)}
+.scene{font-size:clamp(1rem,2.1vw,1.18rem);line-height:1.85;max-width:56ch;margin:0 auto 1.5rem;position:relative}
+.scene:first-of-type{margin-top:0}
+.scene-em{font-family:var(--d);font-style:italic;color:var(--lime)}
+.banner{text-align:center;font-family:var(--b);font-weight:900;font-size:clamp(1.3rem,4vw,2.4rem);letter-spacing:-.02em;line-height:1.1;color:var(--lime);margin:2.5rem auto;max-width:20ch;text-transform:uppercase;text-shadow:0 0 30px rgba(216,255,96,.2)}
+.abertura .close-line{font-size:clamp(1rem,2.1vw,1.18rem);line-height:1.8;max-width:56ch;margin:0 auto;position:relative;color:rgba(232,228,250,.95)}
+.abertura .close-line b{color:var(--lime);font-weight:700}
 
-/* section text */
-.s-title{font-size:clamp(1.3rem,3.6vw,2.2rem);max-width:24ch;margin:0 auto 1.8rem;text-align:center;line-height:1.15}
-.s-body{font-size:clamp(.98rem,2vw,1.1rem);line-height:1.85;max-width:56ch;margin:0 auto 1.3rem}
-.s-body:last-child{margin-bottom:0}
-.s-body b{color:var(--ink);font-weight:700;background-image:linear-gradient(rgba(216,255,96,.6),rgba(216,255,96,.6));background-repeat:no-repeat;background-position:0 92%;background-size:0% 36%;transition:background-size .95s cubic-bezier(.16,1,.3,1) .35s;padding:0 .05em}
-.rv.in b{background-size:100% 36%}
-.dark .s-body b{color:var(--lime);background-image:none;padding:0}
+.after-list{font-size:clamp(.95rem,1.9vw,1.05rem);line-height:1.7;max-width:60ch;margin:1.4rem auto 0}
+.after-list p{margin-bottom:1rem}
+.after-list p:last-child{margin-bottom:0}
+.after-list b{color:var(--ink);font-weight:700}
 
-/* punch (italic serif callout) */
-.punch{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.45rem);color:var(--ld);text-align:center;max-width:30ch;margin:2rem auto;line-height:1.35}
-.dark .punch{color:var(--lime)}
+.conta{background:var(--card)}
+.conta-big{font-family:var(--d);font-weight:600;font-style:italic;font-size:clamp(1.5rem,4vw,2.4rem);color:var(--ink);text-align:center;max-width:22ch;margin:0 auto 2rem;line-height:1.2}
+.conta-p{font-size:clamp(.98rem,2vw,1.1rem);line-height:1.75;max-width:58ch;margin:0 auto 1.3rem}
+.conta-p b{color:var(--ink);font-weight:700}
+.conta-p:last-child{margin-bottom:0}
+.conta-punch{font-family:var(--d);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.5rem);color:var(--ld);text-align:center;max-width:26ch;margin:2rem auto 0;line-height:1.3}
 
-/* three cards */
+.leticia{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.leticia .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 50% at 50% 20%,rgba(140,130,220,.18),transparent 62%)}
+.leticia h2,.leticia h3{color:var(--paper)}
+.leticia p{color:rgba(206,198,238,.82)}
+.let-name{font-family:var(--d);font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:1.5rem;color:var(--paper)}
+.let-p{font-size:clamp(.98rem,2vw,1.1rem);line-height:1.8;max-width:60ch;margin:0 auto 1.3rem}
+.let-p b{color:var(--lime);font-weight:600}
+.let-sub{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.4rem);color:var(--lime);margin:2.5rem auto 1.2rem;max-width:30ch;text-align:center;line-height:1.3}
+.let-block{max-width:60ch;margin:0 auto}
+.let-block h3{font-size:1.15rem;margin:2rem 0 1rem;color:var(--lime)}
+.stat-inline{display:inline-block;font-family:var(--d);font-weight:700;color:var(--lime);font-size:1.1em}
+
+.mec-intro{font-size:clamp(1rem,2.1vw,1.15rem);line-height:1.75;max-width:56ch;margin:0 auto 2rem;text-align:center;color:var(--txt)}
+.mec-intro b{color:var(--ink);font-weight:700}
+.sub-block{max-width:60ch;margin:0 auto 2rem}
+.sub-block h3{font-size:clamp(1.1rem,2.4vw,1.4rem);font-weight:800;color:var(--ink);margin-bottom:.9rem;letter-spacing:-.02em}
+.sub-block p{font-size:clamp(.95rem,1.9vw,1.05rem);line-height:1.75;margin-bottom:1rem}
+.sub-block p:last-child{margin-bottom:0}
+.sub-block b{color:var(--ink);font-weight:700}
+.punch{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.45rem);color:var(--ld);text-align:center;max-width:34ch;margin:2rem auto;line-height:1.35}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2.5rem auto 0;max-width:900px}
 @media(max-width:760px){.three{grid-template-columns:1fr}}
 .three-card{background:var(--ink);color:var(--paper);border-radius:8px;padding:1.8rem 1.5rem;position:relative;overflow:hidden}
@@ -111,215 +151,850 @@ p{color:var(--txs)}
 .three-n{font-family:var(--d);font-size:1.6rem;font-weight:700;color:var(--lime);margin-bottom:.5rem}
 .three-t{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--lime);margin-bottom:.8rem}
 .three-card p{font-size:.9rem;line-height:1.6;color:rgba(206,198,238,.85)}
+.mec-foot{text-align:center;max-width:44ch;margin:2.5rem auto 0;font-size:.98rem;line-height:1.65;color:var(--txt)}
+.mec-foot b{color:var(--ink);font-weight:700}
 
-/* steps */
-.steps{display:flex;flex-direction:column;gap:1.2rem;max-width:760px;margin:0 auto}
-.step{background:var(--card);border-radius:10px;padding:1.8rem 1.8rem 1.8rem 4.5rem;position:relative}
-.step-n{position:absolute;left:1.5rem;top:1.8rem;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-weight:700;font-size:.95rem}
-.step-t{font-weight:800;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
-.step p{font-size:.94rem;line-height:1.6;color:var(--txs)}
-@media(max-width:560px){.step{padding:1.5rem 1.3rem 1.5rem 3.5rem}.step-n{left:1rem;top:1.5rem;width:30px;height:30px;font-size:.85rem}}
+.dec-intro{max-width:58ch;margin:0 auto 2.5rem;text-align:center}
+.dec-intro p{font-size:clamp(.98rem,2vw,1.1rem);line-height:1.7;margin-bottom:1rem}
+.dec-intro b{color:var(--ink);font-weight:700}
+.dec-grid{display:flex;flex-direction:column;gap:1.2rem;max-width:720px;margin:0 auto}
+.dec{background:var(--card);border-radius:8px;padding:1.8rem;border-left:4px solid var(--lime)}
+.dec-h{font-weight:800;font-size:1.05rem;color:var(--ink);margin-bottom:.6rem;letter-spacing:-.01em}
+.dec p{font-size:.96rem;line-height:1.65;color:var(--txs)}
+.dec-close{font-family:var(--d);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--ink);text-align:center;max-width:34ch;margin:2.5rem auto 0;line-height:1.35}
 
-/* portfolio placeholder */
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:840px;margin:2rem auto 0}
-@media(max-width:640px){.port-grid{grid-template-columns:1fr}}
-.port-card{background:var(--card);border-radius:10px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--txs);font-weight:600;text-transform:uppercase;letter-spacing:.1em;border:2px dashed var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
-.port-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+.produto{background:var(--ink);color:var(--paper);text-align:center;position:relative;overflow:hidden}
+.produto .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 30%,rgba(216,255,96,.08),transparent 62%)}
+.prod-name{font-family:var(--b);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--lime);letter-spacing:-.02em;margin-bottom:1.5rem}
+.prod-p{font-size:clamp(1rem,2.1vw,1.2rem);line-height:1.7;max-width:56ch;margin:0 auto 1.5rem;color:rgba(232,228,250,.92)}
+.prod-mesmo{font-size:clamp(.95rem,1.9vw,1.05rem);line-height:1.8;max-width:56ch;margin:0 auto 1.5rem;color:rgba(206,198,238,.75)}
+.prod-punch{font-family:var(--d);font-style:italic;font-size:clamp(1.2rem,2.8vw,1.6rem);color:var(--lime);max-width:20ch;margin:0 auto;line-height:1.3}
 
-/* AI section */
-.ai-block{max-width:56ch;margin:0 auto}
+.obj3{display:flex;flex-direction:column;gap:1.5rem;max-width:720px;margin:0 auto}
+.obj3-item{background:var(--card);border-radius:8px;padding:1.8rem 1.8rem 1.8rem 2rem;border-left:3px solid rgba(122,145,39,.22)}
+.obj3-item:hover{border-left-color:var(--lime)}
+.obj3-a{max-width:62ch}
+.obj3-q{font-family:var(--d);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.3rem);color:var(--ink);font-weight:600;margin-bottom:.9rem;line-height:1.3}
+.obj3-a{font-size:.98rem;line-height:1.7;color:var(--txs)}
+.obj3-a b{color:var(--ink);font-weight:700}
 
-/* pricing */
-.price-box{text-align:center;margin:2rem auto}
-.price-x{font-family:var(--d);font-weight:700;color:var(--lime);line-height:1;text-shadow:0 0 30px rgba(216,255,96,.4)}
-.price-x .big{font-size:clamp(3.4rem,10vw,5rem)}
+.como-sub{text-align:center;font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.4rem);color:var(--ld);margin-bottom:2.5rem}
+.etapas{display:flex;flex-direction:column;gap:1.2rem;max-width:760px;margin:0 auto}
+.etapa{background:var(--card);border-radius:10px;padding:1.8rem 1.8rem 1.8rem 4.5rem;position:relative}
+.etapa-n{position:absolute;left:1.5rem;top:1.8rem;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-weight:700;font-size:.95rem}
+.etapa-t{font-weight:800;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;letter-spacing:-.01em}
+.etapa-d{font-size:.92rem;color:var(--ld);font-weight:600;margin-bottom:.9rem}
+.etapa ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.etapa li{font-size:.94rem;line-height:1.5;color:var(--txs);padding-left:1.4rem;position:relative}
+.etapa li::before{content:'';position:absolute;left:0;top:.5rem;width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.etapa-time{font-family:var(--d);font-style:italic;color:var(--ink);font-size:.95rem;margin-top:.8rem}
+.como-foot{text-align:center;font-family:var(--d);font-weight:600;font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--ink);margin-top:2rem}
+
+.dentro-intro{text-align:center;max-width:52ch;margin:0 auto 2.5rem;font-size:clamp(.98rem,2vw,1.1rem);line-height:1.7;color:var(--txt)}
+.dentro-intro b{color:var(--ink);font-weight:700}
+.quatro{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:840px;margin:0 auto}
+@media(max-width:640px){.quatro{grid-template-columns:1fr}}
+.quatro-card{background:var(--card);border-radius:8px;padding:1.6rem;border-top:3px solid var(--lime)}
+.quatro-n{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--ld);margin-bottom:.5rem}
+.quatro-t{font-weight:800;font-size:1.05rem;color:var(--ink);margin-bottom:.5rem}
+.quatro-card p{font-size:.9rem;line-height:1.6;color:var(--txs)}
+
+.junto{display:flex;flex-direction:column;gap:1rem;max-width:720px;margin:0 auto}
+.junto-item{display:flex;gap:1.2rem;align-items:flex-start;background:var(--card);border-radius:8px;padding:1.5rem}
+.junto-n{flex:none;width:40px;height:40px;border-radius:8px;background:var(--lime);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--d);font-weight:700}
+.junto-t{font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:.4rem}
+.junto-item p{font-size:.92rem;line-height:1.6;color:var(--txs)}
+.junto-item.gift{background:var(--ink);border:1px solid rgba(216,255,96,.3)}
+.junto-item.gift .junto-t{color:var(--lime)}
+.junto-item.gift p{color:rgba(206,198,238,.85)}
+
+.oferta{background:var(--ink);color:var(--paper);text-align:center;position:relative;overflow:hidden}
+.oferta .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 20%,rgba(216,255,96,.1),transparent 60%)}
+.oferta-name{font-family:var(--b);font-weight:900;text-transform:uppercase;color:var(--lime);font-size:1.3rem;margin-bottom:.5rem}
+.oferta-tag{font-family:var(--d);font-style:italic;font-size:1.15rem;color:rgba(232,228,250,.9);margin-bottom:2rem}
+.oferta-list{list-style:none;display:inline-flex;flex-direction:column;gap:.7rem;text-align:left;margin:0 auto 2rem;max-width:400px}
+.oferta-list li{font-size:.98rem;line-height:1.4;color:rgba(232,228,250,.92);padding-left:1.8rem;position:relative}
+.oferta-list li::before{content:'✓';position:absolute;left:0;top:0;color:var(--lime);font-weight:800}
+.anchor{font-size:.95rem;color:rgba(206,198,238,.7);max-width:48ch;margin:0 auto 2rem;line-height:1.6}
+.anchor s{opacity:.6}
+.price-box{margin:0 auto 1.5rem}
+.price-x{font-family:var(--d);font-weight:700;color:var(--lime);letter-spacing:-.04em;line-height:1;text-shadow:0 0 30px rgba(216,255,96,.4)}
 .price-x .top{font-family:var(--b);font-size:.9rem;font-weight:600;color:rgba(206,198,238,.7);text-shadow:none;display:block;margin-bottom:.3rem}
-.included{list-style:none;display:inline-flex;flex-direction:column;gap:.7rem;text-align:left;margin:0 auto 2rem}
-.included li{font-size:.98rem;line-height:1.4;color:rgba(232,228,250,.92);padding-left:1.8rem;position:relative}
-.included li::before{content:'✓';position:absolute;left:0;color:var(--lime);font-weight:800}
-.price-note{font-size:.95rem;color:rgba(206,198,238,.7);margin-top:1rem}
+.price-x .big{font-size:clamp(3.4rem,10vw,5rem)}
+.price-avista{font-size:.95rem;color:rgba(206,198,238,.7);margin-top:.6rem}
+.price-avista b{color:var(--paper)}
+.oferta-side{max-width:52ch;margin:2rem auto 0;font-size:.98rem;line-height:1.7;color:rgba(206,198,238,.8)}
+.oferta-side b{color:var(--lime);font-weight:600}
+.oferta-final-line{font-family:var(--d);font-style:italic;font-size:1.1rem;color:var(--lime);margin-top:1.5rem}
 
-/* FAQ */
-.faq{max-width:720px;margin:0 auto}
-.fq{border-bottom:1px solid var(--line);overflow:hidden}
-.fq-q{display:flex;justify-content:space-between;align-items:center;width:100%;padding:1.3rem 0;font-size:clamp(.95rem,2vw,1.05rem);font-weight:700;color:var(--ink);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--b);gap:1rem}
-.fq-i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s}
-.fq-i::before{content:'+';font-size:1.1rem;font-weight:800;color:var(--ink);line-height:1}
-.fq.open .fq-i{transform:rotate(45deg);background:var(--lime)}
-.fq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
-.fq-a p{padding:0 0 1.3rem;font-size:.96rem;line-height:1.7;color:var(--txs);max-width:60ch}
+.tras-block{max-width:60ch;margin:0 auto}
+.tras-block h3{font-family:var(--d);font-weight:600;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--ink);margin-bottom:1.3rem;letter-spacing:-.02em}
+.tras-block p{font-size:clamp(.98rem,2vw,1.08rem);line-height:1.8;margin-bottom:1.2rem}
+.tras-block b{color:var(--ink);font-weight:700}
+.tras-block .em{font-family:var(--d);font-style:italic;color:var(--ld)}
 
-/* final CTA */
-.final-cta{font-size:clamp(1rem,2.1vw,1.18rem);line-height:1.85;max-width:50ch;margin:0 auto;text-align:center}
-.final-cta p{color:rgba(206,198,238,.92);margin-bottom:1rem}
-.final-cta .strong{font-family:var(--d);font-style:italic;font-size:clamp(1.2rem,2.8vw,1.6rem);color:var(--lime);display:block;margin:1.5rem auto;max-width:20ch;line-height:1.3}
-.final-sub{font-size:.85rem;color:var(--txs);margin-top:1rem;font-weight:500}
+.garantia{background:var(--card)}
+.gar-h{font-family:var(--d);font-weight:600;font-size:clamp(1.4rem,3.4vw,2rem);color:var(--ink);text-align:center;max-width:24ch;margin:0 auto 1.5rem;letter-spacing:-.02em}
+.gar-p{font-size:clamp(.98rem,2vw,1.08rem);line-height:1.8;max-width:58ch;margin:0 auto 1.2rem}
+.gar-p b{color:var(--ink);font-weight:700}
+.gar-p:last-of-type{margin-bottom:2rem}
 
-/* footer */
-footer{background:var(--deep);color:rgba(206,198,238,.6);text-align:center;padding:2.5rem 0;font-size:.82rem}
-footer .logo{color:var(--paper);margin-bottom:.5rem;display:block}
-footer a{opacity:.7;transition:opacity .3s}
-footer a:hover{opacity:1}
+.faq{max-width:760px;margin:0 auto}
+.fq{border-bottom:1px solid var(--line)}
+.fq:first-child{border-top:1px solid var(--line)}
+.fq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;padding:1.4rem 0;text-align:left;font-weight:700;font-size:clamp(.98rem,2vw,1.1rem);color:var(--ink);cursor:pointer;background:none;border:none;letter-spacing:-.01em}
+.fq-i{flex:none;width:22px;height:22px;position:relative}
+.fq-i::before,.fq-i::after{content:'';position:absolute;background:var(--ld);left:50%;top:50%;transition:.4s}
+.fq-i::before{width:13px;height:2px;transform:translate(-50%,-50%)}
+.fq-i::after{width:2px;height:13px;transform:translate(-50%,-50%)}
+.fq.open .fq-i::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1)}
+.fq-a p{padding:0 0 1.4rem;font-size:.96rem;line-height:1.7;color:var(--txs);max-width:64ch}
+.fq-a b{color:var(--ink);font-weight:600}
 
-/* sticky bottom CTA */
-.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:.8rem min(4vw,1.5rem);z-index:190;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 -4px 24px rgba(14,11,30,.3)}
-body.sc-on .sticky-cta{transform:none}
-.sc-l{display:flex;flex-direction:column;gap:.15rem}
-.sc-t{font-size:.78rem;font-weight:700;color:var(--paper);letter-spacing:-.01em}
-.sc-p{font-size:.72rem;color:rgba(206,198,238,.6)}
-.sc-b{background:var(--lime);color:var(--ink);font-weight:800;font-size:.78rem;text-transform:uppercase;padding:.7rem 1.3rem;border-radius:3px;letter-spacing:.01em;white-space:nowrap;transition:transform .3s}
-.sc-b:hover{transform:scale(1.04)}
+.aviso{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.aviso .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(140,130,220,.18),transparent 60%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(216,255,96,.07),transparent 60%)}
+.aviso h2,.aviso h3{color:var(--paper)}
+.aviso p{color:rgba(206,198,238,.82)}
+.aviso-intro{font-size:clamp(1rem,2.1vw,1.15rem);line-height:1.8;max-width:56ch;margin:0 auto 1.3rem}
+.aviso-intro b{color:var(--lime);font-weight:600}
+.cenarios{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:820px;margin:2.5rem auto}
+@media(max-width:680px){.cenarios{grid-template-columns:1fr}}
+.cen{border-radius:10px;padding:1.8rem;border:1px solid}
+.cen.a{border-color:rgba(140,130,220,.3);background:rgba(140,130,220,.06)}
+.cen.b{border-color:rgba(216,255,96,.3);background:rgba(216,255,96,.05)}
+.cen-t{font-weight:900;text-transform:uppercase;letter-spacing:.05em;font-size:.75rem;margin-bottom:1rem}
+.cen.a .cen-t{color:var(--lilac)}
+.cen.b .cen-t{color:var(--lime)}
+.cen p{font-size:.95rem;line-height:1.65}
+.cen.a p{color:rgba(206,198,238,.75)}
+.cen.b p{color:rgba(232,228,250,.92)}
+.aviso-punch{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--lime);text-align:center;max-width:40ch;margin:0 auto 1.3rem;line-height:1.35}
+.aviso-last{text-align:center;font-size:clamp(.98rem,2vw,1.1rem);line-height:1.7;max-width:48ch;margin:0 auto;color:rgba(232,228,250,.9)}
+.aviso-last b{color:var(--lime)}
 
-/* highlight text on reveal */
+footer{background:var(--deep);color:rgba(206,198,238,.4);padding:2.5rem 0;text-align:center;font-size:.82rem;line-height:1.8}
+footer .logo{color:rgba(248,255,232,.7);font-size:1rem;margin-bottom:.6rem}
+footer .f-slogan{font-family:var(--d);font-style:italic;color:var(--lime);opacity:.7;margin:.5rem 0}
+footer a:hover{color:var(--lime)}
+
+.cta-sec{text-align:center}
+.cta-sec .btn{margin-top:.5rem}
+
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ld),var(--lime));z-index:300;pointer-events:none;transition:width .12s linear}
+
+.stg > .rv:nth-child(2){transition-delay:.09s}
+.stg > .rv:nth-child(3){transition-delay:.18s}
+.stg > .rv:nth-child(4){transition-delay:.27s}
+.stg > .rv:nth-child(5){transition-delay:.36s}
+.stg > .rv:nth-child(6){transition-delay:.45s}
+.stg > .rv:nth-child(n+7){transition-delay:.54s}
+
+.dec,.obj3-item,.quatro-card,.junto-item,.etapa,.cen{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s,border-color .45s}
+.dec:hover,.obj3-item:hover,.quatro-card:hover,.junto-item:hover,.etapa:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+.junto-item.gift:hover,.cen:hover{box-shadow:0 16px 38px rgba(0,0,0,.28)}
+.fq-q:hover{color:var(--ld)}
+
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);animation:shine 5s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,72%{left:-70%}100%{left:130%}}
+.btn-lime{box-shadow:0 0 0 0 rgba(216,255,96,.5);animation:pulseBtn 3.4s ease-out infinite}
+.btn-lime:hover{animation:none}
+@keyframes pulseBtn{0%{box-shadow:0 0 0 0 rgba(216,255,96,.5)}70%{box-shadow:0 0 0 16px rgba(216,255,96,0)}100%{box-shadow:0 0 0 0 rgba(216,255,96,0)}}
+
+.hero{overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px,rgba(24,20,48,.09) 1px,transparent 0);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse 66% 58% at 50% 34%,#000 15%,transparent 72%);
+          mask-image:radial-gradient(ellipse 66% 58% at 50% 34%,#000 15%,transparent 72%)}
+.hero .wrap{position:relative;z-index:1}
+.hero-h1{position:relative;z-index:1}
+.hero-h1 .hl::before{content:'';position:absolute;left:-.07em;right:-.07em;bottom:.04em;height:.4em;border-radius:3px;background:rgba(216,255,96,.55);z-index:-1;transform:scaleX(0);transform-origin:left center;transition:transform 1s cubic-bezier(.16,1,.3,1) .5s}
+.hero-h1.in .hl::before{transform:scaleX(1)}
+
+.funil{max-width:540px;margin:2.6rem auto 0}
+.fn-loss{margin-top:1.8rem;background:var(--ink);border-radius:11px;padding:1.5rem;display:flex;align-items:center;gap:1.3rem;position:relative;overflow:hidden}
+.fn-loss::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 110% at 12% 50%,rgba(216,255,96,.12),transparent 70%)}
+.fn-loss-n{font-family:var(--d);font-weight:700;font-size:clamp(2.6rem,9vw,3.6rem);color:var(--lime);line-height:.85;position:relative;flex:none;text-shadow:0 0 34px rgba(216,255,96,.3)}
+.fn-loss-t{font-size:.94rem;line-height:1.55;color:rgba(206,198,238,.86);position:relative}
+@media(max-width:520px){.fn-loss{flex-direction:column;text-align:center;gap:.7rem}}
+
+.three-card::before{transform:scaleX(0);transform-origin:left;transition:transform .95s cubic-bezier(.16,1,.3,1)}
+.three.in .three-card::before{transform:scaleX(1)}
+.three.in .three-card:nth-child(2)::before{transition-delay:.2s}
+.three.in .three-card:nth-child(3)::before{transition-delay:.4s}
+.three-card{transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.three-card:hover{transform:translateY(-5px)}
+
+.etapas{position:relative}
+.etapas::before,.etapas::after{content:'';position:absolute;left:calc(1.5rem + 17px);top:2.6rem;width:2px;border-radius:2px}
+.etapas::before{bottom:2.6rem;background:rgba(24,20,48,.1)}
+.etapas::after{height:0;background:var(--lime);transition:height 1.6s cubic-bezier(.16,1,.3,1) .2s}
+.etapas.in::after{height:calc(100% - 5.2rem)}
+.etapa{position:relative;z-index:1}
+.etapa-n{z-index:2;box-shadow:0 0 0 6px var(--card)}
+
+.casos{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.casos .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 58% 46% at 50% 0%,rgba(140,130,220,.18),transparent 62%),radial-gradient(ellipse 46% 38% at 50% 100%,rgba(216,255,96,.06),transparent 60%)}
+.casos h2{color:var(--paper);text-align:center;font-size:clamp(1.4rem,3.6vw,2.2rem);max-width:22ch;margin:0 auto 1.4rem}
+.casos-lead{font-size:clamp(1rem,2.1vw,1.15rem);line-height:1.8;max-width:56ch;margin:0 auto 1.3rem;color:rgba(206,198,238,.85);text-align:center}
+.casos-lead b{color:var(--lime);font-weight:600}
+.casos-rule{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.45rem);color:var(--lime);text-align:center;max-width:34ch;margin:2rem auto 2.6rem;line-height:1.35}
+.caso-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;max-width:900px;margin:0 auto}
+@media(max-width:760px){.caso-grid{grid-template-columns:1fr}}
+.caso{display:flex;gap:.85rem;align-items:flex-start;border:1px solid rgba(216,255,96,.2);background:rgba(216,255,96,.04);border-radius:10px;padding:1.1rem 1.2rem;transition:border-color .45s,transform .45s cubic-bezier(.16,1,.3,1)}
+.caso:hover{border-color:rgba(216,255,96,.45);transform:translateY(-3px)}
+.caso-ck{flex:none;width:20px;height:20px;margin-top:.15rem;border-radius:50%;background:var(--lime);display:grid;place-items:center}
+.caso-ck svg{width:11px;height:11px;display:block}
+.caso b{display:block;color:var(--paper);font-weight:800;font-size:.95rem;letter-spacing:-.01em;margin-bottom:.35rem;line-height:1.35}
+.caso p{color:rgba(206,198,238,.78);font-size:.9rem;line-height:1.6}
+.casos-no{max-width:760px;margin:3rem auto 0;border-top:1px solid rgba(206,198,238,.16);padding-top:2.2rem}
+.casos-no h3{color:var(--paper);font-family:var(--d);font-weight:600;font-style:italic;font-size:clamp(1.15rem,2.6vw,1.5rem);text-align:center;margin-bottom:1.6rem;letter-spacing:-.02em}
+.casos-no ul{list-style:none;display:grid;gap:1rem}
+.casos-no li{position:relative;padding-left:1.6rem;color:rgba(206,198,238,.72);font-size:.95rem;line-height:1.65}
+.casos-no li::before{content:'';position:absolute;left:0;top:.62em;width:11px;height:1.5px;background:rgba(206,198,238,.4)}
+.casos-no li b{color:rgba(232,228,250,.95);font-weight:700}
+.casos-close{text-align:center;font-size:clamp(1rem,2.1vw,1.12rem);line-height:1.7;max-width:44ch;margin:2.6rem auto 0;color:rgba(232,228,250,.92)}
+.casos-close b{color:var(--lime)}
+
+.trilha{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:600px;margin:2.4rem auto 2.6rem}
+@media(max-width:560px){.trilha{grid-template-columns:repeat(2,1fr);gap:.9rem}}
+.tr-i{position:relative;padding-top:1.5rem;text-align:center}
+.tr-i::before{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:rgba(206,198,238,.3);transition:background .5s,box-shadow .5s}
+.tr-i::after{content:'';position:absolute;top:9px;left:50%;width:100%;height:1px;background:rgba(206,198,238,.2)}
+.tr-i:last-child::after{display:none}
+@media(max-width:560px){.tr-i:nth-child(2n)::after{display:none}}
+.trilha.in .tr-i::before{background:var(--lime);box-shadow:0 0 0 4px rgba(216,255,96,.12)}
+.trilha.in .tr-i:nth-child(2)::before{transition-delay:.15s}
+.trilha.in .tr-i:nth-child(3)::before{transition-delay:.3s}
+.trilha.in .tr-i:nth-child(4)::before{transition-delay:.45s}
+.tr-t{font-size:.74rem;font-weight:800;color:var(--paper);letter-spacing:-.01em;line-height:1.3}
+.tr-s{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(206,198,238,.5);margin-top:.25rem}
+.tr-i:last-child .tr-t{color:var(--lime)}
+
+.rodadas{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;max-width:620px;margin:2rem auto 2.2rem}
+.rd{background:#fff;border:1px solid var(--line);border-radius:99px;padding:.6rem 1.1rem;font-size:.76rem;font-weight:800;color:var(--ink);letter-spacing:-.01em;opacity:0;transform:translateY(8px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.rodadas.in .rd{opacity:1;transform:none}
+.rodadas.in .rd:nth-child(3){transition-delay:.14s}
+.rodadas.in .rd:nth-child(5){transition-delay:.28s}
+.rodadas.in .rd:nth-child(7){transition-delay:.42s}
+.rd.win{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.rd-ar{color:var(--ld);font-weight:900;opacity:0;transition:opacity .5s}
+.rodadas.in .rd-ar{opacity:1;transition-delay:.2s}
+
+.scene,.conta-p,.let-p,.gar-p,.tras-block p,.obj3-a,.aviso-intro{line-height:1.85}
+.conta-p,.gar-p,.tras-block p{max-width:54ch}
+.conta-p,.gar-p{margin-bottom:1.5rem}
+.tras-block p{margin-bottom:1.5rem}
+.obj3-a{line-height:1.8}
 p{text-wrap:pretty}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+.conta-p b,.after-list b,.obj3-a b,.gar-p b,.tras-block b,.dentro-intro b,.mec-foot b,.sub-block b,.hero-sub b{
+  background-image:linear-gradient(rgba(216,255,96,.6),rgba(216,255,96,.6));
+  background-repeat:no-repeat;background-position:0 92%;background-size:0% 36%;
+  transition:background-size .95s cubic-bezier(.16,1,.3,1) .35s;
+  padding:0 .05em}
+.rv.in b{background-size:100% 36%}
+
+.tras-block .em{display:block;font-size:1.3em;line-height:1.35;margin:1rem 0;padding-left:1.1rem;border-left:3px solid var(--lime)}
+.gar-lead{font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.45rem);color:var(--ink);text-align:center;max-width:28ch;margin:0 auto 2rem;line-height:1.35}
+
+.dores .cansado-head{text-align:center;max-width:22ch;margin:0 auto 2.2rem;position:relative;padding-bottom:1rem;font-size:clamp(1.3rem,4vw,2rem);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink);line-height:1.1}
+.dores .cansado-head::after{content:'';position:absolute;left:50%;bottom:0;width:56px;height:3px;border-radius:2px;background:var(--lime);transform:translateX(-50%) scaleX(0);transform-origin:center;transition:transform .8s cubic-bezier(.16,1,.3,1) .2s}
+.dores .cansado-head.in::after{transform:translateX(-50%) scaleX(1)}
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;max-width:900px;margin:0 auto}
+@media(max-width:760px){.pains{grid-template-columns:minmax(0,1fr)}}
+.pain{position:relative;background:var(--card);border-radius:10px;padding:1.4rem 1.5rem;overflow:hidden;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.pain::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:top;transition:transform .85s cubic-bezier(.16,1,.3,1) .15s}
+.pain.in::before{transform:scaleY(1)}
+.pain:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+.pain-h{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.pain-n{font-family:var(--d);font-weight:700;font-size:.9rem;color:var(--ld);letter-spacing:.04em;line-height:1}
+.pain-ic{width:27px;height:22px;flex:none;display:block}
+.pain p{font-size:clamp(.94rem,1.8vw,1.02rem);line-height:1.65;color:var(--txt)}
+.pain b{font-weight:700;color:var(--ink);background-image:linear-gradient(rgba(216,255,96,.62),rgba(216,255,96,.62));background-repeat:no-repeat;background-position:0 92%;background-size:0% 36%;transition:background-size 1s cubic-bezier(.16,1,.3,1) .4s;padding:0 .05em}
+.pain.in b{background-size:100% 36%}
+.pain.dk{background:var(--ink)}
+.pain.dk::before{background:var(--lilac)}
+.pain.dk p{color:rgba(215,209,245,.88)}
+.pain.dk .pain-n{color:var(--lilac)}
+.pain.dk b{color:var(--lime);background-image:none;padding:0}
+.pain.dk:hover{box-shadow:0 16px 38px rgba(24,20,48,.3)}
+.pain-sep{display:flex;align-items:center;gap:1.1rem;max-width:760px;margin:2.6rem auto;padding:0}
+.pain-sep::before,.pain-sep::after{content:'';flex:1;height:1px;background:var(--line)}
+.pain-sep span{font-family:var(--d);font-style:italic;font-size:clamp(1rem,2.4vw,1.35rem);color:var(--ink);text-align:center;line-height:1.3}
+@media(max-width:520px){.pain-sep{gap:.7rem}}
+.pain-punch{text-align:center;max-width:30ch;margin:2.2rem auto 0;font-weight:800;font-size:clamp(1.05rem,2.6vw,1.45rem);color:var(--ink);letter-spacing:-.02em;line-height:1.35}
+.pain-punch span{color:var(--ld)}
+
+html{overflow-x:hidden}
+body{overflow-x:clip}
+img,svg{max-width:100%}
+
+.fn-loss-n{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";display:inline-block;min-width:2.2ch;text-align:center}
+
+.hero-h1,.banner,.prod-name,.oferta-name,.let-name{overflow-wrap:break-word;hyphens:none}
+.hero-h1 .hl{white-space:normal}
+@media(min-width:900px){.hero-h1 .hl{white-space:nowrap}}
+
+.prob-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:780px;margin:0 auto 2rem}
+.prob-card{background:var(--card);border-radius:8px;padding:1.2rem 1rem;border-left:3px solid var(--lime)}
+.prob-card .prob-t{font-weight:800;font-size:.82rem;color:var(--ink);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em}
+.prob-card p{font-size:.88rem;line-height:1.5;color:var(--txs)}
+@media(max-width:600px){.prob-row{grid-template-columns:1fr}}
+
+.callout{background:var(--ink);border-radius:10px;padding:clamp(2rem,4vw,3rem);margin:2rem auto;max-width:720px;position:relative}
+.callout p{font-family:var(--d);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.4;color:rgba(232,228,250,.95);text-align:center;max-width:28ch;margin:0 auto}
+.callout b{color:var(--lime)}
+
+.step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:780px;margin:0 auto}
+.step-box{text-align:center;padding:1.2rem}
+.step-box .step-n{font-weight:900;font-size:2.4rem;color:var(--lime);line-height:1;margin-bottom:.3rem}
+.step-box .step-t{font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.step-box p{font-size:.88rem;line-height:1.5;color:var(--txs)}
+@media(max-width:600px){.step-row{grid-template-columns:1fr;gap:.6rem}.step-box{text-align:left;display:grid;grid-template-columns:auto 1fr;gap:0 1rem;align-items:start;padding:.8rem 0;border-bottom:1px solid var(--line)}.step-box .step-n{grid-row:1/3;font-size:2rem;align-self:center}.step-box p{grid-column:2}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.btn::after,.btn-lime{animation:none!important}.hero-h1 .hl::before{transform:scaleX(1)}.pain::before{transform:scaleY(1)}.pain b{background-size:100% 36%}.dores .cansado-head::after{transform:translateX(-50%) scaleX(1)}}
+
+.hero-form-wrap{width:min(560px,94vw);margin:2.4rem auto .5rem;scroll-margin-top:90px}
+.lead-form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:clamp(1.4rem,3vw,2rem);box-shadow:0 18px 50px rgba(24,20,48,.10);text-align:left}
+.lf-head{margin-bottom:1.3rem;text-align:center}
+.lf-tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--ld);background:rgba(122,145,39,.1);padding:.45rem .9rem;border-radius:3px;margin-bottom:.9rem}
+.lf-lead{font-size:.92rem;line-height:1.55;color:var(--txs);max-width:44ch;margin:0 auto;font-weight:500}
+.lf-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.lf-field{display:flex;flex-direction:column;gap:.35rem}
+.lf-field.lf-full{grid-column:1/-1}
+.lf-field > span{font-size:.72rem;font-weight:800;letter-spacing:.02em;color:var(--ink);text-transform:uppercase}
+.lf-field input,.lf-field select{font-family:var(--b);font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.75rem .85rem;width:100%;transition:border-color .25s,box-shadow .25s}
+.lf-field input::placeholder{color:rgba(24,20,48,.35)}
+.lf-field input:focus,.lf-field select:focus{outline:none;border-color:var(--ld);box-shadow:0 0 0 3px rgba(122,145,39,.15)}
+.lf-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9127' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.2rem;cursor:pointer}
+.lf-submit{width:100%;justify-content:center;margin-top:1.3rem}
+.lf-fine{font-size:.78rem;line-height:1.5;color:var(--txs);text-align:center;margin-top:.9rem;font-weight:500}
+.lf-fine b{color:var(--ink);font-weight:700}
+.lead-form.sending .lf-submit{opacity:.6;pointer-events:none}
+.lf-success{display:none;background:var(--ink);border-radius:16px;padding:clamp(1.8rem,4vw,2.6rem);text-align:center;box-shadow:0 18px 50px rgba(24,20,48,.18)}
+.lf-success.on{display:block;animation:lfIn .5s cubic-bezier(.16,1,.3,1)}
+@keyframes lfIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.lf-success .lf-check{width:52px;height:52px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 1.1rem}
+.lf-success .lf-check svg{width:26px;height:26px}
+.lf-success h3{font-size:1.25rem;color:var(--paper);margin-bottom:.7rem;letter-spacing:-.01em}
+.lf-success p{font-size:.95rem;line-height:1.6;color:rgba(206,198,238,.85);max-width:42ch;margin:0 auto}
+.lf-success p b{color:var(--lime);font-weight:700}
+@media(max-width:520px){.lf-grid{grid-template-columns:1fr}.lf-field.lf-full{grid-column:auto}}
+
+.mail-float{position:fixed;right:22px;bottom:26px;z-index:250;display:inline-flex;align-items:center;gap:.6rem;background:var(--lime);color:var(--ink);font-family:var(--b);font-weight:800;font-size:.95rem;letter-spacing:-.01em;padding:.9rem 1.4rem;border-radius:50px;text-decoration:none;box-shadow:0 10px 34px rgba(24,20,48,.28);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;animation:waPulse 3.2s ease-out infinite}
+.mail-float:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(216,255,96,.5);animation:none}
+.mail-float svg{width:22px;height:22px;flex:none}
+.mail-float .wa-txt{white-space:nowrap}
+@keyframes waPulse{0%{box-shadow:0 10px 34px rgba(24,20,48,.28),0 0 0 0 rgba(216,255,96,.55)}70%{box-shadow:0 10px 34px rgba(24,20,48,.28),0 0 0 16px rgba(216,255,96,0)}100%{box-shadow:0 10px 34px rgba(24,20,48,.28),0 0 0 0 rgba(216,255,96,0)}}
+@media(max-width:600px){
+  .mail-float{left:12px;right:12px;bottom:12px;justify-content:center;padding:1rem 1.4rem;border-radius:12px;font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){.mail-float{animation:none}}
+
+.casos .caso{text-align:left}
+.casos-no ul{text-align:left}
+.casos-no li{text-align:left}
 </style>
 </head>
 <body>
 
 <div class="prog" id="prog"></div>
+<a href="#get-diagnosis" class="mail-float" onclick="trackCTA('botao_lateral')" aria-label="Get my free demand diagnosis"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="#181430"/><path d="M4.5 7.5 12 12.5l7.5-5" stroke="#D8FF60" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wa-txt">Free diagnosis</span></a>
+
 
 <nav class="nav" id="nav"><div class="nav-in">
   <span class="logo">The Landing Lab<span class="dot">.</span></span>
-  <a href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started" class="nav-cta">Get started</a>
 </div></nav>
 
-<!-- ===== HERO ===== -->
-<header class="hero">
+<!-- ===== BLOCO 01 — HERO ===== -->
+<header class="hero" data-sec="01_hero">
   <div class="wrap">
-    <h1 class="hero-h1 rv">Your work is already excellent. We make sure your <span class="hl">online presence</span> says the same thing.</h1>
-    <p class="hero-sub rv" data-d="1">Custom landing pages for professionals whose work deserves more than a template with their name on it.</p>
-    <div class="rv" data-d="2">
-      <a href="#how" class="btn">See how it works <span class="ar">→</span></a>
+    <h1 class="hero-h1 rv">Every day, someone searches Google for the exact service you sell, <span class="hl">with their card already out</span></h1>
+    <p class="hero-sub rv" data-d="1">I capture those people and send them straight to you, without you having to set up, monitor, or understand anything</p>
+
+    <!-- VISUAL — busca no Google -> seta -> lead que chega -->
+    <div class="rv" data-d="2" aria-hidden="true" style="max-width:660px;margin:2.8rem auto 2rem">
+      <svg viewBox="0 0 660 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;overflow:visible">
+        <style>
+          .gg-card{fill:var(--paper);stroke:var(--line);stroke-width:1.2}
+          .gg-bar{fill:#fff;stroke:var(--line);stroke-width:1.2}
+          .gg-mag{fill:none;stroke:var(--txs);stroke-width:2.2}
+          .gg-q{font-family:var(--b);font-size:12px;font-weight:600;fill:var(--ink)}
+          .gg-cur{fill:var(--ld);animation:ggBlink 1s steps(1) infinite}
+          .gg-adtag{fill:var(--ld)}
+          .gg-adtxt{font-family:var(--b);font-size:7.5px;font-weight:800;fill:var(--paper)}
+          .gg-resbox{fill:rgba(140,130,220,.10);stroke:var(--lilac);stroke-width:1.3}
+          .gg-t1{font-family:var(--b);font-size:8px;font-weight:700;fill:var(--ld)}
+          .gg-t2{fill:rgba(24,20,48,.30)}
+          .gg-faint{fill:rgba(24,20,48,.14)}
+          .hd-arrow{fill:none;stroke:var(--ld);stroke-width:3;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:hdDraw 1.5s cubic-bezier(.5,0,.2,1) .6s forwards}
+          .hd-head{stroke:var(--ld);stroke-width:3;stroke-linecap:round;fill:none;opacity:0;animation:hdHead .01s linear 2s forwards}
+          .ph-body{fill:var(--ink)}
+          .ph-scr{fill:var(--paper)}
+          .ph-top{fill:var(--ink)}
+          .ph-hdr{fill:rgba(24,20,48,.06)}
+          .ph-av{fill:var(--lilac);opacity:.9}
+          .ph-hline{fill:rgba(24,20,48,.22)}
+          .ph-bub{fill:#fff;stroke:var(--line);stroke-width:1}
+          .ph-btxt{font-family:var(--b);font-size:8.5px;font-weight:600;fill:var(--ink)}
+          .ph-time{font-family:var(--b);font-size:6.5px;font-weight:600;fill:var(--txs)}
+          .ph-chk{fill:none;stroke:var(--ld);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+          @keyframes hdDraw{to{stroke-dashoffset:0}}
+          @keyframes hdHead{to{opacity:1}}
+          @keyframes ggBlink{50%{opacity:0}}
+        </style>
+
+        <!-- ===== BUSCA NO GOOGLE ===== -->
+        <g>
+          <rect class="gg-card" x="6" y="42" width="230" height="236" rx="16"/>
+          <rect class="gg-bar" x="24" y="64" width="194" height="30" rx="15"/>
+          <circle class="gg-mag" cx="42" cy="79" r="6"/>
+          <line class="gg-mag" x1="46.5" y1="83.5" x2="51" y2="88"/>
+          <text class="gg-q" x="58" y="83">commercial roofing near me</text>
+          <rect class="gg-cur" x="196" y="72" width="1.6" height="14" rx="1"/>
+          <rect class="gg-resbox" x="24" y="108" width="194" height="52" rx="8"/>
+          <rect class="gg-adtag" x="34" y="118" width="26" height="13" rx="3.5"/>
+          <text class="gg-adtxt" x="39" y="127.5">Ad</text>
+          <text class="gg-t1" x="34" y="145">yourcompany.com</text>
+          <rect class="gg-t2" x="34" y="150" width="150" height="5.5" rx="2"/>
+          <rect class="gg-faint" x="24" y="176" width="120" height="6" rx="2"/>
+          <rect class="gg-faint" x="24" y="188" width="170" height="5" rx="2" opacity=".6"/>
+          <rect class="gg-faint" x="24" y="212" width="120" height="6" rx="2"/>
+          <rect class="gg-faint" x="24" y="224" width="164" height="5" rx="2" opacity=".6"/>
+          <rect class="gg-faint" x="24" y="248" width="120" height="6" rx="2"/>
+          <rect class="gg-faint" x="24" y="260" width="150" height="5" rx="2" opacity=".6"/>
+        </g>
+
+        <path class="hd-arrow" d="M226 150 C 282 138, 312 128, 330 154 C 346 178, 312 208, 330 226 C 346 240, 384 226, 404 190"/>
+        <path class="hd-head" d="M404 190 l 0 18 M404 190 l -17 6"/>
+
+        <!-- ===== CELULAR: O LEAD QUE CHEGA ===== -->
+        <g>
+          <rect class="ph-body" x="414" y="22" width="196" height="280" rx="26"/>
+          <rect class="ph-scr" x="424" y="34" width="176" height="256" rx="16"/>
+          <rect class="ph-top" x="486" y="40" width="52" height="7" rx="3.5"/>
+          <rect class="ph-hdr" x="424" y="54" width="176" height="34"/>
+          <circle class="ph-av" cx="446" cy="71" r="10"/>
+          <rect class="ph-hline" x="464" y="66" width="70" height="6" rx="2"/>
+          <rect class="ph-hline" x="464" y="76" width="44" height="4.5" rx="2" opacity=".6"/>
+          <rect class="ph-bub" x="438" y="112" width="150" height="60" rx="12"/>
+          <text class="ph-btxt" x="450" y="132">Found you on Google.</text>
+          <text class="ph-btxt" x="450" y="148">I need a quote for</text>
+          <text class="ph-btxt" x="450" y="164">the job.</text>
+          <text class="ph-time" x="562" y="186" text-anchor="end">now</text>
+          <path class="ph-chk" d="M566 182 l 2.4 2.4 l 4.6 -5"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="hero-sub rv" data-d="2" style="font-size:clamp(.82rem,1.6vw,.92rem);color:var(--txs);margin-top:.3rem;font-weight:600">no ad platforms to touch, no tools to learn, no time lost</p>
+
+    <div class="hero-form-wrap rv" data-d="3" id="get-diagnosis">
+      <form class="lead-form" action="https://formspree.io/f/mwlpaeov" method="POST">
+        <div class="lf-head">
+          <span class="lf-tag">Free demand diagnosis</span>
+          <p class="lf-lead">Tell me about your business and I'll go to Google to measure how much demand is already searching for what you sell in your area.</p>
+        </div>
+        <div class="lf-grid">
+          <label class="lf-field">
+            <span>First name</span>
+            <input type="text" name="name" required placeholder="Your name" autocomplete="given-name">
+          </label>
+          <label class="lf-field">
+            <span>Work email</span>
+            <input type="email" name="email" required placeholder="you@company.com" autocomplete="email">
+          </label>
+          <label class="lf-field">
+            <span>Company</span>
+            <input type="text" name="company" required placeholder="Company name" autocomplete="organization">
+          </label>
+          <label class="lf-field">
+            <span>City / metro you serve</span>
+            <input type="text" name="metro" required placeholder="e.g. Tulsa, OK">
+          </label>
+          <label class="lf-field lf-full">
+            <span>Which service do you most want more clients for?</span>
+            <input type="text" name="service" required placeholder="The one service you'd most want to fill">
+          </label>
+          <label class="lf-field">
+            <span>Typical value of one job</span>
+            <select name="job_value" required>
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $2,000</option>
+              <option>$2,000 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000 – $50,000</option>
+              <option>$50,000+</option>
+            </select>
+          </label>
+          <label class="lf-field">
+            <span>Monthly revenue (optional)</span>
+            <select name="monthly_revenue">
+              <option value="" selected>Prefer not to say</option>
+              <option>Under $25k</option>
+              <option>$25k – $100k</option>
+              <option>$100k – $500k</option>
+              <option>$500k+</option>
+            </select>
+          </label>
+          <label class="lf-field lf-full">
+            <span>Could you take on more clients each month?</span>
+            <select name="capacity" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Yes, plenty of room</option>
+              <option>Yes, a few more</option>
+              <option>We're close to capacity</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-lime lf-submit">Get my free demand diagnosis <span class="ar">&rarr;</span></button>
+        <p class="lf-fine">No cost, no obligation. <b>I only take one company per service in each metro</b>, so the earlier you're in, the better.</p>
+      </form>
+      <div class="lf-success" id="lf-success">
+        <div class="lf-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5 10 17.5 19.5 7" stroke="#181430" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Got it<span id="lf-name"></span>.</h3>
+        <p>I'm already on it. I'll go to Google, measure the demand for your service in your metro, and send your diagnosis within <b>2 business days</b>. Keep an eye on your inbox.</p>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- ===== SECTION 2 — THE TEN SECONDS ===== -->
-<section class="dark pad-lg">
+<!-- ===== BLOCO 02 — ABERTURA ===== -->
+<section class="abertura pad-lg" data-sec="02_abertura">
   <div class="glow"></div>
   <div class="narrow" style="position:relative">
-    <div class="center rv"><span class="tag" style="background:rgba(216,255,96,.12);color:var(--lime)">The ten seconds</span></div>
-    <h2 class="s-title rv" style="color:var(--paper)">What happens right after someone clicks your link.</h2>
-    <p class="s-body rv">Someone just heard about you. A friend mentioned your name, or they found one of your projects on Instagram, or they typed something into Google and there you were. They're interested. They tap your link with a little bit of expectation already forming.</p>
-    <p class="s-body rv">The page starts loading. And in those first few seconds, one of two things happens: what they see matches the quality they were imagining, or it falls slightly short. When it falls short, <b>they don't reach out to tell you. They just move on.</b> You never know they were there.</p>
-    <p class="s-body rv">Here's what's easy to miss. This isn't about having a bad website. Your site might be perfectly fine. The thing is, <b>"fine" and "I need to hire this person" are two very different reactions.</b> And the professionals who seem to attract clients effortlessly almost always have the same thing going for them: there's no gap between the quality of their work and how they come across online. When there's no gap, trust forms before the first conversation even starts.</p>
+    <p class="scene rv"><span class="scene-em">There's a kind of buyer who doesn't need to be convinced of anything.</span></p>
+    <p class="scene rv">They already figured out, on their own, that they have a problem. And they already concluded, also on their own, that the fix is to hire someone who solves it.</p>
+    <p class="scene rv">When they hit that point, they sit down, open Google, and type the name of the service they need. In that moment they don't want to learn about the topic or build a relationship with anyone. They want to find whoever does it right and <span class="scene-em">get it handled.</span></p>
+
+    <!-- VISUAL — a busca com intenção -->
+    <div class="rv" role="img" aria-label="A Google search bar with a service being typed right now." style="max-width:420px;margin:2.4rem auto">
+      <svg viewBox="0 0 420 96" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+        <style>
+          .sb-bar{fill:#fff;stroke:var(--line);stroke-width:1.4}
+          .sb-mag{fill:none;stroke:var(--ld);stroke-width:2.6}
+          .sb-q{font-family:var(--b);font-size:16px;font-weight:700;fill:var(--ink)}
+          .sb-cur{fill:var(--ld);animation:sbBlink 1s steps(1) infinite}
+          .sb-cap{font-family:var(--d);font-style:italic;font-size:12px;fill:var(--txs)}
+          @keyframes sbBlink{50%{opacity:0}}
+        </style>
+        <rect class="sb-bar" x="6" y="10" width="408" height="46" rx="23"/>
+        <circle class="sb-mag" cx="34" cy="33" r="8"/>
+        <line class="sb-mag" x1="40" y1="39" x2="46" y2="45"/>
+        <text class="sb-q" x="58" y="39">who does this near me</text>
+        <rect class="sb-cur" x="272" y="21" width="2" height="24" rx="1"/>
+        <text class="sb-cap" x="210" y="82" text-anchor="middle">someone, right now, searching for what you sell</text>
+      </svg>
+    </div>
+
+    <p class="banner rv">Right now, someone is running that search for the service you provide.</p>
+    <p class="close-line rv" style="text-align:center">The question is whether your name shows up for that person, or whether they leave <b>without ever knowing you exist</b></p>
   </div>
 </section>
 
-<!-- ===== SECTION 3 — WHAT WE BUILD ===== -->
-<section class="pad-lg">
+<!-- ===== BLOCO 03 — DORES ===== -->
+<section class="pad-lg dores" data-sec="03_dores">
+  <div class="wrap">
+    <h2 class="cansado-head rv">You've lost contracts without ever knowing that person existed.</h2>
+
+    <div class="pains stg">
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">01</span><svg class="pain-ic" viewBox="0 0 51 41" fill="none" aria-hidden="true"><rect width="51" height="40.8" rx="20.4" fill="#181430"/><path d="M37.16 20.39c-4.57.42-7.2.8-8.81 2.06-1.9 1.48-2.35 4.19-2.85 9.6-.51-5.61-.98-8.3-3.06-9.75-1.61-1.13-4.22-1.5-8.6-1.9 4.56-.41 7.2-.79 8.8-2.03 1.91-1.5 2.36-4.19 2.86-9.63.46 5 .88 7.68 2.43 9.22 1.54 1.55 4.23 1.98 9.22 2.43Z" fill="#D8FF60"/></svg></div>
+        <p>They searched for the service you do, found two or three names, and hired whoever answered like a professional. <b>You never knew they existed</b></p>
+      </div>
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">02</span><svg class="pain-ic" viewBox="0 0 51 41" fill="none" aria-hidden="true"><rect width="51" height="40.8" rx="20.4" fill="#181430"/><path d="M37.16 20.39c-4.57.42-7.2.8-8.81 2.06-1.9 1.48-2.35 4.19-2.85 9.6-.51-5.61-.98-8.3-3.06-9.75-1.61-1.13-4.22-1.5-8.6-1.9 4.56-.41 7.2-.79 8.8-2.03 1.91-1.5 2.36-4.19 2.86-9.63.46 5 .88 7.68 2.43 9.22 1.54 1.55 4.23 1.98 9.22 2.43Z" fill="#D8FF60"/></svg></div>
+        <p>It wasn't because you're worse than anyone. It was because, at the exact moment they searched, <b>you weren't where they were looking</b></p>
+      </div>
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">03</span><svg class="pain-ic" viewBox="0 0 51 41" fill="none" aria-hidden="true"><rect width="51" height="40.8" rx="20.4" fill="#181430"/><path d="M37.16 20.39c-4.57.42-7.2.8-8.81 2.06-1.9 1.48-2.35 4.19-2.85 9.6-.51-5.61-.98-8.3-3.06-9.75-1.61-1.13-4.22-1.5-8.6-1.9 4.56-.41 7.2-.79 8.8-2.03 1.91-1.5 2.36-4.19 2.86-9.63.46 5 .88 7.68 2.43 9.22 1.54 1.55 4.23 1.98 9.22 2.43Z" fill="#D8FF60"/></svg></div>
+        <p>Maybe today your clients come from referrals. It works well, <b>until the month it stops</b></p>
+      </div>
+    </div>
+
+    <p class="pain-sep rv"><span>And the problem with depending on referrals alone is this:</span></p>
+
+    <div class="pains stg">
+      <div class="pain dk rv">
+        <div class="pain-h"><span class="pain-n">01</span><svg class="pain-ic" viewBox="0 0 51 41" fill="none" aria-hidden="true"><rect width="51" height="40.8" rx="20.4" fill="#D8FF60"/><path d="M37.16 20.39c-4.57.42-7.2.8-8.81 2.06-1.9 1.48-2.35 4.19-2.85 9.6-.51-5.61-.98-8.3-3.06-9.75-1.61-1.13-4.22-1.5-8.6-1.9 4.56-.41 7.2-.79 8.8-2.03 1.91-1.5 2.36-4.19 2.86-9.63.46 5 .88 7.68 2.43 9.22 1.54 1.55 4.23 1.98 9.22 2.43Z" fill="#181430"/></svg></div>
+        <p>There's a ceiling no one sees, which is the size of your network and the memory of whoever thinks of you <b>at the right time</b></p>
+      </div>
+      <div class="pain dk rv">
+        <div class="pain-h"><span class="pain-n">02</span><svg class="pain-ic" viewBox="0 0 51 41" fill="none" aria-hidden="true"><rect width="51" height="40.8" rx="20.4" fill="#D8FF60"/><path d="M37.16 20.39c-4.57.42-7.2.8-8.81 2.06-1.9 1.48-2.35 4.19-2.85 9.6-.51-5.61-.98-8.3-3.06-9.75-1.61-1.13-4.22-1.5-8.6-1.9 4.56-.41 7.2-.79 8.8-2.03 1.91-1.5 2.36-4.19 2.86-9.63.46 5 .88 7.68 2.43 9.22 1.54 1.55 4.23 1.98 9.22 2.43Z" fill="#181430"/></svg></div>
+        <p>Some months three come in. Some months the phone goes quiet and you can't explain why, <b>because there is no why</b></p>
+      </div>
+    </div>
+
+    <p class="pain-punch rv">Depending on referrals leaves you waiting.<br><span>And waiting hands your growth to something you don't control.</span></p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 04 — A CONTA ===== -->
+<section class="conta pad-lg" data-sec="04_a_conta">
   <div class="narrow">
-    <div class="center rv"><span class="tag">What we build</span></div>
-    <h2 class="s-title rv">A page that does more than hold your information.</h2>
-    <p class="s-body rv">One page. Built around your real work, written for the specific kind of client you want to attract.</p>
-    <p class="s-body rv">What makes it different from what you already have isn't just the design, although the design will be custom, built from scratch, and made to feel like it could only belong to you.</p>
-    <p class="s-body rv">What makes it different is that <b>every section is doing something specific in the mind of the person scrolling through it.</b> The opening tells them in two seconds they've found someone at a level they respect. The portfolio is arranged so each project builds confidence in the next. The copy addresses the quiet hesitations someone has before reaching out. And the contact step feels like starting a conversation, not submitting an application with twelve required fields.</p>
-    <p class="s-body rv">When someone reaches the end of a page like this, something has already shifted. The message they send you sounds different from what you usually get.</p>
+    <p class="conta-big rv">Run the numbers with me.</p>
+    <p class="conta-p rv" style="text-align:center;max-width:48ch;margin:0 auto 2.2rem">think about what it's worth to you to close a single client. If you sell a substantial service, that number is high. One closed contract changes your month</p>
+
+    <!-- VISUAL — o que você paga x o que um cliente vale -->
+    <div class="rv" aria-hidden="true" style="max-width:520px;margin:0 auto 2rem">
+      <svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+        <style>
+          .vc-lab{font-family:var(--b);font-size:12px;font-weight:700;fill:var(--ink)}
+          .vc-small{fill:var(--lilac)}
+          .vc-big{fill:var(--lime)}
+          .vc-stroke{stroke:var(--ink);stroke-width:1.2;fill:none;opacity:.18}
+          .vc-note{font-family:var(--d);font-style:italic;font-size:11px;fill:var(--txs)}
+        </style>
+        <text class="vc-lab" x="10" y="30">what you pay to land a client</text>
+        <rect class="vc-small" x="10" y="40" width="70" height="20" rx="4"/>
+        <rect class="vc-stroke" x="10" y="40" width="500" height="20" rx="4"/>
+        <text class="vc-lab" x="10" y="95">what that client is worth to you once closed</text>
+        <rect class="vc-big" x="10" y="105" width="500" height="24" rx="4"/>
+        <text class="vc-note" x="10" y="146">the cost fits many times over inside the value</text>
+      </svg>
+    </div>
+
+    <div class="fn-loss rv" style="max-width:480px;margin:0 auto">
+      <div class="fn-loss-n">1</div>
+      <div class="fn-loss-t">closed client in a month already covers the cost of every other one that comes after. The rest is profit on top of a calculation that closed in the black from the start.</div>
+    </div>
+
+    <p class="conta-punch rv">staying out of this leaves money on the table every month, because the demand is on Google now and it will close with someone either way</p>
   </div>
 </section>
 
-<!-- ===== SECTION 3.5 — THREE THINGS ===== -->
-<section class="pad" style="padding-top:0">
+<!-- ===== BLOCO 05 — LETÍCIA ===== -->
+<section class="leticia pad-lg" data-sec="05_leticia">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <p class="let-name rv">My name is Letícia.</p>
+    <p class="let-p rv">I started out working with data, tracking, and the path a person takes online before hiring anything. Staring at campaign reports all day is how I noticed something <b>almost no agency talks about</b></p>
+
+    <!-- VISUAL — o caminho até aqui -->
+    <div class="trilha rv" aria-hidden="true">
+      <div class="tr-i"><div class="tr-t">Agronomy</div><div class="tr-s">background</div></div>
+      <div class="tr-i"><div class="tr-t">Data &amp; tracking</div><div class="tr-s">GA4, the buying path</div></div>
+      <div class="tr-i"><div class="tr-t">Paid ads</div><div class="tr-s">international market</div></div>
+      <div class="tr-i"><div class="tr-t">The Landing Lab</div><div class="tr-s">today</div></div>
+    </div>
+
+    <div class="let-block">
+      <p class="let-p rv">there's a line of people searching for services on purpose, every day, and in most businesses no one is positioned to serve that line</p>
+      <p class="let-sub rv">that line is almost entirely on Google, the biggest place in the world to find someone who already decided to buy</p>
+      <p class="let-p rv">my job is to find those searches and build the shortest path between them and you. That path ends with a qualified lead reaching you directly, and it works without you understanding a single line of how it was built</p>
+      <p class="let-p rv" style="text-align:center;margin-top:2rem"><b>The machine behind it stays with me. What's left for you is talking to whoever shows up and closing.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO 06 — MECANISMO ===== -->
+<section class="pad-lg" data-sec="06_mecanismo">
   <div class="wrap">
+    <div class="center rv"><span class="tag">Convincing people who don't want it vs. capturing people who already decided</span></div>
+    <p class="mec-intro rv" style="text-align:center;max-width:52ch;margin:0 auto 2rem">some people need to be convinced to buy, and some already convinced themselves. Almost every business treats both the same way, and that's where the money leaks</p>
+
+    <div class="prob-row rv" style="grid-template-columns:repeat(2,1fr)">
+      <div class="prob-card"><div class="prob-t">Generate demand</div><p>convince someone who doesn't want anything yet. It's expensive, it's slow, and most people ignore it because you're pushing your message at someone who didn't ask</p></div>
+      <div class="prob-card"><div class="prob-t">Capture demand</div><p>show up for someone who already typed the name of what they need into Google. It's cheap because you're not paying to convince, you're paying to be present at the moment of decision</p></div>
+    </div>
+
+    <!-- VISUAL — o caminho mais curto -->
+    <div class="rv" role="img" aria-label="Diagram: from the Google search, to the page, to the call." style="max-width:560px;margin:2.4rem auto 2rem">
+      <svg viewBox="-14 -8 588 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;overflow:visible">
+        <style>
+          .cx-line{stroke:var(--ld);stroke-width:2.4}
+          .cx-node{fill:var(--ink)}
+          .cx-ring{fill:none;stroke:var(--lilac);stroke-width:2}
+          .cx-lab{font-family:var(--b);font-size:12px;font-weight:800;fill:var(--ink)}
+          .cx-sub{font-family:var(--d);font-style:italic;font-size:11px;fill:var(--txs)}
+          .cx-ic{fill:none;stroke:var(--paper);stroke-width:2;stroke-linecap:round}
+        </style>
+        <line class="cx-line" x1="60" y1="58" x2="280" y2="58"/>
+        <line class="cx-line" x1="280" y1="58" x2="500" y2="58"/>
+        <circle class="cx-ring" cx="60" cy="58" r="24"/><circle class="cx-node" cx="60" cy="58" r="17"/>
+        <circle class="cx-ic" cx="56" cy="54" r="5"/><line class="cx-ic" x1="60" y1="58" x2="65" y2="63"/>
+        <circle class="cx-ring" cx="280" cy="58" r="24"/><circle class="cx-node" cx="280" cy="58" r="17"/>
+        <rect x="272" y="49" width="16" height="18" rx="2" fill="none" stroke="var(--paper)" stroke-width="2"/>
+        <circle class="cx-ring" cx="500" cy="58" r="24"/><circle class="cx-node" cx="500" cy="58" r="17"/>
+        <path class="cx-ic" d="M494 51c-1.2 0-2 1-2 2.2 0 6 5 11 11 11 1.2 0 2.2-.8 2.2-2v-2.4c0-.8-.6-1.4-1.4-1.5l-2.6-.3c-.7-.1-1.4.2-1.8.8-.9-.5-1.7-1.3-2.2-2.2.6-.4.9-1.1.8-1.8l-.3-2.6c-.1-.8-.7-1.4-1.5-1.4z" fill="var(--paper)" stroke="none"/>
+        <text class="cx-lab" x="60" y="104" text-anchor="middle">Google</text>
+        <text class="cx-sub" x="60" y="120" text-anchor="middle">already searching</text>
+        <text class="cx-lab" x="280" y="104" text-anchor="middle">Page</text>
+        <text class="cx-sub" x="280" y="120" text-anchor="middle">answers the search</text>
+        <text class="cx-lab" x="500" y="104" text-anchor="middle">You</text>
+        <text class="cx-sub" x="500" y="120" text-anchor="middle">the call comes in</text>
+      </svg>
+    </div>
+
+    <p class="center rv" style="font-weight:800;font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--ink);max-width:32ch;margin:0 auto 1rem;letter-spacing:-.02em">The three parts that make this run</p>
+
     <div class="three rv">
-      <div class="three-card"><div class="three-n">01</div><div class="three-t">First impression</div><p>In the first two seconds, the visitor confirms they've found someone operating at a level they respect. If they have to scroll to figure out where they are, you've already lost half of them.</p></div>
-      <div class="three-card"><div class="three-n">02</div><div class="three-t">Confidence</div><p>They see your work curated, not dumped. They read copy that speaks to what they're looking for. Their silent hesitations get answered before they realize they had them.</p></div>
-      <div class="three-card"><div class="three-n">03</div><div class="three-t">Decision</div><p>They reach the end already wanting to work with you. The contact step feels natural, not like filling out a form. They message you already decided, not still shopping.</p></div>
+      <div class="three-card"><div class="three-n">01</div><div class="three-t">Search</div><p>the Google campaign set up to catch whoever is already searching for your service, in your area or your market</p></div>
+      <div class="three-card"><div class="three-n">02</div><div class="three-t">Page</div><p>built to answer exactly what brought the person there, with no detour and no extra step</p></div>
+      <div class="three-card"><div class="three-n">03</div><div class="three-t">Contact</div><p>the conversation starts the moment intent to hire is at its highest, straight with you</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 4 — HOW IT WORKS ===== -->
-<section class="pad-lg" style="background:var(--card)" id="how">
+<!-- ===== BLOCO 07 — DECISÕES ===== -->
+<section class="conta pad-lg" data-sec="07_decisoes">
   <div class="wrap">
-    <div class="center rv"><span class="tag">How it works</span></div>
-    <h2 class="s-title rv">Stays in your inbox, out of your calendar.</h2>
-    <p class="s-body center rv" style="margin-bottom:2.5rem">Everything happens by email. If at any point you'd rather hop on a quick call, that works too.</p>
-
-    <div class="steps">
-      <div class="step rv">
-        <div class="step-n">1</div>
-        <div class="step-t">You share your work</div>
-        <p>We send a short brief. Your best projects, your visual references, a few words about the clients you want more of. Fifteen minutes, whenever you have them. Midnight counts.</p>
-      </div>
-      <div class="step rv">
-        <div class="step-n">2</div>
-        <div class="step-t">We build</div>
-        <p>You receive a link to a fully working page with your real projects, your aesthetic, and copy written specifically for your audience. Not a wireframe, not a concept deck. A real page.</p>
-      </div>
-      <div class="step rv">
-        <div class="step-n">3</div>
-        <div class="step-t">You review</div>
-        <p>Show it to someone you trust. Sleep on it. Then tell us what to change. Two rounds of revisions, because getting it right matters more than getting it fast.</p>
-      </div>
-      <div class="step rv">
-        <div class="step-n">4</div>
-        <div class="step-t">It goes live</div>
-        <p>Fully yours. Five to seven business days, start to finish.</p>
-      </div>
+    <div class="dec-intro rv">
+      <p style="font-family:var(--d);font-style:italic;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--ink);margin-bottom:1.3rem">I'd rather show you how I think.</p>
     </div>
+
+    <div class="dec-grid stg">
+      <div class="dec rv"><div class="dec-h">Decision 1 — I measure the demand before you spend.</div><p>I go to Google and see how many people search for your service and with how much real intent to hire. If the volume isn't there, I tell you on the spot and I don't move forward</p></div>
+      <div class="dec rv"><div class="dec-h">Decision 2 — I only take high-ticket services.</div><p>when a closed client is worth a lot, the cost of bringing that client in becomes a detail. With a cheap service the math tightens and stops being worth it for both sides</p></div>
+      <div class="dec rv"><div class="dec-h">Decision 3 — The shortest path to contact.</div><p>the search turns into a direct call or message, not a long form that gives the person a reason to quit halfway</p></div>
+    </div>
+
+    <p class="dec-close rv">this is what decides whether the math works, and it's where I spend my time</p>
   </div>
 </section>
 
-<!-- ===== SECTION 6 — AI SEARCH ===== -->
-<section class="dark pad-lg">
+<!-- ===== BLOCO 08 — PRODUTO ===== -->
+<section class="produto pad-lg" data-sec="08_produto">
   <div class="glow"></div>
   <div class="narrow" style="position:relative">
-    <div class="center rv"><span class="tag" style="background:rgba(216,255,96,.12);color:var(--lime)">What most designers aren't thinking about</span></div>
-    <h2 class="s-title rv" style="color:var(--paper)">A page that gets understood by everyone who finds it.</h2>
-    <p class="s-body rv">People are increasingly using AI tools to find professionals. The recommendations those systems give depend on what they can read on your website. Most professional sites are almost entirely visual. Beautiful to look at, but invisible to any machine trying to understand them.</p>
-    <p class="s-body rv">Our pages are built with real, specific content and structured data that makes your work legible to any search system, today and whatever comes next. We can't guarantee where you'll appear. <b>But your page won't be the reason you're missing from the conversation.</b></p>
-    <p class="punch rv">Most of your competitors' sites are beautiful and silent. Yours will be beautiful and legible.</p>
+    <p class="prod-name rv">Demand Capture</p>
+    <p class="prod-p rv">a structure built on top of Google, made for high-ticket services, that catches whoever is already searching for what you sell, answers on the page exactly what brought that person there, and takes the conversation straight to you at the peak of their intent to hire</p>
+    <p class="prod-mesmo rv">everything that makes this run comes bundled together, with no ad spend billed on the side, no tool subscriptions, nothing for you to manage</p>
+    <p class="prod-punch rv">you get a person who searched, showed up, and wants to hire you now. The rest is my job</p>
   </div>
 </section>
 
-<!-- ===== SECTION 8 — FAQ ===== -->
-<section class="pad-lg">
+<!-- ===== BLOCO 09 — OBJEÇÕES ===== -->
+<section class="pad-lg" data-sec="09_objecoes">
   <div class="wrap">
-    <h2 class="center rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Questions</h2>
-    <div class="faq">
-      <div class="fq rv"><button class="fq-q">Do I need to get on a call?<span class="fq-i"></span></button><div class="fq-a"><p>You don't. The entire process happens by email. But if you want to talk at any point, we'll make time for it. It's just not required.</p></div></div>
-      <div class="fq rv"><button class="fq-q">I already have a website.<span class="fq-i"></span></button><div class="fq-a"><p>Some clients replace theirs entirely. Others keep it and use our page as the link they share on social media and with potential clients. We'll figure out what makes sense for you.</p></div></div>
-      <div class="fq rv"><button class="fq-q">How is this different from Squarespace?<span class="fq-i"></span></button><div class="fq-a"><p>Squarespace gives you a canvas and leaves you alone with it. We hand you a finished painting. Custom design, professional copy, built around your specific work. You don't build anything. You tell us what to adjust.</p></div></div>
-      <div class="fq rv"><button class="fq-q">What if I don't like the preview?<span class="fq-i"></span></button><div class="fq-a"><p>That's exactly what the revision rounds are for. We adjust until it feels right.</p></div></div>
-      <div class="fq rv"><button class="fq-q">What do you need from me?<span class="fq-i"></span></button><div class="fq-a"><p>Your best project photos, your logo if you have one, your brand colors, and fifteen minutes with our brief. That's enough.</p></div></div>
-      <div class="fq rv"><button class="fq-q">Can I update the page later?<span class="fq-i"></span></button><div class="fq-a"><p>Simple updates like swapping a photo or changing contact info are easy to handle. For bigger structural changes, we offer a straightforward maintenance option.</p></div></div>
+    <h2 class="center rv" style="font-size:clamp(1.3rem,3.2vw,2rem);max-width:26ch;margin:0 auto 2.5rem">What you're thinking right now.</h2>
+    <div class="obj3 stg">
+      <div class="obj3-item rv">
+        <p class="obj3-q">"No one searches for my service on Google."</p>
+        <p class="obj3-a">some niches really do have low volume, and in those cases I tell you before we start. But most owners lowball that number because they never checked. <b>I check it before you commit a dollar</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">"Isn't this going to be work for me?"</p>
+        <p class="obj3-a">it won't. That part stays entirely with me, start to finish. You don't open a dashboard, pick a keyword, or check whether it's working. <b>You get the conversation ready to go and do the one thing only you can do, which is close the client</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">"How do I know I won't pay and get nothing back?"</p>
+        <p class="obj3-a">I focus on high-ticket services precisely so the value of one closed client is far greater than the cost of bringing that client in. The first one that closes in a month already pays for everything. <b>And before we start, I show you whether the search volume justifies it</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">"My service is expensive and has a long sales cycle."</p>
+        <p class="obj3-a">that works in your favor. People searching for a high-ticket service show up with more intent, because they thought hard before searching. <b>What we do in that case is qualify early</b>, so you spend time only on the ones that look ready to close</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FINAL CTA ===== -->
-<section class="dark pad-lg">
-  <div class="glow"></div>
-  <div class="narrow" style="position:relative">
-    <div class="final-cta rv">
-      <p>Somewhere right now, someone is looking at your website and forming an opinion about you.</p>
-      <p>You don't get to be in the room when that happens. You don't get to explain the context, show them the projects that aren't on the site yet, or tell them the template doesn't really represent your style.</p>
-      <span class="strong">All you get is the page. Make it count.</span>
+<!-- ===== BLOCO 10 — COMO FUNCIONA ===== -->
+<section class="conta pad-lg" data-sec="10_como_funciona">
+  <div class="wrap">
+    <h2 class="center rv" style="font-size:clamp(1.4rem,3.4vw,2.2rem);margin-bottom:.5rem">How it works</h2>
+    <p class="como-sub rv">Three steps until the demand arrives. None of them are yours.</p>
+    <div class="step-row rv">
+      <div class="step-box"><div class="step-n">01</div><div class="step-t">Diagnosis</div><p>I measure on Google whether people are searching for your service, how many, and with what intent to hire, and that decides whether the project makes sense</p></div>
+      <div class="step-box"><div class="step-n">02</div><div class="step-t">Build</div><p>I set up the search campaign, build the page that receives the click, and connect it all to you, without you touching anything</p></div>
+      <div class="step-box"><div class="step-n">03</div><div class="step-t">Live</div><p>the campaign goes live and the demand that already existed starts landing straight in front of you, for you to answer and close</p></div>
     </div>
+    <p class="como-foot rv">From diagnosis to live, with whoever is already searching for your service reaching you directly.</p>
+  </div>
+</section>
+
+
+<!-- ===== BLOCO 11C — FUNCIONA PRO SEU CASO ===== -->
+<section class="pad-lg casos" id="funciona-pro-seu-caso" data-sec="11c_funciona_pro_seu_caso">
+  <div class="glow"></div>
+  <div class="wrap" style="position:relative">
+    <h2 class="rv">Does it work for your case?</h2>
+    <p class="casos-rule rv">It works whenever what you sell <b>is expensive and people search for it on Google.</b></p>
+
+    <div class="caso-grid stg">
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Environmental site assessments</b><p>A lender requires it before closing and the buyer searches with a deadline in hand.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Commercial roofing &amp; coatings</b><p>High-ticket work a building owner researches before hiring.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Industrial rigging &amp; crane</b><p>A plant moving a line searches for whoever can handle it.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Asbestos &amp; abatement</b><p>Required before a remodel or demolition, searched with urgency.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Specialized fabrication</b><p>RF shielding, custom metal, cable assembly. A buyer searches for the exact capability.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>High-value consulting</b><p>A ticket that makes the math work with room to spare.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>You sell to other businesses</b><p>There's a decision-maker searching for a solution to their problem.</p></div></div>
+      <div class="caso rv"><span class="caso-ck"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.6 9 10 3.2" stroke="#181430" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>You serve a specific metro</b><p>The campaign only catches whoever searches in your area.</p></div></div>
+    </div>
+
+    <div class="casos-no rv">
+      <h3>And the cases where I'll tell you it doesn't make sense</h3>
+      <ul>
+        <li><b>Low-ticket service.</b> When a closed client is worth little, the cost of bringing that client in tightens the math and stops being worth it for both sides.</li>
+        <li><b>A service so new that no one searches for it.</b> No search on Google means nothing to capture. That's demand generation, which is a different job, and I say so before taking it on.</li>
+        <li><b>Someone who hasn't decided what they sell.</b> If you don't know which service you want to capture, the campaign comes out as vague as the answer, and Google won't be the problem.</li>
+      </ul>
+    </div>
+
+    <p class="casos-close rv">If what you sell is expensive and people search for it, <b>your case is on the first list.</b></p>
+
+    <div class="center rv" style="margin-top:2.4rem">
+      <a href="#get-diagnosis" class="btn btn-lime" onclick="trackCTA('funciona_pro_seu_caso')">get my free diagnosis <span class="ar">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO 14 — QUEM ESTÁ POR TRÁS ===== -->
+<section class="pad-lg" data-sec="14_quem_esta_por_tras">
+  <div class="narrow">
+    <div class="callout rv">
+      <p>your time is worth more closing clients than learning to configure ads. I capture whoever already decided to hire and hand them to you, <b>with everything that makes it work on me</b></p>
+    </div>
+    <p class="rv" style="text-align:center;font-size:.95rem;color:var(--txs);margin-top:1rem"><b style="color:var(--ink)">The Landing Lab. I build the path between the demand that already exists on Google and the conversation that closes the contract.</b></p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 15 — GARANTIA ===== -->
+<section class="garantia pad-lg" data-sec="15_garantia">
+  <div class="narrow">
+    <p class="gar-h rv">You're not going in blind</p>
+
+    <!-- VISUAL — a ordem antes de gastar -->
+    <div class="rodadas rv" aria-hidden="true">
+      <span class="rd">Diagnosis</span><span class="rd-ar">&rarr;</span>
+      <span class="rd">Google volume</span><span class="rd-ar">&rarr;</span>
+      <span class="rd">The math works</span><span class="rd-ar">&rarr;</span>
+      <span class="rd win">Campaign live</span>
+    </div>
+    <p class="gar-p rv" style="text-align:center;max-width:52ch;margin:0 auto">before a single dollar in ads, I measure whether real demand exists for your service. <b>If it doesn't, I tell you on the spot and I don't move forward</b></p>
     <div class="center rv" style="margin-top:2rem">
-      <a href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started" class="btn btn-lime">Get started <span class="ar">→</span></a>
-      <p class="final-sub">Full custom page, live in under a week.</p>
+      <a href="#get-diagnosis" class="btn" onclick="trackCTA('garantia')">let's start <span class="ar">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <span class="logo">The Landing Lab<span style="color:var(--lime)">.</span></span>
-  <p style="margin-top:.3rem">Your work is already excellent. We make sure your online presence says the same thing.</p>
-  <p style="margin-top:.8rem"><a href="mailto:leticia@thelandinglab.com.br">leticia@thelandinglab.com.br</a> · <a href="https://instagram.com/thelanding.lab" target="_blank">@thelanding.lab</a></p>
-</footer>
-
-<div class="sticky-cta">
-  <div class="sc-l">
-    <span class="sc-t">Custom page, live in under a week</span>
-    <span class="sc-p">Full design, copy, and launch included</span>
+<!-- ===== BLOCO 16 — FAQ ===== -->
+<section class="pad-lg" data-sec="16_faq">
+  <div class="wrap">
+    <h2 class="center rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Frequently asked questions</h2>
+    <div class="faq stg">
+      <div class="fq rv"><button class="fq-q">Is there a separate ad cost I pay on the side?<span class="fq-i"></span></button><div class="fq-a"><p>No. It all comes in one bundle, including the campaign, the page, the integration, and the spend that makes it run. You don't get a tool bill or an extra invoice to manage.</p></div></div>
+      <div class="fq rv"><button class="fq-q">Do I need to understand Google for this to work?<span class="fq-i"></span></button><div class="fq-a"><p>No. That's the part that stays with me. You don't configure anything, watch a dashboard, or make any technical calls. You get the conversation ready to go.</p></div></div>
+      <div class="fq rv"><button class="fq-q">How long until people start coming in?<span class="fq-i"></span></button><div class="fq-a"><p>It's usually fast, because you're catching whoever is searching right now. The exact time depends on your industry's search volume, and I map that in the diagnosis.</p></div></div>
+      <div class="fq rv"><button class="fq-q">How do I know it's worth it?<span class="fq-i"></span></button><div class="fq-a"><p>Run the numbers on what a closed client is worth to you. Because I focus on high-ticket services, that value is always far higher than the cost of bringing the client in, and the first one that closes in a month already pays for everything. In the diagnosis, before we start, I show you whether the volume justifies it.</p></div></div>
+      <div class="fq rv"><button class="fq-q">Does it work for my industry?<span class="fq-i"></span></button><div class="fq-a"><p>It depends on whether there's real search for what you sell and whether the ticket is high enough for the math to work. I check both in the diagnosis, before closing anything.</p></div></div>
+      <div class="fq rv"><button class="fq-q">And if the demand isn't enough?<span class="fq-i"></span></button><div class="fq-a"><p>I find that out before we start, not after. If there isn't enough search volume, or the ticket is too low, I tell you on the spot and I don't move forward with the project.</p></div></div>
+      <div class="fq rv"><button class="fq-q">How do I start?<span class="fq-i"></span></button><div class="fq-a"><p>You email me. We talk about your service, I measure the demand on Google, confirm the math works, and only then, if it makes sense for both of us, we move forward.</p></div></div>
+    </div>
   </div>
-  <a class="sc-b" href="mailto:leticia@thelandinglab.com.br?subject=I'd%20like%20to%20get%20started%20-%20The%20Landing%20Lab">Get started</a>
-</div>
+</section>
+
+
+<!-- ===== RODAPÉ ===== -->
+<footer><div class="wrap">
+  <div class="logo">The Landing Lab<span style="color:var(--lime)">.</span></div>
+  <p class="f-slogan">The demand already exists. I build the path to it.</p>
+  <a href="https://instagram.com/thelanding.lab" target="_blank" onclick="tllTrack('instagram_click',{event_category:'navegacao',event_label:'rodape'})">@thelanding.lab</a>
+</div></footer>
+
 
 <script>
 (function(){
@@ -330,12 +1005,14 @@ if(typeof IntersectionObserver!=='undefined'){
   setTimeout(function(){document.querySelectorAll('.rv:not(.in)').forEach(show)},3000);
 }else{document.querySelectorAll('.rv').forEach(show)}
 
+var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* nav + progresso */
 var nav=document.getElementById('nav'),prog=document.getElementById('prog'),tick=false;
 function onScroll(){
   var y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
   nav.classList.toggle('stuck',y>80);
   prog.style.width=(h>0?Math.min(y/h,1)*100:0).toFixed(2)+'%';
-  document.body.classList.toggle('sc-on',y>window.innerHeight*1.2);
   tick=false
 }
 window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
@@ -344,8 +1021,134 @@ onScroll();
 document.querySelectorAll('.fq-q').forEach(function(b){b.addEventListener('click',function(){
   var it=b.parentElement,a=it.querySelector('.fq-a'),w=it.classList.contains('open');
   document.querySelectorAll('.fq.open').forEach(function(o){o.classList.remove('open');o.querySelector('.fq-a').style.maxHeight=null});
-  if(!w){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  if(!w){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';
+    tllTrack('faq_abriu',{event_category:'engajamento',event_label:b.textContent.trim().slice(0,90)},'FAQaberta',{pergunta:b.textContent.trim().slice(0,90)},true);
+  }
 })});
+
+/* ---- envio do formulário de diagnóstico via Formspree (AJAX) ---- */
+var lf=document.querySelector('.lead-form');
+if(lf){
+  lf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(lf.classList.contains('sending'))return;
+    var data=new FormData(lf);
+    lf.classList.add('sending');
+    fetch(lf.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){
+          var nm=(data.get('name')||'').toString().trim().split(' ')[0];
+          document.getElementById('lf-name').textContent=nm?(', '+nm):'';
+          lf.style.display='none';
+          document.getElementById('lf-success').classList.add('on');
+          try{ trackCK('form_enviado'); }catch(_){}
+        }else{
+          lf.classList.remove('sending');
+          alert('Something went wrong. Please email leticia@thelandinglab.com.br directly.');
+        }
+      })
+      .catch(function(){
+        lf.classList.remove('sending');
+        alert('Something went wrong. Please email leticia@thelandinglab.com.br directly.');
+      });
+  });
+}
+
+/* =====================================================================
+   COMPORTAMENTO NA PÁGINA — eventos para GA4 e Meta
+   ===================================================================== */
+(function(){
+  var t0=Date.now(), maxScroll=0, marks={}, offerSeen=false;
+  var estado={}, ordem=[], atual=null, ultima=null, lidas=0;
+
+  function segundos(){ return Math.round((Date.now()-t0)/1000) }
+  function agora(){ return Date.now() }
+  function beacon(o){ o=o||{}; o.transport_type='beacon'; return o }
+
+  document.querySelectorAll('[data-sec]').forEach(function(el){
+    var n=el.getAttribute('data-sec');
+    estado[n]={total:0,entrou:0,dentro:false,vista:false,lida:false};
+    ordem.push(n);
+  });
+
+  function entrar(n){
+    var s=estado[n]; if(!s||s.dentro)return;
+    s.dentro=true; s.entrou=agora(); atual=n; ultima=n;
+    if(!s.vista){
+      s.vista=true;
+      tllTrack('secao_vista',{event_category:'engajamento',event_label:n,tempo_ate_aqui:segundos()},'SecaoVista',{secao:n},true);
+      if(n==='08_produto'){
+        offerSeen=true;
+        tllTrack('viu_oferta',{event_category:'conversao',event_label:'secao_produto',value:1000,currency:'USD'},'ViewContent',{content_name:'Demand Capture',content_ids:['demand-capture'],content_type:'product',value:1000,currency:'USD'});
+      }
+      if(offerSeen && segundos()>=60 && !marks.deep){
+        marks.deep=1;
+        tllTrack('leitura_profunda',{event_category:'engajamento',event_label:'oferta_com_60s'},'LeituraProfunda',{},true);
+      }
+    }
+  }
+
+  function sair(n,final){
+    var s=estado[n]; if(!s||!s.dentro)return;
+    s.dentro=false;
+    s.total+=agora()-s.entrou;
+    var seg=Math.round(s.total/1000);
+    if(seg>=3 && !s.lida){
+      s.lida=true; lidas++;
+      tllTrack('secao_lida',{event_category:'engajamento',event_label:n,secao:n,segundos_na_secao:seg,value:seg},'SecaoLida',{secao:n,segundos:seg},true);
+    } else if(seg>=3 && s.lida && final){
+      tllTrack('secao_lida',beacon({event_category:'engajamento',event_label:n,secao:n,segundos_na_secao:seg,value:seg}));
+    }
+    if(atual===n)atual=null;
+  }
+
+  if(typeof IntersectionObserver!=='undefined'){
+    var so=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var n=e.target.getAttribute('data-sec');
+        e.isIntersecting?entrar(n):sair(n,false);
+      });
+    },{rootMargin:'-35% 0px -35% 0px',threshold:0});
+    document.querySelectorAll('[data-sec]').forEach(function(el){so.observe(el)});
+  }
+
+  function pct(){
+    var d=document.documentElement, sh=d.scrollHeight-window.innerHeight;
+    return sh>0?Math.min(100,Math.round((window.scrollY/sh)*100)):0;
+  }
+  function checkScroll(){
+    var v=pct(); if(v>maxScroll)maxScroll=v;
+    [25,50,75,90].forEach(function(m){
+      if(v>=m && !marks['s'+m]){
+        marks['s'+m]=1;
+        tllTrack('scroll_'+m,{event_category:'engajamento',event_label:m+'%',value:m},'Rolagem'+m,{percentual:m},true);
+      }
+    });
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(function(){checkScroll();ticking=false})}
+  },{passive:true});
+  checkScroll();
+
+  [30,60,120,180].forEach(function(s){
+    setTimeout(function(){
+      if(marks['t'+s])return; marks['t'+s]=1;
+      tllTrack('tempo_'+s+'s',{event_category:'engajamento',event_label:s+'s',value:s},'Tempo'+s+'s',{segundos:s},true);
+    },s*1000);
+  });
+
+  function encerrar(){
+    if(marks.out)return; marks.out=1;
+    ordem.forEach(function(n){ if(estado[n].dentro) sair(n,true) });
+    var alvo=ultima||'01_hero';
+    var seg=Math.round((estado[alvo]?estado[alvo].total:0)/1000);
+    tllTrack('ultima_secao',beacon({event_category:'engajamento',event_label:alvo,secao:alvo,segundos_na_secao:seg,scroll_maximo:maxScroll,viu_oferta:offerSeen?1:0}));
+    tllTrack('saida',beacon({event_category:'engajamento',event_label:alvo,scroll_maximo:maxScroll,segundos_na_pagina:segundos(),secoes_lidas:lidas,viu_oferta:offerSeen?1:0}));
+  }
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')encerrar()});
+  window.addEventListener('pagehide',encerrar);
+})();
 })();
 </script>
 </body>
