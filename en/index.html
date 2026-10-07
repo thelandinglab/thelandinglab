@@ -497,6 +497,28 @@ img,svg{max-width:100%}
 .casos .caso{text-align:left}
 .casos-no ul{text-align:left}
 .casos-no li{text-align:left}
+
+/* =====================================================================
+   CORREÇÕES DO FORMULÁRIO NO CELULAR
+   ===================================================================== */
+/* 1. iPhone dá zoom na página inteira quando o campo tem fonte menor que 16px */
+.lf-field{min-width:0}
+.lf-field input,.lf-field select{font-size:max(16px,.95rem);min-width:0}
+
+/* 2. o botão flutuante some enquanto o formulário está na tela ou em foco,
+      pra não cobrir os campos nem o botão de envio */
+.mail-float{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,opacity .3s,visibility .3s}
+.mail-float.off{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(14px);animation:none}
+
+/* 3. aviso de erro dentro do próprio formulário (alert() é bloqueado em vários navegadores de app) */
+.lf-error{display:none;margin-top:1rem;padding:.85rem 1rem;border-radius:8px;background:rgba(140,130,220,.12);border:1px solid var(--lilac);font-size:.88rem;line-height:1.55;color:var(--ink);font-weight:600;text-align:center}
+.lf-error.on{display:block}
+.lf-error a{display:inline-block;color:var(--ink);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.lf-submit:disabled{cursor:default}
+
+/* 4. a confirmação precisa de respiro do menu fixo quando a página rola até ela */
+.lf-success{scroll-margin-top:90px}
+.lf-success:focus{outline:none}
 </style>
 </head>
 <body>
@@ -605,7 +627,7 @@ img,svg{max-width:100%}
           </label>
           <label class="lf-field">
             <span>Work email</span>
-            <input type="email" name="email" required placeholder="you@company.com" autocomplete="email">
+            <input type="email" name="email" required placeholder="you@company.com" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false">
           </label>
           <label class="lf-field">
             <span>Company</span>
@@ -650,10 +672,11 @@ img,svg{max-width:100%}
             </select>
           </label>
         </div>
-        <button type="submit" class="btn btn-lime lf-submit">Get my free demand diagnosis <span class="ar">&rarr;</span></button>
+        <button type="submit" class="btn btn-lime lf-submit"><span class="lf-submit-t">Get my free demand diagnosis</span> <span class="ar">&rarr;</span></button>
+        <p class="lf-error" id="lf-error" role="alert"></p>
         <p class="lf-fine">No cost, no obligation. <b>I only take one company per service in each metro</b>, so the earlier you're in, the better.</p>
       </form>
-      <div class="lf-success" id="lf-success">
+      <div class="lf-success" id="lf-success" tabindex="-1" role="status">
         <div class="lf-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5 10 17.5 19.5 7" stroke="#181430" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>Got it<span id="lf-name"></span>.</h3>
         <p>I'm already on it. I'll go to Google, measure the demand for your service in your metro, and send your diagnosis within <b>2 business days</b>. Keep an eye on your inbox.</p>
@@ -1026,32 +1049,142 @@ document.querySelectorAll('.fq-q').forEach(function(b){b.addEventListener('click
   }
 })});
 
-/* ---- envio do formulário de diagnóstico via Formspree (AJAX) ---- */
+/* =====================================================================
+   BOTÃO FLUTUANTE — some quando o formulário está na tela, em foco,
+   ou depois que o diagnóstico já foi pedido. No celular ele ocupa a
+   largura toda no rodapé e ficava por cima dos campos e do botão de envio.
+   ===================================================================== */
+var flt=document.querySelector('.mail-float'), fw=document.getElementById('get-diagnosis');
+var fltTrava=false, fltNaTela=false, fltFoco=false;
+function fltSync(){ if(flt) flt.classList.toggle('off',fltTrava||fltNaTela||fltFoco); }
+if(flt&&fw){
+  if(typeof IntersectionObserver!=='undefined'){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ fltNaTela=e.isIntersecting });
+      fltSync();
+    },{threshold:0}).observe(fw);
+  }
+  fw.addEventListener('focusin',function(){ fltFoco=true; fltSync() });
+  fw.addEventListener('focusout',function(){ fltFoco=false; fltSync() });
+}
+
+/* =====================================================================
+   ENVIO DO FORMULÁRIO DE DIAGNÓSTICO — Formspree (AJAX)
+   ===================================================================== */
 var lf=document.querySelector('.lead-form');
 if(lf){
+  var LF_MAIL='leticia@thelandinglab.com.br';
+  var lfOk=document.getElementById('lf-success');
+  var lfErr=document.getElementById('lf-error');
+  var lfBtn=lf.querySelector('.lf-submit');
+  var lfBtnT=lf.querySelector('.lf-submit-t');
+  var lfBtnTxt=lfBtnT?lfBtnT.textContent:'';
+
+  function lfBusy(on){
+    lf.classList.toggle('sending',on);
+    if(lfBtn) lfBtn.disabled=on;
+    if(lfBtnT) lfBtnT.textContent=on?'Sending…':lfBtnTxt;
+  }
+
+  /* e-mail já preenchido com as respostas: se o envio falhar, o lead não se perde */
+  function lfMailto(data){
+    var rot=[['name','Name'],['email','Email'],['company','Company'],['metro','City / metro'],['service','Service'],['job_value','Typical job value'],['monthly_revenue','Monthly revenue'],['capacity','Room for more clients']];
+    var linhas=[];
+    rot.forEach(function(r){ var v=(data.get(r[0])||'').toString().trim(); if(v) linhas.push(r[1]+': '+v) });
+    return 'mailto:'+LF_MAIL+'?subject='+encodeURIComponent('Free demand diagnosis')+'&body='+encodeURIComponent(linhas.join('\n'));
+  }
+
+  function lfShowErr(msg,data){
+    if(!lfErr){ alert(msg); return }
+    lfErr.textContent=msg;
+    if(data){
+      var a=document.createElement('a');
+      a.href=lfMailto(data);
+      a.textContent='Send my answers by email';
+      lfErr.appendChild(document.createTextNode(' '));
+      lfErr.appendChild(a);
+    }
+    lfErr.classList.add('on');
+    try{ lfErr.scrollIntoView({block:'nearest'}) }catch(_){}
+  }
+
+  function lfDone(data){
+    var nm=(data.get('name')||'').toString().trim().split(' ')[0];
+    document.getElementById('lf-name').textContent=nm?(', '+nm):'';
+    /* fecha o teclado do celular */
+    try{ if(document.activeElement&&document.activeElement.blur) document.activeElement.blur() }catch(_){}
+    lf.style.display='none';
+    lfOk.classList.add('on');
+    fltTrava=true; fltSync();
+    /* No celular o formulário é bem mais alto que a confirmação. Quando ele
+       some, a página encolhe e a pessoa cai no meio da seção de baixo, sem ver
+       que deu certo. Por isso a tela é levada até a confirmação. */
+    var irAte=function(){
+      try{ lfOk.scrollIntoView({block:'center',behavior:rm?'auto':'smooth'}) }
+      catch(_){ try{ lfOk.scrollIntoView() }catch(__){} }
+    };
+    if(window.requestAnimationFrame){ requestAnimationFrame(function(){ requestAnimationFrame(irAte) }) } else { irAte() }
+    try{ lfOk.focus({preventScroll:true}) }catch(_){}
+    try{ trackCK('form_enviado'); }catch(_){}
+  }
+
   lf.addEventListener('submit',function(e){
+    /* navegador sem fetch/FormData: deixa o envio normal do formulário acontecer */
+    if(typeof window.fetch!=='function'||typeof window.FormData!=='function') return;
     e.preventDefault();
     if(lf.classList.contains('sending'))return;
+    if(lfErr) lfErr.classList.remove('on');
+
+    /* teclado de celular costuma deixar espaço sobrando depois do autocompletar */
+    var campos=lf.querySelectorAll('input[type="text"],input[type="email"]');
+    for(var i=0;i<campos.length;i++){ campos[i].value=campos[i].value.replace(/^\s+|\s+$/g,'') }
+    if(lf.checkValidity&&!lf.checkValidity()){ if(lf.reportValidity) lf.reportValidity(); return }
+
     var data=new FormData(lf);
-    lf.classList.add('sending');
-    fetch(lf.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+    lfBusy(true);
+
+    /* rede de celular pode travar: depois de 20s a tentativa é cancelada */
+    var ctrl=(typeof AbortController!=='undefined')?new AbortController():null;
+    var timer=setTimeout(function(){ if(ctrl) ctrl.abort() },20000);
+    var opts={method:'POST',body:data,headers:{'Accept':'application/json'}};
+    if(ctrl) opts.signal=ctrl.signal;
+
+    fetch(lf.action,opts)
       .then(function(r){
-        if(r.ok){
-          var nm=(data.get('name')||'').toString().trim().split(' ')[0];
-          document.getElementById('lf-name').textContent=nm?(', '+nm):'';
-          lf.style.display='none';
-          document.getElementById('lf-success').classList.add('on');
-          try{ trackCK('form_enviado'); }catch(_){}
-        }else{
-          lf.classList.remove('sending');
-          alert('Something went wrong. Please email leticia@thelandinglab.com.br directly.');
-        }
+        clearTimeout(timer);
+        if(r.ok){ lfDone(data); return }
+        return r.json().catch(function(){ return {} }).then(function(j){
+          lfBusy(false);
+          var errs=(j&&j.errors)||[], emailRuim=false;
+          for(var k=0;k<errs.length;k++){ if(errs[k]&&errs[k].field==='email') emailRuim=true }
+          tllTrack('form_erro',{event_category:'conversao',event_label:'http_'+r.status});
+          if(emailRuim){
+            lfShowErr("That email address didn't go through. Check it and send again.");
+            var em=lf.querySelector('input[name="email"]'); if(em) em.focus();
+          }else{
+            lfShowErr("That didn't go through on my end, and your answers are still here.",data);
+          }
+        });
       })
       .catch(function(){
-        lf.classList.remove('sending');
-        alert('Something went wrong. Please email leticia@thelandinglab.com.br directly.');
+        clearTimeout(timer);
+        if(navigator.onLine===false){
+          lfBusy(false);
+          tllTrack('form_erro',{event_category:'conversao',event_label:'offline'});
+          lfShowErr("You look offline right now. Your answers are still here, so reconnect and send again.");
+          return;
+        }
+        /* Online, mas o envio em segundo plano foi barrado (bloqueador de
+           conteúdo, navegador de app, rede instável). Em vez de mostrar erro,
+           o formulário é enviado do jeito tradicional e o lead chega igual. */
+        tllTrack('form_fallback_nativo',{event_category:'conversao',event_label:'fetch_falhou',transport_type:'beacon'});
+        try{ lf.submit() }
+        catch(_){ lfBusy(false); lfShowErr("That didn't go through on my end, and your answers are still here.",data) }
       });
   });
+
+  /* se a pessoa voltar pra página depois do envio tradicional, o botão destrava */
+  window.addEventListener('pageshow',function(ev){ if(ev.persisted) lfBusy(false) });
 }
 
 /* =====================================================================
