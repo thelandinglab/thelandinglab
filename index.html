@@ -14,38 +14,43 @@ gtag('config','G-KT1DEQ2KZZ');
 gtag('config','AW-11183335351');
 /* URL do webhook Google Apps Script */
 var TLL_WEBHOOK='https://script.google.com/macros/s/AKfycbyLQVe_jXqeT75Nsq5bUPFTxa2aw6aLMyT9v8KeSuMM2Em1JAIWduCneB5XJVIGa4FC/exec';
+
+/* Envia GCLID + código pra planilha */
+function tllSend(g,c){
+fetch(TLL_WEBHOOK+'?gclid='+encodeURIComponent(g)+'&code='+c+'&ts='+encodeURIComponent(new Date().toISOString()),{mode:'no-cors',redirect:'follow'}).catch(function(){});
+}
+
+/* Gera código curto: tll + 3 números */
+function tllCode(){
+return 'tll'+String(Math.floor(Math.random()*900)+100);
+}
+
 /* Captura GCLID da URL, gera código curto, salva e envia pra planilha */
 (function(){
 var m=window.location.search.match(/[?&]gclid=([^&]*)/);
-if(m){
+if(m){try{
 var gclid=m[1];
-try{
+var code=tllCode();
 sessionStorage.setItem('tll_gclid',gclid);
-var code=Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4);
-code=code.toUpperCase();
 sessionStorage.setItem('tll_code',code);
-function tllSend(g,c){fetch(TLL_WEBHOOK+'?gclid='+encodeURIComponent(g)+'&code='+c+'&ts='+encodeURIComponent(new Date().toISOString()),{mode:'no-cors',redirect:'follow'}).catch(function(){});}
 tllSend(gclid,code);
-}catch(e){}
-}
+}catch(e){}}
 })();
 
 function tllContato(){
 gtag('event','conversion',{'send_to':'AW-11183335351/TACYCPLcs50dELfP0NQp'});
 gtag('event','contato_whatsapp',{'event_category':'cta','event_label':'whatsapp_click'});
-/* Adiciona código curto na mensagem do WhatsApp */
 var code='';try{code=sessionStorage.getItem('tll_code')||''}catch(e){}
-if(code){
 var gclid='';try{gclid=sessionStorage.getItem('tll_gclid')||''}catch(e){}
-/* Envia pra planilha no momento do clique (garantia) */
-if(gclid){
-tllSend(gclid,code);
-}
+if(code){
+/* Envia pra planilha no clique (garantia) */
+if(gclid){tllSend(gclid,code);}
+/* Adiciona código curto na mensagem do WhatsApp */
 var links=document.querySelectorAll('a[href*="wa.me"]');
 links.forEach(function(a){
 var h=a.getAttribute('href');
 if(h.indexOf('#tll')===-1){
-a.setAttribute('href',h+'%20%23tll'+code);
+a.setAttribute('href',h+'%20%23'+code);
 }
 });
 }
