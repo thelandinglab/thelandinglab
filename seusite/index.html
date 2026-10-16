@@ -568,6 +568,20 @@ footer .logo b{font-size:22px}
     evento('generate_lead', { metodo: 'formulario' }, { nome: 'Lead', params: { content_name: 'seusite_formulario' }, eventID: eventID });
     leadReserva(eventID);
 
+    /* evento PERSONALIZADO "formulario_enviado" — base da conversão personalizada
+       usada na campanha de Vendas (o Lead não é aceito nesse objetivo) */
+    var eid2 = 'form_' + uid();
+    var pForm = { pagina: CFG.pagina, value: 247, currency: 'BRL' };
+    try{ if(typeof window.gtag === 'function') gtag('event', 'formulario_enviado', pForm); }catch(err){}
+    try{ if(typeof window.fbq === 'function') fbq('trackCustom', 'formulario_enviado', pForm, { eventID: eid2 }); }catch(err){}
+    log('formulario_enviado', pForm, eid2);
+    try{
+      var img2 = new Image(1,1);
+      img2.src = 'https://www.facebook.com/tr?id=1077634248299356&ev=formulario_enviado&noscript=1'
+        + '&eid=' + eid2 + '&dl=' + encodeURIComponent(location.href)
+        + '&cd[value]=247&cd[currency]=BRL&cd[pagina]=' + CFG.pagina + '&ts=' + Date.now();
+    }catch(err){}
+
     /* (b) mensagem do WhatsApp */
     var msg = 'Oi! Quero montar meu site.\n\nEmpresa: ' + vEmpresa + '\nInstagram: ' + vInsta;
     btnZap.href = 'https://wa.me/' + CFG.zap + '?text=' + encodeURIComponent(msg);
