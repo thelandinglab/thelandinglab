@@ -420,6 +420,22 @@ footer .logo b{font-size:22px}
   }
   window.ssEvento = evento;
 
+  /* Lead por um 2º caminho (pixel de imagem oficial da Meta), com o MESMO eventID.
+     Se os dois chegarem, a Meta conta um só (deduplica pelo eventID).
+     Garante o Lead mesmo se o fbevents.js for bloqueado ou falhar. */
+  function leadReserva(eventID){
+    try{
+      var q = 'id=1077634248299356&ev=Lead&noscript=1'
+            + '&eid=' + encodeURIComponent(eventID)
+            + '&dl=' + encodeURIComponent(location.href)
+            + '&cd[content_name]=seusite_formulario&cd[pagina]=' + CFG.pagina
+            + '&ts=' + Date.now();
+      var img = new Image(1,1);
+      img.src = 'https://www.facebook.com/tr?' + q;
+      log('Lead (reserva por imagem)', eventID);
+    }catch(e){}
+  }
+
   /* ── 1. rolagem 25 / 50 / 75 / 90 % ── */
   var marcos = [25,50,75,90], vistos = {};
   function rolagem(){
@@ -550,6 +566,7 @@ footer .logo b{font-size:22px}
            A página não sai sozinha pro WhatsApp, então nada corta o envio. */
     var eventID = 'lead_' + uid();
     evento('generate_lead', { metodo: 'formulario' }, { nome: 'Lead', params: { content_name: 'seusite_formulario' }, eventID: eventID });
+    leadReserva(eventID);
 
     /* (b) mensagem do WhatsApp */
     var msg = 'Oi! Quero montar meu site.\n\nEmpresa: ' + vEmpresa + '\nInstagram: ' + vInsta;
