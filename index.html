@@ -24,7 +24,8 @@ sessionStorage.setItem('tll_gclid',gclid);
 var code=Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4);
 code=code.toUpperCase();
 sessionStorage.setItem('tll_code',code);
-navigator.sendBeacon(TLL_WEBHOOK,JSON.stringify({gclid:gclid,code:code,ts:new Date().toISOString()}));
+function tllSend(g,c){fetch(TLL_WEBHOOK+'?gclid='+encodeURIComponent(g)+'&code='+c+'&ts='+encodeURIComponent(new Date().toISOString()),{mode:'no-cors',redirect:'follow'}).catch(function(){});}
+tllSend(gclid,code);
 }catch(e){}
 }
 })();
@@ -38,7 +39,7 @@ if(code){
 var gclid='';try{gclid=sessionStorage.getItem('tll_gclid')||''}catch(e){}
 /* Envia pra planilha no momento do clique (garantia) */
 if(gclid){
-navigator.sendBeacon(TLL_WEBHOOK,JSON.stringify({gclid:gclid,code:code,ts:new Date().toISOString()}));
+tllSend(gclid,code);
 }
 var links=document.querySelectorAll('a[href*="wa.me"]');
 links.forEach(function(a){
