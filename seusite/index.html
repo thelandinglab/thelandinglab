@@ -505,11 +505,11 @@ body{padding-bottom:calc(64px + var(--safe-b))}
         <label for="f-nome">Nome da empresa</label>
         <input type="text" id="f-nome" name="empresa" placeholder="Ex: Studio Bella" required="">
 
-        <label for="f-ramo">O que a empresa faz</label>
-        <input type="text" id="f-ramo" name="ramo" placeholder="Ex: Estética e beleza" required="">
-
         <label for="f-insta">@ do Instagram</label>
         <input type="text" id="f-insta" name="instagram" placeholder="Ex: @studiobella.araras" required="">
+
+        <label for="f-zap">WhatsApp pra receber a primeira versão do seu site</label>
+        <input type="tel" id="f-zap" name="whatsapp" inputmode="numeric" autocomplete="tel" placeholder="(19) 99999-9999" required="">
 
         <button type="submit" class="btn-enviar">Quero ver meu site</button>
       </form>
@@ -519,7 +519,8 @@ body{padding-bottom:calc(64px + var(--safe-b))}
     <div class="form-sucesso" id="form-ok">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="rgba(200,241,53,.12)"></circle><path d="M15 24.5l6 6 12-12" stroke="#C8F135" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       <h3>Recebemos seus dados</h3>
-      <p>Vamos montar uma versão do seu site e te enviar no WhatsApp em até 3 dias úteis. Fique de olho.</p>
+      <p>Estamos abrindo o WhatsApp com a sua mensagem pronta. É só apertar enviar.</p>
+      <p style="margin-top:12px"><a id="form-ok-zap" href="https://wa.me/5519999001382" style="color:var(--lima);font-weight:600;text-decoration:underline">Se não abrir, toque aqui</a></p>
     </div>
   </div>
 </section>
@@ -728,36 +729,66 @@ body{padding-bottom:calc(64px + var(--safe-b))}
   var ok=document.getElementById('form-ok');
   if(!form) return;
 
+  var FORMSPREE='https://formspree.io/f/mppqkeqz';
+  var enviando=false;
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
+    if(enviando) return;
     var empresa=document.getElementById('f-nome').value.trim();
-    var ramo=document.getElementById('f-ramo').value.trim();
     var insta=document.getElementById('f-insta').value.trim();
+    var zapEl=document.getElementById('f-zap');
+    var zap=zapEl.value.trim();
+    var zapDig=zap.replace(/\D/g,'');
 
-    if(!empresa||!ramo||!insta) return;
+    if(!empresa||!insta||!zap) return;
+    if(zapDig.length<10){ zapEl.focus(); zapEl.setCustomValidity('Confira o número com DDD'); zapEl.reportValidity(); zapEl.setCustomValidity(''); return; }
+    enviando=true;
 
-    /* dispara evento de conversão */
+    /* 1) Lead no Pixel + GA4 — disparado ANTES de qualquer saída da página.
+          Telefone não vai pro Meta/Google (dado pessoal). */
+    var params={pagina:'seusite'};
     if(window.tl && window.tl.evento){
-      window.tl.evento('formulario_lead',{
-        empresa:empresa, ramo:ramo, instagram:insta
-      }, 'Lead');
+      window.tl.evento('formulario_lead',params,'Lead');
+    }else{
+      if(window.fbq) fbq('track','Lead',params);
+      if(window.gtag) gtag('event','formulario_lead',params);
     }
 
-    /* monta mensagem e abre WhatsApp */
+    /* 2) mensagem do WhatsApp */
     var msg='Oi! Quero montar meu site.%0A%0A'
       +'Empresa: '+encodeURIComponent(empresa)+'%0A'
-      +'Ramo: '+encodeURIComponent(ramo)+'%0A'
       +'Instagram: '+encodeURIComponent(insta);
     var url='https://wa.me/5519999001382?text='+msg;
+    var link=document.getElementById('form-ok-zap'); if(link) link.href=url;
 
-    /* mostra sucesso */
+    /* 3) mostra sucesso */
     card.style.display='none';
     ok.classList.add('on');
 
-    /* abre WhatsApp */
-    setTimeout(function(){
-      window.location.href=url;
-    },600);
+    /* 4) salva no Formspree (keepalive: continua mesmo se a página sair) */
+    var salvou=false;
+    try{
+      fetch(FORMSPREE,{
+        method:'POST',
+        keepalive:true,
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          empresa:empresa, instagram:insta, whatsapp:zap,
+          _subject:'Novo lead Seu Site: '+empresa
+        })
+      }).then(function(){ salvou=true; }).catch(function(){ salvou=true; });
+    }catch(err){ salvou=true; }
+
+    /* 5) abre o WhatsApp: mínimo 2,5s (tempo do Pixel/GA4 chegarem),
+          espera o Formspree responder até no máximo 5s */
+    var inicio=Date.now(), foi=false;
+    function abrir(){ if(foi) return; foi=true; window.location.href=url; }
+    (function checa(){
+      var t=Date.now()-inicio;
+      if((salvou && t>=2500) || t>=5000) abrir();
+      else setTimeout(checa,200);
+    })();
   });
 })();
 </script>
