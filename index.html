@@ -17,7 +17,8 @@ var TLL_WEBHOOK='https://script.google.com/macros/s/AKfycbwx6Ubh0_SKu96DXcNJYeP9
 
 /* Envia GCLID + código pra planilha */
 function tllSend(g,c){
-fetch(TLL_WEBHOOK+'?gclid='+encodeURIComponent(g)+'&code='+c+'&ts='+encodeURIComponent(new Date().toISOString()),{mode:'no-cors',redirect:'follow'}).catch(function(){});
+var d=new Date();var br=new Date(d.getTime()-3*60*60*1000);var ts=br.getFullYear()+'-'+String(br.getMonth()+1).padStart(2,'0')+'-'+String(br.getDate()).padStart(2,'0')+' '+String(br.getHours()).padStart(2,'0')+':'+String(br.getMinutes()).padStart(2,'0')+':'+String(br.getSeconds()).padStart(2,'0');
+fetch(TLL_WEBHOOK+'?gclid='+encodeURIComponent(g)+'&code='+c+'&ts='+encodeURIComponent(ts),{mode:'no-cors',redirect:'follow'}).catch(function(){});
 }
 
 /* Gera código curto: tll + 3 números */
