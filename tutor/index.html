@@ -1,0 +1,554 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprenda a colocar seu negócio no Google — The Landing Lab</title>
+<meta name="description" content="Tutorial completo pra você mesmo colocar sua empresa no Google e começar a receber clientes que já estão procurando o que você vende. R$97, acesso imediato.">
+<!-- Google Analytics GA4 + Google Ads gtag.js -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KT1DEQ2KZZ"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());
+gtag('config','G-KT1DEQ2KZZ');
+gtag('config','AW-11183335351');
+
+function tllCompra(){
+  gtag('event','inicio_checkout',{'event_category':'tutorial','event_label':'botao_compra','value':97,'currency':'BRL'});
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Public+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFDF5;--ink:#181430;--deep:#0E0B1E;--lime:#D8FF60;--ld:#7A9127;
+  --lilac:#8C82DC;--card:#F3F1E6;--line:rgba(24,20,48,.12);--txt:#221F2E;--txs:#5B5768;
+  --d:'Fraunces',Georgia,serif;--b:'Public Sans',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--b);background:var(--paper);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;text-align:center}
+::selection{background:var(--lime);color:var(--ink)}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,92vw);margin:0 auto}
+.narrow{width:min(720px,92vw);margin:0 auto}
+h1,h2,h3,h4{font-family:var(--b);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+p{color:var(--txs)}
+.pad{padding:clamp(3rem,7vh,5.5rem) 0}
+.pad-lg{padding:clamp(4rem,9vh,7rem) 0}
+.center{text-align:center}
+
+/* BOTÃO */
+.btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--ink);color:var(--paper);font-weight:800;font-size:clamp(.95rem,2vw,1.1rem);letter-spacing:-.01em;padding:1.15rem 2.4rem;border-radius:4px;text-transform:uppercase;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;cursor:pointer;border:none;position:relative;overflow:hidden;isolation:isolate}
+.btn .ar{transition:transform .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(24,20,48,.25)}
+.btn:hover .ar{transform:translateX(5px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{box-shadow:0 14px 40px rgba(216,255,96,.4)}
+.btn::after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-22deg);animation:shine 5s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,72%{left:-70%}100%{left:130%}}
+.btn-lime{box-shadow:0 0 0 0 rgba(216,255,96,.5);animation:pulseBtn 3.4s ease-out infinite}
+.btn-lime:hover{animation:none}
+@keyframes pulseBtn{0%{box-shadow:0 0 0 0 rgba(216,255,96,.5)}70%{box-shadow:0 0 0 16px rgba(216,255,96,0)}100%{box-shadow:0 0 0 0 rgba(216,255,96,0)}}
+.btn-sub{font-size:.82rem;color:var(--txs);margin-top:.9rem;font-weight:500}
+
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--ld);background:rgba(122,145,39,.1);padding:.5rem 1rem;border-radius:3px;margin-bottom:1.2rem}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}
+.stg > .rv:nth-child(2){transition-delay:.09s}
+.stg > .rv:nth-child(3){transition-delay:.18s}
+.stg > .rv:nth-child(4){transition-delay:.27s}
+.stg > .rv:nth-child(5){transition-delay:.36s}
+.stg > .rv:nth-child(6){transition-delay:.45s}
+.stg > .rv:nth-child(n+7){transition-delay:.54s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 0;transition:.4s;background:rgba(255,253,245,0)}
+.nav.stuck{background:rgba(255,253,245,.95);backdrop-filter:blur(14px);padding:.65rem 0;box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;width:min(1080px,92vw);margin:0 auto}
+.logo{font-weight:900;font-size:1.05rem;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.logo .dot{color:var(--ld)}
+
+/* HERO */
+.hero{padding:clamp(6.5rem,14vh,9rem) 0 clamp(2.5rem,5vh,3.5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px,rgba(24,20,48,.09) 1px,transparent 0);background-size:28px 28px;-webkit-mask-image:radial-gradient(ellipse 66% 58% at 50% 34%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse 66% 58% at 50% 34%,#000 15%,transparent 72%)}
+.hero .wrap{position:relative;z-index:1}
+.hero-h1{font-size:clamp(1.7rem,4.6vw,3.1rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;max-width:22ch;margin:0 auto 1.3rem;color:var(--ink);position:relative;z-index:1}
+.hero-h1 .hl{color:var(--ld);position:relative;white-space:normal}
+@media(min-width:900px){.hero-h1 .hl{white-space:nowrap}}
+.hero-h1 .hl::before{content:'';position:absolute;left:-.07em;right:-.07em;bottom:.04em;height:.4em;border-radius:3px;background:rgba(216,255,96,.55);z-index:-1;transform:scaleX(0);transform-origin:left center;transition:transform 1s cubic-bezier(.16,1,.3,1) .5s}
+.hero-h1.in .hl::before{transform:scaleX(1)}
+.hero-sub{font-size:clamp(.98rem,2vw,1.15rem);color:var(--txs);max-width:52ch;margin:0 auto 2rem;line-height:1.6;font-weight:500}
+.hero-sub b{color:var(--ink);font-weight:700}
+
+/* DARK SECTION */
+.dk-sec{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.dk-sec .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 45% at 50% 0%,rgba(140,130,220,.2),transparent 60%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(216,255,96,.06),transparent 60%)}
+.dk-sec h2,.dk-sec h3{color:var(--paper)}
+.dk-sec p{color:rgba(206,198,238,.82)}
+
+.scene{font-size:clamp(1rem,2.1vw,1.18rem);line-height:1.85;max-width:56ch;margin:0 auto 1.5rem;position:relative}
+.scene-em{font-family:var(--d);font-style:italic;color:var(--lime)}
+.banner{text-align:center;font-family:var(--b);font-weight:900;font-size:clamp(1.3rem,4vw,2.4rem);letter-spacing:-.02em;line-height:1.1;color:var(--lime);margin:2.5rem auto;max-width:22ch;text-transform:uppercase;text-shadow:0 0 30px rgba(216,255,96,.2)}
+
+/* LIGHT CARD SECTION */
+.lt-sec{background:var(--card)}
+
+/* DORES */
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;max-width:900px;margin:0 auto}
+@media(max-width:760px){.pains{grid-template-columns:minmax(0,1fr)}}
+.pain{position:relative;background:var(--card);border-radius:10px;padding:1.4rem 1.5rem;overflow:hidden;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s;text-align:left}
+.pain::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:top;transition:transform .85s cubic-bezier(.16,1,.3,1) .15s}
+.pain.in::before{transform:scaleY(1)}
+.pain:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+.pain-h{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.pain-n{font-family:var(--d);font-weight:700;font-size:.9rem;color:var(--ld);letter-spacing:.04em;line-height:1}
+.pain p{font-size:clamp(.94rem,1.8vw,1.02rem);line-height:1.65;color:var(--txt)}
+.pain b{font-weight:700;color:var(--ink);background-image:linear-gradient(rgba(216,255,96,.62),rgba(216,255,96,.62));background-repeat:no-repeat;background-position:0 92%;background-size:0% 36%;transition:background-size 1s cubic-bezier(.16,1,.3,1) .4s;padding:0 .05em}
+.pain.in b{background-size:100% 36%}
+
+.pain-sep{display:flex;align-items:center;gap:1.1rem;max-width:760px;margin:2.6rem auto;padding:0}
+.pain-sep::before,.pain-sep::after{content:'';flex:1;height:1px;background:var(--line)}
+.pain-sep span{font-family:var(--d);font-style:italic;font-size:clamp(1rem,2.4vw,1.35rem);color:var(--ink);text-align:center;line-height:1.3}
+.pain-punch{text-align:center;max-width:30ch;margin:2.2rem auto 0;font-weight:800;font-size:clamp(1.05rem,2.6vw,1.45rem);color:var(--ink);letter-spacing:-.02em;line-height:1.35}
+.pain-punch span{color:var(--ld)}
+
+/* MÓDULOS */
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:900px;margin:0 auto}
+@media(max-width:700px){.mod-grid{grid-template-columns:1fr}}
+.mod-card{background:var(--ink);border-radius:10px;padding:2rem 1.6rem;text-align:left;position:relative;overflow:hidden;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.mod-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .95s cubic-bezier(.16,1,.3,1)}
+.mod-card.in::before{transform:scaleX(1)}
+.mod-card:hover{transform:translateY(-5px)}
+.mod-tag{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--lime);margin-bottom:.7rem;display:block}
+.mod-title{font-weight:800;font-size:clamp(1.1rem,2.4vw,1.3rem);color:var(--paper);margin-bottom:1rem;line-height:1.2;letter-spacing:-.01em}
+.mod-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.mod-list li{font-size:.9rem;line-height:1.5;color:rgba(206,198,238,.8);padding-left:1.4rem;position:relative}
+.mod-list li::before{content:'✓';position:absolute;left:0;color:var(--lime);font-weight:700;font-size:.85rem}
+
+/* INCLUI */
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto}
+@media(max-width:700px){.inc-grid{grid-template-columns:1fr}}
+.inc-card{background:var(--card);border-radius:8px;padding:1.6rem 1.4rem;text-align:left;border-left:3px solid var(--lime);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.inc-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09)}
+.inc-icon{font-size:1.6rem;margin-bottom:.7rem;display:block}
+.inc-t{font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.inc-card p{font-size:.9rem;line-height:1.6;color:var(--txs)}
+
+/* COMPARAÇÃO */
+.comp{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden}
+@media(max-width:600px){.comp{grid-template-columns:1fr}}
+.comp-col{padding:2rem 1.6rem;text-align:left}
+.comp-sem{background:rgba(24,20,48,.04)}
+.comp-com{background:var(--ink);color:var(--paper)}
+.comp-h{font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:2px solid var(--line)}
+.comp-com .comp-h{color:var(--lime);border-bottom-color:rgba(216,255,96,.2)}
+.comp-row{font-size:.92rem;line-height:1.5;padding:.55rem 0;color:var(--txs);display:flex;align-items:flex-start;gap:.6rem}
+.comp-com .comp-row{color:rgba(206,198,238,.82)}
+.comp-x{color:#C0392B;font-weight:700;font-size:.85rem;flex:none;margin-top:.12rem}
+.comp-ck{color:var(--lime);font-weight:700;font-size:.85rem;flex:none;margin-top:.12rem}
+
+/* PREÇO */
+.preco-box{max-width:520px;margin:0 auto;background:var(--ink);border-radius:14px;padding:clamp(2rem,5vw,3rem);position:relative;overflow:hidden}
+.preco-box .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(216,255,96,.1),transparent 65%)}
+.preco-de{font-size:1rem;color:rgba(206,198,238,.5);margin-bottom:.3rem;position:relative}
+.preco-de span{text-decoration:line-through}
+.preco-val{font-family:var(--b);font-weight:900;font-size:clamp(2.8rem,8vw,4rem);color:var(--lime);line-height:1;margin-bottom:.3rem;letter-spacing:-.03em}
+.preco-val small{font-size:.45em;font-weight:700;vertical-align:super;margin-right:.1em}
+.preco-sub{font-size:.95rem;color:rgba(206,198,238,.7);margin-bottom:1.5rem}
+.preco-list{list-style:none;padding:0;text-align:left;max-width:320px;margin:0 auto 2rem;display:flex;flex-direction:column;gap:.5rem}
+.preco-list li{font-size:.9rem;color:rgba(206,198,238,.8);padding-left:1.5rem;position:relative;line-height:1.5}
+.preco-list li::before{content:'✓';position:absolute;left:0;color:var(--lime);font-weight:700}
+
+/* CALLOUT */
+.callout{background:var(--ink);border-radius:10px;padding:clamp(2rem,4vw,3rem);margin:2rem auto;max-width:720px;position:relative}
+.callout p{font-family:var(--d);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.4;color:rgba(232,228,250,.95);text-align:center;max-width:28ch;margin:0 auto}
+.callout b{color:var(--lime)}
+
+/* OBJEÇÕES */
+.obj3{display:flex;flex-direction:column;gap:1.5rem;max-width:720px;margin:0 auto}
+.obj3-item{background:var(--card);border-radius:8px;padding:1.8rem 1.8rem 1.8rem 2rem;border-left:3px solid rgba(122,145,39,.22);text-align:left;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.obj3-item:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(24,20,48,.09);border-left-color:var(--lime)}
+.obj3-q{font-family:var(--d);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.3rem);color:var(--ink);font-weight:600;margin-bottom:.9rem;line-height:1.3}
+.obj3-a{font-size:.98rem;line-height:1.8;color:var(--txs);max-width:62ch}
+.obj3-a b{color:var(--ink);font-weight:700}
+
+/* COMO FUNCIONA */
+.step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:780px;margin:0 auto}
+.step-box{text-align:center;padding:1.2rem}
+.step-box .step-n{font-weight:900;font-size:2.4rem;color:var(--lime);line-height:1;margin-bottom:.3rem}
+.step-box .step-t{font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.step-box p{font-size:.88rem;line-height:1.5;color:var(--txs)}
+@media(max-width:600px){.step-row{grid-template-columns:1fr;gap:.6rem}.step-box{text-align:left;display:grid;grid-template-columns:auto 1fr;gap:0 1rem;align-items:start;padding:.8rem 0;border-bottom:1px solid var(--line)}.step-box .step-n{grid-row:1/3;font-size:2rem;align-self:center}.step-box p{grid-column:2}}
+
+/* GARANTIA */
+.gar-h{font-family:var(--d);font-weight:600;font-size:clamp(1.4rem,3.4vw,2rem);color:var(--ink);text-align:center;max-width:24ch;margin:0 auto 1.5rem;letter-spacing:-.02em}
+.gar-p{font-size:clamp(.98rem,2vw,1.08rem);line-height:1.8;max-width:54ch;margin:0 auto 1.2rem;text-align:center}
+.gar-p b{color:var(--ink);font-weight:700}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+.fq{border-bottom:1px solid var(--line)}
+.fq:first-child{border-top:1px solid var(--line)}
+.fq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;padding:1.4rem 0;text-align:left;font-weight:700;font-size:clamp(.98rem,2vw,1.1rem);color:var(--ink);cursor:pointer;background:none;border:none;letter-spacing:-.01em;font-family:var(--b)}
+.fq-i{flex:none;width:22px;height:22px;position:relative}
+.fq-i::before,.fq-i::after{content:'';position:absolute;background:var(--ld);left:50%;top:50%;transition:.4s}
+.fq-i::before{width:13px;height:2px;transform:translate(-50%,-50%)}
+.fq-i::after{width:2px;height:13px;transform:translate(-50%,-50%)}
+.fq.open .fq-i::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1)}
+.fq-a p{padding:0 0 1.4rem;font-size:.96rem;line-height:1.7;color:var(--txs);max-width:64ch;text-align:left}
+.fq-a b{color:var(--ink);font-weight:600}
+.fq-q:hover{color:var(--ld)}
+
+/* PROGRESS BAR */
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ld),var(--lime));z-index:300;pointer-events:none;transition:width .12s linear}
+
+/* FOOTER */
+footer{background:var(--deep);color:rgba(206,198,238,.4);padding:2.5rem 0;text-align:center;font-size:.82rem;line-height:1.8}
+footer .logo{color:rgba(248,255,232,.7);font-size:1rem;margin-bottom:.6rem}
+
+/* FLOATING CTA */
+.cta-float{position:fixed;left:0;right:0;bottom:0;z-index:250;background:rgba(24,20,48,.97);backdrop-filter:blur(12px);padding:.8rem 1rem;text-align:center;transform:translateY(100%);transition:transform .5s cubic-bezier(.16,1,.3,1);border-top:2px solid var(--lime)}
+.cta-float.show{transform:translateY(0)}
+.cta-float .btn{padding:.85rem 2rem;font-size:.9rem}
+.cta-float-p{font-size:.72rem;color:rgba(206,198,238,.5);margin-top:.4rem;font-weight:500}
+
+p{text-wrap:pretty}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.btn::after,.btn-lime,.cta-float{animation:none!important}.hero-h1 .hl::before{transform:scaleX(1)}.pain::before{transform:scaleY(1)}.pain b{background-size:100% 36%}.mod-card::before{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+
+<!-- FLOATING CTA -->
+<div class="cta-float" id="cta-float">
+  <a onclick="tllCompra()" href="https://pay.kiwify.com.br/E2fuhzp" class="btn btn-lime" target="_blank" rel="noopener">quero aprender por R$97 <span class="ar">&rarr;</span></a>
+  <p class="cta-float-p">acesso imediato · pagamento seguro via Kiwify</p>
+</div>
+
+<nav class="nav" id="nav"><div class="nav-in">
+  <span class="logo">The Landing Lab<span class="dot">.</span></span>
+</div></nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <span class="tag rv">tutorial passo a passo</span>
+    <h1 class="hero-h1 rv">Coloque seu negócio no Google <span class="hl">você mesmo</span></h1>
+    <p class="hero-sub rv" data-d="1">um tutorial de 22 passos que te ensina a aparecer no Google quando alguém pesquisa o serviço que você vende, <b>sem depender de agência, sem mensalidade, sem enrolação técnica</b></p>
+    <p class="rv" data-d="2" style="font-size:clamp(.82rem,1.6vw,.92rem);color:var(--txs);font-weight:600">do cadastro no Google Meu Negócio até a primeira campanha rodando</p>
+    <div class="rv" data-d="3" style="margin-top:2.4rem">
+      <a onclick="tllCompra()" href="https://pay.kiwify.com.br/E2fuhzp" class="btn btn-lime" target="_blank" rel="noopener">quero aprender por R$97 <span class="ar">&rarr;</span></a>
+      <p class="btn-sub">acesso imediato após a compra</p>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ABERTURA ===== -->
+<section class="dk-sec pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <p class="scene rv">Você sabe que seus clientes usam o Google. Toda vez que alguém precisa de um serviço como o seu, o primeiro reflexo é abrir o celular e pesquisar.</p>
+    <p class="scene rv">E quando essa pessoa pesquisa, ela encontra alguém. <span class="scene-em">Pode ser o seu concorrente, pode ser alguém de outra cidade, pode ser qualquer um.</span></p>
+    <p class="scene rv">Você quer que seja você. Já tentou entender como funciona, talvez até tenha criado uma conta no Google, mas parou no meio porque o painel é confuso, os termos são em inglês, e cada vídeo no YouTube ensina de um jeito diferente.</p>
+    <p class="banner rv">E aí sobram duas opções: pagar alguém ou continuar invisível.</p>
+    <p class="scene rv" style="margin-top:2rem">Esse tutorial existe porque tem uma terceira: <span class="scene-em">aprender a fazer você mesmo, uma vez, e pronto.</span></p>
+  </div>
+</section>
+
+<!-- ===== DORES ===== -->
+<section class="pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.6vw,2.1rem);max-width:22ch;margin:0 auto 2.2rem">Se alguma dessas situações soa familiar</h2>
+    <div class="pains stg">
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">01</span></div>
+        <p>Você pesquisa no Google o serviço que você vende e <b>aparece todo mundo menos você</b>. Os mesmos concorrentes, sempre lá. E você não entende o que eles fizeram pra estar ali.</p>
+      </div>
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">02</span></div>
+        <p>Já pediu orçamento pra agência ou freelancer. Ouviu valores de <b>R$1.500 a R$3.000 por mês</b>, fora o investimento em anúncio. Pro seu momento, não cabe.</p>
+      </div>
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">03</span></div>
+        <p>Até tentou mexer no Google Meu Negócio por conta. Criou o perfil, colocou umas fotos, <b>mas não sabe se fez certo</b> e não aparece nas buscas do jeito que esperava.</p>
+      </div>
+      <div class="pain rv">
+        <div class="pain-h"><span class="pain-n">04</span></div>
+        <p>Assistiu vídeos no YouTube sobre Google Ads. Cada um ensina de um jeito, <b>nenhum explica o que fazer primeiro</b>, e você termina mais perdido do que começou.</p>
+      </div>
+    </div>
+    <div class="pain-sep rv"><span>São problemas comuns, e nenhum deles é técnico. É falta de um caminho claro.</span></div>
+    <p class="pain-punch rv">Esse tutorial é <span>esse caminho</span>.</p>
+  </div>
+</section>
+
+<!-- ===== O QUE É ===== -->
+<section class="dk-sec pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <span class="tag rv" style="background:rgba(216,255,96,.12);color:var(--lime)">o que você recebe</span>
+    <h2 class="rv" style="color:var(--paper);font-size:clamp(1.4rem,3.6vw,2.2rem);max-width:22ch;margin:0 auto 1.5rem">Um roteiro de 22 passos do zero até a primeira campanha</h2>
+    <p class="scene rv">O tutorial cobre duas coisas: colocar seu negócio no Google de graça (Google Meu Negócio) e criar sua primeira campanha paga pra aparecer quando alguém pesquisar o que você vende (Google Ads).</p>
+    <p class="scene rv">Cada passo explica exatamente o que clicar, o que digitar e por que fazer daquele jeito. Sem assumir que você já sabe alguma coisa. Sem termos técnicos jogados sem contexto.</p>
+  </div>
+</section>
+
+<!-- ===== MÓDULOS ===== -->
+<section class="pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Os dois módulos do tutorial</h2>
+    <div class="mod-grid">
+      <div class="mod-card rv">
+        <span class="mod-tag">Módulo 1 — 10 passos</span>
+        <div class="mod-title">Google Meu Negócio</div>
+        <ul class="mod-list">
+          <li>Criação completa do perfil comercial</li>
+          <li>Categoria certa pro seu tipo de negócio</li>
+          <li>Descrição que o Google valoriza</li>
+          <li>Fotos que aumentam cliques</li>
+          <li>Área de atuação configurada</li>
+          <li>Verificação e ativação do perfil</li>
+          <li>Primeiras avaliações de clientes</li>
+          <li>Posts e novidades no perfil</li>
+          <li>Checklist de manutenção semanal</li>
+        </ul>
+      </div>
+      <div class="mod-card rv">
+        <span class="mod-tag">Módulo 2 — 12 passos</span>
+        <div class="mod-title">Google Ads CPC Manual</div>
+        <ul class="mod-list">
+          <li>Como o Google Ads funciona (sem complicar)</li>
+          <li>Conta e campanha criadas do zero</li>
+          <li>Palavras-chave certas pro seu serviço</li>
+          <li>Correspondência exata pra não desperdiçar</li>
+          <li>Anúncio escrito pra quem tá pronto pra contratar</li>
+          <li>Orçamento controlado por você</li>
+          <li>Lance manual (CPC) sem automação arriscada</li>
+          <li>Palavras-chave negativas pra cortar lixo</li>
+          <li>Como ler os números e ajustar a campanha</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INCLUI ===== -->
+<section class="lt-sec pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">O que vem junto</h2>
+    <div class="inc-grid stg">
+      <div class="inc-card rv">
+        <span class="inc-icon">📋</span>
+        <div class="inc-t">Templates prontos</div>
+        <p>Modelos de descrição, texto de anúncio e respostas a avaliações. Copia, adapta pro seu negócio e usa.</p>
+      </div>
+      <div class="inc-card rv">
+        <span class="inc-icon">📊</span>
+        <div class="inc-t">Tabelas de referência</div>
+        <p>Tabela de orçamento por segmento, categorias do Google Meu Negócio, e tabela de palavras-chave negativas universais.</p>
+      </div>
+      <div class="inc-card rv">
+        <span class="inc-icon">✅</span>
+        <div class="inc-t">Checklists</div>
+        <p>Lista de manutenção semanal pro Google Meu Negócio e pontos de verificação pra campanha de anúncios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARAÇÃO ===== -->
+<section class="pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">A conta que não fecha versus a que fecha</h2>
+    <div class="comp rv">
+      <div class="comp-col comp-sem">
+        <div class="comp-h">Contratar gestão mensal</div>
+        <div class="comp-row"><span class="comp-x">✕</span> R$1.500 a R$3.000 por mês</div>
+        <div class="comp-row"><span class="comp-x">✕</span> Compromisso de 3 a 6 meses</div>
+        <div class="comp-row"><span class="comp-x">✕</span> Você depende de outra pessoa</div>
+        <div class="comp-row"><span class="comp-x">✕</span> Paga de novo se trocar de profissional</div>
+        <div class="comp-row"><span class="comp-x">✕</span> Nunca aprende como funciona</div>
+      </div>
+      <div class="comp-col comp-com">
+        <div class="comp-h">Aprender com o tutorial</div>
+        <div class="comp-row"><span class="comp-ck">✓</span> R$97 uma vez</div>
+        <div class="comp-row"><span class="comp-ck">✓</span> Sem contrato nem mensalidade</div>
+        <div class="comp-row"><span class="comp-ck">✓</span> Você controla tudo</div>
+        <div class="comp-row"><span class="comp-ck">✓</span> O conhecimento fica com você</div>
+        <div class="comp-row"><span class="comp-ck">✓</span> Faz no seu ritmo, quando puder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRA QUEM ===== -->
+<section class="dk-sec pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative">
+    <h2 class="rv" style="color:var(--paper);font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:1.5rem">Esse tutorial foi feito pra quem</h2>
+    <p class="scene rv">Tem um negócio de serviço (mecânica, escritório de contabilidade, consultório, escola, salão, reforma, qualquer prestação de serviço) e quer que clientes da região encontrem pelo Google.</p>
+    <p class="scene rv">Não tem orçamento pra pagar gestão profissional todo mês, mas tem disposição pra sentar uma tarde e aprender a configurar por conta.</p>
+    <p class="scene rv">Não precisa saber nada de tecnologia. Se você usa WhatsApp e sabe navegar numa página na internet, <span class="scene-em">você consegue seguir o tutorial.</span></p>
+  </div>
+</section>
+
+<!-- ===== COMO FUNCIONA ===== -->
+<section class="pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Como funciona na prática</h2>
+    <div class="step-row rv">
+      <div class="step-box">
+        <div class="step-n">1</div>
+        <div class="step-t">Compra e acessa</div>
+        <p>Pagamento pela Kiwify. O acesso ao tutorial chega na hora, direto na sua área de membros.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-n">2</div>
+        <div class="step-t">Segue os passos</div>
+        <p>22 passos na ordem certa. Cada um mostra exatamente o que fazer, sem pular etapa.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-n">3</div>
+        <div class="step-t">Seu negócio aparece</div>
+        <p>Perfil no Google configurado, campanha rodando, clientes pesquisando e te encontrando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALLOUT ===== -->
+<section class="pad">
+  <div class="narrow">
+    <div class="callout rv">
+      <p>A maioria dos cursos sobre Google Ads ensina teoria e atalhos de campanha automática. Esse tutorial ensina a configurar <b>do jeito que um gestor profissional faria pra um cliente</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREÇO ===== -->
+<section class="pad-lg" id="comprar">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Acesso imediato</h2>
+    <div class="preco-box rv">
+      <div class="glow"></div>
+      <div style="position:relative">
+        <p class="preco-de"><span>de R$297</span></p>
+        <p class="preco-val"><small>R$</small>97</p>
+        <p class="preco-sub">pagamento único · sem mensalidade</p>
+        <ul class="preco-list">
+          <li>22 passos detalhados</li>
+          <li>Módulo Google Meu Negócio</li>
+          <li>Módulo Google Ads CPC Manual</li>
+          <li>Templates e modelos prontos</li>
+          <li>Tabelas de referência e checklists</li>
+          <li>Acesso vitalício na área de membros</li>
+        </ul>
+        <a onclick="tllCompra()" href="https://pay.kiwify.com.br/E2fuhzp" class="btn btn-lime" target="_blank" rel="noopener" style="width:100%;justify-content:center">quero aprender por R$97 <span class="ar">&rarr;</span></a>
+        <p style="font-size:.78rem;color:rgba(206,198,238,.45);margin-top:1rem;font-weight:500">pagamento seguro via Kiwify · acesso imediato após confirmação</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OBJEÇÕES ===== -->
+<section class="lt-sec pad-lg">
+  <div class="wrap">
+    <h2 class="rv" style="font-size:clamp(1.3rem,3.2vw,2rem);margin-bottom:2.5rem">Perguntas comuns</h2>
+    <div class="obj3 stg">
+      <div class="obj3-item rv">
+        <p class="obj3-q">Preciso saber alguma coisa de tecnologia?</p>
+        <p class="obj3-a">Se você consegue usar WhatsApp e fazer uma pesquisa no Google, consegue seguir o tutorial. Cada passo mostra exatamente onde clicar e o que digitar. <b>Nenhum conhecimento técnico anterior.</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">Quanto tempo leva pra fazer tudo?</p>
+        <p class="obj3-a">Uma tarde dedicada resolve o módulo 1 (Google Meu Negócio). Mais uma tarde pro módulo 2 (Google Ads). Você pode fazer no seu ritmo, voltando onde parou. <b>Não tem prazo nem pressão.</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">Funciona pra qualquer tipo de negócio?</p>
+        <p class="obj3-a">Funciona pra prestação de serviço com atendimento local ou regional: mecânica, clínica, escritório, escola, salão, construtora, consultoria. Se as pessoas procuram pelo Google o que você faz, <b>funciona.</b></p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">Quanto vou precisar investir em anúncio no Google?</p>
+        <p class="obj3-a">O tutorial inclui uma tabela com faixas de orçamento por tipo de serviço. Muitos negócios locais rodam bem com <b>R$15 a R$30 por dia</b>. Você define quanto investir e pode pausar quando quiser.</p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">E se eu decidir contratar alguém depois?</p>
+        <p class="obj3-a">Melhor ainda. Você vai entender o que o profissional faz, vai saber cobrar resultado e <b>não vai ficar refém de quem não entrega.</b> O conhecimento fica com você de qualquer jeito.</p>
+      </div>
+      <div class="obj3-item rv">
+        <p class="obj3-q">Como recebo o acesso?</p>
+        <p class="obj3-a">O pagamento é processado pela Kiwify. Assim que confirmar, <b>você recebe o acesso na hora</b> na área de membros, pelo email usado na compra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="dk-sec pad-lg">
+  <div class="glow"></div>
+  <div class="narrow" style="position:relative;text-align:center">
+    <h2 class="rv" style="color:var(--paper);font-size:clamp(1.4rem,3.6vw,2.2rem);max-width:22ch;margin:0 auto 1.2rem">Seus clientes estão pesquisando agora.</h2>
+    <p class="rv" style="font-family:var(--d);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.45rem);color:var(--lime);max-width:30ch;margin:0 auto 2rem;line-height:1.35">A questão é se vão te encontrar ou fechar com quem aparece primeiro.</p>
+    <div class="rv">
+      <a onclick="tllCompra()" href="https://pay.kiwify.com.br/E2fuhzp" class="btn btn-lime" target="_blank" rel="noopener">quero aprender por R$97 <span class="ar">&rarr;</span></a>
+      <p style="font-size:.82rem;color:rgba(206,198,238,.55);margin-top:.9rem;font-weight:500">pagamento único · acesso vitalício</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUEM SOMOS ===== -->
+<section class="pad-lg">
+  <div class="narrow">
+    <span class="tag rv">quem fez esse tutorial</span>
+    <h2 class="rv" style="font-size:clamp(1.2rem,3vw,1.8rem);margin-bottom:1.5rem">The Landing Lab</h2>
+    <p class="rv" style="font-size:clamp(.98rem,2vw,1.1rem);line-height:1.8;max-width:54ch;margin:0 auto 1.2rem">A gente monta estruturas de captação no Google pra negócios de serviço. Páginas de vendas, campanhas de tráfego pago, rastreio de conversão. Esse tutorial reúne o mesmo processo que aplicamos pros nossos clientes de gestão, adaptado pra quem quer fazer por conta.</p>
+    <p class="rv" style="font-size:clamp(.98rem,2vw,1.1rem);line-height:1.8;max-width:54ch;margin:0 auto">Quando seu negócio crescer e fizer sentido ter alguém cuidando disso pra você, a gente tá aqui: <b><a href="https://thelandinglab.com.br" target="_blank" rel="noopener" style="color:var(--ld);text-decoration:underline;text-underline-offset:3px">thelandinglab.com.br</a></b></p>
+  </div>
+</section>
+
+<!-- ===== RODAPÉ ===== -->
+<footer><div class="wrap">
+  <div class="logo" style="color:rgba(248,255,232,.7);font-size:1rem;margin-bottom:.6rem">The Landing Lab<span style="color:var(--lime)">.</span></div>
+  <p style="font-family:var(--d);font-style:italic;color:var(--lime);opacity:.7;margin:.5rem 0">Seu conteúdo atrai. A página converte.</p>
+  <a href="https://instagram.com/thelanding.lab" target="_blank">@thelanding.lab</a>
+</div></footer>
+
+<script>
+(function(){
+function show(el){el.classList.add('in')}
+if(typeof IntersectionObserver!=='undefined'){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.rv:not(.in)').forEach(show)},3000);
+}else{document.querySelectorAll('.rv').forEach(show)}
+
+var nav=document.getElementById('nav'),prog=document.getElementById('prog'),ctaFloat=document.getElementById('cta-float'),tick=false,heroH=0;
+function onScroll(){
+  var y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+  nav.classList.toggle('stuck',y>80);
+  prog.style.width=(h>0?Math.min(y/h,1)*100:0).toFixed(2)+'%';
+  if(!heroH){var hEl=document.querySelector('.hero');if(hEl)heroH=hEl.offsetHeight}
+  ctaFloat.classList.toggle('show',y>heroH);
+  tick=false
+}
+window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
+onScroll();
+
+document.querySelectorAll('.fq-q').forEach(function(b){b.addEventListener('click',function(){
+  var it=b.parentElement,a=it.querySelector('.fq-a'),w=it.classList.contains('open');
+  document.querySelectorAll('.fq.open').forEach(function(o){o.classList.remove('open');o.querySelector('.fq-a').style.maxHeight=null});
+  if(!w){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+})});
+})();
+</script>
+</body>
+</html>
+
+</body></html>
