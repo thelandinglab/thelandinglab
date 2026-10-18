@@ -110,6 +110,7 @@ section+section{border-top:1px solid var(--linha)}
 .campo input::placeholder{color:var(--texto3)}
 .campo input:focus{border-color:var(--lima);box-shadow:0 0 0 3px rgba(200,241,53,.15)}
 .campo.erro input{border-color:var(--erro)}
+.opc{font-weight:400;color:var(--texto3);font-size:12.5px}
 .campo .msg{display:none;color:var(--erro);font-size:13px;margin-top:6px}
 .campo.erro .msg{display:block}
 .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font:inherit;font-weight:700;font-size:17px;
@@ -118,7 +119,9 @@ section+section{border-top:1px solid var(--linha)}
 .btn:hover{filter:brightness(1.06)}
 .btn:active{transform:scale(.985)}
 .btn[disabled]{opacity:.7;cursor:wait}
-.nota{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--texto2);font-size:13px;margin-top:12px;text-align:center}
+.nota{display:block;color:var(--texto2);font-size:13px;margin-top:12px;text-align:center}
+.nota svg{display:inline-block;vertical-align:-2px;margin-right:5px}
+@media (max-width:360px){.btn{font-size:15.5px;padding:16px 12px}.w{padding:0 14px}.form-card{padding:20px 14px 16px}}
 
 .sucesso{display:none;text-align:center;padding:8px 2px 2px}
 .sucesso.on{display:block}
@@ -250,7 +253,7 @@ footer .logo b{font-size:22px}
     <div class="form-card" id="form-card">
       <form id="form-lead" novalidate>
         <p class="form-titulo">Comece pelo seu @</p>
-        <p class="form-desc">3 campos. A gente cuida do resto.</p>
+        <p class="form-desc">Só o WhatsApp é obrigatório. A gente cuida do resto.</p>
 
         <div class="campo" data-campo="empresa">
           <label for="f-nome">Nome da empresa</label>
@@ -263,12 +266,12 @@ footer .logo b{font-size:22px}
           <span class="msg">Coloca o @ do Instagram do negócio.</span>
         </div>
         <div class="campo" data-campo="whatsapp">
-          <label for="f-zap">WhatsApp pra receber a primeira versão do seu site</label>
-          <input type="tel" id="f-zap" name="whatsapp" placeholder="(19) 99999-9999" inputmode="numeric" autocomplete="tel-national" maxlength="16">
-          <span class="msg">Confere o número com DDD.</span>
+          <label for="f-zap">WhatsApp com DDD pra receber a primeira versão do seu site</label>
+          <input type="tel" id="f-zap" name="whatsapp" placeholder="Seu número com DDD" inputmode="numeric" autocomplete="tel-national" maxlength="20">
+          <span class="msg">Coloca o número com DDD. Ex: (19) 99999-9999</span>
         </div>
 
-        <button type="submit" class="btn" id="btn-enviar" data-track="enviar_formulario">Quero ver meu site</button>
+        <button type="submit" class="btn" id="btn-enviar" data-track="enviar_formulario">Enviar e receber meu site</button>
         <p class="nota"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10.5V7.5a4 4 0 018 0v3" stroke="currentColor" stroke-width="2"/></svg> Você só paga após aprovar a versão final.</p>
       </form>
 
@@ -505,39 +508,47 @@ footer .logo b{font-size:22px}
   /* começou a preencher (uma vez) */
   var comecou = false;
   [nome, insta, zap].forEach(function(inp){
-    inp.addEventListener('focus', function(){
-      if(!comecou){ comecou = true; evento('formulario_inicio', { campo: inp.name }); }
+    inp.addEventListener('input', function(){
+      inp.closest('.campo').classList.remove('erro');
+      if(!comecou && inp.value.trim()){ comecou = true; evento('formulario_inicio', { campo: inp.name }); }
     });
-    inp.addEventListener('input', function(){ inp.closest('.campo').classList.remove('erro'); });
+    /* campo preenchido (uma vez por campo) */
+    inp.addEventListener('blur', function(){
+      if(inp.value.trim() && !inp.dataset.ok){ inp.dataset.ok = '1'; evento('campo_preenchido', { campo: inp.name }); }
+    });
   });
 
   /* máscara do WhatsApp */
   function soDigitos(v){
     var d = v.replace(/\D/g, '');
-    if(d.length > 11 && d.indexOf('55') === 0) d = d.slice(2);
+    d = d.replace(/^0+/, '');                                   /* 019... -> 19... */
+    if(d.length >= 12 && d.indexOf('55') === 0) d = d.slice(2);  /* +55 */
+    d = d.replace(/^0+/, '');                                   /* +55 0 19... */
     return d.slice(0, 11);
   }
-  zap.addEventListener('input', function(){
-    var d = soDigitos(zap.value), v = d;
-    if(d.length > 6)      v = '(' + d.slice(0,2) + ') ' + d.slice(2, d.length === 11 ? 7 : 6) + '-' + d.slice(d.length === 11 ? 7 : 6);
-    else if(d.length > 2) v = '(' + d.slice(0,2) + ') ' + d.slice(2);
-    else if(d.length > 0) v = '(' + d;
-    zap.value = v;
-  });
+  /* formata só ao sair do campo (máscara ao vivo atrapalha a digitação em alguns Androids) */
+  function formataZap(d){
+    if(d.length === 11) return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+    if(d.length === 10) return '(' + d.slice(0,2) + ') ' + d.slice(2,6) + '-' + d.slice(6);
+    if(d.length === 9)  return d.slice(0,5) + '-' + d.slice(5);
+    if(d.length === 8)  return d.slice(0,4) + '-' + d.slice(4);
+    return d;
+  }
+  zap.addEventListener('blur', function(){ var d = soDigitos(zap.value); if(d) zap.value = formataZap(d); });
 
   /* Instagram: aceita @, nome solto ou link do perfil */
   function limpaInsta(v){
     v = (v || '').trim();
     var m = v.match(/instagram\.com\/([A-Za-z0-9._]+)/i);
     if(m) v = m[1];
-    v = v.replace(/^@+/, '').replace(/[\s\/?#].*$/, '');
+    v = v.replace(/\s+/g, '').replace(/^@+/, '').replace(/[\/?#].*$/, '');
     return v ? '@' + v : '';
   }
   insta.addEventListener('blur', function(){ insta.value = limpaInsta(insta.value); });
 
   function marcaErro(inp){ inp.closest('.campo').classList.add('erro'); }
 
-  var enviando = false;
+  var enviando = false, tentativasErro = 0;
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if(enviando || formEnviado) return;
@@ -547,13 +558,13 @@ footer .logo b{font-size:22px}
     var vZapDig  = soDigitos(zap.value);
     insta.value  = vInsta;
 
-    var erros = [];
-    if(vEmpresa.length < 2)                 { marcaErro(nome);  erros.push('empresa'); }
-    if(vInsta.length < 3)                   { marcaErro(insta); erros.push('instagram'); }
-    if(vZapDig.length < 10 || vZapDig.length > 11){ marcaErro(zap); erros.push('whatsapp'); }
+    var erros = [], motivo = [];
+    var zapBruto = zap.value.replace(/\D/g,'');
+    if(vZapDig.length < 10){ marcaErro(zap); erros.push('whatsapp'); motivo.push(!zapBruto.length ? 'zap_vazio' : (zapBruto.length <= 9 ? 'zap_sem_ddd' : 'zap_curto_' + zapBruto.length)); }
 
     if(erros.length){
-      evento('formulario_erro', { campos: erros.join(',') });
+      tentativasErro++;
+      evento('formulario_erro', { campos: erros.join(','), motivo: motivo.join(','), qtd_erros: erros.length, tentativa: tentativasErro });
       var primeiro = form.querySelector('.campo.erro input');
       if(primeiro) primeiro.focus();
       return;
@@ -584,17 +595,20 @@ footer .logo b{font-size:22px}
     }catch(err){}
 
     /* (b) mensagem do WhatsApp */
-    var msg = 'Oi! Quero montar meu site.\n\nEmpresa: ' + vEmpresa + '\nInstagram: ' + vInsta;
+    var linhas = [];
+    if(vEmpresa) linhas.push('Empresa: ' + vEmpresa);
+    if(vInsta)   linhas.push('Instagram: ' + vInsta);
+    var msg = 'Oi! Quero montar meu site.' + (linhas.length ? '\n\n' + linhas.join('\n') : '');
     btnZap.href = 'https://wa.me/' + CFG.zap + '?text=' + encodeURIComponent(msg);
 
     /* (c) salva no Formspree (em segundo plano, com 1 nova tentativa se falhar) */
     var dados = {
-      empresa: vEmpresa,
-      instagram: vInsta,
-      whatsapp: zap.value,
+      empresa: vEmpresa || '(não informado)',
+      instagram: vInsta || '(não informado)',
+      whatsapp: formataZap(vZapDig),
       origem: (new URLSearchParams(location.search).get('utm_source')) || 'direto',
       evento_id: eventID,
-      _subject: 'Novo lead Seu Site: ' + vEmpresa
+      _subject: 'Novo lead Seu Site: ' + (vEmpresa || vInsta || formataZap(vZapDig))
     };
     function salvar(tentativa){
       try{
