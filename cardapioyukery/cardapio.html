@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardápio Yukery</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cardápio da Yukery em Franco da Rocha. Lanches, horários e pedidos pelo WhatsApp.">
+<meta name="theme-color" content="#DFA132">
+<meta property="og:title" content="Cardápio Yukery">
+<meta property="og:description" content="Veja o cardápio e faça seu pedido pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  .topo-in { display: grid; justify-items: center; text-align: center; gap: 10px; padding-block: 34px 84px; }
+  .topo h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; letter-spacing: -.03em; color: var(--cafe); margin-top: 6px; }
+  .topo .slogan { margin: -4px 0 4px; font-size: 17px; font-weight: 500; color: var(--cafe); }
+  .topo .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .nota svg { color: var(--ambar); }
+
+  .capa { margin-top: -64px; position: relative; z-index: 2; }
+  .capa figure {
+    margin: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 16 / 10; max-width: 100%;
+    box-shadow: var(--sombra); background: var(--creme);
+  }
+  .capa img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+
+  #aviso:not(:empty) { margin-top: 16px; }
+  .barra-cat { margin-top: 22px; }
+
+  .bloco-dest { padding-top: 26px; }
+  .bloco-dest h2 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+
+  .info { padding-block: 44px 140px; display: grid; gap: 22px; }
+  .info h2 { font-size: 26px; font-weight: 800; }
+  .info-grade { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .info-grade { grid-template-columns: 1fr 1fr; } }
+  .cartao { background: var(--creme); border-radius: var(--r); padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .cartao h3 { font-size: 17px; font-weight: 800; }
+  .cartao p { margin: 0; }
+  .cartao a { color: var(--cafe); font-weight: 700; }
+  .horas { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .horas li { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+  .horas li.hoje { font-weight: 700; }
+  .horas li.hoje span:first-child::after { content: " (hoje)"; font-weight: 500; color: var(--ambar-escuro); }
+  .rodape { text-align: center; color: var(--cafe-suave); font-size: 13px; padding-top: 10px; }
+
+  .cta-flutuante {
+    position: fixed; z-index: 40;
+    left: 50%; transform: translateX(-50%);
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 14px 30px -10px rgba(43, 26, 18, .55);
+    padding: 16px 28px; font-size: 17px;
+  }
+  .det-foto { margin: -22px -20px 18px; aspect-ratio: 4 / 3; background: var(--creme); overflow: hidden; }
+  .det-foto img { width: 100%; height: 100%; object-fit: cover; }
+  .det-preco { font-size: 22px; font-weight: 800; margin-top: 10px; font-family: var(--f-titulo); }
+  .det-adic { margin-top: 18px; display: grid; gap: 8px; }
+  .det-adic h4 { margin: 0; font-size: 15px; }
+  .det-adic ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .det-adic li { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--creme); border-radius: 12px; font-size: 15px; }
+  .nada-busca { padding: 40px 0; text-align: center; color: var(--cafe-suave); }
+  .offline { font-size: 13px; color: var(--cafe-suave); text-align: center; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <span class="forma-3" aria-hidden="true"></span>
+  <div class="wrap topo-in">
+    <div class="selo-logo"><img id="logo" alt="Logo da Yukery"></div>
+    <h1 id="nome">Yukery</h1>
+    <p class="slogan" id="slogan"></p>
+    <div class="pills" id="pills"></div>
+  </div>
+</header>
+
+<div class="wrap capa" id="capa-wrap"><figure><img id="capa" alt="Lanche da Yukery"></figure></div>
+<div class="wrap" id="aviso"></div>
+
+<nav class="barra-cat" aria-label="Categorias" id="barra" hidden>
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <button class="btn-icone" id="btn-busca" aria-label="Buscar no cardápio" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="wrap busca" id="busca" hidden><input class="entrada" id="campo-busca" type="search" placeholder="Buscar lanche, bebida…" autocomplete="off"></div>
+</nav>
+
+<main class="wrap" id="lista"></main>
+
+<section class="wrap info" id="info" aria-labelledby="t-info">
+  <h2 id="t-info">Onde estamos</h2>
+  <div class="info-grade">
+    <div class="cartao">
+      <h3>Endereço</h3>
+      <p id="endereco"></p>
+      <a id="mapa" target="_blank" rel="noopener">Abrir no mapa</a>
+    </div>
+    <div class="cartao">
+      <h3>Horários</h3>
+      <ul class="horas" id="horas"></ul>
+    </div>
+    <div class="cartao" id="contato">
+      <h3>Contato</h3>
+      <p>WhatsApp <span id="tel" class="num"></span></p>
+      <a id="insta" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+  <p class="rodape" id="rodape"></p>
+</section>
+
+<a class="btn btn-principal cta-flutuante" href="pedido.html" id="cta">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+  Fazer pedido
+</a>
+
+<script src="config.js"></script>
+<script src="assets.js"></script>
+<script src="core.js"></script>
+<script>
+(function () {
+  const C = window.Cardapio, $ = (s) => document.querySelector(s);
+  let D = null, termo = "";
+
+  const ICONE_ESTRELA = '<svg class="nota-ic" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1 6.3 20.2l1.2-6.3L2.8 9.5l6.4-.8z"/></svg>';
+
+  function foto(it, cls) {
+    return it.foto ? '<img src="' + C.esc(it.foto) + '" alt="" loading="lazy">' : '<span class="sem-foto" aria-hidden="true">' + C.esc((it.nome || "?").trim().charAt(0)) + "</span>";
+  }
+
+  function precoHtml(it) {
+    if (it.preco == null) return "";
+    return it.esgotado ? "<s>" + C.brl(it.preco) + "</s>" : C.brl(it.preco);
+  }
+
+  function topo() {
+    const L = D.loja;
+    document.title = "Cardápio " + L.nome;
+    $("#logo").src = C.logo(L);
+    $("#nome").textContent = L.nome;
+    $("#slogan").textContent = L.slogan || "";
+    $("#slogan").hidden = !L.slogan;
+    const capa = C.capa(L);
+    $("#capa-wrap").hidden = !capa;
+    if (capa) $("#capa").src = capa;
+
+    const st = C.status(L);
+    let p = "";
+    if (st) p += '<span class="pilula ' + (st.aberto ? "aberto" : "fechado") + '"><span class="ponto"></span>' + C.esc(st.texto) + "</span>";
+    if (L.notaGoogle) p += '<span class="pilula nota">' + ICONE_ESTRELA + String(L.notaGoogle).replace(".", ",") + (L.avaliacoesGoogle ? " no Google (" + L.avaliacoesGoogle + " avaliações)" : " no Google") + "</span>";
+    $("#pills").innerHTML = p;
+
+    $("#aviso").innerHTML = L.aviso ? '<div class="aviso"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5v5.5M12 16.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>' + C.esc(L.aviso) + "</span></div>" : "";
+
+    $("#endereco").textContent = L.endereco || "";
+    $("#mapa").href = C.linkMapa(L.endereco);
+    $("#mapa").hidden = !L.endereco;
+    const hoje = new Date().getDay();
+    const ordem = [1, 2, 3, 4, 5, 6, 0];
+    $("#horas").innerHTML = ordem.map((d) => {
+      const t = C.textoHorario(L.horarios[d]);
+      return t ? '<li class="' + (d === hoje ? "hoje" : "") + '"><span>' + C.DIAS[d] + "</span><span>" + t + "</span></li>" : "";
+    }).join("");
+    $("#tel").textContent = C.telefone(L.whatsapp);
+    $("#insta").textContent = L.instagram ? "@" + L.instagram : "";
+    $("#insta").href = "https://instagram.com/" + (L.instagram || "");
+    $("#insta").hidden = !L.instagram;
+    $("#rodape").textContent = "© " + new Date().getFullYear() + " " + L.nome;
+    const pedeAlgo = L.modalidades.entrega || L.modalidades.retirada || L.modalidades.mesa;
+    $("#cta").hidden = !pedeAlgo;
+  }
+
+  function lista() {
+    const cats = D.categorias.filter((c) => !c.oculta);
+    const t = termo.trim().toLowerCase();
+    const visiveis = D.itens.filter((i) => cats.some((c) => c.id === i.catId) && (!t || (i.nome + " " + (i.descricao || "")).toLowerCase().includes(t)));
+
+    if (!D.itens.length || !cats.length) {
+      $("#barra").hidden = true;
+      $("#lista").innerHTML = '<div class="vazio"><div class="disco"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M4 11h16a8 8 0 01-16 0zM3 11h18M12 4v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>O cardápio está sendo montado</h3><p>Os itens aparecem aqui assim que forem cadastrados no painel.</p></div>';
+      return;
+    }
+    $("#barra").hidden = false;
+    $("#chips").innerHTML = cats.filter((c) => visiveis.some((i) => i.catId === c.id))
+      .map((c) => '<button class="chip" data-alvo="c-' + c.id + '">' + C.esc(c.nome) + "</button>").join("");
+
+    let html = "";
+    const dest = t ? [] : visiveis.filter((i) => i.destaque && !i.esgotado);
+    if (dest.length) {
+      html += '<section class="bloco-dest" aria-labelledby="t-dest"><h2 id="t-dest">Destaques</h2><div class="destaques">' +
+        dest.map((i) => '<button class="destaque" data-item="' + i.id + '"><div class="foto">' + foto(i) + '</div><span class="nome">' + C.esc(i.nome) + '</span><span class="item-preco">' + precoHtml(i) + "</span></button>").join("") +
+        "</div></section>";
+    }
+    cats.forEach((c) => {
+      const its = visiveis.filter((i) => i.catId === c.id);
+      if (!its.length) return;
+      html += '<section class="secao-cat" id="c-' + c.id + '"><h2>' + C.esc(c.nome) + "</h2><ul class=\"itens\">" +
+        its.map((i) => '<li><button class="item' + (i.esgotado ? " esgotado" : "") + '" data-item="' + i.id + '"><span class="item-txt"><span class="item-nome">' + C.esc(i.nome) +
+          (i.esgotado ? ' <span class="tag cinza">Esgotado</span>' : "") + "</span>" +
+          (i.descricao ? '<span class="item-desc">' + C.esc(i.descricao) + "</span>" : "") +
+          '<span class="item-preco">' + precoHtml(i) + '</span></span><span class="item-foto">' + foto(i) + "</span></button></li>").join("") +
+        "</ul></section>";
+    });
+    if (!visiveis.length) html = '<p class="nada-busca">Nada encontrado para “' + C.esc(termo) + '”.</p>';
+    if (D._offline) html += '<p class="offline">Sem conexão. Mostrando a última versão salva.</p>';
+    $("#lista").innerHTML = html;
+    observar();
+  }
+
+  function detalhe(id) {
+    const i = D.itens.find((x) => x.id === id);
+    if (!i) return;
+    const pode = !i.esgotado && $("#cta") && !$("#cta").hidden;
+    let h = '<div class="det-foto">' + (i.foto ? '<img src="' + C.esc(i.foto) + '" alt="' + C.esc(i.nome) + '">' : '<span class="sem-foto">' + C.esc(i.nome.charAt(0)) + "</span>") + "</div>";
+    h += '<h3 class="sheet-titulo">' + C.esc(i.nome) + "</h3>";
+    if (i.descricao) h += '<p class="sheet-texto">' + C.esc(i.descricao) + "</p>";
+    if (i.preco != null) h += '<div class="det-preco num">' + precoHtml(i) + (i.esgotado ? ' <span class="tag cinza">Esgotado</span>' : "") + "</div>";
+    if (i.adicionais.length) {
+      h += '<div class="det-adic"><h4>Adicionais disponíveis</h4><ul>' + i.adicionais.map((a) => "<li><span>" + C.esc(a.nome) + '</span><span class="num">' + (a.preco ? "+ " + C.brl(a.preco) : "grátis") + "</span></li>").join("") + "</ul></div>";
+    }
+    if (pode) h += '<div class="linha-botoes"><a class="btn btn-principal" href="pedido.html#i-' + i.id + '">Pedir este item</a></div>';
+    C.sheet(h, { semFoco: true });
+  }
+
+  // destaca a categoria visível
+  let obs;
+  function observar() {
+    if (obs) obs.disconnect();
+    if (!("IntersectionObserver" in window)) return;
+    obs = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        if (!e.isIntersecting) return;
+        document.querySelectorAll(".chip").forEach((c) => c.classList.toggle("ativo", c.dataset.alvo === e.target.id));
+        const at = document.querySelector('.chip[data-alvo="' + e.target.id + '"]');
+        if (at) at.parentNode.scrollTo({ left: at.offsetLeft - 16, behavior: "smooth" });
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    document.querySelectorAll(".secao-cat").forEach((s) => obs.observe(s));
+  }
+
+  document.addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (chip) { document.getElementById(chip.dataset.alvo).scrollIntoView({ behavior: "smooth" }); return; }
+    const it = e.target.closest("[data-item]");
+    if (it) detalhe(it.dataset.item);
+  });
+  $("#btn-busca").onclick = () => {
+    const b = $("#busca"); b.hidden = !b.hidden;
+    $("#btn-busca").setAttribute("aria-expanded", String(!b.hidden));
+    if (!b.hidden) $("#campo-busca").focus(); else { termo = ""; $("#campo-busca").value = ""; lista(); }
+  };
+  $("#campo-busca").oninput = (e) => { termo = e.target.value; lista(); };
+
+  function render(d) { D = d; topo(); lista(); }
+  C.carregarRapido(render);
+  C.aoMudar(render);
+  setInterval(() => D && topo(), 60000);
+})();
+</script>
+</body>
+</html>
