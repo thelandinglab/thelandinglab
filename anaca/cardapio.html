@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardápio Anacá</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cardápio da Anacá, doces saudáveis: bombons, brigadeiros, copinhos e mais. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#F0F0F0">
+<meta property="og:title" content="Cardápio Anacá">
+<meta property="og:description" content="Doces saudáveis. Veja o cardápio e peça pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero { border-bottom: 0; }
+  .hero-in { display: grid; justify-items: center; text-align: center; gap: 14px; padding-block: 38px 28px; }
+  .logo-hero { width: min(250px, 66vw); height: auto; }
+  .hero .slogan { margin: 0; font: 600 20px var(--f-titulo); }
+  .hero .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .hero .links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px; }
+  .hero .links .btn { padding: 10px 20px; font-size: 14px; }
+  .nota svg { color: var(--ambar); }
+
+  #aviso:not(:empty) { margin-top: 0; margin-bottom: 18px; }
+
+  .bloco-dest { padding-top: 22px; }
+  .bloco-dest h2 { font-size: 30px; font-weight: 500; text-align: center; margin-bottom: 12px; }
+
+  .info { padding-block: 40px 130px; display: grid; gap: 22px; border-top: 1px solid var(--linha); margin-top: 30px; }
+  .info h2 { font-size: 34px; font-weight: 500; text-align: center; }
+  .info-grade { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .info-grade { grid-template-columns: 1fr 1fr; } }
+  .cartao { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--r); padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .cartao h3 { font-size: 22px; }
+  .cartao p { margin: 0; overflow-wrap: anywhere; }
+  .cartao a { color: var(--cafe); font-weight: 600; overflow-wrap: anywhere; }
+  .horas { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .horas li { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+  .horas li.hoje { font-weight: 600; }
+  .horas li.hoje span:first-child::after { content: " (hoje)"; font-weight: 500; color: var(--ambar-escuro); }
+  .rodape { text-align: center; color: var(--cafe-suave); font-size: 12.5px; padding-top: 10px; }
+
+  .cta-flutuante {
+    position: fixed; z-index: 40;
+    left: 50%; transform: translateX(-50%);
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 14px 30px -10px rgba(95, 67, 65, .6);
+    padding: 16px 30px; font-size: 16px;
+  }
+  .det-foto { margin: -22px -20px 18px; aspect-ratio: 4 / 3; background: var(--creme); overflow: hidden; }
+  .det-foto img { width: 100%; height: 100%; object-fit: cover; }
+  .det-preco { font: 600 26px var(--f-titulo); margin-top: 12px; }
+  .det-adic { margin-top: 18px; display: grid; gap: 8px; }
+  .det-adic h4 { margin: 0; font-size: 14px; }
+  .det-adic ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .det-adic li { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--creme); border-radius: 12px; font-size: 14px; }
+  .det-selos { margin-top: 16px; }
+  .det-selos .selos { gap: 6px 10px; }
+  .nada-busca { padding: 40px 0; text-align: center; color: var(--cafe-suave); }
+  .offline { font-size: 13px; color: var(--cafe-suave); text-align: center; margin-top: 10px; }
+  .aviso.fechado-aviso { background: var(--creme); color: var(--cafe); border: 1.5px solid var(--linha); }
+
+  .item { cursor: pointer; }
+  .item-rodape { display: flex; align-items: center; gap: 10px; margin-top: 2px; }
+  .mais {
+    position: absolute; right: -6px; bottom: -6px; box-shadow: 0 0 0 3px var(--papel);
+    width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--ambar-vivo); color: var(--cafe); flex: none;
+  }
+  .item.esgotado .mais, body.loja-fechada .mais { display: none; }
+  .na-sacola { font-size: 13px; font-weight: 700; color: var(--ambar-escuro); }
+
+
+  /* barra da sacola */
+  .barra-sacola {
+    position: fixed; z-index: 40; left: 0; right: 0;
+    bottom: 0; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: linear-gradient(to top, var(--papel) 70%, rgba(240,240,240,0));
+  }
+  .barra-sacola button {
+    width: 100%; max-width: 688px; margin: 0 auto; display: flex; align-items: center; gap: 12px;
+    background: var(--cafe); color: var(--papel); border: 0; border-radius: 99px;
+    padding: 12px 22px 12px 12px; font-weight: 700; font-size: 16px;
+    box-shadow: 0 14px 30px -10px rgba(95, 67, 65, .55);
+  }
+  .barra-sacola .qtd { background: var(--ambar-vivo); color: var(--cafe); min-width: 34px; height: 34px; border-radius: 99px; display: grid; place-items: center; padding: 0 8px; }
+  .barra-sacola .total { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+  /* sheet do item */
+  .det-foto { margin: -22px -20px 18px; aspect-ratio: 4 / 3; background: var(--creme); overflow: hidden; }
+  .det-foto img { width: 100%; height: 100%; object-fit: cover; }
+  .grupo { margin-top: 20px; display: grid; gap: 10px; }
+  .grupo > h4 { margin: 0; font: 800 17px var(--f-titulo); display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .grupo > h4 small { font: 500 13px var(--f-texto); color: var(--cafe-suave); }
+  .opcao {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+    border: 1.5px solid var(--linha); border-radius: 14px; cursor: pointer; background: var(--papel);
+  }
+  .opcao:has(input:checked) { border-color: var(--cafe); background: var(--creme); }
+  .opcao input { width: 20px; height: 20px; accent-color: var(--cafe); margin: 0; flex: none; }
+  .opcao .rot { flex: 1; min-width: 0; }
+  .opcao .val { font-variant-numeric: tabular-nums; color: var(--cafe-suave); font-size: 15px; }
+
+  .passo-qtd { display: inline-flex; align-items: center; border: 1.5px solid var(--linha); border-radius: 99px; }
+  .passo-qtd button { width: 42px; height: 42px; border: 0; background: none; font-size: 20px; font-weight: 700; display: grid; place-items: center; }
+  .passo-qtd span { min-width: 26px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .passo-qtd.peq button { width: 34px; height: 34px; font-size: 17px; }
+  .rodape-item { display: flex; gap: 12px; align-items: center; margin-top: 22px; position: sticky; bottom: 0; background: var(--papel); padding-block: 12px 4px; }
+  .rodape-item .btn { flex: 1; }
+
+  /* sacola */
+  .linha-sacola { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--linha); }
+  .linha-sacola:last-child { border-bottom: 0; }
+  .linha-sacola .nm { font-weight: 700; min-width: 0; }
+  .linha-sacola .ex { grid-column: 1; font-size: 14px; color: var(--cafe-suave); min-width: 0; }
+  .linha-sacola .vl { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+  .linha-sacola .passo-qtd { grid-column: 2; justify-self: end; }
+  .segmento { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+  .segmento label { border: 1.5px solid var(--linha); border-radius: 14px; padding: 12px 8px; text-align: center; font-weight: 700; cursor: pointer; display: grid; gap: 4px; justify-items: center; font-size: 15px; }
+  .segmento label:has(input:checked) { background: var(--cafe); color: var(--papel); border-color: var(--cafe); }
+  .segmento input { position: absolute; opacity: 0; pointer-events: none; }
+  .segmento label:has(input:focus-visible) { outline: 3px solid var(--ambar-vivo); outline-offset: 2px; }
+  .campos { display: grid; gap: 12px; }
+  .duas { display: grid; grid-template-columns: 1fr 110px; gap: 10px; }
+  .pix-chave { display: flex; gap: 8px; align-items: center; background: var(--creme); border-radius: 12px; padding: 10px 12px; }
+  .pix-chave code { flex: 1; min-width: 0; overflow-wrap: anywhere; font: 600 15px var(--f-texto); }
+  .pix-chave button { border: 0; background: var(--cafe); color: var(--papel); border-radius: 99px; padding: 8px 14px; font-weight: 700; font-size: 14px; flex: none; }
+  .resumo { background: var(--creme); border-radius: var(--r); padding: 16px; display: grid; gap: 8px; margin-top: 22px; }
+  .resumo div { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+  .resumo .tot { font: 800 20px var(--f-titulo); padding-top: 6px; border-top: 1px solid var(--linha); }
+  .erro-msg { color: var(--vermelho); font-weight: 600; font-size: 14px; margin: 12px 0 0; }
+  .nota-envio { font-size: 13px; color: var(--cafe-suave); text-align: center; margin: 10px 0 0; }
+  .entrada.invalida { border-color: var(--vermelho); }
+
+  .item-rodape { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+  .mais { position: static; width: auto; height: auto; box-shadow: none; border-radius: 99px; padding: 7px 13px 7px 10px; display: inline-flex; align-items: center; gap: 6px; background: var(--ambar-vivo); color: var(--cafe); font: 600 13px var(--f-texto); cursor: pointer; }
+  .mais.tem { background: var(--cafe); color: var(--papel); }
+  .item-txt .item-rodape .item-preco { margin-right: auto; }
+</style>
+</head>
+<body>
+
+<header class="topo hero">
+  <div class="wrap hero-in">
+    <img id="logo" class="logo-hero" alt="Anacá, doces saudáveis">
+    <p class="slogan" id="slogan" hidden></p>
+    <div class="pills" id="pills"></div>
+    <div class="links" id="links"></div>
+  </div>
+</header>
+
+<div class="wrap" id="aviso"></div>
+
+<nav class="barra-cat" aria-label="Seções do cardápio" id="barra" hidden>
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <button class="btn-icone" id="btn-busca" aria-label="Buscar no cardápio" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="wrap busca" id="busca" hidden><input class="entrada" id="campo-busca" type="search" placeholder="Buscar no cardápio" autocomplete="off"></div>
+</nav>
+
+<main class="wrap" id="lista"></main>
+
+<section class="wrap info" id="info" aria-labelledby="t-info">
+  <h2 id="t-info">Fale com a gente</h2>
+  <div class="info-grade">
+    <div class="cartao" id="card-end">
+      <h3>Endereço</h3>
+      <p id="endereco"></p>
+      <a id="mapa" target="_blank" rel="noopener">Abrir no mapa</a>
+    </div>
+    <div class="cartao" id="card-horas">
+      <h3>Horários</h3>
+      <ul class="horas" id="horas"></ul>
+    </div>
+    <div class="cartao" id="contato">
+      <h3>Contato</h3>
+      <p id="p-tel">WhatsApp <span id="tel" class="num"></span></p>
+      <a id="insta" target="_blank" rel="noopener"></a>
+      <p id="p-mail"><a id="mail"></a></p>
+    </div>
+  </div>
+  <p class="rodape" id="rodape"></p>
+</section>
+
+<div class="barra-sacola" id="barra-sacola" hidden>
+  <button id="abrir-sacola"><span class="qtd" id="qtd-sacola">0</span><span>Ver sacola</span><span class="total" id="total-sacola"></span></button>
+</div>
+
+<script src="config.js"></script>
+<script src="assets.js"></script>
+<script src="fotos.js"></script>
+<script src="core.js"></script>
+<script>
+(function () {
+  const C = window.Cardapio, $ = (s, r) => (r || document).querySelector(s);
+  let D = null, termo = "", ST = null;
+
+  const KS = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":sacola";
+  const KC = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":cliente";
+  let sacola = []; try { sacola = JSON.parse(C.ls.get(KS) || "[]"); } catch (e) {}
+  let cli = {}; try { cli = JSON.parse(C.ls.get(KC) || "{}"); } catch (e) {}
+
+  const PAG = { pix: "Pix", credito: "Cartão de crédito", debito: "Cartão de débito", dinheiro: "Dinheiro", vale: "Vale-refeição" };
+  const MOD = { entrega: "Entrega", retirada: "Retirada", mesa: "Na mesa" };
+
+  const guardar = () => { C.ls.set(KS, JSON.stringify(sacola)); C.ls.set(KC, JSON.stringify({ nome: cli.nome, rua: cli.rua, numero: cli.numero, bairro: cli.bairro, compl: cli.compl, mod: cli.mod, pag: cli.pag })); };
+  const item = (id) => D.itens.find((i) => i.id === id);
+  const fechada = () => ST && !ST.aberto;
+
+  function precoLinha(l) {
+    const i = item(l.itemId); if (!i) return 0;
+    const ad = (l.adic || []).reduce((s, aid) => { const a = i.adicionais.find((x) => x.id === aid); return s + (a && a.preco ? Number(a.preco) : 0); }, 0);
+    return ((i.preco || 0) + ad) * l.qtd;
+  }
+  // remove linhas de itens que sumiram ou esgotaram
+  function limparSacola() {
+    sacola = sacola.filter((l) => { const i = item(l.itemId); return i && !i.esgotado; });
+    guardar();
+  }
+  const subtotal = () => sacola.reduce((s, l) => s + precoLinha(l), 0);
+  const qtdTotal = () => sacola.reduce((s, l) => s + l.qtd, 0);
+
+  const ICONE_ESTRELA = '<svg class="nota-ic" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1 6.3 20.2l1.2-6.3L2.8 9.5l6.4-.8z"/></svg>';
+
+  function foto(it, cls) {
+    return it.foto ? '<img src="' + C.esc(C.src(it.foto)) + '" alt="" loading="lazy">' : '<span class="sem-foto" aria-hidden="true">' + C.esc((it.nome || "?").trim().charAt(0)) + "</span>";
+  }
+
+  function precoHtml(it) {
+    if (it.preco == null) return "";
+    return it.esgotado ? "<s>" + C.brl(it.preco) + "</s>" : C.brl(it.preco);
+  }
+
+  function topo() {
+    const L = D.loja;
+    document.title = "Cardápio " + L.nome;
+    $("#logo").src = C.logo(L);
+    $("#slogan").textContent = L.slogan || "";
+    $("#slogan").hidden = !L.slogan;
+
+    const st = C.status(L);
+    ST = st;
+    document.body.classList.toggle("loja-fechada", !!fechada());
+    let p = "";
+    if (st) p += '<span class="pilula ' + (st.aberto ? "aberto" : "fechado") + '"><span class="ponto"></span>' + C.esc(st.texto) + "</span>";
+    if (L.notaGoogle) p += '<span class="pilula nota">' + ICONE_ESTRELA + String(L.notaGoogle).replace(".", ",") + (L.avaliacoesGoogle ? " no Google (" + L.avaliacoesGoogle + " avaliações)" : " no Google") + "</span>";
+    $("#pills").innerHTML = p;
+
+    const zap = C.linkWhats(L.whatsapp, "Olá! Vim pelo cardápio e gostaria de fazer um pedido.");
+    let lk = "";
+    if (L.whatsapp) lk += '<a class="btn btn-principal" href="' + zap + '" target="_blank" rel="noopener">Chamar no WhatsApp</a>';
+    if (L.ifood) lk += '<a class="btn btn-contorno" href="' + C.esc(L.ifood) + '" target="_blank" rel="noopener">Pedir no iFood</a>';
+    if (L.instagram) lk += '<a class="btn btn-contorno" href="https://instagram.com/' + C.esc(L.instagram) + '" target="_blank" rel="noopener">Instagram</a>';
+    $("#links").innerHTML = lk;
+
+    $("#aviso").innerHTML = L.aviso ? '<div class="aviso"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5v5.5M12 16.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>' + C.esc(L.aviso) + "</span></div>" : "";
+
+    $("#endereco").textContent = L.endereco || "";
+    $("#mapa").href = C.linkMapa(L.endereco);
+    $("#mapa").hidden = !L.endereco;
+    const hoje = new Date().getDay();
+    const ordem = [1, 2, 3, 4, 5, 6, 0];
+    $("#horas").innerHTML = ordem.map((d) => {
+      const t = C.textoHorario(L.horarios[d]);
+      return t ? '<li class="' + (d === hoje ? "hoje" : "") + '"><span>' + C.DIAS[d] + "</span><span>" + t + "</span></li>" : "";
+    }).join("");
+    $("#card-end").hidden = !L.endereco;
+    $("#card-horas").hidden = !$("#horas").children.length;
+    $("#t-info").textContent = L.endereco || $("#horas").children.length ? "Onde estamos" : "Fale com a gente";
+    $("#tel").textContent = C.telefone(L.whatsapp);
+    $("#p-tel").hidden = !L.whatsapp;
+    $("#mail").textContent = L.email || "";
+    $("#mail").href = "mailto:" + (L.email || "");
+    $("#p-mail").hidden = !L.email;
+    $("#insta").textContent = L.instagram ? "@" + L.instagram : "";
+    $("#insta").href = "https://instagram.com/" + (L.instagram || "");
+    $("#insta").hidden = !L.instagram;
+    $("#rodape").textContent = "© " + new Date().getFullYear() + " " + L.nome;
+  }
+
+  function lista() {
+    const cats = D.categorias.filter((c) => !c.oculta);
+    const t = termo.trim().toLowerCase();
+    const visiveis = D.itens.filter((i) => cats.some((c) => c.id === i.catId) && (!t || (i.nome + " " + (i.descricao || "")).toLowerCase().includes(t)));
+
+    if (!D.itens.length || !cats.length) {
+      $("#barra").hidden = true;
+      $("#lista").innerHTML = '<div class="vazio"><div class="disco"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M4 11h16a8 8 0 01-16 0zM3 11h18M12 4v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>O cardápio está sendo montado</h3><p>Os itens aparecem aqui assim que forem cadastrados no painel.</p></div>';
+      return;
+    }
+    $("#barra").hidden = false;
+    $("#chips").innerHTML = cats.filter((c) => visiveis.some((i) => i.catId === c.id))
+      .map((c) => '<button class="chip" data-alvo="c-' + c.id + '">' + C.esc(c.nome) + "</button>").join("");
+
+    let html = "";
+    const dest = t ? [] : visiveis.filter((i) => i.destaque && !i.esgotado);
+    if (dest.length) {
+      html += '<section class="bloco-dest" aria-labelledby="t-dest"><h2 id="t-dest">Destaques</h2><div class="destaques">' +
+        dest.map((i) => '<button class="destaque" data-item="' + i.id + '"><div class="foto">' + foto(i) + '</div><span class="nome">' + C.esc(i.nome) + '</span><span class="item-preco">' + precoHtml(i) + "</span></button>").join("") +
+        "</div></section>";
+    }
+    cats.forEach((c) => {
+      const its = visiveis.filter((i) => i.catId === c.id);
+      if (!its.length) return;
+      html += '<section class="secao-cat" id="c-' + c.id + '"><h2>' + C.esc(c.nome) + "</h2><ul class=\"itens\">" +
+        its.map((i) => '<li><button class="item' + (i.esgotado ? " esgotado" : "") + '" data-item="' + i.id + '"><span class="item-txt"><span class="item-nome">' + C.esc(i.nome) + "</span>" +
+          (i.etiqueta || i.esgotado ? '<span>' + (i.etiqueta ? '<span class="tag">' + C.esc(i.etiqueta) + "</span> " : "") + (i.esgotado ? '<span class="tag cinza">Esgotado</span>' : "") + "</span>" : "") +
+          (i.descricao ? '<span class="item-desc">' + C.esc(i.descricao) + "</span>" : "") +
+          '<span class="item-rodape"><span class="item-preco">' + precoHtml(i) + '</span>' + (i.esgotado ? "" : '<span class="mais" role="button" data-add="' + i.id + '">' + PLUS + "Adicionar</span>") + "</span>" + C.selos(i.tags, true) + '</span><span class="item-foto">' + foto(i) + "</span></button></li>").join("") +
+        "</ul></section>";
+    });
+    if (!visiveis.length) html = '<p class="nada-busca">Nada encontrado para “' + C.esc(termo) + '”.</p>';
+    if (D._offline) html += '<p class="offline">Sem conexão. Mostrando a última versão salva.</p>';
+    $("#lista").innerHTML = html;
+    marcarQtd();
+    observar();
+  }
+
+  function barra() {
+    const q = qtdTotal();
+    $("#barra-sacola").hidden = !q;
+    $("#qtd-sacola").textContent = q;
+    $("#total-sacola").textContent = C.brl(subtotal());
+  }
+
+  /* ---------- item ---------- */
+  function detalhe(id) {
+    const i = item(id);
+    if (!i) return;
+    if (i.esgotado) {
+      let e = '<div class="det-foto">' + (i.foto ? '<img src="' + C.esc(C.src(i.foto)) + '" alt="' + C.esc(i.nome) + '">' : "") + "</div>" +
+        '<h3 class="sheet-titulo">' + C.esc(i.nome) + "</h3>" + (i.descricao ? '<p class="sheet-texto">' + C.esc(i.descricao) + "</p>" : "") +
+        (i.tags.length ? '<div class="det-selos">' + C.selos(i.tags) + "</div>" : "") + '<p class="nota-envio">Esgotado no momento.</p>';
+      C.sheet(e, { semFoco: true }); return;
+    }
+    let qtd = 1;
+    let h = '<div class="det-foto">' + (i.foto ? '<img src="' + C.esc(C.src(i.foto)) + '" alt="' + C.esc(i.nome) + '">' : '<span class="sem-foto">' + C.esc(i.nome.charAt(0)) + "</span>") + "</div>";
+    h += '<h3 class="sheet-titulo">' + C.esc(i.nome) + "</h3>";
+    if (i.etiqueta) h += '<p style="margin:8px 0 0"><span class="tag">' + C.esc(i.etiqueta) + "</span></p>";
+    if (i.descricao) h += '<p class="sheet-texto">' + C.esc(i.descricao) + "</p>";
+    if (i.tags.length) h += '<div style="margin-top:14px">' + C.selos(i.tags) + "</div>";
+    if (i.adicionais.length) {
+      h += '<div class="grupo"><h4>Adicionais <small>opcional</small></h4>' + i.adicionais.map((a) =>
+        '<label class="opcao"><input type="checkbox" value="' + a.id + '"><span class="rot">' + C.esc(a.nome) + '</span><span class="val">' + (a.preco ? "+ " + C.brl(a.preco) : "grátis") + "</span></label>").join("") + "</div>";
+    }
+    h += '<div class="grupo"><h4>Alguma observação? <small>opcional</small></h4><textarea class="entrada" id="obs-item" rows="2" placeholder="Ex.: embalar para presente"></textarea></div>';
+    h += '<div class="rodape-item"><div class="passo-qtd"><button type="button" data-q="-1" aria-label="Diminuir">−</button><span id="qtd-item">1</span><button type="button" data-q="1" aria-label="Aumentar">+</button></div>' +
+      '<button class="btn btn-principal" id="add-item"' + (fechada() ? " disabled" : "") + '></button></div>';
+    if (fechada()) h += '<p class="nota-envio">Estamos fechados agora. ' + C.esc(ST.texto) + ".</p>";
+    const s = C.sheet(h, { semFoco: true });
+    const atual = () => {
+      const adic = [...s.el.querySelectorAll("input[type=checkbox]:checked")].map((x) => x.value);
+      return { itemId: i.id, qtd, adic, obs: $("#obs-item", s.el).value.trim() };
+    };
+    const atualizar = () => { $("#qtd-item", s.el).textContent = qtd; $("#add-item", s.el).textContent = "Adicionar " + C.brl(precoLinha(atual())); };
+    s.el.addEventListener("change", atualizar);
+    s.el.querySelectorAll("[data-q]").forEach((b) => (b.onclick = () => { qtd = Math.max(1, qtd + Number(b.dataset.q)); atualizar(); }));
+    $("#add-item", s.el).onclick = () => {
+      const l = atual();
+      const igual = sacola.find((x) => x.itemId === l.itemId && x.obs === l.obs && x.adic.slice().sort().join() === l.adic.slice().sort().join());
+      if (igual) igual.qtd += l.qtd; else sacola.push(Object.assign({ key: C.uid() }, l));
+      guardar(); barra(); marcarQtd(); s.fechar();
+      C.toast(i.nome + " na sacola");
+    };
+    atualizar();
+  }
+
+  /* ---------- sacola e envio ---------- */
+  function taxaEntrega() {
+    const E = D.loja.entrega;
+    if (cli.mod !== "entrega") return { valor: 0, texto: null };
+    if (E.tipo === "fixa" && E.taxaFixa != null && E.taxaFixa !== "") return { valor: Number(E.taxaFixa), texto: Number(E.taxaFixa) ? C.brl(E.taxaFixa) : "Grátis" };
+    if (E.tipo === "bairros" && E.bairros.length) {
+      const b = E.bairros.find((x) => x.nome === cli.bairro);
+      return b ? { valor: Number(b.taxa || 0), texto: Number(b.taxa) ? C.brl(b.taxa) : "Grátis" } : { valor: 0, texto: "Escolha o bairro" };
+    }
+    return { valor: 0, texto: "A combinar" };
+  }
+
+  function abrirSacola() {
+    const L = D.loja;
+    const mods = Object.keys(MOD).filter((m) => L.modalidades[m]);
+    if (!mods.includes(cli.mod)) cli.mod = mods[0];
+    const pags = Object.keys(PAG).filter((p) => L.pagamentos[p]);
+    if (!pags.includes(cli.pag)) cli.pag = pags[0];
+
+    let h = '<h3 class="sheet-titulo">Sua sacola</h3><div id="s-itens"></div>';
+    h += '<div class="grupo"><h4>Como você quer receber?</h4><div class="segmento" role="radiogroup">' + mods.map((m) =>
+      '<label><input type="radio" name="mod" value="' + m + '"' + (cli.mod === m ? " checked" : "") + ">" + MOD[m] + "</label>").join("") + "</div>" +
+      (L.tempoMedio ? '<small style="color:var(--cafe-suave)">Tempo médio: ' + C.esc(L.tempoMedio) + "</small>" : "") + "</div>";
+    h += '<div class="grupo"><h4>Seus dados</h4><div class="campos" id="s-dados"></div></div>';
+    h += '<div class="grupo"><h4>Pagamento</h4><div class="campos" id="s-pag"></div></div>';
+    h += '<div class="grupo"><h4>Observação do pedido <small>opcional</small></h4><textarea class="entrada" id="f-obs" rows="2" placeholder="Algo que precisamos saber?"></textarea></div>';
+    h += '<div class="resumo" id="s-resumo"></div><p class="erro-msg" id="s-erro" hidden></p>';
+    h += '<div class="linha-botoes"><a class="btn btn-principal btn-largo" id="enviar" href="#">' +
+      '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 00-8.3 14.8L2.3 21.8l4.9-1.3A9.7 9.7 0 1012 2.2zm0 17.6a7.9 7.9 0 01-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a7.9 7.9 0 116.6 3.6zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5 0a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.6.3 2.7 2.7 0 00-.9 2 4.7 4.7 0 001 2.5 10.8 10.8 0 004.1 3.6c1.5.7 2.1.7 2.9.6a2.4 2.4 0 001.6-1.1 2 2 0 00.1-1.1c0-.2-.2-.2-.4-.3z"/></svg>' +
+      "Enviar pedido pelo WhatsApp</a></div>";
+    h += '<p class="nota-envio">O pedido abre no WhatsApp da loja já escrito. É só tocar em enviar.</p>';
+
+    const s = C.sheet(h, { semFoco: true, aoFechar: () => { guardar(); marcarQtd(); barra(); } });
+    const el = s.el;
+
+    function itens() {
+      if (!sacola.length) { s.fechar(); return; }
+      $("#s-itens", el).innerHTML = sacola.map((l) => {
+        const i = item(l.itemId);
+        const ads = (l.adic || []).map((aid) => (i.adicionais.find((a) => a.id === aid) || {}).nome).filter(Boolean);
+        return '<div class="linha-sacola"><span class="nm">' + C.esc(nomeMsg(i)) + '</span><span class="vl">' + C.brl(precoLinha(l)) + "</span>" +
+          '<span class="ex">' + (ads.length ? "+ " + C.esc(ads.join(", ")) : "") + (l.obs ? (ads.length ? "<br>" : "") + "Obs.: " + C.esc(l.obs) : "") + "</span>" +
+          '<div class="passo-qtd peq"><button type="button" data-k="' + l.key + '" data-d="-1" aria-label="Diminuir ' + C.esc(i.nome) + '">' + (l.qtd === 1 ? "×" : "−") + "</button><span>" + l.qtd + '</span><button type="button" data-k="' + l.key + '" data-d="1" aria-label="Aumentar ' + C.esc(i.nome) + '">+</button></div></div>';
+      }).join("");
+    }
+
+    function dados() {
+      const E = L.entrega;
+      let d = '<label class="campo"><span>Seu nome</span><input class="entrada" id="f-nome" autocomplete="name" value="' + C.esc(cli.nome || "") + '"></label>';
+      if (cli.mod === "entrega") {
+        d += '<div class="duas"><label class="campo"><span>Rua</span><input class="entrada" id="f-rua" autocomplete="address-line1" value="' + C.esc(cli.rua || "") + '"></label>' +
+          '<label class="campo"><span>Número</span><input class="entrada" id="f-numero" inputmode="numeric" value="' + C.esc(cli.numero || "") + '"></label></div>';
+        if (E.tipo === "bairros" && E.bairros.length) {
+          d += '<label class="campo"><span>Bairro</span><select class="entrada" id="f-bairro"><option value="">Escolha seu bairro</option>' +
+            E.bairros.map((b) => '<option value="' + C.esc(b.nome) + '"' + (cli.bairro === b.nome ? " selected" : "") + ">" + C.esc(b.nome) + " (" + (Number(b.taxa) ? C.brl(b.taxa) : "grátis") + ")</option>").join("") + "</select></label>";
+        } else {
+          d += '<label class="campo"><span>Bairro</span><input class="entrada" id="f-bairro" value="' + C.esc(cli.bairro || "") + '"></label>';
+        }
+        d += '<label class="campo"><span>Complemento ou referência <small>opcional</small></span><input class="entrada" id="f-compl" value="' + C.esc(cli.compl || "") + '"></label>';
+      }
+      if (cli.mod === "mesa") d += '<label class="campo"><span>Número da mesa</span><input class="entrada" id="f-mesa" inputmode="numeric" value="' + C.esc(cli.mesa || "") + '"></label>';
+      $("#s-dados", el).innerHTML = d;
+    }
+
+    function pagamento() {
+      let p = '<div class="segmento" role="radiogroup">' + pags.map((k) => '<label><input type="radio" name="pag" value="' + k + '"' + (cli.pag === k ? " checked" : "") + ">" + PAG[k] + "</label>").join("") + "</div>";
+      if (cli.pag === "dinheiro") p += '<label class="campo"><span>Troco para quanto? <small>deixe vazio se não precisar</small></span><input class="entrada" id="f-troco" inputmode="decimal" placeholder="Ex.: 100" value="' + C.esc(cli.troco || "") + '"></label>';
+      if (cli.pag === "pix" && L.chavePix) p += '<div class="pix-chave"><code id="chave">' + C.esc(L.chavePix) + '</code><button type="button" id="copiar">Copiar chave</button></div>';
+      $("#s-pag", el).innerHTML = p;
+      const cp = $("#copiar", el);
+      if (cp) cp.onclick = () => {
+        const ok = () => { cp.textContent = "Copiada"; setTimeout(() => (cp.textContent = "Copiar chave"), 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(L.chavePix).then(ok, () => selecionar());
+        else selecionar();
+      };
+      function selecionar() { const r = document.createRange(); r.selectNodeContents($("#chave", el)); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); C.toast("Chave selecionada. Toque e copie."); }
+    }
+
+    function resumo() {
+      const sub = subtotal(), tx = taxaEntrega();
+      let r = '<div><span>Subtotal</span><span>' + C.brl(sub) + "</span></div>";
+      if (tx.texto) r += "<div><span>Entrega</span><span>" + tx.texto + "</span></div>";
+      r += '<div class="tot"><span>Total</span><span>' + C.brl(sub + tx.valor) + (tx.texto === "A combinar" ? " + entrega" : "") + "</span></div>";
+      if (L.pedidoMinimo && sub < Number(L.pedidoMinimo)) r += '<div style="color:var(--vermelho);font-weight:600">Pedido mínimo de ' + C.brl(L.pedidoMinimo) + "</div>";
+      $("#s-resumo", el).innerHTML = r;
+    }
+
+    function erro(msg, campo) {
+      const e = $("#s-erro", el); e.textContent = msg; e.hidden = !msg;
+      el.querySelectorAll(".invalida").forEach((x) => x.classList.remove("invalida"));
+      if (campo) { const c = $(campo, el); if (c) { c.classList.add("invalida"); c.focus(); } }
+    }
+
+    function validar() {
+      if (fechada()) return erro("Estamos fechados agora. " + ST.texto + "."), false;
+      if (!(cli.nome || "").trim()) return erro("Escreva seu nome para a loja saber de quem é o pedido.", "#f-nome"), false;
+      if (cli.mod === "entrega") {
+        if (!(cli.rua || "").trim()) return erro("Falta a rua para a entrega.", "#f-rua"), false;
+        if (!(cli.numero || "").trim()) return erro("Falta o número da casa.", "#f-numero"), false;
+        if (!(cli.bairro || "").trim()) return erro("Falta o bairro.", "#f-bairro"), false;
+      }
+      if (cli.mod === "mesa" && !(cli.mesa || "").trim()) return erro("Diga o número da sua mesa.", "#f-mesa"), false;
+      if (L.pedidoMinimo && subtotal() < Number(L.pedidoMinimo)) return erro("O pedido mínimo é " + C.brl(L.pedidoMinimo) + "."), false;
+      erro("");
+      return true;
+    }
+
+    const nomeMsg = (i) => {
+      const dup = D.itens.filter((x) => x.nome === i.nome).length > 1;
+      const c = D.categorias.find((x) => x.id === i.catId);
+      return dup && c ? i.nome + " (" + c.nome + ")" : i.nome;
+    };
+    function mensagem() {
+      const tx = taxaEntrega(), sub = subtotal();
+      const linhas = ["*Pedido para " + L.nome + "*", ""];
+      sacola.forEach((l) => {
+        const i = item(l.itemId);
+        linhas.push("*" + l.qtd + "x " + nomeMsg(i) + "*  " + C.brl(precoLinha(l)));
+        (l.adic || []).forEach((aid) => { const a = i.adicionais.find((x) => x.id === aid); if (a) linhas.push("   + " + a.nome); });
+        if (l.obs) linhas.push("   Obs.: " + l.obs);
+      });
+      linhas.push("", "Subtotal: " + C.brl(sub));
+      if (tx.texto) linhas.push("Entrega: " + tx.texto);
+      linhas.push("*Total: " + C.brl(sub + tx.valor) + (tx.texto === "A combinar" ? " + entrega" : "") + "*", "");
+      linhas.push("*" + MOD[cli.mod] + "*");
+      linhas.push("Nome: " + cli.nome.trim());
+      if (cli.mod === "entrega") {
+        linhas.push("Endereço: " + cli.rua.trim() + ", " + cli.numero.trim() + " - " + cli.bairro.trim());
+        if ((cli.compl || "").trim()) linhas.push("Complemento: " + cli.compl.trim());
+      }
+      if (cli.mod === "mesa") linhas.push("Mesa: " + cli.mesa.trim());
+      let pg = "Pagamento: " + PAG[cli.pag];
+      if (cli.pag === "dinheiro" && (cli.troco || "").trim()) pg += " (troco para R$ " + cli.troco.trim() + ")";
+      linhas.push(pg);
+      if ((cli.obsGeral || "").trim()) linhas.push("", "Observação: " + cli.obsGeral.trim());
+      return linhas.join("\n");
+    }
+
+    el.addEventListener("input", (e) => {
+      const id = e.target.id;
+      const mapa = { "f-nome": "nome", "f-rua": "rua", "f-numero": "numero", "f-bairro": "bairro", "f-compl": "compl", "f-mesa": "mesa", "f-troco": "troco", "f-obs": "obsGeral" };
+      if (mapa[id]) { cli[mapa[id]] = e.target.value; if (id === "f-bairro") resumo(); }
+    });
+    el.addEventListener("change", (e) => {
+      if (e.target.name === "mod") { cli.mod = e.target.value; dados(); resumo(); }
+      if (e.target.name === "pag") { cli.pag = e.target.value; pagamento(); }
+      if (e.target.id === "f-bairro") { cli.bairro = e.target.value; resumo(); }
+    });
+    el.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-k]");
+      if (!b) return;
+      const l = sacola.find((x) => x.key === b.dataset.k);
+      l.qtd += Number(b.dataset.d);
+      if (l.qtd < 1) sacola = sacola.filter((x) => x !== l);
+      guardar(); barra(); itens(); resumo();
+    });
+    $("#f-obs", el).value = cli.obsGeral || "";
+    $("#enviar", el).addEventListener("click", (e) => {
+      if (!validar()) { e.preventDefault(); return; }
+      guardar();
+      const url = C.linkWhats(L.whatsapp, mensagem());
+      if (C.abrirExterno(url, e.currentTarget)) e.preventDefault();
+    });
+
+    itens(); dados(); pagamento(); resumo();
+  }
+
+  function marcarQtd() {
+    document.querySelectorAll("[data-add]").forEach((el) => {
+      const n = sacola.filter((l) => l.itemId === el.dataset.add).reduce((s, l) => s + l.qtd, 0);
+      el.classList.toggle("tem", n > 0);
+      el.innerHTML = PLUS + (n ? n + " na sacola" : "Adicionar");
+    });
+  }
+  const PLUS = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>';
+  function adicionarRapido(id) {
+    const i = item(id); if (!i || i.esgotado) return;
+    if (fechada()) { C.toast("Estamos fechados agora. " + ST.texto + "."); return; }
+    const igual = sacola.find((x) => x.itemId === id && !x.obs && !(x.adic || []).length);
+    if (igual) igual.qtd += 1; else sacola.push({ key: C.uid(), itemId: id, qtd: 1, adic: [], obs: "" });
+    guardar(); barra(); marcarQtd(); C.toast(i.nome + " na sacola");
+  }
+
+  // destaca a categoria visível
+  let obs;
+  function observar() {
+    if (obs) obs.disconnect();
+    if (!("IntersectionObserver" in window)) return;
+    obs = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        if (!e.isIntersecting) return;
+        document.querySelectorAll(".chip").forEach((c) => c.classList.toggle("ativo", c.dataset.alvo === e.target.id));
+        const at = document.querySelector('.chip[data-alvo="' + e.target.id + '"]');
+        if (at) at.parentNode.scrollTo({ left: at.offsetLeft - 16, behavior: "smooth" });
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    document.querySelectorAll(".secao-cat").forEach((s) => obs.observe(s));
+  }
+
+  document.addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (chip) { document.getElementById(chip.dataset.alvo).scrollIntoView({ behavior: "smooth" }); return; }
+    const add = e.target.closest("[data-add]");
+    if (add) { e.stopPropagation(); adicionarRapido(add.dataset.add); return; }
+    const it = e.target.closest("#lista [data-item], .destaque[data-item]");
+    if (it) detalhe(it.dataset.item);
+  });
+  $("#btn-busca").onclick = () => {
+    const b = $("#busca"); b.hidden = !b.hidden;
+    $("#btn-busca").setAttribute("aria-expanded", String(!b.hidden));
+    if (!b.hidden) $("#campo-busca").focus(); else { termo = ""; $("#campo-busca").value = ""; lista(); }
+  };
+  $("#campo-busca").oninput = (e) => { termo = e.target.value; lista(); };
+
+  $("#abrir-sacola").onclick = abrirSacola;
+  let abriuHash = false;
+  function render(d) {
+    D = d; limparSacola(); topo(); lista(); barra();
+    const H = window.__HASH || location.hash;
+    if (!abriuHash && H.startsWith("#i-")) { abriuHash = true; detalhe(H.slice(3)); }
+  }
+  C.carregarRapido(render);
+  C.aoMudar(render);
+  setInterval(() => D && topo(), 60000);
+})();
+</script>
+</body>
+</html>
