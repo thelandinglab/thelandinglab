@@ -15,6 +15,20 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .hero { border-bottom: 0; }
+  .logo-hero { aspect-ratio: 342 / 178; }
+  .hero-in { min-height: 0; align-content: start; }
+  .esqueleto { display: grid; gap: 22px; padding-top: 24px; }
+  .esq-linha { display: grid; grid-template-columns: minmax(104px, 34%) 1fr; gap: 16px; align-items: center; margin-left: -16px; }
+  .esq-foto { aspect-ratio: 1 / 1.05; background: var(--creme); border-radius: 4px 22px 22px 4px; }
+  .esq-txt { display: grid; gap: 10px; }
+  .esq-txt i { display: block; height: 14px; border-radius: 99px; background: var(--creme); }
+  .esq-txt i:first-child { height: 20px; width: 70%; }
+  .esq-txt i:last-child { width: 40%; }
+  .esq-foto, .esq-txt i { animation: pulsa 1.3s ease-in-out infinite; }
+  @keyframes pulsa { 50% { opacity: .5; } }
+  .entra { animation: entra .35s ease-out both; }
+  @keyframes entra { from { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .esq-foto, .esq-txt i, .entra { animation: none; } }
   .hero-in { display: grid; justify-items: center; text-align: center; gap: 14px; padding-block: 38px 28px; }
   .logo-hero { width: min(250px, 66vw); height: auto; }
   .hero .slogan { margin: 0; font: 600 20px var(--f-titulo); }
@@ -144,7 +158,7 @@
 
 <header class="topo hero">
   <div class="wrap hero-in">
-    <img id="logo" class="logo-hero" alt="Anacá, doces saudáveis">
+    <img id="logo" class="logo-hero" width="342" height="178" alt="Anacá, doces saudáveis">
     <p class="slogan" id="slogan" hidden></p>
     <div class="pills" id="pills"></div>
     <div class="links" id="links"></div>
@@ -163,9 +177,9 @@
   <div class="wrap busca" id="busca" hidden><input class="entrada" id="campo-busca" type="search" placeholder="Buscar no cardápio" autocomplete="off"></div>
 </nav>
 
-<main class="wrap" id="lista"></main>
+<main class="wrap" id="lista" aria-busy="true"><div class="esqueleto" aria-hidden="true"><div class="esq-linha"><span class="esq-foto"></span><span class="esq-txt"><i></i><i></i><i></i></span></div><div class="esq-linha"><span class="esq-foto"></span><span class="esq-txt"><i></i><i></i><i></i></span></div><div class="esq-linha"><span class="esq-foto"></span><span class="esq-txt"><i></i><i></i><i></i></span></div><div class="esq-linha"><span class="esq-foto"></span><span class="esq-txt"><i></i><i></i><i></i></span></div></div></main>
 
-<section class="wrap info" id="info" aria-labelledby="t-info">
+<section class="wrap info" id="info" aria-labelledby="t-info" hidden>
   <h2 id="t-info">Fale com a gente</h2>
   <div class="info-grade">
     <div class="cartao" id="card-end">
@@ -198,7 +212,8 @@
 <script>
 (function () {
   const C = window.Cardapio, $ = (s, r) => (r || document).querySelector(s);
-  let D = null, termo = "", ST = null;
+  let D = null, termo = "", ST = null, ultima = "", primeira = true;
+  $("#logo").src = (window.CARDAPIO_ASSETS || {}).logo || "";
 
   const KS = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":sacola";
   const KC = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":cliente";
@@ -587,10 +602,17 @@
   $("#abrir-sacola").onclick = abrirSacola;
   let abriuHash = false;
   function render(d) {
+    const sig = JSON.stringify(d);
+    if (sig === ultima) return;
+    ultima = sig;
     D = d; limparSacola(); topo(); lista(); barra();
+    $("#info").hidden = false;
+    $("#lista").removeAttribute("aria-busy");
+    if (primeira) { primeira = false; $("#lista").classList.add("entra"); $("#info").classList.add("entra"); }
     const H = window.__HASH || location.hash;
     if (!abriuHash && H.startsWith("#i-")) { abriuHash = true; detalhe(H.slice(3)); }
   }
+
   C.carregarRapido(render);
   C.aoMudar(render);
   setInterval(() => D && topo(), 60000);
