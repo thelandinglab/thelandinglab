@@ -173,10 +173,10 @@
   const telefone = (s) => { const d = digitos(s); return d.length === 11 ? "(" + d.slice(0, 2) + ") " + d.slice(2, 7) + "-" + d.slice(7) : d.length === 10 ? "(" + d.slice(0, 2) + ") " + d.slice(2, 6) + "-" + d.slice(6) : s; };
   const linkWhats = (num, msg) => "https://wa.me/55" + digitos(num) + (msg ? "?text=" + encodeURIComponent(msg) : "");
   const linkMapa = (end) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(end || "");
-  const logo = (loja) => loja.logo || ASSETS.logo || "";
+  const logo = (loja) => loja.logo || ASSETS.logo || "logo.png";
   // Fotos embutidas: "@id" aponta para window.CARDAPIO_FOTOS (fotos.js). Links normais passam direto.
   const FOTOS = window.CARDAPIO_FOTOS || {};
-  const src = (f) => (f && String(f).charAt(0) === "@" ? FOTOS[String(f).slice(1)] || "" : f || "");
+  const src = (f) => (f && String(f).charAt(0) === "@" ? FOTOS[String(f).slice(1)] || "foto-" + String(f).slice(1) + ".jpg" : f || "");
 
   // Selos alimentares (ícones de traço, no estilo do cardápio impresso)
   const CORTE = '<path d="M11.5 28.5L28.5 11.5"/>';

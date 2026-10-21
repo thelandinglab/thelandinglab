@@ -12,10 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap">
+<link rel="preload" as="image" href="logo.png">
 <link rel="stylesheet" href="style.css">
 <style>
   .hero { border-bottom: 0; }
-  .logo-hero { aspect-ratio: 342 / 178; }
+  .logo-hero { aspect-ratio: 720 / 381; }
   .hero-in { min-height: 0; align-content: start; }
   .esqueleto { display: grid; gap: 22px; padding-top: 24px; }
   .esq-linha { display: grid; grid-template-columns: minmax(104px, 34%) 1fr; gap: 16px; align-items: center; margin-left: -16px; }
@@ -30,7 +31,7 @@
   @keyframes entra { from { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .esq-foto, .esq-txt i, .entra { animation: none; } }
   .hero-in { display: grid; justify-items: center; text-align: center; gap: 14px; padding-block: 38px 28px; }
-  .logo-hero { width: min(250px, 66vw); height: auto; }
+  .logo-hero { width: min(200px, 60vw); height: auto; }
   .hero .slogan { margin: 0; font: 600 20px var(--f-titulo); }
   .hero .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .hero .links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px; }
@@ -158,7 +159,7 @@
 
 <header class="topo hero">
   <div class="wrap hero-in">
-    <img id="logo" class="logo-hero" width="342" height="178" alt="Anacá, doces saudáveis">
+    <img id="logo" class="logo-hero" src="logo.png" width="720" height="381" alt="Anacá, doces saudáveis" fetchpriority="high">
     <p class="slogan" id="slogan" hidden></p>
     <div class="pills" id="pills"></div>
     <div class="links" id="links"></div>
@@ -206,14 +207,12 @@
 </div>
 
 <script src="config.js"></script>
-<script src="assets.js"></script>
-<script src="fotos.js"></script>
 <script src="core.js"></script>
 <script>
 (function () {
   const C = window.Cardapio, $ = (s, r) => (r || document).querySelector(s);
   let D = null, termo = "", ST = null, ultima = "", primeira = true;
-  $("#logo").src = (window.CARDAPIO_ASSETS || {}).logo || "";
+  $("#logo").src = C.logo({});
 
   const KS = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":sacola";
   const KC = "cardapio:" + (C.CFG.LOJA_ID || "demo") + ":cliente";

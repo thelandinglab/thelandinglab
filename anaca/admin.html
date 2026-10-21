@@ -133,7 +133,7 @@
 <!-- LOGIN -->
 <section class="login wrap" id="tela-login">
   <div class="login-caixa">
-    <img id="logo-login" alt="" style="width:190px;height:auto">
+    <img id="logo-login" src="logo.png" width="190" height="101" alt="Anacá" style="width:190px;height:auto">
     <h1 id="titulo-login">Painel do cardápio</h1>
     <p>Entre com a senha para editar.</p>
     <form id="form-login">
@@ -179,8 +179,6 @@
 <input type="file" id="arquivo-foto" accept="image/*" hidden>
 
 <script src="config.js"></script>
-<script src="assets.js"></script>
-<script src="fotos.js"></script>
 <script src="core.js"></script>
 <script>
 (function () {
@@ -207,6 +205,7 @@
 
   /* ---------- login ---------- */
   async function iniciar() {
+    $("#logo-login").src = C.logo({});
     D = await C.carregar();
     $("#logo-login").src = C.logo(D.loja);
     $("#titulo-login").textContent = "Painel " + D.loja.nome;
