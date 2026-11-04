@@ -101,6 +101,22 @@ section{padding:72px 0}
 .vsl{width:100%;max-width:680px;margin:10px auto 4px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:var(--cartao);border:1px solid var(--linha);position:relative;box-shadow:0 30px 70px -40px rgba(0,0,0,.9)}
 .vsl iframe,.vsl video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vsl.vsl-vertical{aspect-ratio:9/16;max-width:340px}
+.vsl-yt{position:absolute;inset:0;overflow:hidden;background:#000}
+.vsl-yt iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0;pointer-events:none}
+.vsl-mask{position:absolute;left:0;right:0;pointer-events:none;z-index:2}
+.vsl-mask.top{top:0;height:16%;background:linear-gradient(#000 0,#000 55%,rgba(0,0,0,0))}
+.vsl-mask.bot{bottom:0;height:13%;background:linear-gradient(rgba(0,0,0,0),#000 50%,#000)}
+.vsl-shield{position:absolute;inset:0;z-index:3;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vsl-cover{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:radial-gradient(80% 60% at 50% 45%,rgba(255,194,61,.16),rgba(10,31,28,.96) 70%),#0A1F1C;color:#F4F8F6;text-align:center;padding:24px;transition:opacity .25s}
+.vsl-cover.pausa{background:rgba(10,31,28,.72)}
+.vsl-cover[hidden]{display:none!important}
+.vsl-btn{width:78px;height:78px;border-radius:50%;background:#FFC23D;color:#1A1300;display:grid;place-items:center;box-shadow:0 0 0 10px rgba(255,194,61,.18),0 18px 40px -12px rgba(0,0,0,.7)}
+.vsl-btn svg{margin-left:4px}
+.vsl-txt{font-weight:700;font-size:1rem;line-height:1.3}
+.vsl-sub{font-size:.85rem;color:#B7CDC7}
+.vsl-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12);z-index:5;pointer-events:none}
+.vsl-bar i{display:block;height:100%;width:0;background:#FFC23D;transition:width .25s linear}
+
 @media (max-width:420px){.vsl.vsl-vertical{max-width:78vw}}
 .vsl-vazio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--neutro);font-size:.9rem;background:repeating-linear-gradient(135deg,var(--cartao) 0 14px,var(--cartao-2) 14px 28px)}
 .vsl-play{width:62px;height:62px;border-radius:50%;background:rgba(255,194,61,.18);border:2px solid var(--azul);display:grid;place-items:center;color:var(--azul-claro)}
@@ -691,11 +707,67 @@ const CONFIG = {
   var vsl = document.querySelector("[data-vsl]");
   if (vsl) {
     if (CONFIG.vslEmbed) {
-      var f = document.createElement("iframe");
-      f.src = CONFIG.vslEmbed; f.title = "Vídeo de apresentação do Explicaí CPA";
-      f.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture"; f.allowFullscreen = true;
-      vsl.innerHTML = ""; vsl.appendChild(f);
+      var idm = CONFIG.vslEmbed.match(/(?:embed\/|shorts\/|youtu\.be\/|v=)([A-Za-z0-9_-]{11})/);
       if (CONFIG.vslVertical) vsl.classList.add("vsl-vertical");
+      if (!idm) {
+        var f = document.createElement("iframe");
+        f.src = CONFIG.vslEmbed; f.title = "Vídeo de apresentação do Explicaí CPA";
+        f.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture"; f.allowFullscreen = true;
+        vsl.innerHTML = ""; vsl.appendChild(f);
+      } else {
+        var vid = idm[1];
+        vsl.innerHTML = '<div class="vsl-yt"><div id="vslPlayer"></div></div>'
+          + '<div class="vsl-mask top"></div><div class="vsl-mask bot"></div>'
+          + '<div class="vsl-shield" data-vsl-shield hidden></div>'
+          + '<div class="vsl-cover" data-vsl-cover><span class="vsl-btn" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
+          + '<span class="vsl-txt" data-vsl-txt>Assista antes de decidir</span><span class="vsl-sub" data-vsl-sub>Toque para ver o vídeo</span></div>'
+          + '<div class="vsl-bar"><i data-vsl-bar></i></div>';
+        var cover = vsl.querySelector("[data-vsl-cover]"), shield = vsl.querySelector("[data-vsl-shield]");
+        var txt = vsl.querySelector("[data-vsl-txt]"), sub = vsl.querySelector("[data-vsl-sub]"), bar = vsl.querySelector("[data-vsl-bar]");
+        var player = null, pronto = false, querTocar = false, timer = null, tentou = null;
+        function tocar(){
+          querTocar = true;
+          if (!pronto) return;
+          player.playVideo();
+          clearTimeout(tentou);
+          tentou = setTimeout(function(){
+            // navegadores que bloqueiam o play pela API (alguns iPhones): libera o toque direto no vídeo uma vez
+            if (player.getPlayerState && player.getPlayerState() !== 1) {
+              cover.hidden = true; shield.hidden = true;
+              vsl.querySelector(".vsl-yt iframe").style.pointerEvents = "auto";
+            }
+          }, 1200);
+        }
+        function mostrarCapa(t, s, pausa){ txt.textContent = t; sub.textContent = s; cover.classList.toggle("pausa", !!pausa); cover.hidden = false; shield.hidden = true; }
+        cover.addEventListener("click", tocar);
+        shield.addEventListener("click", function(){ if (player) player.pauseVideo(); });
+        vsl.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+        window.onYouTubeIframeAPIReady = function(){
+          player = new YT.Player("vslPlayer", {
+            videoId: vid, host: "https://www.youtube-nocookie.com",
+            playerVars: { controls: 0, disablekb: 1, fs: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, playsinline: 1, cc_load_policy: 0 },
+            events: {
+              onReady: function(){ pronto = true; if (querTocar) tocar(); },
+              onStateChange: function(e){
+                if (e.data === 1) {
+                  clearTimeout(tentou);
+                  cover.hidden = true; shield.hidden = false;
+                  vsl.querySelector(".vsl-yt iframe").style.pointerEvents = "none";
+                  clearInterval(timer);
+                  timer = setInterval(function(){ var d = player.getDuration(); if (d) bar.style.width = (player.getCurrentTime() / d * 100) + "%"; }, 250);
+                  if (window.fbq && !vsl.dataset.viu) { vsl.dataset.viu = "1"; try { fbq("trackCustom", "VSLPlay"); } catch(err){} }
+                } else if (e.data === 2) {
+                  clearInterval(timer); mostrarCapa("Vídeo pausado", "Toque para continuar", true);
+                } else if (e.data === 0) {
+                  clearInterval(timer); bar.style.width = "100%"; player.seekTo(0, false); player.pauseVideo();
+                  mostrarCapa("Assistir de novo", "Toque para rever o vídeo", false);
+                }
+              }
+            }
+          });
+        };
+        var tag = document.createElement("script"); tag.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(tag);
+      }
     } else if (!CONFIG.mostrarEspacoVsl) { vsl.hidden = true; }
   }
 
