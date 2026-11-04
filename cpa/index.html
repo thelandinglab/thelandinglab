@@ -3,6 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Rastreamento Explicaí: dados do produto (precisa vir ANTES do GTM) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    produto_slug: 'cpa',
+    produto_id: 'EXP-CPA',
+    produto_nome: 'Explicaí CPA',
+    produto_valor: 117.00
+  });
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N3MHPQZD');</script>
+<!-- End Google Tag Manager -->
 <title>Explicaí CPA</title>
 <meta name="description" content="Passe na nova CPA estudando 15 minutos por dia no celular. Conteúdo completo da prova, explicado em blocos curtos, com quiz e flashcards.">
 <meta property="og:title" content="Explicaí CPA: estude para a nova CPA em blocos de 15 minutos">
@@ -17,7 +36,7 @@
 <!--
   ============================================================
   CONFIGURAÇÃO RÁPIDA: edite só o bloco CONFIG no fim da página.
-  checkoutUrl, pixelId, preço, prazo do lançamento, vídeo e dados do rodapé.
+  checkoutUrl, preço, prazo do lançamento, vídeo e dados do rodapé.
   ============================================================
 -->
 
@@ -118,6 +137,7 @@ section{padding:72px 0}
 .vsl-bar i{display:block;height:100%;width:0;background:#FFC23D;transition:width .25s linear}
 
 @media (max-width:420px){.vsl.vsl-vertical{max-width:78vw}}
+
 .vsl-vazio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--neutro);font-size:.9rem;background:repeating-linear-gradient(135deg,var(--cartao) 0 14px,var(--cartao-2) 14px 28px)}
 .vsl-play{width:62px;height:62px;border-radius:50%;background:rgba(255,194,61,.18);border:2px solid var(--azul);display:grid;place-items:center;color:var(--azul-claro)}
 .apoio{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
@@ -306,6 +326,10 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3MHPQZD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Barra de lançamento: só aparece quando CONFIG.ofertaAte está preenchido e o prazo ainda não passou -->
 <div class="aviso" data-lancamento hidden>
@@ -334,7 +358,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
       </div>
 
       <div class="cta" id="cta-topo" style="align-items:center;width:100%">
-        <a class="btn btn-bloco" data-checkout href="#oferta">Quero acessar o Explicaí CPA</a>
+        <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero acessar o Explicaí CPA</a>
         <p class="sobe" data-lancamento hidden>Preço de lançamento e 2 bônus terminam em <span class="relogio-mini" data-relogio></span><span data-show="precoDepois">. Depois, o preço sobe para <span data-c="precoDepois"></span>.</span></p>
         <ul class="garantias">
           <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Por <span data-c="preco"></span></span></li>
@@ -443,7 +467,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
       <li><span class="quando">Depois da aprovação</span><p>No primeiro atendimento, você explica para o cliente com a mesma clareza com que aprendeu.</p></li>
     </ol>
     <div class="cta" style="margin-top:36px">
-      <a class="btn btn-bloco" data-checkout href="#oferta">Quero passar na CPA</a>
+      <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero passar na CPA</a>
     </div>
   </div>
 </section>
@@ -474,7 +498,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
       </tbody>
     </table>
     <div class="cta" style="margin-top:32px">
-      <a class="btn btn-bloco" data-checkout href="#oferta">Quero me preparar para a nova CPA</a>
+      <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero me preparar para a nova CPA</a>
     </div>
   </div>
 </section>
@@ -565,7 +589,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
         </div>
       </div>
 
-      <a class="btn btn-oferta" data-checkout href="#oferta">Quero garantir o preço e os bônus</a>
+      <a class="btn btn-oferta btn-comprar" data-checkout href="#oferta">Quero garantir o preço e os bônus</a>
       <p class="seguro">Pagamento seguro com Pix, cartão ou boleto. Acesso no seu e-mail logo após a compra.</p>
     </div>
 
@@ -605,7 +629,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
     <h2 id="t-fecho">Quem vai passar na CPA é você, e o Explicaí fica do seu lado em cada tema até lá</h2>
     <p class="intro" style="margin-top:16px">O tempo para estudar já está na sua rotina, espalhado em intervalos de 15 minutos. O primeiro tema pode ser hoje, no próximo café.</p>
     <div class="cta">
-      <a class="btn btn-bloco" data-checkout href="#oferta">Quero passar na CPA</a>
+      <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero passar na CPA</a>
       <ul class="garantias">
         <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Por <span data-c="preco"></span></span></li>
         <li data-lancamento hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Preço de lançamento e 2 bônus até <span data-c="ofertaAteTexto"></span></li>
@@ -627,15 +651,14 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
 <!-- Barra fixa (só no celular) -->
 <div class="barra-fixa" id="barra-fixa" aria-hidden="true">
   <div class="barra-fixa-texto"><strong>Explicaí CPA por <span data-c="preco"></span></strong><span data-lancamento hidden>Preço + 2 bônus terminam em <span class="relogio-mini" data-relogio></span></span></div>
-  <a class="btn" data-checkout href="#oferta" tabindex="-1">Acessar</a>
+  <a class="btn btn-comprar" data-checkout href="#oferta" tabindex="-1">Acessar</a>
 </div>
 
 <script>
 /* =================== CONFIG: edite aqui =================== */
 const CONFIG = {
-  checkoutUrl: "",                 // link do checkout (vazio = botões levam até a oferta)
-  pixelId: "",                     // ID do pixel da Meta
-  preco: "R$\u00a0117",
+  checkoutUrl: "https://pay.kiwify.com.br/7lr5b5A", // checkout Kiwify (vazio = botões levam até a oferta)
+  preco: "R$\u00a0117",          // se mudar o preço, troque também produto_valor no <head>
   parcelado: "",                   // opcional, ex.: "12x de R$ 11,90"
   garantiaDias: "7",
   prazoAcesso: "",                 // opcional, ex.: "12 meses"
@@ -724,6 +747,13 @@ const CONFIG = {
           + '<div class="vsl-bar"><i data-vsl-bar></i></div>';
         var cover = vsl.querySelector("[data-vsl-cover]"), shield = vsl.querySelector("[data-vsl-shield]");
         var txt = vsl.querySelector("[data-vsl-txt]"), sub = vsl.querySelector("[data-vsl-sub]"), bar = vsl.querySelector("[data-vsl-bar]");
+        // Eventos para o GTM (dataLayer): vsl_play, vsl_progresso (25/50/75) e vsl_completo
+        var marcados = {};
+        function marcarVsl(evento, pct){
+          var chave = evento + pct; if (marcados[chave]) return; marcados[chave] = true;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: evento, vsl_percentual: pct, vsl_id: vid });
+        }
         var player = null, pronto = false, querTocar = false, timer = null, tentou = null;
         function tocar(){
           querTocar = true;
@@ -754,12 +784,12 @@ const CONFIG = {
                   cover.hidden = true; shield.hidden = false;
                   vsl.querySelector(".vsl-yt iframe").style.pointerEvents = "none";
                   clearInterval(timer);
-                  timer = setInterval(function(){ var d = player.getDuration(); if (d) bar.style.width = (player.getCurrentTime() / d * 100) + "%"; }, 250);
-                  if (window.fbq && !vsl.dataset.viu) { vsl.dataset.viu = "1"; try { fbq("trackCustom", "VSLPlay"); } catch(err){} }
+                  timer = setInterval(function(){ var d = player.getDuration(); if (d) { var pc = player.getCurrentTime() / d * 100; bar.style.width = pc + "%"; [25,50,75].forEach(function(m){ if (pc >= m) marcarVsl("vsl_progresso", m); }); } }, 250);
+                  if (!vsl.dataset.viu) { vsl.dataset.viu = "1"; marcarVsl("vsl_play", 0); }
                 } else if (e.data === 2) {
                   clearInterval(timer); mostrarCapa("Vídeo pausado", "Toque para continuar", true);
                 } else if (e.data === 0) {
-                  clearInterval(timer); bar.style.width = "100%"; player.seekTo(0, false); player.pauseVideo();
+                  clearInterval(timer); bar.style.width = "100%"; marcarVsl("vsl_completo", 100); player.seekTo(0, false); player.pauseVideo();
                   mostrarCapa("Assistir de novo", "Toque para rever o vídeo", false);
                 }
               }
@@ -773,9 +803,12 @@ const CONFIG = {
 
   // Link do checkout com repasse de UTMs e fbclid
   function linkCheckout(){
-    if (!CONFIG.checkoutUrl) return "#oferta";
+    var url = (CONFIG.checkoutUrl || "").trim();
+    if (!url) return "#oferta";
+    if (!/^https?:\/\//i.test(url)) url = "https://" + url.replace(/^\/+/, "");
+    CONFIG.checkoutUrl = url;
     try {
-      var destino = new URL(CONFIG.checkoutUrl);
+      var destino = new URL(url);
       new URLSearchParams(window.location.search).forEach(function(valor, chave){
         if (!destino.searchParams.has(chave)) destino.searchParams.set(chave, valor);
       });
@@ -785,22 +818,16 @@ const CONFIG = {
   var href = linkCheckout();
   document.querySelectorAll("[data-checkout]").forEach(function(a){
     a.setAttribute("href", href);
-    a.addEventListener("click", function(){
-      if (CONFIG.checkoutUrl && typeof window.fbq === "function") window.fbq("track", "InitiateCheckout", { value: 117, currency: "BRL" });
-    });
+    // só na pré-visualização dentro de iframe o checkout abre em nova aba; na página publicada abre na mesma aba
+    var emIframe = false; try { emIframe = window.self !== window.top; } catch (e) { emIframe = true; }
+    if (CONFIG.checkoutUrl && emIframe) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); }
   });
   // Sem prazo de lançamento ativo, o botão da oferta volta ao texto padrão
   if (!fim || fim.getTime() <= Date.now()) {
     var bo = document.querySelector(".btn-oferta"); if (bo) bo.textContent = "Quero começar agora";
   }
 
-  // Pixel da Meta
-  if (CONFIG.pixelId) {
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
-    window.fbq("init", CONFIG.pixelId);
-    window.fbq("track", "PageView");
-    window.fbq("track", "ViewContent", { content_name: "Explicaí CPA", value: 117, currency: "BRL" });
-  }
+  // Pixel da Meta: instalado pelo Google Tag Manager (GTM-N3MHPQZD), não por aqui.
 
   // Barra fixa no celular
   var barra = document.getElementById("barra-fixa"), ctaTopo = document.getElementById("cta-topo"), oferta = document.getElementById("oferta");
