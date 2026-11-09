@@ -318,6 +318,7 @@
     const inst = input.instalacao || {};
     const instalacao = inst.custom && inst.valor !== '' && !isNaN(+inst.valor) ? +inst.valor : prices.instalacao;
     const instTotal = instalacao + prices.frete * qtyTotal + prices.haste * qtyTotal;
+    const instTotalO = prices.instalacao + prices.frete * qtyTotal + prices.haste * qtyTotal; // com instalação padrão
 
     const sumEq = (k) => items.reduce((s, i) => s + i[k] * i.qty, 0);
     const compraTotal = round2(sumEq('compra') + prices.simcard * qtyTotal + opcAnual);
@@ -329,7 +330,7 @@
     const transfMensalO = round2(sumEq('transfO') + opcAnual / 12);
 
     return {
-      items, qtyTotal, opc, opcAnual, instalacao, instTotal,
+      items, qtyTotal, opc, opcAnual, instalacao, instTotal, instTotalO,
       frete: prices.frete * qtyTotal, haste: prices.haste * qtyTotal, simcard: prices.simcard * qtyTotal,
       compraTotal,
       aluguelMensal, aluguelPorEquip: qtyTotal ? round2(aluguelMensal / qtyTotal) : 0,
@@ -475,6 +476,10 @@
       p.drawLine({ start: { x: x - 1, y: H - (by - size * 0.32) }, end: { x: x + w + 1, y: H - (by - size * 0.32) }, thickness: 0.9, color: GRAY });
     }
     // célula de valor: se houver desconto, original riscado em cima e valor final embaixo
+    // instalação: só mostra riscado quando o valor ficou MENOR que o padrão
+    const instCell = (bold) => c.instTotal < c.instTotalO - 0.004
+      ? [S([AR(brl(c.instTotalO))]), [AB(brl(c.instTotal))]]
+      : [[AR(brl(c.instTotal))]];
     const valCell = (orig, final) => (orig !== null && Math.abs(orig.v - final.v) > 0.004) ? [S(orig.segs), final.segs] : [final.segs];
 
     const fit = (needed, avail) => Math.max(0.68, Math.min(1, avail / needed));
@@ -491,7 +496,7 @@
       scenarioTable(p, 31.3, 564.2, 294, T, s, { left: 'CLIENTE', client: cliente, right: 'CAPEX', font: F.ne15, h: 49.5 }, [
         { h: 63.8, left: [[AB('Total')], [AR('(Á vista ou 3x sem juros)')]],
           right: valCell({ v: c.compraTotalO, segs: [AR(brl(c.compraTotalO, true))] }, { v: c.compraTotal, segs: [(c.compraTotalO !== c.compraTotal ? AB : AR)(brl(c.compraTotal, true))] }) },
-        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: [[AR(brl(c.instTotal))]] },
+        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: instCell() },
       ], 13 * Math.max(0.85, s), 13 * Math.max(0.85, s));
     }
 
@@ -523,7 +528,7 @@
           right: valCell({ v: porEquipO, segs: [AR(brl(porEquipO) + ' / estação / mês')] }, { v: porEquip, segs: [AB(brl(porEquip)), AR(' / estação / mês')] }) },
         { h: 63.2, left: [[AB('TOTAL '), AR(`(${pad2(c.qtyTotal)} equipamento${c.qtyTotal > 1 ? 's' : ''})`)]],
           right: valCell({ v: mensalO, segs: [AR(brl(mensalO) + ' / mês')] }, { v: mensal, segs: [AB(brl(mensal)), AR(' / mês')] }) },
-        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: [[AR(brl(c.instTotal))]] },
+        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: instCell() },
       ], big, big);
     };
 
@@ -750,7 +755,7 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
     h += '<div class="blk"><h4>Projeto</h4>';
     c.items.forEach((i) => h += kv(`${String(i.qty).padStart(2,'0')} × ${i.nome}`, i.desc ? `−${String(i.desc).replace('.', ',')}%` : ''));
     c.opc.forEach((o) => h += kv(o.id === 'PREV' ? `Previsão do Tempo (${o.qty} ${o.qty>1?'pontos':'ponto'})` : `Plataforma PRO ${inp.pro.tier === 'plus' ? 'Plus' : 'Gold'}`, brl(o.anual) + '/ano'));
-    h += kv('Instalação + frete + hastes', brl(c.instTotal), 'muted');
+    h += kv('Instalação + frete + hastes', (c.instTotal < c.instTotalO ? '<s style="font-weight:400">' + brl(c.instTotalO) + '</s> ' : '') + brl(c.instTotal), 'muted');
     h += kv(`&nbsp;&nbsp;instalação ${brl(c.instalacao)} · frete ${brl(c.frete)} · hastes ${brl(c.haste)}`, '', 'muted');
     h += '</div>';
     if (cen.compra) h += `<div class="blk"><h4>Compra</h4>${kv('Total (CAPEX)', brl(c.compraTotal, true), 'main')}${c.compraTotalO !== c.compraTotal ? kv('sem desconto', '<s>' + brl(c.compraTotalO, true) + '</s>', 'muted') : ''}${kv(`inclui simcard 1º ano ${brl(c.simcard)}${c.opcAnual ? ' e opcionais ' + brl(c.opcAnual) : ''}`, '', 'muted')}${kv('+ Instalação, frete e hastes', brl(c.instTotal))}</div>`;
