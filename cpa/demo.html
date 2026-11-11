@@ -3581,12 +3581,17 @@ function demoUrl(origem){
   const s=p.toString();
   return DEMO.checkout+(s?'?'+s:'');
 }
-function demoIr(origem){
+function demoIr(origem,ev,a){
   try{(window.dataLayer=window.dataLayer||[]).push({event:'demo_desbloquear',demo_origem:origem})}catch(e){}
-  try{if(window.parent&&window.parent!==window)window.parent.postMessage({tipo:'explicai_demo_desbloquear',origem},'*')}catch(e){}
+  let emFrame=false;try{emFrame=window.parent&&window.parent!==window}catch(e){emFrame=true}
+  if(!emFrame)return true;
+  try{window.parent.postMessage({tipo:'explicai_demo_desbloquear',origem},'*')}catch(e){}
+  // dá tempo da página registrar o clique antes de abrir o checkout
+  if(ev&&a){ev.preventDefault();const url=a.href;setTimeout(()=>{try{window.top.location.href=url}catch(e){window.open(url,'_top')}},450);return false}
+  return true;
 }
 function demoBtn(origem,txt){
-  return `<a class="dm-btn btn-comprar" href="${demoUrl(origem)}" target="_top" rel="noopener" onclick="demoIr('${origem}')">${txt||'Desbloquear a versão completa e continuar estudando'}</a>`;
+  return `<a class="dm-btn btn-comprar" href="${demoUrl(origem)}" target="_top" rel="noopener" onclick="return demoIr('${origem}',event,this)">${txt||'Desbloquear a versão completa e continuar estudando'}</a>`;
 }
 function demoMicro(){return `<div class="dm-micro">${DEMO.preco} · Acesso na hora · Garantia de ${DEMO.garantia} dias</div>`}
 
@@ -3805,7 +3810,7 @@ goHome=function(el){
   let emFrame=false;try{emFrame=window.self!==window.top}catch(e){emFrame=true}
   if(emFrame)return;
   const tb=document.querySelector('.topbar');
-  if(tb&&!document.getElementById('dmTop'))tb.insertAdjacentHTML('beforeend',`<a id="dmTop" class="dm-top btn-comprar" href="${demoUrl('topo')}" target="_top" rel="noopener" onclick="demoIr('topo')">Desbloquear</a>`);
+  if(tb&&!document.getElementById('dmTop'))tb.insertAdjacentHTML('beforeend',`<a id="dmTop" class="dm-top btn-comprar" href="${demoUrl('topo')}" target="_top" rel="noopener" onclick="return demoIr('topo',event,this)">Desbloquear</a>`);
 })();
 
 
