@@ -426,6 +426,48 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
 .cards3 div,.bloco,.regras li,.bonus-card,.custo div{transition:border-color .2s ease,transform .2s ease}
 @media (hover:hover){.cards3 div:hover,.bonus-card:hover{border-color:rgba(255,194,61,.45);transform:translateY(-2px)}}
 .jornada li:last-child::before{left:5px}
+
+/* ===== Demo grátis ===== */
+.faixa-demo{background:radial-gradient(50% 60% at 25% 50%,rgba(255,194,61,.12),transparent 70%),linear-gradient(180deg,#0E2B26,#0B231F);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.demo-box{display:grid;gap:30px;align-items:center}
+@media (min-width:860px){.demo-box{grid-template-columns:.8fr 1.2fr;gap:48px}}
+.demo-vis{position:relative;display:flex;justify-content:center}
+.demo-cel{width:220px;height:380px;overflow:hidden;transform:rotate(2deg);position:relative}
+.demo-cel::after{content:"";position:absolute;left:9px;right:9px;bottom:9px;height:80px;border-radius:0 0 31px 31px;background:linear-gradient(transparent,#05080F)}
+.demo-selo{position:absolute;top:10px;right:calc(50% - 140px);background:var(--azul);color:#1A1300;font-weight:800;font-size:.85rem;padding:7px 14px;border-radius:999px;transform:rotate(8deg);box-shadow:0 10px 24px -10px rgba(255,194,61,.9)}
+.demo-txt{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+@media (min-width:860px){.demo-txt{text-align:left;align-items:flex-start}}
+.demo-txt h2{margin:0}
+.demo-txt>p{color:#DCEAE6;font-size:1.04rem;max-width:48ch}
+.demo-lista{list-style:none;padding:0;margin:4px 0 6px;display:grid;gap:8px;text-align:left}
+.demo-lista li{display:flex;gap:10px;align-items:flex-start;color:#E3EFEC;font-size:.98rem}
+.demo-lista svg{flex:none;width:18px;height:18px;margin-top:3px;color:var(--verde)}
+.btn-demo{border:none;cursor:pointer;font-family:inherit}
+.demo-nota{font-size:.88rem;color:var(--neutro)}
+.link-demo{background:none;border:none;color:var(--azul-claro);font:inherit;font-size:.95rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:2px 4px}
+.link-inline{background:none;border:none;padding:0;color:var(--azul-claro);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.demo-ov{position:fixed;inset:0;z-index:1000;background:#0A1F1C;display:flex;flex-direction:column}
+.demo-ov[hidden]{display:none}
+.demo-ov-barra{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:#061513;border-bottom:1px solid var(--linha)}
+.demo-ov-voltar{background:none;border:1px solid var(--linha);color:#E3EFEC;font:inherit;font-size:.9rem;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer}
+.demo-ov-comprar{background:var(--azul);color:#1A1300;font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px -10px rgba(255,194,61,.9)}
+.demo-ov-frame{flex:1;width:100%;border:0;background:#0A1F1C}
+@media (min-width:860px){.demo-ov{background:rgba(3,10,9,.86);align-items:center;justify-content:center;padding:24px}.demo-ov-barra{width:min(480px,100%);border-radius:18px 18px 0 0;border:1px solid var(--linha)}.demo-ov-frame{flex:none;width:min(480px,100%);height:calc(100vh - 120px);border:1px solid var(--linha);border-top:0;border-radius:0 0 18px 18px}}
+html.demo-aberta,html.demo-aberta body{overflow:hidden}
+
+/* ===== Aviso de saída ===== */
+.saida{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;padding:20px}
+.saida[hidden]{display:none}
+.saida-fundo{position:absolute;inset:0;background:rgba(3,10,9,.75);backdrop-filter:blur(3px);animation:saidaFade .2s ease}
+.saida-card{position:relative;width:min(420px,100%);background:var(--cartao-2);border:1px solid rgba(255,194,61,.5);border-radius:22px;padding:30px 22px 20px;text-align:center;box-shadow:0 30px 70px -30px rgba(0,0,0,.95),0 0 40px -10px rgba(255,194,61,.25);animation:saidaSobe .28s cubic-bezier(.2,.8,.2,1)}
+.saida-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:1px solid var(--linha);background:transparent;color:var(--neutro);cursor:pointer;font-size:.9rem}
+.saida-selo{display:inline-block;background:var(--azul);color:#1A1300;font-weight:800;font-size:.78rem;padding:5px 12px;border-radius:999px;margin-bottom:12px}
+.saida-t{font-family:var(--font-display);font-weight:700;font-size:1.45rem;line-height:1.2;color:#fff}
+.saida-s{color:#DCEAE6;font-size:1rem;margin:10px 0 18px}
+.saida-btn{width:100%}
+.saida-nao{margin-top:12px;background:none;border:none;color:var(--neutro);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer}
+@keyframes saidaFade{from{opacity:0}}
+@keyframes saidaSobe{from{opacity:0;transform:translateY(24px) scale(.97)}}
 </style>
 </head>
 <body>
@@ -457,6 +499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="sub sub-2">Mesmo quem nunca estudou finanças entende sem precisar pesquisar nada por fora.</p>
         <div class="cta" id="cta-topo">
           <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero estudar com o Explicaí</a>
+          <button type="button" class="link-demo" data-abrir-demo="topo" data-demo-topo hidden>ou experimente 2 temas grátis antes</button>
           <p class="sobe" data-lancamento hidden>Preço de lançamento e 2 bônus terminam em <span class="relogio-mini" data-relogio></span><span data-show="precoDepois">. Depois, o preço sobe para <span data-c="precoDepois"></span>.</span></p>
           <ul class="garantias garantias-topo">
             <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><span data-c="parcelado"></span> ou <span data-c="preco"></span></span></li>
@@ -554,6 +597,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </article>
     </div>
     <p class="intro nota-demo">As duas versões cobrem o mesmo conteúdo da prova. A diferença está na ordem e no cuidado de explicar cada peça antes de montar o quadro. O Explicaí inteiro foi escrito assim.</p>
+  </div>
+</section>
+
+<!-- ===================== DEMO GRÁTIS ===================== -->
+<section class="faixa-demo centro" id="demo" aria-labelledby="t-demo-gratis" data-demo>
+  <div class="wrap wrap-larga">
+    <div class="demo-box">
+      <div class="demo-vis" aria-hidden="true">
+        <div class="hero-brilho"></div>
+        <div class="celular demo-cel"><img data-hero-img width="624" height="1184" alt=""></div>
+        <span class="demo-selo">Grátis</span>
+      </div>
+      <div class="demo-txt">
+        <span class="olho">Teste antes de decidir</span>
+        <h2 id="t-demo-gratis">Teste o método agora: os 2 primeiros temas de cada módulo estão liberados</h2>
+        <p>Abra no seu celular, escolha um tema e veja se você entende de primeira.</p>
+        <ul class="demo-lista">
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>8 temas completos, com o que é, analogia e a história completa</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Quiz, flashcards e 2 casos do simulador de atendimento</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Sem cadastro e sem pagar nada</span></li>
+        </ul>
+        <button type="button" class="btn btn-bloco btn-demo" data-abrir-demo="secao">Experimentar grátis</button>
+        <p class="demo-nota">Abre aqui mesmo, no seu navegador.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -813,6 +881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <details><summary>E em vez de um curso com videoaulas?</summary><p>Um curso em vídeo pede uma hora ou mais parada, com fone e atenção total. O Explicaí foi feito para os intervalos de 15 ou 20 minutos que já existem no seu dia. Você lê no seu ritmo, volta num trecho quando quiser e testa o que aprendeu no quiz do próprio tema.</p></details>
       <details><summary>Tem videoaula gravada?</summary><p>Não. O Explicaí é todo em texto didático, dividido em blocos curtos, com quiz, flashcards e simulações de atendimento. Escolhemos esse formato para você estudar em qualquer lugar, sem precisar de fone nem de uma hora livre.</p></details>
       <details><summary>Dá para estudar pelo celular?</summary><p>Dá, e foi pensado para isso. O Explicaí abre no navegador e pode ser salvo na tela inicial do celular como um aplicativo. Também funciona no tablet e no computador.</p></details>
+      <details data-demo><summary>Posso testar antes de comprar?</summary><p>Pode. Os 2 primeiros temas de cada módulo estão liberados na <button type="button" class="link-inline" data-abrir-demo="faq">versão de demonstração</button>, junto com uma amostra do quiz, dos flashcards e do simulador. É o mesmo app, então você vê o jeito de explicar antes de decidir. Depois da compra, você ainda tem 7 dias de garantia.</p></details>
       <details><summary>Nunca trabalhei com mercado financeiro. Vou conseguir acompanhar?</summary><p>O material foi escrito pensando em quem está começando. Cada conceito é explicado antes de ser usado e cada sigla aparece por extenso na primeira vez, então você não precisa de base prévia.</p></details>
       <details><summary>Já tenho alguma base ou já trabalho na área. Vale a pena?</summary><p>Vale para organizar o que você já sabe na ordem da prova e preencher lacunas. Os blocos de história completa trazem o detalhe cobrado, e o quiz mostra rapidamente onde você ainda erra.</p></details>
       <details><summary>Estudar 15 minutos por dia dá para passar?</summary><p>Os blocos foram feitos para caber em intervalos assim. O tempo total depende da sua base e da data da sua prova. Quanto antes você começar, mais intervalos terá até lá.</p></details>
@@ -854,6 +923,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<!-- Aviso de saída: convida para a demo grátis -->
+<div class="saida" id="saida" role="dialog" aria-modal="true" aria-labelledby="saida-t" hidden>
+  <div class="saida-fundo" data-fechar-saida></div>
+  <div class="saida-card">
+    <button type="button" class="saida-x" data-fechar-saida aria-label="Fechar">✕</button>
+    <span class="saida-selo">Grátis, sem cadastro</span>
+    <p class="saida-t" id="saida-t">Antes de sair, teste o Explicaí de graça</p>
+    <p class="saida-s">Os 2 primeiros temas de cada módulo estão liberados. Abra agora e veja se você entende de primeira.</p>
+    <button type="button" class="btn btn-bloco btn-demo saida-btn" data-abrir-demo="saida">Experimentar grátis</button>
+    <button type="button" class="saida-nao" data-fechar-saida>Agora não</button>
+  </div>
+</div>
+
+<!-- Janela da demo (tela cheia, por cima da página) -->
+<div class="demo-ov" id="demo-ov" role="dialog" aria-modal="true" aria-label="Versão de demonstração do Explicaí CPA" hidden>
+  <div class="demo-ov-barra">
+    <button type="button" class="demo-ov-voltar" data-fechar-demo>← Voltar para a página</button>
+    <a class="demo-ov-comprar btn-comprar" data-checkout data-src-demo href="#oferta">Desbloquear tudo</a>
+  </div>
+  <iframe class="demo-ov-frame" id="demo-frame" title="Explicaí CPA, versão de demonstração" loading="lazy"></iframe>
+</div>
+
 <!-- Barra fixa (só no celular) -->
 <div class="barra-fixa" id="barra-fixa" aria-hidden="true">
   <div class="barra-fixa-texto"><span class="bf-marca"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="8" width="84" height="68" rx="22" fill="#F4F8F6"/><path d="M22 68 L15 94 L48 74 Z" fill="#F4F8F6"/><path d="M50 42 V62" stroke="#0A1F1C" stroke-width="13" stroke-linecap="round" fill="none"/><path d="M46 29 L58 19" stroke="#0A1F1C" stroke-width="10" stroke-linecap="round" fill="none"/></svg><span class="bf-nome">explicaí</span><span class="logo-tag bf-tag">CPA</span></span><span class="bf-preco"><span data-c="parcelado"></span> ou <span data-c="preco"></span></span><span class="bf-relogio" data-lancamento hidden>Termina em <span class="relogio-mini" data-relogio></span></span></div>
@@ -877,6 +968,10 @@ const CONFIG = {
   bonusSoLancamento: false,        // false = os 2 bônus sempre aparecem; true = só aparecem enquanto o lançamento estiver ativo
   limiteVagas: "",                 // opcional: só se existir um limite REAL de inscrições no preço de lançamento, ex.: "200"
 
+
+  // DEMO: arquivo da versão de demonstração do app (ao lado desta página). Vazio = esconde tudo da demo.
+  demoUrl: "demo.html",
+  linkDemoNoTopo: false,           // true = mostra "ou experimente 2 temas grátis antes" embaixo do botão do topo
 
   privacidade: "#",
   termos: "#"
@@ -929,8 +1024,8 @@ const CONFIG = {
   if (tick()) { var timer = setInterval(function(){ if (!tick()) clearInterval(timer); }, 1000); }
 
   // Print do topo reaproveita a imagem da seção de camadas (sem duplicar o arquivo)
-  var heroImg = document.querySelector("[data-hero-img]"), camadaImg = document.querySelector(".celular:not(.hero-cel) img");
-  if (heroImg && camadaImg) heroImg.src = camadaImg.getAttribute("src");
+  var camadaImg = document.querySelector(".funciona .celular img");
+  if (camadaImg) document.querySelectorAll("[data-hero-img]").forEach(function(im){ im.src = camadaImg.getAttribute("src"); });
 
   // Link do checkout com repasse de UTMs e fbclid
   function linkCheckout(){
@@ -957,6 +1052,89 @@ const CONFIG = {
   if (!fim || fim.getTime() <= Date.now()) {
     var bo = document.querySelector(".btn-oferta"); if (bo) bo.textContent = "Quero começar agora";
   }
+
+
+  // ===== Demo grátis: abre por cima da página =====
+  (function(){
+    var url = (CONFIG.demoUrl || "").trim();
+    var ov = document.getElementById("demo-ov"), frame = document.getElementById("demo-frame");
+    if (!url) { document.querySelectorAll("[data-demo],[data-abrir-demo],#demo-ov").forEach(function(el){ el.setAttribute("hidden",""); el.style.display="none"; }); return; }
+    if (CONFIG.linkDemoNoTopo) document.querySelectorAll("[data-demo-topo]").forEach(function(el){ el.removeAttribute("hidden"); });
+    // Botão "Desbloquear tudo" da barra da demo leva a origem para a Kiwify
+    document.querySelectorAll("[data-src-demo]").forEach(function(a){
+      try { var u = new URL(a.href); if (!u.searchParams.has("src")) u.searchParams.set("src","demo_barra"); a.href = u.toString(); } catch(e){}
+    });
+    var aberta = false;
+    function abrir(origem){
+      if (!frame.getAttribute("src")) frame.setAttribute("src", url + window.location.search);
+      ov.removeAttribute("hidden"); document.documentElement.classList.add("demo-aberta"); aberta = true;
+      try { history.pushState({demo:1}, ""); } catch(e){}
+      (window.dataLayer = window.dataLayer || []).push({ event: "demo_aberta", demo_origem: origem });
+      var b = document.getElementById("barra-fixa"); if (b) b.classList.remove("visivel");
+    }
+    function fechar(viaHistorico){
+      if (!aberta) return;
+      ov.setAttribute("hidden",""); document.documentElement.classList.remove("demo-aberta"); aberta = false;
+      if (!viaHistorico) { try { if (history.state && history.state.demo) history.back(); } catch(e){} }
+    }
+    document.querySelectorAll("[data-abrir-demo]").forEach(function(b){
+      b.addEventListener("click", function(){ abrir(b.getAttribute("data-abrir-demo")); });
+    });
+    document.querySelectorAll("[data-fechar-demo]").forEach(function(b){ b.addEventListener("click", function(){ fechar(false); }); });
+    window.addEventListener("popstate", function(){ fechar(true); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") fechar(false); });
+    // Cliques de desbloqueio feitos dentro da demo chegam aqui e vão para o dataLayer da página
+    window.addEventListener("message", function(e){
+      if (e.data && e.data.tipo === "explicai_demo_desbloquear")
+        (window.dataLayer = window.dataLayer || []).push({ event: "demo_desbloquear", demo_origem: e.data.origem || "" });
+    });
+  })();
+
+
+  // ===== Aviso de saída: no máximo 1 vez por visita =====
+  (function(){
+    var box = document.getElementById("saida");
+    if (!box || !(CONFIG.demoUrl || "").trim()) return;
+    var CHAVE = "explicai_saida_vista", inicio = Date.now(), pronto = false;
+    function jaViu(){ try { return sessionStorage.getItem(CHAVE) === "1"; } catch(e){ return false; } }
+    function marcar(){ try { sessionStorage.setItem(CHAVE, "1"); } catch(e){} }
+    // Não mostra para quem já abriu a demo ou clicou para comprar
+    document.querySelectorAll("[data-abrir-demo],.btn-comprar").forEach(function(el){ el.addEventListener("click", marcar); });
+    function podeMostrar(){
+      if (jaViu() || Date.now() - inicio < 10000) return false;
+      if (document.documentElement.classList.contains("demo-aberta")) return false;
+      return true;
+    }
+    function mostrar(gatilho){
+      if (!podeMostrar()) return;
+      marcar(); box.removeAttribute("hidden"); document.documentElement.classList.add("demo-aberta");
+      (window.dataLayer = window.dataLayer || []).push({ event: "saida_exibida", saida_gatilho: gatilho });
+    }
+    function fechar(){ box.setAttribute("hidden",""); document.documentElement.classList.remove("demo-aberta"); }
+    box.querySelectorAll("[data-fechar-saida]").forEach(function(b){ b.addEventListener("click", fechar); });
+    box.querySelectorAll("[data-abrir-demo]").forEach(function(b){ b.addEventListener("click", function(){ box.setAttribute("hidden",""); }); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !box.hasAttribute("hidden")) fechar(); });
+
+    // Computador: o mouse sai pelo topo da janela (indo para a aba, o X ou a barra de endereço)
+    document.addEventListener("mouseout", function(e){
+      if (!e.relatedTarget && e.clientY <= 0) mostrar("mouse_topo");
+    });
+    // Celular: rolagem rápida para cima depois de já ter descido bastante (sinal comum de quem vai sair)
+    var ultY = window.scrollY, ultT = Date.now(), maxY = 0;
+    window.addEventListener("scroll", function(){
+      var y = window.scrollY, t = Date.now();
+      maxY = Math.max(maxY, y);
+      var vel = (ultY - y) / Math.max(1, t - ultT); // px/ms para cima
+      if (vel > 2.2 && maxY > document.body.scrollHeight * 0.35 && y > 400) mostrar("rolagem_rapida");
+      ultY = y; ultT = t;
+    }, { passive: true });
+    // Celular: a pessoa saiu para outro app ou aba e voltou
+    var saiu = false;
+    document.addEventListener("visibilitychange", function(){
+      if (document.visibilityState === "hidden") saiu = true;
+      else if (saiu) { saiu = false; setTimeout(function(){ mostrar("voltou_aba"); }, 600); }
+    });
+  })();
 
   // Pixel da Meta: instalado pelo Google Tag Manager (GTM-N3MHPQZD), não por aqui.
 
