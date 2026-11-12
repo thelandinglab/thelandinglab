@@ -178,13 +178,17 @@
     <h2><span class="n">5</span>Instalação e páginas</h2>
     <div class="row">
       <div>
-        <label>Instalação</label>
-        <select id="inst_mode"><option value="padrao">Valor padrão</option><option value="custom">Valor diferente</option></select>
-      </div>
-      <div id="inst_box" style="display:none">
         <label>Valor da instalação (projeto)</label>
-        <input type="number" id="inst_valor" min="0" step="1">
+        <input type="number" inputmode="decimal" id="inst_valor" min="0" step="1">
       </div>
+      <div>
+        <label>Desconto na instalação (R$)</label>
+        <input type="number" inputmode="decimal" id="inst_desc" min="0" step="1" placeholder="0">
+      </div>
+    </div>
+    <div class="toggles" style="margin-top:12px">
+      <label class="invlabel"><input type="checkbox" id="inst_frete" checked><span id="lbl_frete">Somar frete</span></label>
+      <label class="invlabel"><input type="checkbox" id="inst_haste" checked><span id="lbl_haste">Somar hastes</span></label>
     </div>
     <div class="hint" id="inst_info"></div>
     <div style="margin-top:14px">
@@ -269,11 +273,11 @@
   // ---------- Tabela de preços padrão (planilha "valores e precificação") ----------
   const DEFAULT_PRICES = {
     equip: {
-      ET0:   { compra: 27070, aluguel: 930, transf: 1130 },
-      TH:    { compra: 15500, aluguel: 550, transf: 675 },
-      CHUVA: { compra: 11200, aluguel: 390, transf: 530 },
-      BASES: { compra: 17800, aluguel: 485, transf: 565 },
-      CHUVAS:{ compra: 19700, aluguel: 640, transf: 775 },
+      ET0:   { compra: 25070, aluguel: 930, transf: 1130 },
+      TH:    { compra: 14180, aluguel: 550, transf: 675 },
+      CHUVA: { compra: 10720, aluguel: 390, transf: 530 },
+      BASES: { compra: 13860, aluguel: 485, transf: 565 },
+      CHUVAS:{ compra: 17360, aluguel: 640, transf: 775 },
     },
     frete: 185,        // por equipamento
     simcard: 375,      // por equipamento / ano (compra)
@@ -342,9 +346,14 @@
     const opcAnual = opc.reduce((s, o) => s + o.anual, 0);
 
     const inst = input.instalacao || {};
-    const instalacao = inst.custom && inst.valor !== '' && !isNaN(+inst.valor) ? +inst.valor : prices.instalacao;
-    const instTotal = instalacao + prices.frete * qtyTotal + prices.haste * qtyTotal;
-    const instTotalO = prices.instalacao + prices.frete * qtyTotal + prices.haste * qtyTotal; // com instalação padrão
+    const num = (v) => { const n = +String(v ?? '').replace(',', '.'); return isNaN(n) ? null : n; };
+    const instalacao = (inst.valor !== '' && inst.valor != null && num(inst.valor) !== null) ? Math.max(0, num(inst.valor)) : prices.instalacao;
+    const instDesc = Math.min(instalacao, Math.max(0, num(inst.desconto) || 0));
+    const comFrete = inst.frete !== false, comHaste = inst.haste !== false;
+    const frete = comFrete ? prices.frete * qtyTotal : 0, haste = comHaste ? prices.haste * qtyTotal : 0;
+    const instTotalO = instalacao + frete + haste;          // sem desconto (riscado)
+    const instTotal = instalacao - instDesc + frete + haste;  // com desconto
+    const instLabel = 'Instalação' + (comFrete && comHaste ? ' + frete + hastes' : comFrete ? ' + frete' : comHaste ? ' + hastes' : '');
 
     const sumEq = (k) => items.reduce((s, i) => s + i[k] * i.qty, 0);
     const compraTotal = round2(sumEq('compra') + prices.simcard * qtyTotal + opcAnual);
@@ -356,8 +365,8 @@
     const transfMensalO = round2(sumEq('transfO') + opcAnual / 12);
 
     return {
-      items, qtyTotal, opc, opcAnual, instalacao, instTotal, instTotalO,
-      frete: prices.frete * qtyTotal, haste: prices.haste * qtyTotal, simcard: prices.simcard * qtyTotal,
+      items, qtyTotal, opc, opcAnual, instalacao, instDesc, instTotal, instTotalO, instLabel,
+      frete, haste, simcard: prices.simcard * qtyTotal,
       compraTotal,
       aluguelMensal, aluguelPorEquip: qtyTotal ? round2(aluguelMensal / qtyTotal) : 0,
       transfMensal, transfPorEquip: qtyTotal ? round2(transfMensal / qtyTotal) : 0,
@@ -521,7 +530,7 @@
     }
     // célula de valor: se houver desconto, original riscado em cima e valor final embaixo
     // instalação: só mostra riscado quando o valor ficou MENOR que o padrão
-    const instCell = (bold) => c.instTotal < c.instTotalO - 0.004
+    const instCell = () => c.instTotal < c.instTotalO - 0.004
       ? [S([AR(brl(c.instTotalO))]), [AB(brl(c.instTotal))]]
       : [[AR(brl(c.instTotal))]];
     const valCell = (orig, final) => (orig !== null && Math.abs(orig.v - final.v) > 0.004) ? [S(orig.segs), final.segs] : [final.segs];
@@ -541,7 +550,7 @@
       scenarioTable(p, 31.3, 564.2, 294, T, s, { left: 'CLIENTE', client: cliente, right: 'CAPEX', font: F.ne15, h: 49.5 }, [
         { h: 63.8, left: [[AB('Total')], [AR('(Á vista ou 3x sem juros)')]],
           right: valCell({ v: c.compraTotalO, segs: [AR(brl(c.compraTotalO, true))] }, { v: c.compraTotal, segs: [(c.compraTotalO !== c.compraTotal ? AB : AR)(brl(c.compraTotal, true))] }) },
-        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: instCell() },
+        { h: 64.5, left: [[AR(c.instLabel)]], right: instCell() },
       ], 13 * Math.max(0.85, s), 13 * Math.max(0.85, s));
     };
 
@@ -574,7 +583,7 @@
           right: valCell({ v: porEquipO, segs: [AR(brl(porEquipO) + ' / estação / mês')] }, { v: porEquip, segs: [AB(brl(porEquip)), AR(' / estação / mês')] }) },
         { h: 63.2, left: [[AB('TOTAL '), AR(`(${pad2(c.qtyTotal)} equipamento${c.qtyTotal > 1 ? 's' : ''})`)]],
           right: valCell({ v: mensalO, segs: [AR(brl(mensalO) + ' / mês')] }, { v: mensal, segs: [AB(brl(mensal)), AR(' / mês')] }) },
-        { h: 64.5, left: [[AR('Instalação + frete + hastes')]], right: instCell() },
+        { h: 64.5, left: [[AR(c.instLabel)]], right: instCell() },
       ], big, big);
     };
 
@@ -663,7 +672,7 @@
         if (o.item.qty > 1) s.push(OR(` (${pad2(o.item.qty)} un.)`));
         return s;
       };
-      const sub = (o) => `+ ${brl(o.calc.instTotal)} instalação, frete e hastes`;
+      const sub = (o) => `+ ${brl(o.calc.instTotal)} ${o.calc.instLabel.toLowerCase().replace(' + frete + hastes', ', frete e hastes').replace(' + ', ' e ')}`;
       const mk = (k1, k1o, suf, force) => opts.map((o, k) => ({
         segs: optSegs(o, k), val: brl(o.calc[k1], force) + suf,
         orig: Math.abs(o.calc[k1o] - o.calc[k1]) > 0.004 ? brl(o.calc[k1o], force) + suf : null, sub: sub(o),
@@ -722,8 +731,8 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
     set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
   };
   const clone = (o) => JSON.parse(JSON.stringify(o));
-  let prices = Object.assign(clone(G.DEFAULT_PRICES), store.get('metos_prices', {}));
-  prices.equip = Object.assign(clone(G.DEFAULT_PRICES.equip), (store.get('metos_prices', {}) || {}).equip || {});
+  let prices = Object.assign(clone(G.DEFAULT_PRICES), store.get('metos_prices_v2', {}));
+  prices.equip = Object.assign(clone(G.DEFAULT_PRICES.equip), (store.get('metos_prices_v2', {}) || {}).equip || {});
 
   // ---- equipamentos ----
   const eqbody = $('eqbody');
@@ -760,7 +769,9 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
     $('pro_info').textContent = `Padrão: Plus ${brl(prices.proPlus)}/ano · Gold ${brl(prices.proGold)}/ano · 1 por cliente`;
     if(!$('prev_preco').dataset.touched) $('prev_preco').value = prices.previsao;
     if(!$('pro_preco').dataset.touched) $('pro_preco').value = tier === 'gold' ? prices.proGold : prices.proPlus;
-    $('inst_info').textContent = `Padrão: ${brl(prices.instalacao)} por projeto. Frete (${brl(prices.frete)}) e haste (${brl(prices.haste)}) por equipamento entram automaticamente.`;
+    $('inst_info').textContent = `Com desconto, o PDF mostra o valor cheio riscado e o valor com desconto embaixo. O desconto vale só para a instalação.`;
+    $('lbl_frete').textContent = `Somar frete (${brl(prices.frete)} × equipamentos)`;
+    $('lbl_haste').textContent = `Somar hastes (${brl(prices.haste)} × equipamentos)`;
     if(!$('inst_valor').dataset.touched) $('inst_valor').value = prices.instalacao;
   }
 
@@ -782,8 +793,8 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
     if (t.dataset.eq) { prices.equip[t.dataset.eq][t.dataset.k] = +t.value || 0; savePrices(); }
     if (t.dataset.fix) { prices[t.dataset.fix] = +t.value || 0; savePrices(); }
   });
-  function savePrices(){ store.set('metos_prices', prices); fillPriceInfo(); update(); }
-  $('resetPrices').onclick = () => { prices = clone(G.DEFAULT_PRICES); store.set('metos_prices', prices); buildPriceEditor(); fillPriceInfo(); update(); };
+  function savePrices(){ store.set('metos_prices_v2', prices); fillPriceInfo(); update(); }
+  $('resetPrices').onclick = () => { prices = clone(G.DEFAULT_PRICES); store.set('metos_prices_v2', prices); buildPriceEditor(); fillPriceInfo(); update(); };
 
   // ---- interações ----
   document.addEventListener('click', (ev) => {
@@ -804,7 +815,7 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
   $('prev_custom').addEventListener('change', (ev) => { $('prev_box').classList.toggle('show', ev.target.checked); update(); });
   $('pro_custom').addEventListener('change', (ev) => { $('pro_box').classList.toggle('show', ev.target.checked); update(); });
   $('pro_tier').addEventListener('change', () => { $('pro_preco').dataset.touched = ''; fillPriceInfo(); update(); });
-  $('inst_mode').addEventListener('change', (ev) => { $('inst_box').style.display = ev.target.value === 'custom' ? '' : 'none'; update(); });
+
   document.querySelectorAll('input[type=checkbox]').forEach((c) => c.addEventListener('change', update));
 
   // vendedor
@@ -826,7 +837,7 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
       equip,
       previsao: { qty: parseInt($('prev_qty').value) || 0, custom: $('prev_custom').checked, preco: $('prev_preco').value },
       pro: { tier: $('pro_tier').value, custom: $('pro_custom').checked, preco: $('pro_preco').value },
-      instalacao: { custom: $('inst_mode').value === 'custom', valor: $('inst_valor').value },
+      instalacao: { valor: $('inst_valor').value, desconto: $('inst_desc').value, frete: $('inst_frete').checked, haste: $('inst_haste').checked },
       investimento: $('investimento').checked,
       portfolio: $('m_port').checked,
       comparativo: $('comparativo').checked,
@@ -849,12 +860,12 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
     h += '<div class="blk"><h4>Projeto</h4>';
     c.items.forEach((i) => h += kv(`${String(i.qty).padStart(2,'0')} × ${i.nome}`, i.desc ? `−${String(i.desc).replace('.', ',')}%` : ''));
     c.opc.forEach((o) => h += kv(o.id === 'PREV' ? `Previsão do Tempo (${o.qty} ${o.qty>1?'pontos':'ponto'})` : `Plataforma PRO ${inp.pro.tier === 'plus' ? 'Plus' : 'Gold'}`, brl(o.anual) + '/ano'));
-    h += kv('Instalação + frete + hastes', (c.instTotal < c.instTotalO ? '<s style="font-weight:400">' + brl(c.instTotalO) + '</s> ' : '') + brl(c.instTotal), 'muted');
-    h += kv(`&nbsp;&nbsp;instalação ${brl(c.instalacao)} · frete ${brl(c.frete)} · hastes ${brl(c.haste)}`, '', 'muted');
+    h += kv(c.instLabel, (c.instTotal < c.instTotalO ? '<s style="font-weight:400">' + brl(c.instTotalO) + '</s> ' : '') + brl(c.instTotal), 'muted');
+    h += kv(`&nbsp;&nbsp;instalação ${brl(c.instalacao)}${c.instDesc ? ' − desconto ' + brl(c.instDesc) : ''}${c.frete ? ' · frete ' + brl(c.frete) : ''}${c.haste ? ' · hastes ' + brl(c.haste) : ''}`, '', 'muted');
     h += '</div>';
-    if (cen.compra) h += `<div class="blk"><h4>Compra</h4>${kv('Total (CAPEX)', brl(c.compraTotal, true), 'main')}${c.compraTotalO !== c.compraTotal ? kv('sem desconto', '<s>' + brl(c.compraTotalO, true) + '</s>', 'muted') : ''}${kv(`inclui simcard 1º ano ${brl(c.simcard)}${c.opcAnual ? ' e opcionais ' + brl(c.opcAnual) : ''}`, '', 'muted')}${kv('+ Instalação, frete e hastes', brl(c.instTotal))}</div>`;
-    if (cen.aluguel) h += `<div class="blk"><h4>Aluguel</h4>${kv('Total mensal', brl(c.aluguelMensal) + '/mês', 'main')}${c.aluguelMensalO !== c.aluguelMensal ? kv('sem desconto', '<s>' + brl(c.aluguelMensalO) + '/mês</s>', 'muted') : ''}${kv('Por equipamento', brl(c.aluguelPorEquip) + '/mês')}${kv('+ Instalação, frete e hastes (1º mês)', brl(c.instTotal))}</div>`;
-    if (cen.transf) h += `<div class="blk"><h4>Transferência</h4>${kv('Total mensal', brl(c.transfMensal) + '/mês', 'main')}${c.transfMensalO !== c.transfMensal ? kv('sem desconto', '<s>' + brl(c.transfMensalO) + '/mês</s>', 'muted') : ''}${kv('Por equipamento', brl(c.transfPorEquip) + '/mês')}${kv('+ Instalação, frete e hastes (1º mês)', brl(c.instTotal))}</div>`;
+    if (cen.compra) h += `<div class="blk"><h4>Compra</h4>${kv('Total (CAPEX)', brl(c.compraTotal, true), 'main')}${c.compraTotalO !== c.compraTotal ? kv('sem desconto', '<s>' + brl(c.compraTotalO, true) + '</s>', 'muted') : ''}${kv(`inclui simcard 1º ano ${brl(c.simcard)}${c.opcAnual ? ' e opcionais ' + brl(c.opcAnual) : ''}`, '', 'muted')}${kv('+ ' + c.instLabel, brl(c.instTotal))}</div>`;
+    if (cen.aluguel) h += `<div class="blk"><h4>Aluguel</h4>${kv('Total mensal', brl(c.aluguelMensal) + '/mês', 'main')}${c.aluguelMensalO !== c.aluguelMensal ? kv('sem desconto', '<s>' + brl(c.aluguelMensalO) + '/mês</s>', 'muted') : ''}${kv('Por equipamento', brl(c.aluguelPorEquip) + '/mês')}${kv('+ ' + c.instLabel + ' (1º mês)', brl(c.instTotal))}</div>`;
+    if (cen.transf) h += `<div class="blk"><h4>Transferência</h4>${kv('Total mensal', brl(c.transfMensal) + '/mês', 'main')}${c.transfMensalO !== c.transfMensal ? kv('sem desconto', '<s>' + brl(c.transfMensalO) + '/mês</s>', 'muted') : ''}${kv('Por equipamento', brl(c.transfPorEquip) + '/mês')}${kv('+ ' + c.instLabel + ' (1º mês)', brl(c.instTotal))}</div>`;
     const opts = G.portfolioOptions(inp, prices);
     $('comp_wrap').style.display = inp.portfolio ? 'flex' : 'none';
     $('modo_hint').textContent = inp.portfolio
@@ -870,7 +881,7 @@ const ASSETS_B64 = {"template": "JVBERi0xLjQKJcK1wrYKJSBXcml0dGVuIGJ5IE11UERGIDE
         if (cen.compra) h += kv('Compra', brl(oc.compraTotal, true));
         if (cen.aluguel) h += kv('Aluguel', brl(oc.aluguelMensal) + '/mês');
         if (cen.transf) h += kv('Transferência', brl(oc.transfMensal) + '/mês');
-        h += kv('+ Instalação, frete e hastes', brl(oc.instTotal), 'muted');
+        h += kv('+ ' + oc.instLabel, brl(oc.instTotal), 'muted');
         h += '</div>';
       });
     } else if (inp.portfolio) {
