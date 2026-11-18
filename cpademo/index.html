@@ -12,7 +12,7 @@
     produto_id: 'EXP-CPA',
     produto_nome: 'Explicaí CPA',
     produto_valor: 117.00,
-    pagina_tipo: 'remarketing_demo'
+    pagina_tipo: 'remarketing_demo_enxuta'
   });
 </script>
 
@@ -38,15 +38,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!--
   ============================================================
-  PÁGINA DE REMARKETING (demo primeiro, compra logo depois)
+  PÁGINA DE REMARKETING ENXUTA (uma tela, único caminho: abrir a demo)
   Edite só o bloco CONFIG no fim da página.
-  Endereço: thelandinglab.com.br/cpademo  (salve como cpademo/index.html)
   A demo é carregada de /cpa/demo.html (a mesma da página de vendas).
-  A imagem do app já está embutida neste arquivo.
-  Dica para o anúncio: use thelandinglab.com.br/cpademo/?demo=1 para a demo abrir sozinha.
+  Dica para o anúncio: use ?demo=1 no link para a demo abrir sozinha.
   ============================================================
 -->
-
 <style>
 :root{
   --fundo:#0A1F1C;--fundo-2:#061412;--cartao:#133029;--cartao-2:#1B3E37;--linha:#2E5A51;
@@ -95,10 +92,6 @@ em.destaque{font-style:italic;color:var(--ambar);background:linear-gradient(tran
 .nota{font-size:.88rem;color:var(--neutro)}
 .cta{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:8px;width:100%}
 
-/* Faixa de urgência */
-.urgencia{background:var(--alerta-escuro);color:#FFF3EC;font-size:.9rem;font-weight:600;text-align:center;padding:9px 16px;line-height:1.35;border-bottom:1px solid #9A3412}
-.urgencia b{color:#fff;font-weight:800}
-
 /* Topo */
 .topo{position:relative;overflow:hidden;padding:0 0 56px;background:radial-gradient(40% 40% at 78% 38%,rgba(255,194,61,.15) 0%,transparent 70%),radial-gradient(60% 50% at 10% 0%,rgba(91,227,176,.10) 0%,transparent 70%),radial-gradient(90% 60% at 50% 0%,#12403A 0%,var(--fundo) 72%)}
 .topo::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(244,248,246,.07) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%);pointer-events:none}
@@ -131,99 +124,6 @@ em.destaque{font-style:italic;color:var(--ambar);background:linear-gradient(tran
 @media (min-width:900px){.f1{left:-4%}.f2{right:-6%}}
 @media (max-width:380px){.flut{max-width:150px;font-size:.78rem}}
 
-/* Seção demo (teste antes de decidir) */
-.faixa-demo{background:radial-gradient(50% 60% at 25% 50%,rgba(255,194,61,.13),transparent 70%),linear-gradient(180deg,#0E2B26,#0B231F);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
-.demo-box{display:grid;gap:30px;align-items:center}
-@media (min-width:860px){.demo-box{grid-template-columns:.8fr 1.2fr;gap:48px}}
-.demo-vis{position:relative;display:flex;justify-content:center}
-.demo-vis .celular{width:220px;height:380px;transform:rotate(2deg)}
-.demo-txt{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
-@media (min-width:860px){.demo-txt{text-align:left;align-items:flex-start}.demo-txt .cta{align-items:flex-start}}
-.demo-txt>p{color:#DCEAE6;font-size:1.04rem;max-width:50ch}
-.demo-txt>p strong{color:#fff}
-.lista-ok{list-style:none;padding:0;margin:4px 0 6px;display:grid;gap:9px;text-align:left}
-.lista-ok li{display:flex;gap:10px;align-items:flex-start;color:#E3EFEC;font-size:.99rem}
-.lista-ok svg{flex:none;width:18px;height:18px;margin-top:4px;color:var(--verde)}
-.alerta-texto{color:#FFB08C;font-weight:600;font-size:.95rem}
-
-/* Identificação */
-.chips{list-style:none;padding:0;margin:26px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:680px}
-.chips li{background:var(--cartao);border:1px solid var(--linha);border-radius:999px;padding:8px 16px;font-size:.95rem;color:#E3EFEC}
-.cards3{display:grid;gap:12px;margin:32px auto 0;text-align:left;max-width:var(--larga)}
-@media (min-width:820px){.cards3{grid-template-columns:repeat(3,1fr)}}
-.cards3 article{background:var(--cartao);border:1px solid var(--linha);border-radius:14px;padding:20px}
-.cards3 .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ambar);color:#1A1300;font-family:var(--font-display);font-weight:700;margin-bottom:10px}
-.cards3 h3{font-size:1.08rem;margin-bottom:6px}
-.cards3 p{color:#DCEAE6;font-size:.96rem}
-
-/* Comparação de preço */
-.contas{display:grid;gap:12px;margin:32px auto 0;max-width:820px;text-align:left}
-@media (min-width:760px){.contas{grid-template-columns:repeat(3,1fr)}}
-.contas div{background:var(--cartao);border:1px solid var(--linha);border-top:3px solid var(--alerta);border-radius:14px;padding:18px}
-.contas div.nosso{border:2px solid var(--ambar);background:linear-gradient(180deg,rgba(255,194,61,.12),var(--cartao))}
-.contas b{display:block;font-family:var(--font-display);font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:6px}
-.contas .nosso b{color:var(--ambar)}
-.contas s{color:var(--neutro);text-decoration-thickness:2px}
-.contas p{color:#DCEAE6;font-size:.95rem}
-.aviso-preco{margin:22px auto 0;max-width:560px;background:#1F0E06;border:1px solid #9A3412;border-radius:14px;padding:14px 16px;color:#FFD9C7;font-size:.98rem;display:flex;gap:12px;align-items:flex-start;text-align:left}
-.aviso-preco svg{flex:none;width:22px;height:22px;color:var(--alerta);margin-top:2px}
-.aviso-preco strong{color:#fff}
-
-/* Oferta */
-.oferta-card{margin:32px auto 0;max-width:520px;background:var(--cartao);border:2px solid var(--ambar);border-radius:22px;padding:30px 22px 24px;box-shadow:0 30px 70px -40px rgba(255,194,61,.9);display:flex;flex-direction:column;gap:18px;text-align:center;position:relative}
-.etiqueta{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--alerta-escuro);color:#fff;font-weight:800;font-size:.8rem;padding:5px 14px;border-radius:999px;white-space:nowrap}
-.oferta-nome{font-family:var(--font-display);font-weight:700;font-size:1.18rem;color:#fff}
-.oferta-lista{list-style:none;padding:0;margin:0;display:grid;gap:9px;text-align:left}
-.oferta-lista li{display:flex;gap:10px;color:#E3EFEC;font-size:.98rem}
-.check{width:22px;height:22px;flex:none;border-radius:50%;background:rgba(74,222,156,.14);color:var(--verde);display:grid;place-items:center;margin-top:2px}
-.check svg{width:13px;height:13px}
-.oferta-lista li.bonus-li{color:#FFE7A8;font-weight:600;flex-wrap:wrap}
-.tag-bonus{flex:none;background:var(--ambar);color:#1A1300;font-size:.68rem;font-weight:800;border-radius:6px;padding:2px 6px;margin-top:3px;height:fit-content}
-.bonus-obs{font-size:.86rem;color:var(--neutro);text-align:left;border-top:1px dashed var(--linha);padding-top:10px}
-.bonus-obs b{color:var(--ambar-claro)}
-.preco-de{color:var(--neutro);font-size:.95rem}
-.preco-parc{font-family:var(--font-display);font-weight:700;font-size:clamp(2.3rem,9vw,3rem);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
-.preco-vista{color:#DCEAE6;font-size:1.05rem;margin-top:8px}
-.preco-vista b{color:#fff}
-.seguro{font-size:.86rem;color:var(--neutro)}
-.garantia{margin:24px auto 0;max-width:560px;display:flex;gap:16px;align-items:center;background:var(--cartao);border:1px solid var(--linha);border-radius:var(--raio);padding:20px;text-align:left}
-.selo{width:72px;height:72px;flex:none;border-radius:50%;background:var(--cartao-2);color:#F4F8F6;display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-weight:700;line-height:1;font-size:1.5rem;border:2px dashed #F4F8F6}
-.selo small{display:block;font-size:.6rem;font-weight:600;color:var(--neutro)}
-.garantia p{color:#DCEAE6;font-size:.95rem}
-
-/* FAQ */
-.faq{display:grid;gap:10px;margin:28px auto 0;text-align:left}
-.faq details{background:var(--cartao);border:1px solid var(--linha);border-radius:14px}
-.faq details[open]{border-color:rgba(255,194,61,.45)}
-.faq summary{cursor:pointer;list-style:none;padding:17px 52px 17px 18px;font-weight:600;position:relative;color:#F1F8F6}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--ambar-claro);transition:transform .15s ease}
-.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-.faq details p{padding:0 18px 18px;color:#DCEAE6}
-
-/* Fechamento */
-.fecho{background:radial-gradient(90% 80% at 50% 100%,#134A42 0%,var(--fundo-2) 65%);border-top:1px solid var(--linha)}
-.fecho .cta{margin-top:26px}
-
-/* Rodapé */
-footer{background:#061514;color:#7FA39B;font-size:.84rem;padding:32px 0 110px;border-top:1px solid var(--linha);text-align:center}
-footer .wrap{display:flex;flex-direction:column;gap:10px;align-items:center}
-footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
-@media (min-width:761px){footer{padding-bottom:32px}}
-
-/* Barra fixa (celular) */
-.barra-fixa{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(11,34,32,.96);backdrop-filter:blur(8px);border-top:1px solid var(--linha);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:10px;transform:translateY(110%);transition:transform .25s ease}
-.barra-fixa.visivel{transform:translateY(0)}
-.bf-txt{line-height:1.25;font-size:.84rem;color:var(--neutro)}
-.bf-marca{display:flex;align-items:center;gap:6px}
-.bf-nome{font-family:var(--font-display);font-weight:700;font-size:1.12rem;color:#F4FBF9;letter-spacing:-.02em;line-height:1}
-.bf-tag{font-size:.64rem;padding:2px 7px}
-.bf-preco{display:block;font-size:.8rem;color:var(--neutro);margin-top:4px;white-space:nowrap}
-.barra-fixa .bf-btns{display:flex;gap:8px}
-.barra-fixa .btn{min-height:46px;padding:10px 16px;font-size:.95rem}
-.barra-fixa .btn-sec{padding:10px 14px}
-@media (min-width:761px){.barra-fixa{display:none}}
-
 /* Janela da demo */
 html.travada,html.travada body{overflow:hidden}
 .demo-ov{position:fixed;inset:0;z-index:1000;background:#0A1F1C;display:flex;flex-direction:column}
@@ -254,6 +154,15 @@ html.travada,html.travada body{overflow:hidden}
 .modal-nao{margin-top:12px;background:none;border:none;color:var(--neutro);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer}
 @keyframes fade{from{opacity:0}}
 @keyframes sobe{from{opacity:0;transform:translateY(24px) scale(.97)}}
+
+/* Versão enxuta: uma tela só */
+.topo{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 0 40px}
+.hero-txt .lista-ok{margin:2px 0}
+.lista-ok{list-style:none;padding:0;display:grid;gap:9px;text-align:left}
+.lista-ok li{display:flex;gap:10px;align-items:flex-start;color:#E3EFEC;font-size:.99rem}
+.lista-ok svg{flex:none;width:18px;height:18px;margin-top:4px;color:var(--verde)}
+.rodape{text-align:center;color:#7FA39B;font-size:.78rem;padding:18px 20px 22px;background:#061514;border-top:1px solid var(--linha)}
+.rodape a{margin:0 8px}
 </style>
 </head>
 <body>
@@ -262,28 +171,25 @@ html.travada,html.travada body{overflow:hidden}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- Faixa de urgência (sem data: o texto vem do CONFIG) -->
-<div class="urgencia" data-c-html="urgenciaFaixa"></div>
-
-<!-- ===================== 1. TOPO ===================== -->
+<main>
 <header class="topo" data-secao="topo">
-  <a class="logo" href="#topo" aria-label="Explicaí CPA">
-    <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="8" width="84" height="68" rx="22" fill="#F4F8F6"/><path d="M22 68 L15 94 L48 74 Z" fill="#F4F8F6"/><path d="M50 42 V62" stroke="#0A1F1C" stroke-width="13" stroke-linecap="round" fill="none"/><path d="M46 29 L58 19" stroke="#0A1F1C" stroke-width="10" stroke-linecap="round" fill="none"/></svg>
-    <span class="logo-nome">explicaí</span><span class="logo-tag">CPA</span>
-  </a>
+  <a class="logo" href="#" aria-label="Explicaí CPA"><svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="8" width="84" height="68" rx="22" fill="#F4F8F6"/><path d="M22 68 L15 94 L48 74 Z" fill="#F4F8F6"/><path d="M50 42 V62" stroke="#0A1F1C" stroke-width="13" stroke-linecap="round" fill="none"/><path d="M46 29 L58 19" stroke="#0A1F1C" stroke-width="10" stroke-linecap="round" fill="none"/></svg><span class="logo-nome">explicaí</span><span class="logo-tag">CPA</span></a>
   <div class="wrap wrap-larga">
-    <div class="hero" id="topo">
+    <div class="hero">
       <div class="hero-txt">
         <p class="selo-topo"><span class="pulso" aria-hidden="true"></span>Você já viu o Explicaí. Agora é hora de testar.</p>
         <h1>Sua carreira depende da <em class="destaque">CPA</em>?</h1>
-        <p class="sub">O Explicaí CPA foi feito <strong>porque você merece crescer sem gastar todo o seu tempo livre estudando.</strong></p>
-        <p class="sub-2">Os 8 primeiros temas da nova CPA estão liberados agora, de graça, porque o melhor jeito de decidir é ver na prática se você entende de primeira.</p>
-        <div class="cta" id="cta-topo">
+        <p class="sub">Os 8 primeiros temas da nova CPA estão liberados de graça. <strong>Abra, leia um tema e veja se você entende de primeira.</strong></p>
+        <ul class="lista-ok">
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>8 temas completos</strong>, com o que é, analogia e a história completa</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Quiz, flashcards e <strong>2 casos do simulador de atendimento</strong></span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Sem cadastro, sem cartão e sem pagar nada</span></li>
+        </ul>
+        <div class="cta">
           <button type="button" class="btn btn-bloco btn-pulsa" data-abrir-demo="hero">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Abrir o tutor grátis agora
           </button>
-          <p class="nota">Sem cadastro · sem cartão · abre aqui mesmo em 10 segundos</p>
-          <a class="link-sec" data-checkout data-origem="rmk_hero" href="#oferta">Já decidi: quero comprar por <span data-c="preco"></span> →</a>
+          <p class="nota">Abre aqui mesmo, no seu navegador, em 10 segundos</p>
         </div>
       </div>
       <div class="hero-vis" aria-hidden="true">
@@ -296,163 +202,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </header>
-
-<main>
-
-<!-- ===================== 2. TESTE ANTES DE DECIDIR ===================== -->
-<section class="faixa-demo centro" id="demo" aria-labelledby="t-demo" data-secao="demo">
-  <div class="wrap wrap-larga">
-    <div class="demo-box">
-      <div class="demo-vis" aria-hidden="true">
-        <div class="brilho"></div>
-        <div class="celular"><img data-img-tela width="624" height="1184" alt=""></div>
-        <span class="selo-gratis">Grátis</span>
-      </div>
-      <div class="demo-txt">
-        <span class="olho">Teste antes de decidir</span>
-        <h2 id="t-demo">Faça agora o teste mais honesto que existe: veja se você entende de primeira</h2>
-        <p>Abra no celular, escolha um tema e leia, porque nenhuma promessa vale mais que a sua própria leitura. <strong>Se fizer sentido logo de primeira, você acabou de descobrir por que a apostila nunca funcionou para você.</strong></p>
-        <ul class="lista-ok">
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>8 temas completos da nova CPA</strong>, com o que é, analogia e a história completa</span></li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Quiz, flashcards e <strong>2 casos do simulador de atendimento</strong></span></li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Sem cadastro, sem cartão e sem pagar nada</span></li>
-        </ul>
-        <div class="cta">
-          <button type="button" class="btn btn-bloco" data-abrir-demo="secao_demo">Experimentar grátis agora</button>
-          <p class="nota">Abre aqui mesmo, no seu navegador. Leva 10 segundos.</p>
-        </div>
-        <p class="alerta-texto">Comece agora, porque enquanto você pensa, o prazo do banco continua correndo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 3. POR QUE FUNCIONA ===================== -->
-<section class="centro" aria-labelledby="t-porque" data-secao="porque">
-  <div class="wrap wrap-larga">
-    <span class="olho">Isso parece com você?</span>
-    <h2 id="t-porque">Por que você vai entender de primeira, e por que a apostila não deixou</h2>
-    <ul class="chips" aria-label="Situações comuns">
-      <li>Leu três vezes e não entendeu</li>
-      <li>Já reprovou uma vez</li>
-      <li>Nunca trabalhou com investimentos</li>
-      <li>O banco deu prazo</li>
-      <li>Só tem 15 minutos livres por dia</li>
-    </ul>
-    <div class="cards3">
-      <article><span class="num" aria-hidden="true">1</span><h3>Por que a sigla não te trava mais</h3><p>Na apostila, FGC, CDI e IPCA aparecem sem aviso. No Explicaí, você não abre outra aba porque cada sigla é explicada na primeira vez que aparece.</p></article>
-      <article><span class="num" aria-hidden="true">2</span><h3>Por que você não precisa reler</h3><p>Você lê uma vez só porque cada conceito é apresentado antes de ser usado. Quando o CDB aparece, você já sabe por que o banco precisa do seu dinheiro.</p></article>
-      <article><span class="num" aria-hidden="true">3</span><h3>Por que cabe na sua rotina</h3><p>Blocos de 15 minutos, no celular. O conteúdo fica mesmo com a cabeça cansada, porque cada bloco explica tudo o que usa.</p></article>
-    </div>
-    <div class="cta" style="margin-top:32px">
-      <button type="button" class="btn btn-bloco" data-abrir-demo="secao_porque">Quero testar agora, de graça</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 4. FAÇA AS CONTAS ===================== -->
-<section class="faixa-alt centro" aria-labelledby="t-contas" data-secao="contas">
-  <div class="wrap wrap-larga">
-    <span class="olho">Faça as contas</span>
-    <h2 id="t-contas">Por que pagar até <span data-c="precoMercado"></span> num preparatório, se você pode testar antes e pagar <span data-c="preco"></span>?</h2>
-    <div class="contas">
-      <div><b>Até <span data-c="precoMercado"></span></b><p>é quanto custa um curso preparatório para a nova CPA hoje no mercado.</p></div>
-      <div><b><span data-c="taxaProva"></span></b><p>é o que você paga de novo, a cada reprovação, só para refazer a prova.</p></div>
-      <div class="nosso"><b><span data-c="preco"></span></b><p>é o Explicaí CPA completo, no preço de lançamento. <strong>Menos que uma única inscrição</strong>, porque você paga pelo método, não por estúdio de gravação.</p></div>
-    </div>
-    <div class="aviso-preco" role="note">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-      <p data-c-html="urgenciaBloco"></p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 5. OFERTA ===================== -->
-<section class="centro" id="oferta" aria-labelledby="t-oferta" data-secao="oferta">
-  <div class="wrap">
-    <h2 id="t-oferta">Garanta agora a nova CPA inteira, porque o preço de lançamento não vai durar</h2>
-    <div class="oferta-card">
-      <span class="etiqueta">Preço de lançamento</span>
-      <p class="oferta-nome">Explicaí CPA, acesso completo</p>
-      <ul class="oferta-lista">
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Todo o programa da nova CPA, do que mais cai ao que menos cai</li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Cada tema em camadas: o que é, analogia e história completa</li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Siglas e termos explicados na primeira vez que aparecem</li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Quiz e flashcards em cada tema</li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Soft skills e simulações de atendimento</li>
-        <li class="bonus-li"><span class="tag-bonus">BÔNUS 1</span>Simulado com 100 questões comentadas</li>
-        <li class="bonus-li"><span class="tag-bonus">BÔNUS 2</span>Simulado com 50 situações de atendimento comentadas</li>
-      </ul>
-      <p class="bonus-obs">Os bônus são <b>a etapa final do método</b> e abrem no <span data-c="bonusDia"></span>º dia, porque simulado feito antes da base vira chute.</p>
-      <div>
-        <p class="preco-de">Preparatórios cobram até <s data-c="precoMercado"></s></p>
-        <p class="preco-parc" data-show="parcelado"><span data-c="parcelado"></span></p>
-        <p class="preco-vista">no cartão, ou <b><span data-c="preco"></span> à vista no Pix</b></p>
-      </div>
-      <a class="btn btn-bloco btn-pulsa" data-checkout data-origem="rmk_oferta" href="#oferta"><span>Quero o Explicaí CPA por <span data-c="preco"></span></span></a>
-      <p class="seguro">Pagamento seguro com Pix, cartão ou boleto. Acesso no seu e-mail logo após a compra.</p>
-      <button type="button" class="link-sec" data-abrir-demo="oferta">Ainda não testou? Abra o tutor grátis antes →</button>
-    </div>
-    <div class="garantia">
-      <div class="selo" aria-hidden="true"><span><span data-c="garantiaDias"></span><small>dias</small></span></div>
-      <div>
-        <h3>Risco zero por <span data-c="garantiaDias"></span> dias</h3>
-        <p>Você pode comprar tranquilo, porque o risco é nosso. Se o Explicaí não for para você, peça o reembolso por e-mail e devolvemos 100% do valor, sem perguntas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 6. DÚVIDAS ===================== -->
-<section class="faixa-alt centro" aria-labelledby="t-faq" data-secao="faq">
-  <div class="wrap">
-    <h2 id="t-faq">Ainda tem um "por que" na cabeça?</h2>
-    <div class="faq">
-      <details data-faq="barato"><summary>Por que é tão mais barato que os cursos?</summary><p>Porque o Explicaí é um tutor em texto didático, feito para o celular, sem estúdio de gravação nem turma ao vivo. Você paga pelo conteúdo e pelo método, não pela produção de vídeo. E, por enquanto, ainda está no preço de lançamento.</p></details>
-      <details data-faq="sem_video"><summary>Por que não tem videoaula?</summary><p>Porque videoaula pede uma hora parada, com fone e atenção total. O Explicaí foi feito para os intervalos de 15 minutos que já existem no seu dia. Você lê no seu ritmo, volta num trecho quando quiser e testa o que aprendeu no quiz do próprio tema.</p></details>
-      <details data-faq="bonus_dia"><summary>Por que os bônus abrem só no <span data-c="bonusDia"></span>º dia?</summary><p>Porque simulado feito antes da base vira chute. Nos primeiros dias você constrói o entendimento com os temas e os quizzes. Quando os simulados abrirem, você não vai só responder: vai saber por que está acertando.</p></details>
-      <details data-faq="nome_pagamento"><summary>Por que aparece o nome Letícia Meneghetti no pagamento?</summary><p>O pagamento é processado com segurança pela Kiwify em nome de Letícia Meneghetti, responsável pelo Explicaí. É o mesmo produto.</p></details>
-      <details data-faq="zero"><summary>Nunca trabalhei com mercado financeiro. Vou conseguir?</summary><p>Vai. Cada conceito é explicado antes de ser usado e cada sigla aparece por extenso na primeira vez. A demo grátis é o melhor jeito de comprovar: se você entender o primeiro tema, vai entender o resto.</p></details>
-      <details data-faq="anbima"><summary>O Explicaí tem ligação com a ANBIMA?</summary><p>Não. O Explicaí CPA é um material independente de preparação, sem vínculo com a ANBIMA.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 7. FECHAMENTO ===================== -->
-<section class="fecho centro" aria-labelledby="t-fecho" data-secao="fecho">
-  <div class="wrap">
-    <h2 id="t-fecho">Você voltou aqui por um motivo</h2>
-    <p class="intro">Talvez seja o prazo do banco. Talvez seja a prova que já está marcada. Talvez seja a vontade de, finalmente, <strong>entender</strong>. Seja qual for o seu porquê, o próximo passo leva 10 segundos, porque o tutor abre aqui mesmo.</p>
-    <div class="cta">
-      <button type="button" class="btn btn-bloco" data-abrir-demo="fecho">Abrir o tutor grátis</button>
-      <a class="btn btn-bloco btn-sec" data-checkout data-origem="rmk_fecho" href="#oferta"><span>Já testei: quero comprar por <span data-c="preco"></span></span></a>
-      <p class="nota"><span data-c="parcelado"></span> ou <span data-c="preco"></span> à vista · Garantia de <span data-c="garantiaDias"></span> dias</p>
-    </div>
-  </div>
-</section>
-
 </main>
 
-<footer>
-  <div class="wrap">
-    <nav aria-label="Links legais"><a href="#" data-c-href="privacidade">Política de privacidade</a><a href="#" data-c-href="termos">Termos de uso</a></nav>
-    <p>O Explicaí CPA é um material independente de preparação, sem vínculo com a ANBIMA.</p>
-  </div>
+<footer class="rodape">
+  <p>O Explicaí CPA é um material independente de preparação, sem vínculo com a ANBIMA.</p>
+  <p><a href="#" data-c-href="privacidade">Política de privacidade</a><a href="#" data-c-href="termos">Termos de uso</a></p>
 </footer>
 
 <!-- Janela da demo (tela cheia, por cima da página) -->
 <div class="demo-ov" id="demo-ov" role="dialog" aria-modal="true" aria-label="Versão de demonstração do Explicaí CPA" hidden>
   <div class="demo-ov-barra">
     <button type="button" class="demo-ov-voltar" data-fechar-demo>← Voltar</button>
-    <a class="demo-ov-comprar" data-checkout data-origem="rmk_demo_barra" href="#oferta">Desbloquear tudo · <span data-c="preco"></span></a>
+    <a class="demo-ov-comprar btn-comprar" data-checkout data-origem="rmk2_demo_barra" href="#">Desbloquear tudo · <span data-c="preco"></span></a>
   </div>
   <div class="demo-ov-corpo">
     <iframe class="demo-ov-frame" id="demo-frame" title="Explicaí CPA, versão de demonstração"></iframe>
-    <!-- Lembrete que aparece depois de alguns segundos estudando na demo -->
     <div class="nudge" id="nudge" role="status" hidden>
       <button type="button" class="nudge-x" data-fechar-nudge aria-label="Fechar">✕</button>
-      <p><strong>Entendeu de primeira?</strong> Então agora você sabe por que funciona. O resto da prova é explicado exatamente assim.</p>
-      <a class="btn" data-checkout data-origem="rmk_demo_nudge" href="#oferta"><span>Desbloquear tudo por <span data-c="preco"></span></span></a>
+      <p><strong>Entendeu de primeira?</strong> Então agora você sabe por que funciona. O resto da prova é explicado do mesmo jeito.</p>
+      <a class="btn btn-comprar" data-checkout data-origem="rmk2_demo_nudge" href="#"><span>Desbloquear tudo por <span data-c="preco"></span></span></a>
     </div>
   </div>
 </div>
@@ -464,8 +232,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button type="button" class="modal-x" data-fechar-modal aria-label="Fechar">✕</button>
     <span class="modal-selo">Preço de lançamento</span>
     <p class="modal-t" id="posdemo-t">E aí, entendeu de primeira?</p>
-    <p class="modal-s">Se a resposta é sim, você acabou de descobrir <strong>por que a apostila não funcionava</strong>. O resto da nova CPA é explicado exatamente assim, por <strong><span data-c="preco"></span></strong>, enquanto durar o preço de lançamento.</p>
-    <a class="btn" data-checkout data-origem="rmk_posdemo" data-resposta="entendi" href="#oferta"><span>Entendi! Quero comprar por <span data-c="preco"></span></span></a>
+    <p class="modal-s">Se a resposta é sim, você acabou de descobrir <strong>por que a apostila não funcionava</strong>. O resto da nova CPA é explicado do mesmo jeito, por <strong><span data-c="preco"></span></strong> ou <span data-c="parcelado"></span>, com garantia de <span data-c="garantiaDias"></span> dias.</p>
+    <a class="btn btn-comprar" data-checkout data-origem="rmk2_posdemo" data-resposta="entendi" href="#"><span>Entendi! Quero comprar por <span data-c="preco"></span></span></a>
     <button type="button" class="btn btn-sec" data-abrir-demo="posdemo" data-resposta="continuar">Quero testar mais um pouco</button>
   </div>
 </div>
@@ -477,38 +245,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button type="button" class="modal-x" data-fechar-modal aria-label="Fechar">✕</button>
     <span class="modal-selo">Grátis, sem cadastro</span>
     <p class="modal-t" id="saida-t">Espera: você ainda não testou</p>
-    <p class="modal-s">Vale testar agora, porque leva só 10 segundos para descobrir <strong>por que</strong> o Explicaí é diferente. Os 8 primeiros temas da nova CPA estão liberados agora.</p>
+    <p class="modal-s">Leva 10 segundos para abrir. Os 8 primeiros temas da nova CPA estão liberados agora.</p>
     <button type="button" class="btn" data-abrir-demo="saida">Abrir o tutor grátis</button>
     <button type="button" class="modal-nao" data-fechar-modal>Agora não</button>
   </div>
 </div>
-
-<!-- Barra fixa (só no celular) -->
-<div class="barra-fixa" id="barra-fixa" aria-hidden="true">
-  <div class="bf-txt">
-    <span class="bf-marca"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="8" width="84" height="68" rx="22" fill="#F4F8F6"/><path d="M22 68 L15 94 L48 74 Z" fill="#F4F8F6"/><path d="M50 42 V62" stroke="#0A1F1C" stroke-width="13" stroke-linecap="round" fill="none"/><path d="M46 29 L58 19" stroke="#0A1F1C" stroke-width="10" stroke-linecap="round" fill="none"/></svg><span class="bf-nome">explicaí</span><span class="logo-tag bf-tag">CPA</span></span>
-    <span class="bf-preco"><span data-c="preco"></span> · preço de lançamento</span>
-  </div>
-  <div class="bf-btns">
-    <button type="button" class="btn btn-sec" data-abrir-demo="barra_fixa" tabindex="-1">Testar</button>
-    <a class="btn" data-checkout data-origem="rmk_barra_fixa" href="#oferta" tabindex="-1">Comprar</a>
-  </div>
-</div>
-
 <script>
 /* =================== CONFIG: edite aqui =================== */
 const CONFIG = {
   checkoutUrl: "https://pay.kiwify.com.br/7lr5b5A",
-  preco: "R$ 117",
-  parcelado: "12x de R$ 12,10",
+  preco: "R$ 117",
+  parcelado: "12x de R$ 12,10",
   garantiaDias: "7",
-  bonusDia: "8",                    // dia em que os simulados bônus abrem
-  precoMercado: "R$ 577",      // maior preço de preparatório para a nova CPA que você encontrou no mercado
-  taxaProva: "R$ 225",         // inscrição da nova CPA na ANBIMA
 
-  // Urgência sem data (mantenha verdadeiro: o preço precisa subir de fato em algum momento)
-  urgenciaFaixa: "<b>Preço de lançamento:</b> R$ 117 por tempo limitado. Em breve o valor sobe.",
-  urgenciaBloco: "<strong>O preço de lançamento não vai durar.</strong> Em breve o Explicaí passa a custar mais, e quem entrar agora garante os R$ 117 e os 2 simulados bônus.",
 
   // Demo
   demoUrl: "/cpa/demo.html",        // caminho da demo no site (a mesma usada na página /cpa/)
@@ -548,7 +297,7 @@ const CONFIG = {
     } catch (e) { return url; }
   }
   document.querySelectorAll("[data-checkout]").forEach(function(a){
-    var origem = a.getAttribute("data-origem") || "rmk";
+    var origem = a.getAttribute("data-origem") || "rmk2";
     a.setAttribute("href", linkCheckout(origem));
     if (emIframe) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); }
     a.addEventListener("click", function(){
@@ -589,8 +338,7 @@ const CONFIG = {
     demoAberta = true; demoJaAberta = true; inicioDemo = Date.now();
     try { history.pushState({ demo: 1 }, ""); } catch (e) {}
     track("demo_aberta", { demo_origem: origem });
-    var b = document.getElementById("barra-fixa"); if (b) b.classList.remove("visivel");
-    // Marcos de tempo dentro da demo (engajamento real)
+        // Marcos de tempo dentro da demo (engajamento real)
     [30, 60, 120, 300].forEach(function(s){
       timers.push(setTimeout(function(){ if (demoAberta) track("demo_tempo", { demo_segundos: s }); }, s * 1000));
     });
@@ -616,7 +364,7 @@ const CONFIG = {
     }
   }
   if (!demoUrl) {
-    document.querySelectorAll("[data-abrir-demo],#demo").forEach(function(el){ el.hidden = true; });
+    document.querySelectorAll("[data-abrir-demo]").forEach(function(el){ el.hidden = true; });
   } else {
     document.querySelectorAll("[data-abrir-demo]").forEach(function(b){ b.addEventListener("click", function(){ abrirDemo(b.getAttribute("data-abrir-demo")); }); });
     document.querySelectorAll("[data-fechar-demo]").forEach(function(b){ b.addEventListener("click", function(){ fecharDemo(false); }); });
@@ -653,13 +401,6 @@ const CONFIG = {
     }
     document.querySelectorAll("[data-checkout]").forEach(function(el){ el.addEventListener("click", marcar); });
     document.addEventListener("mouseout", function(e){ if (!e.relatedTarget && e.clientY <= 0) mostrar("mouse_topo"); });
-    var ultY = window.scrollY, ultT = Date.now(), maxY = 0;
-    window.addEventListener("scroll", function(){
-      var y = window.scrollY, t = Date.now(); maxY = Math.max(maxY, y);
-      var vel = (ultY - y) / Math.max(1, t - ultT);
-      if (vel > 2.2 && maxY > document.body.scrollHeight * 0.35 && y > 400) mostrar("rolagem_rapida");
-      ultY = y; ultT = t;
-    }, { passive: true });
     var saiu = false;
     document.addEventListener("visibilitychange", function(){
       if (document.visibilityState === "hidden") saiu = true;
@@ -667,49 +408,9 @@ const CONFIG = {
     });
   })();
 
-  // ---------- Rolagem: 25/50/75/90% ----------
-  (function(){
-    var marcos = [25, 50, 75, 90], feitos = {};
-    window.addEventListener("scroll", function(){
-      var h = document.documentElement.scrollHeight - window.innerHeight; if (h <= 0) return;
-      var pct = Math.round(window.scrollY / h * 100);
-      marcos.forEach(function(m){ if (pct >= m && !feitos[m]) { feitos[m] = 1; track("rolagem", { rolagem_pct: m }); } });
-    }, { passive: true });
-  })();
-
-  // ---------- Seções vistas (a pessoa realmente chegou ali) ----------
-  if ("IntersectionObserver" in window) {
-    var vistas = {};
-    var io = new IntersectionObserver(function(entradas){
-      entradas.forEach(function(en){
-        var s = en.target.getAttribute("data-secao");
-        if (en.isIntersecting && !vistas[s]) { vistas[s] = 1; track("secao_vista", { secao: s }); }
-      });
-    }, { threshold: 0.35 });
-    document.querySelectorAll("[data-secao]").forEach(function(el){ io.observe(el); });
-  }
-
-  // ---------- FAQ aberta ----------
-  document.querySelectorAll("[data-faq]").forEach(function(d){
-    d.addEventListener("toggle", function(){ if (d.open) track("faq_aberta", { faq_pergunta: d.getAttribute("data-faq") }); });
-  });
-
-  // ---------- Barra fixa no celular ----------
-  var barra = document.getElementById("barra-fixa"), ctaTopo = document.getElementById("cta-topo"), oferta = document.getElementById("oferta");
-  if ("IntersectionObserver" in window && barra && ctaTopo) {
-    var topoVisivel = true, ofertaVisivel = false;
-    function atualizar(){
-      var mostrar = !topoVisivel && !ofertaVisivel && !demoAberta;
-      barra.classList.toggle("visivel", mostrar);
-      barra.setAttribute("aria-hidden", mostrar ? "false" : "true");
-      barra.querySelectorAll("a,button").forEach(function(l){ l.tabIndex = mostrar ? 0 : -1; });
-    }
-    new IntersectionObserver(function(e){ topoVisivel = e[0].isIntersecting; atualizar(); }).observe(ctaTopo);
-    if (oferta) new IntersectionObserver(function(e){ ofertaVisivel = e[0].isIntersecting; atualizar(); }, { threshold: 0.15 }).observe(oferta);
-  }
-
   // Pixel da Meta: instalado pelo Google Tag Manager (GTM-N3MHPQZD), não por aqui.
 })();
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"55e16c384bb447b0b73a182464d33465","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
