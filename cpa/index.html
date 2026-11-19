@@ -550,6 +550,17 @@ html.demo-aberta,html.demo-aberta body{overflow:hidden}
 .reprovou div{background:var(--cartao);border:1px solid var(--linha);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;color:#DCEAE6}
 .reprovou .check{margin-top:2px}
 .selo-mod{display:inline-block}
+/* Aluno Fundador */
+.fundador{margin:0 auto;max-width:640px;background:linear-gradient(160deg,#1B3E37,#0E2723);border:2px solid var(--azul);border-radius:24px;padding:30px 22px;text-align:center;box-shadow:0 30px 70px -40px rgba(255,194,61,.8);position:relative}
+.fundador-selo{display:inline-flex;align-items:center;gap:8px;background:var(--azul);color:#1A1300;font-weight:800;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:14px}
+.fundador-selo svg{width:16px;height:16px}
+.fundador h2{color:#F4FBF9}
+.fundador p{color:#DCEAE6;margin-top:12px;font-size:1.03rem}
+.fundador p strong{color:#fff}
+.fundador-lista{list-style:none;padding:0;margin:20px auto 0;max-width:460px;display:grid;gap:10px;text-align:left}
+.fundador-lista li{display:flex;gap:10px;align-items:flex-start;color:#E3EFEC}
+.fundador-prazo{margin-top:18px;font-weight:700;color:var(--azul-claro)}
+.fundador-mini{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:.9rem;font-weight:600;color:var(--azul-claro);background:rgba(255,194,61,.1);border:1px solid rgba(255,194,61,.35);padding:6px 14px;border-radius:999px}
 /* Instagram no rodapé */
 .rodape-insta{color:var(--azul-claro);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
@@ -591,6 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Acesso na hora</li>
             <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Garantia de <span data-c="garantiaDias"></span> dias</span></li>
           </ul>
+          <a class="fundador-mini" href="#fundador" data-fundador hidden>★ Comprando até <span data-c="fundadorAteTexto"></span>, você vira Aluno Fundador</a>
         </div>
       </div>
       <div class="hero-vis" aria-hidden="true">
@@ -825,6 +837,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ===================== ALUNO FUNDADOR (some sozinha depois do prazo) ===================== -->
+<section class="centro" id="fundador" aria-labelledby="t-fundador" data-fundador hidden>
+  <div class="wrap">
+    <div class="fundador">
+      <span class="fundador-selo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg>Aluno Fundador</span>
+      <h2 id="t-fundador">Compre até <span data-c="fundadorAteTexto"></span> e seja Aluno Fundador do Explicaí</h2>
+      <p>O Explicaí CPA é o primeiro de uma série de tutores. Quem entrar agora, no começo, <strong>leva 50% de desconto em todos os próximos tutores que lançarmos</strong>, para sempre.</p>
+      <ul class="fundador-lista">
+        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span><strong>C-Pro R e C-Pro I</strong>, as próximas certificações da ANBIMA, quando você quiser subir de nível</span></li>
+        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>Todos os outros tutores que vierem depois, com o mesmo jeito de explicar</span></li>
+        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>Você recebe o aviso e o desconto no e-mail da compra a cada lançamento</span></li>
+      </ul>
+      <p class="fundador-prazo">Vale para compras feitas até <span data-c="fundadorAteTexto"></span>. Depois disso, a condição de fundador se encerra.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== OFERTA ===================== -->
 <section class="claro centro" id="oferta" aria-labelledby="t-oferta">
   <div class="wrap">
@@ -842,6 +871,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Acesso pelo celular, tablet ou computador</li>
         <li class="bonus-li" data-bonus><span class="tag-bonus">BÔNUS 1</span>Simulado com 100 questões comentadas <small>(abre no <span data-c="bonusDia"></span>º dia)</small></li>
         <li class="bonus-li" data-bonus><span class="tag-bonus">BÔNUS 2</span>Simulado com 50 situações de atendimento comentadas <small>(abre no <span data-c="bonusDia"></span>º dia)</small></li>
+        <li class="bonus-li" data-fundador hidden><span class="tag-bonus">FUNDADOR</span>50% de desconto em todos os próximos tutores (C-Pro R, C-Pro I e outros)</li>
       </ul>
       <div>
         <p class="preco-antes" data-lancamento data-show="precoDepois" hidden>Depois do lançamento: <s data-c="precoDepois"></s></p>
@@ -889,6 +919,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <details><summary>Serve para quem já reprovou?</summary><p>Serve. Muita gente reprova por ter decorado sem entender. Aqui você refaz o caminho pela explicação, e o quiz de cada tema mostra o que ainda precisa de reforço.</p></details>
       <details><summary>O conteúdo segue a nova CPA?</summary><p>Sim. O Explicaí cobre o programa da nova CPA, que substituiu a CPA-10 em janeiro de 2026, incluindo o módulo de soft skills e as simulações de atendimento.</p></details>
       <details data-bonus><summary>Quando recebo os bônus?</summary><p>Os dois simulados comentados abrem no <span data-c="bonusDia"></span>º dia após a compra. Simulado feito antes da base vira chute; nos primeiros dias você estuda os temas e os quizzes, e os simulados fecham o método.</p></details>
+      <details data-fundador hidden><summary>Como funciona o Aluno Fundador?</summary><p>Quem compra o Explicaí CPA até <span data-c="fundadorAteTexto"></span> entra na lista de Alunos Fundadores. A cada novo tutor que lançarmos (C-Pro R, C-Pro I e os próximos), você recebe no e-mail da compra o acesso com 50% de desconto. A condição vale para sempre, para todos os tutores futuros.</p></details>
       <details><summary>Como recebo o acesso?</summary><p>Por e-mail, logo após a confirmação do pagamento. No Pix e no cartão, costuma ser na hora.</p></details>
       <details data-show="prazoAcesso"><summary>Por quanto tempo terei acesso?</summary><p>Você tem acesso por <span data-c="prazoAcesso"></span>.</p></details>
       <details><summary>Por que aparece o nome Letícia Meneghetti no pagamento?</summary><p>Porque a Letícia é a criadora e responsável pelo Explicaí. O pagamento é processado com segurança pela Kiwify em nome dela.</p></details>
@@ -972,6 +1003,9 @@ const CONFIG = {
   // FOTOS: caminho de cada imagem (na mesma pasta da página), ex.: "leticia.jpg". Vazio = mostra a inicial.
   fotoLeticia: "",                 // a foto da Letícia já está embutida na página; preencha só se quiser trocar por outro arquivo
   fotos: { claudio: "", brenda: "", roberto: "", gabriela: "" },
+
+  // ALUNO FUNDADOR: data e hora em que a condição acaba de verdade. Depois dela, tudo some sozinho. Vazio = esconde.
+  fundadorAte: "2026-11-30T23:59:59-03:00",
 
   instagram: "",                   // link do perfil, ex.: "https://instagram.com/explicai". Vazio = esconde.
 
@@ -1163,6 +1197,17 @@ const CONFIG = {
     im.src = src; im.loading = "lazy"; im.hidden = false;
     var ini = document.querySelector('[data-ini="' + k + '"]'); if (ini) ini.hidden = true;
   });
+
+  // ===== Aluno Fundador: aparece só até o prazo =====
+  (function(){
+    var f = CONFIG.fundadorAte ? new Date(CONFIG.fundadorAte) : null;
+    var ativo = f && !isNaN(f.getTime()) && f.getTime() > Date.now();
+    if (ativo) {
+      var txt = f.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", timeZone: "America/Sao_Paulo" });
+      document.querySelectorAll('[data-c="fundadorAteTexto"]').forEach(function(el){ el.textContent = txt; });
+    }
+    document.querySelectorAll("[data-fundador]").forEach(function(el){ el.hidden = !ativo; });
+  })();
 
   // ===== Instagram no rodapé =====
   if (CONFIG.instagram) {
