@@ -468,6 +468,54 @@ html.demo-aberta,html.demo-aberta body{overflow:hidden}
 .saida-nao{margin-top:12px;background:none;border:none;color:var(--neutro);font:inherit;font-size:.9rem;text-decoration:underline;cursor:pointer}
 @keyframes saidaFade{from{opacity:0}}
 @keyframes saidaSobe{from{opacity:0;transform:translateY(24px) scale(.97)}}
+
+/* ===== Seções claras ===== */
+.claro{background:#F4F1E9!important;color:#24332F;border-top:1px solid #E3DCCB;border-bottom:1px solid #E3DCCB}
+.claro h2,.claro h3{color:#0A1F1C}
+.claro .olho{color:#0F766E}
+.claro .intro,.claro .texto,.claro .dado,.claro .espera,.claro.faixa-nova p{color:#3D4F4A}
+.claro .texto strong{color:#0A1F1C}
+.claro .lista-dor li,.claro .cards3 div,.claro .lugares li,.claro .bloco,.claro .custo div,.claro .garantia{background:#FFFDF8;border-color:#E3DCCB;color:#24332F;box-shadow:0 14px 30px -26px rgba(10,31,28,.5)}
+.claro .cards3 p,.claro .bloco p,.claro .custo p,.claro .garantia p{color:#3D4F4A}
+.claro .custo div{border-top-color:#FF7A45}
+.claro .custo b{color:#0A1F1C}
+.claro [data-relogio]{color:#C2410C!important}
+.claro .caixa{border-color:#0F766E;color:#0F766E}
+.claro .lugares li b{color:#0F766E}
+.claro .bloco-tag.t1{color:#5C6B67}
+.claro .bloco-tag.t2{color:#9A6B00}
+.claro .bloco-tag.t3{color:#0F766E}
+.claro .bloco.b3{background:#E6F2EE;border-color:#BFDCD3}
+.claro .jornada::before{background:linear-gradient(#CFC6B2,#E0A21C)}
+.claro .jornada li::before{background:#F4F1E9;border-color:#E0A21C}
+.claro .jornada li:last-child::before{background:#E0A21C;box-shadow:0 0 0 6px rgba(224,162,28,.2)}
+.claro .jornada .quando{color:#9A6B00}
+.claro .jornada p{color:#24332F}
+.claro .selo-mod{background:#0F766E;color:#fff}
+.claro .cartao-apostila{border:1px solid #D6D0C3}
+.claro .garantia .selo{background:#E6F2EE;color:#0A1F1C;border-color:#0F766E}
+.claro .garantia .selo small{color:#5C6B67}
+.claro .cta-nota,.claro .garantias{color:#5C6B67}
+.claro .garantias svg{color:#0F766E}
+.claro.fecho{background:radial-gradient(90% 80% at 50% 100%,#FFE7A8 0%,#F4F1E9 65%)!important}
+/* cartões escuros dentro das seções claras continuam escuros */
+.claro .oferta-card,.claro .app,.claro .acolhe,.claro .cartao-tutor{color:var(--texto);box-shadow:0 30px 60px -36px rgba(10,31,28,.7)}
+.claro .app h3,.claro .cartao-tutor h3{color:#F4FBF9}
+.claro .app .olho{color:var(--azul-claro)}
+@media (hover:hover){.claro .cards3 div:hover,.claro .bloco:hover,.claro .custo div:hover{border-color:#0F766E}}
+
+/* ===== Depoimentos ===== */
+.depos{display:grid;gap:14px;margin:32px auto 0;text-align:left}
+@media (min-width:820px){.depos{grid-template-columns:repeat(2,1fr);gap:16px}}
+.depo{background:var(--cartao);border:1px solid var(--linha);border-radius:18px;padding:22px 20px 18px;margin:0;display:flex;flex-direction:column;gap:10px}
+.depo-aspas{font-family:var(--font-display);font-size:3.2rem;line-height:1;height:26px;color:var(--azul)}
+.depo-dest{font-family:var(--font-display);font-weight:700;font-size:1.14rem;line-height:1.3;color:#F4FBF9}
+.depo blockquote{margin:0;display:flex;flex-direction:column;gap:10px}
+.depo blockquote p{color:#DCEAE6;font-size:.95rem;line-height:1.6}
+.depo figcaption{display:flex;align-items:center;gap:12px;border-top:1px solid var(--linha);padding-top:14px;margin-top:auto}
+.depo-ini{width:40px;height:40px;flex:none;border-radius:50%;background:var(--azul);color:#1A1300;font-family:var(--font-display);font-weight:700;font-size:1.1rem;display:grid;place-items:center}
+.depo figcaption b{display:block;color:#fff;line-height:1.25}
+.depo figcaption b+span{display:block;font-size:.85rem;color:var(--neutro);line-height:1.35}
 </style>
 </head>
 <body>
@@ -528,7 +576,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
 
 <!-- ===================== 2. O PROBLEMA ===================== -->
-<section class="centro" aria-labelledby="t-dor">
+<section class="claro centro" aria-labelledby="t-dor">
   <div class="wrap">
     <h2 id="t-dor">Ler a mesma página três vezes e continuar sem entender tem mais a ver com o material do que com você</h2>
     <div class="texto">
@@ -578,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== 4. A DIFERENÇA NA PRÁTICA ===================== -->
-<section class="centro" aria-labelledby="t-demo">
+<section class="claro centro" aria-labelledby="t-demo">
   <div class="wrap wrap-larga">
     <h2 id="t-demo">O mesmo assunto, escrito de dois jeitos</h2>
     <div class="comparar">
@@ -626,7 +674,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== 5. CAMADAS ===================== -->
-<section class="faixa-alt centro" aria-labelledby="t-funciona">
+<section class="claro centro" aria-labelledby="t-funciona">
   <div class="wrap wrap-larga">
     <h2 id="t-funciona">Cada tema começa simples e vai ganhando detalhe</h2>
     <p class="intro" style="margin-top:14px">Os temas seguem a ordem do que mais cai na prova. Dentro de cada um, os blocos têm sempre a mesma sequência.</p>
@@ -660,7 +708,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== 7. PRATICIDADE + APP ===================== -->
-<section class="faixa-alt centro" aria-labelledby="t-intervalo">
+<section class="claro centro" aria-labelledby="t-intervalo">
   <div class="wrap wrap-larga">
     <h2 id="t-intervalo">Blocos curtos para os intervalos do seu dia</h2>
     <ul class="lugares" aria-label="Onde estudar">
@@ -716,11 +764,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== NOVA CPA ===================== -->
-<section class="faixa-nova centro" aria-labelledby="t-nova">
+<section class="claro faixa-nova centro" aria-labelledby="t-nova">
   <div class="wrap">
     <span class="selo-mod">Nova CPA ANBIMA</span>
     <h2 id="t-nova">Desde janeiro de 2026, a prova cobra mais do que definição decorada</h2>
-    <div class="texto" style="color:#E0EEEA">
+    <div class="texto">
       <p>A CPA-10 deixou de existir. A nova CPA dá mais peso à interpretação de situações, à tomada de decisão e à postura no atendimento.</p>
       <p>Para interpretar um caso, você precisa entender o conceito por trás dele, e é aí que o jeito de ensinar do Explicaí faz diferença. As simulações e o módulo de soft skills treinam a parte de atendimento.</p>
     </div>
@@ -749,7 +797,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== JORNADA ===================== -->
-<section class="faixa-alt centro" aria-labelledby="t-jornada">
+<section class="claro centro" aria-labelledby="t-jornada">
   <div class="wrap">
     <h2 id="t-jornada">Da primeira explicação ao dia da prova</h2>
     <p class="intro" style="margin-top:14px">Quem vai passar na prova é você. O Explicaí acompanha cada passo até lá.</p>
@@ -765,22 +813,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ===================== DEPOIMENTOS REAIS =====================
-     Use apenas depoimentos reais, com autorização (prints de WhatsApp funcionam bem).
-     Preencha e remova o atributo "hidden" da <section>. -->
-<section class="centro" aria-labelledby="t-depo" hidden>
+<!-- ===================== DEPOIMENTOS ===================== -->
+<section class="faixa-alt centro" aria-labelledby="t-depo">
   <div class="wrap wrap-larga">
-    <h2 id="t-depo">Histórias de quem já fez esse caminho</h2>
-    <div class="depoimentos">
-      <blockquote class="depoimento"><p>"[Depoimento real]"</p><footer>[Nome], [cargo ou situação], [cidade]</footer></blockquote>
-      <blockquote class="depoimento"><p>"[Depoimento real]"</p><footer>[Nome], [cargo ou situação], [cidade]</footer></blockquote>
-      <blockquote class="depoimento"><p>"[Depoimento real]"</p><footer>[Nome], [cargo ou situação], [cidade]</footer></blockquote>
+    <span class="olho">Quem já estudou com o Explicaí</span>
+    <h2 id="t-depo">O que dizem as primeiras pessoas que estudaram com o Explicaí</h2>
+    <div class="depos">
+      <figure class="depo">
+        <span class="depo-aspas" aria-hidden="true">“</span>
+        <p class="depo-dest">Um conteúdo que realmente se preocupa em explicar</p>
+        <blockquote><p>Eu sempre tive um pouco de dificuldade com esses termos do mercado financeiro, as siglas me confundiam, um monte de palavras que parecem complicadas, e às vezes acaba ficando mais difícil entender o assunto do que realmente aprender o conteúdo.</p><p>O que eu gostei no Explicaí foi justamente a didática, as explicações são muito mais simples, vão direto ao ponto e ajudam bastante a entender o significado das coisas. Para mim, fez diferença estudar um conteúdo que realmente se preocupa em explicar, em vez de simplesmente jogar os termos técnicos e esperar que você já saiba o que significam.</p></blockquote>
+        <figcaption><span class="depo-ini" aria-hidden="true">C</span><span><b>Claudio Peruchi</b><span>Tinha dificuldade com os termos do mercado financeiro</span></span></figcaption>
+      </figure>
+      <figure class="depo">
+        <span class="depo-aspas" aria-hidden="true">“</span>
+        <p class="depo-dest">Não preciso esperar chegar em casa ou ter uma tarde inteira livre</p>
+        <blockquote><p>Uma coisa que gostei bastante no Explicaí foi a praticidade, eu tenho uma hora e meia de almoço no trabalho e antes nem sempre conseguia aproveitar esse tempo para estudar, porque muitos materiais exigem que você pare e fique bastante tempo lendo.</p><p>Com o Explicaí consigo aproveitar esse intervalo, estudar vários blocos e ir avançando no conteúdo. Gosto porque não preciso esperar chegar em casa ou ter uma tarde inteira livre para conseguir estudar. Vou aproveitando os momentos que tenho durante o dia e parece que o estudo fica menos cansativo.</p></blockquote>
+        <figcaption><span class="depo-ini" aria-hidden="true">B</span><span><b>Brenda Carvalho</b><span>Estuda no intervalo do almoço</span></span></figcaption>
+      </figure>
+      <figure class="depo">
+        <span class="depo-aspas" aria-hidden="true">“</span>
+        <p class="depo-dest">O que me chamou atenção foi a organização</p>
+        <blockquote><p>Conheci o Explicaí por indicação de uma pessoa que conhecia meu gestor, quando estavam testando o material, dei a sorte e consegui testar sem pagar rs. Meu gestor tinha me dado um prazo para tirar a CPA porque existia a possibilidade de abrir uma outra vaga na agência, e eu queria me preparar para essa oportunidade.</p><p>Eu precisava encontrar uma forma de estudar sem ficar perdido no meio de tanto conteúdo. O que me chamou atenção no Explicaí foi a organização. Os assuntos são apresentados de uma forma que facilita acompanhar o estudo, e a praticidade também ajuda bastante na rotina.</p></blockquote>
+        <figcaption><span class="depo-ini" aria-hidden="true">R</span><span><b>Roberto Gomes Santos</b><span>Tinha um prazo do gestor para tirar a CPA</span></span></figcaption>
+      </figure>
+      <figure class="depo">
+        <span class="depo-aspas" aria-hidden="true">“</span>
+        <p class="depo-dest">Os assuntos são explicados de uma maneira mais simples, com analogias e em blocos</p>
+        <blockquote><p>Acabei de me formar na faculdade e estou buscando entrar na área financeira, principalmente na carreira de agente de relacionamento agro. Quando comecei a estudar para a CPA, senti bastante diferença na forma como o conteúdo é apresentado no Explicaí.</p><p>Na faculdade eu estava acostumada com materiais muitas vezes extensos, pouco didáticos e que nem sempre tinham uma sequência muito fácil de acompanhar. No Explicaí achei a experiência diferente, os assuntos são explicados de uma maneira mais simples, com analogias e em blocos, então fica mais fácil acompanhar o raciocínio. Para quem está começando e ainda está construindo uma base no mercado financeiro, achei esse formato muito interessante.</p></blockquote>
+        <figcaption><span class="depo-ini" aria-hidden="true">G</span><span><b>Gabriela Leite</b><span>Recém-formada, buscando entrar na área financeira</span></span></figcaption>
+      </figure>
+    </div>
+    <div class="cta cta-meio">
+      <a class="btn btn-bloco btn-comprar" data-checkout href="#oferta">Quero estudar assim também</a>
     </div>
   </div>
 </section>
 
 <!-- ===================== CUSTO DE ESPERAR ===================== -->
-<section class="centro" aria-labelledby="t-custo">
+<section class="claro centro" aria-labelledby="t-custo">
   <div class="wrap">
     <h2 id="t-custo">Quanto custa deixar para depois</h2>
     <div class="custo">
@@ -821,7 +892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== OFERTA ===================== -->
-<section class="centro" id="oferta" aria-labelledby="t-oferta">
+<section class="claro centro" id="oferta" aria-labelledby="t-oferta">
   <div class="wrap">
     <h2 id="t-oferta">Comece hoje e estude o primeiro tema no próximo intervalo</h2>
 
@@ -896,7 +967,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===================== FECHAMENTO ===================== -->
-<section class="fecho centro" aria-labelledby="t-fecho">
+<section class="claro fecho centro" aria-labelledby="t-fecho">
   <div class="wrap">
     <h2 id="t-fecho">Quem vai passar na CPA é você, e o Explicaí fica do seu lado em cada tema até lá</h2>
     <div class="texto">
